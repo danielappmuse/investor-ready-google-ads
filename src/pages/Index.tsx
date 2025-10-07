@@ -133,10 +133,10 @@ const Index = () => {
               <>
                 <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-6" />
                 <h1 className="text-2xl font-bold text-foreground mb-4">
-                  Payment Successful!
+                  Assessment Confirmed!
                 </h1>
                 <p className="text-muted-foreground mb-6">
-                  Thank you for your purchase. We're processing your validation exam request and will contact you within 48 hours with your comprehensive report and to schedule your strategy session.
+                  Thank you for applying! Our team of VC-backed founders and investors will review your startup and contact you within 48 hours to schedule your investor-readiness interview.
                 </p>
               </>
             ) : (

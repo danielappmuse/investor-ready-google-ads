@@ -108,27 +108,27 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
               <div className="space-y-3 sm:space-y-4 lg:space-y-6">
                 <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full text-xs sm:text-sm font-medium text-white animate-pulse-glow">
                   <Star className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 text-yellow-400 animate-float flex-shrink-0" />
-                  <span className="hidden sm:inline">Two Products. One Mission. Your Success.</span>
-                  <span className="sm:hidden">Your Success Starts Here</span>
+                  <span className="hidden sm:inline">YC-Level Backing. Investor-Ready Results.</span>
+                  <span className="sm:hidden">Get Investor-Ready</span>
                 </div>
                 
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight animate-fade-in stagger-1">
-                  Validate & Build Your <span className="gradient-text relative">
-                    Startup
+                  From Startup to <span className="gradient-text relative">
+                    Investment-Ready
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-2xl -z-10 animate-pulse-glow" />
                   </span>
                   <br />
-                  The Right Way
+                  in 90 Days or Less
                 </h1>
                 
                 <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl">
-                  Got an idea? Let's see if it's got legs.<br className="hidden sm:block" />
-                  <span className="block sm:inline">Start with our <span className="text-primary font-semibold">Validation Exam</span> — it's like a vibe check, but for startups.</span><br className="hidden sm:block" />
-                  <span className="block sm:inline">Pass? Sweet. Time to build with our <span className="text-secondary font-semibold">Prototype Package</span> — fast, focused, and founder-friendly.</span>
-                  <br />
-                  🔬 <span className="text-primary font-semibold">MIT backs this up:</span> <span className="block sm:inline">In a study of 652 ventures, better‑rated ideas had way higher odds of success and funding — sometimes just from the pitch.</span>
-                  <br />
-                   🚀 <span className="block sm:inline">Complete both steps and you're in: pitch to our <span className="text-secondary font-semibold">investor network</span> this December.</span>
+                  AI made ideas cheap. Every week, investors see a thousand "next big things", and fund almost none.<br className="hidden sm:block" />
+                  <span className="block sm:inline">Because now, they only back founders who've already invested in themselves.</span>
+                  <br /><br />
+                  At StartWise, we give serious founders YC–level backing. <span className="block sm:inline">We bring together <span className="text-primary font-semibold">product strategists, business model experts, pitch coaches,</span> and a network of investors who only listen when your startup looks investor-ready.</span>
+                  <br /><br />
+                  💼 <span className="block sm:inline">If you're ready, we'll connect you.</span><br />
+                  ⚙️ <span className="block sm:inline">If not, we'll make you <span className="text-secondary font-semibold">investment-ready in 90 days or less.</span></span>
                  </p>
 
                 {/* Trust Indicators */}
@@ -139,58 +139,58 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
               <div className="animate-fade-in stagger-4">
                 <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-3 sm:mb-4 lg:mb-6 flex items-center">
                   <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 mr-2 text-primary animate-pulse flex-shrink-0" />
-                  <span className="hidden sm:inline">Choose Your Product & Get Started</span>
-                  <span className="sm:hidden">Get Started</span>
+                  <span className="hidden sm:inline">Apply for Your Investor-Readiness Review</span>
+                  <span className="sm:hidden">Apply Now</span>
                 </h2>
                 
                 <div className="space-y-3 sm:space-y-4">
                   <div className="group p-4 sm:p-6 lg:p-8 border-2 border-white/20 rounded-lg cursor-pointer transition-all duration-500 hover:border-primary hover:bg-primary/10 hover:scale-[1.02] card-glass" onClick={handleValidationStart}>
                     <div className="mb-3 sm:mb-4">
-                      <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white group-hover:gradient-text transition-all">Startup Validation Exam</h3>
+                      <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white group-hover:gradient-text transition-all">Investor-Readiness Assessment</h3>
                     </div>
                     <p className="text-xs sm:text-sm lg:text-base text-gray-300 mb-3 sm:mb-4 group-hover:text-white transition-colors">
-                      AI-powered feasibility analysis and market validation report + strategy session with experienced entrepreneurs and business analysts
+                      Get interviewed by founders who've raised capital multiple times, worked inside VC firms, and invested in startups like yours. They'll tell you exactly where you stand and what you're missing — straight, no fluff.
                     </p>
                     
                     {/* Trust Badges */}
                     <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
                       <span className="px-2 py-1 bg-green-500/20 border border-green-500/30 rounded text-xs text-green-400 font-medium">
-                        NDA Protected
+                        VC-Backed Experts
                       </span>
                       <span className="px-2 py-1 bg-blue-500/20 border border-blue-500/30 rounded text-xs text-blue-400 font-medium">
-                        100% Confidential
+                        Founder Interviews
                       </span>
                       <span className="px-2 py-1 bg-purple-500/20 border border-purple-500/30 rounded text-xs text-purple-400 font-medium">
-                        Secure Ideas
+                        Real Feedback
                       </span>
                     </div>
                     
                     <p className="text-xs text-gray-400 mb-3 sm:mb-4 font-medium">
-                      Not working out? Full refund. Zero risk.
+                      This isn't for idea-stage dreamers. It's for founders who've already put time, significant capital, and heart into their startup.
                     </p>
                     <Button className="btn-hero w-full group-hover:animate-pulse text-xs sm:text-sm lg:text-base" onClick={handleValidationStart}>
                       <img src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" alt="StartWise Logo" className="w-3 h-3 sm:w-4 sm:h-4 mr-2 filter drop-shadow-sm flex-shrink-0" style={{
                     background: 'transparent'
                   }} />
-                      <span className="hidden sm:inline">Perfect first step to validate your idea & save money</span>
-                      <span className="sm:hidden">Validate Your Idea</span>
+                      <span className="hidden sm:inline">Start Your Assessment — No Fluff, Just Facts</span>
+                      <span className="sm:hidden">Apply for Review</span>
                       <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                     </Button>
                   </div>
                   
                   <div className="group p-4 sm:p-6 lg:p-8 border-2 border-white/20 rounded-lg transition-all duration-500 hover:border-secondary hover:bg-secondary/10 hover:scale-[1.02] card-glass">
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 sm:mb-4 gap-2">
-                      <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white group-hover:gradient-text transition-all">Prototype + PRD Package</h3>
-                      <span className="text-lg sm:text-xl lg:text-2xl font-bold gradient-text animate-pulse-glow">from $10k</span>
+                      <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white group-hover:gradient-text transition-all">90-Day Investment Readiness Program</h3>
+                      <span className="text-lg sm:text-xl lg:text-2xl font-bold gradient-text animate-pulse-glow">Custom Quote</span>
                     </div>
                     <p className="text-xs sm:text-sm lg:text-base text-gray-300 mb-3 sm:mb-4 group-hover:text-white transition-colors">
-                      Full prototype development with detailed product requirements document
+                      We'll refine your model, perfect your deck, pressure-test your numbers, and shape your story until investors can't look away. Ready to look like you belong in the boardroom?
                     </p>
                     <Button className="btn-secondary w-full group-hover:animate-pulse text-xs sm:text-sm lg:text-base" onClick={() => setCurrentView('prototype-form')}>
                       <img src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" alt="StartWise Logo" className="w-3 h-3 sm:w-4 sm:h-4 mr-2 filter drop-shadow-sm flex-shrink-0" style={{
                     background: 'transparent'
                   }} />
-                      Schedule Consultation
+                      Schedule Strategy Call
                       <Calendar className="w-3 h-3 sm:w-4 sm:h-4 ml-2 group-hover:scale-110 transition-transform flex-shrink-0" />
                     </Button>
                   </div>
@@ -266,10 +266,10 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
         {currentView === 'validation-onboarding' && <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-white mb-4">
-                Startup Validation Assessment
+                Investor-Readiness Assessment
               </h2>
               <p className="text-gray-300">
-                Help us understand your idea so we can provide the most comprehensive validation report
+                Tell us about your startup so our expert founders can assess where you stand and what you need to become investment-ready
               </p>
             </div>
             
@@ -293,10 +293,10 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
         {currentView === 'prototype-form' && <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-white mb-4">
-                Prototype Development Consultation
+                90-Day Investment Readiness Program
               </h2>
               <p className="text-gray-300">
-                Tell us about your project and we'll schedule a consultation to discuss your prototype development
+                Tell us about your startup and we'll schedule a strategy call to discuss how we'll make you investor-ready
               </p>
             </div>
             
@@ -327,25 +327,25 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
               </div>
               
               <h2 className="text-3xl font-bold text-white mb-4">
-                Payment Successful!
+                Assessment Confirmed!
               </h2>
               
               <p className="text-gray-300 text-lg mb-6">
-                Thank you for your purchase! You'll receive your validation report within 48 hours, and we'll contact you within 24 hours to schedule your strategy session with our experienced entrepreneurs and business analysts.
+                Thank you for applying! Our team of VC-backed founders and investors will review your startup and contact you within 48 hours to schedule your investor-readiness interview.
               </p>
               
               <div className="space-y-4 text-left max-w-md mx-auto">
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                  <span className="text-white">Payment confirmation email sent</span>
+                  <span className="text-white">Confirmation email sent</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                  <span className="text-white">Validation report in progress</span>
+                  <span className="text-white">Expert review in progress</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                  <span className="text-white">Strategy session to be scheduled</span>
+                  <span className="text-white">Interview to be scheduled</span>
                 </div>
               </div>
               
