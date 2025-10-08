@@ -90,7 +90,7 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
     // Fallback to phone call
     window.open('tel:+16168962290', '_self');
   };
-  return <section id="get-started" className="min-h-screen flex items-center pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-12 lg:pb-16 relative overflow-hidden">
+  return <section id="get-started" className="min-h-screen flex items-center pt-12 sm:pt-16 lg:pt-20 pb-6 sm:pb-8 lg:pb-12 relative overflow-hidden">
       {/* Animated Background */}
       <AnimatedBackground />
       
@@ -101,18 +101,18 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
       <FloatingStats />
       
       <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 relative z-10">
-        {currentView === 'products' && <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
+        {currentView === 'products' && <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-center">
             {/* Hero Content & Form */}
-            <div className="space-y-4 sm:space-y-6 lg:space-y-8 animate-fade-in-up">
+            <div className="space-y-3 sm:space-y-4 lg:space-y-5 animate-fade-in-up">
               {/* Hero Content */}
-              <div className="space-y-3 sm:space-y-4 lg:space-y-6">
-                <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full text-xs sm:text-sm font-medium text-white animate-pulse-glow">
-                  <Star className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 text-yellow-400 animate-float flex-shrink-0" />
+              <div className="space-y-2 sm:space-y-3 lg:space-y-4">
+                <div className="inline-flex items-center px-2 sm:px-3 py-1 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full text-xs font-medium text-white animate-pulse-glow">
+                  <Star className="w-3 h-3 mr-1.5 text-yellow-400 animate-float flex-shrink-0" />
                   <span className="hidden sm:inline">YC-Level Backing. Investor-Ready Results.</span>
                   <span className="sm:hidden">Get Investor-Ready</span>
                 </div>
                 
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight animate-fade-in stagger-1">
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight animate-fade-in stagger-1">
                   From Startup to <span className="gradient-text relative">
                     Investment-Ready
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-2xl -z-10 animate-pulse-glow" />
@@ -121,14 +121,12 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
                   in 90 Days or Less
                 </h1>
                 
-                <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl">
-                  AI made ideas cheap. Every week, investors see a thousand "next big things", and fund almost none.<br className="hidden sm:block" />
-                  <span className="block sm:inline">Because now, they only back founders who've already invested in themselves.</span>
+                <p className="text-xs sm:text-sm lg:text-base text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl">
+                  AI made ideas cheap. Investors see thousands of "next big things" weekly, and fund almost none—because they only back founders who've invested in themselves.
                   <br /><br />
-                  At StartWise, we give serious founders YC–level backing. <span className="block sm:inline">We bring together <span className="text-primary font-semibold">product strategists, business model experts, pitch coaches,</span> and a network of investors who only listen when your startup looks investor-ready.</span>
+                  At StartWise, we give serious founders YC-level backing with <span className="text-primary font-semibold">product strategists, business model experts, pitch coaches,</span> and investors who only listen when you look investor-ready.
                   <br /><br />
-                  💼 <span className="block sm:inline">If you're ready, we'll connect you.</span><br />
-                  ⚙️ <span className="block sm:inline">If not, we'll make you <span className="text-secondary font-semibold">investment-ready in 90 days or less.</span></span>
+                  💼 Ready? We'll connect you. ⚙️ Not yet? We'll make you <span className="text-secondary font-semibold">investment-ready in 90 days.</span>
                  </p>
 
                 {/* Trust Indicators */}
@@ -138,63 +136,63 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
             </div>
 
             {/* Right Column - Product Selection */}
-            <div className="space-y-4 sm:space-y-6 lg:space-y-8 animate-slide-in-right mt-6 xl:mt-0">
+            <div className="space-y-3 sm:space-y-4 lg:space-y-5 animate-slide-in-right mt-4 xl:mt-0">
               <div className="animate-fade-in stagger-4">
-                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-3 sm:mb-4 lg:mb-6 flex items-center">
-                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 mr-2 text-primary animate-pulse flex-shrink-0" />
+                <h2 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-2 sm:mb-3 lg:mb-4 flex items-center">
+                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-primary animate-pulse flex-shrink-0" />
                   <span className="hidden sm:inline">Apply for Your Investor-Readiness Review</span>
                   <span className="sm:hidden">Apply Now</span>
                 </h2>
                 
-                <div className="space-y-3 sm:space-y-4">
-                  <div className="group p-4 sm:p-6 lg:p-8 border-2 border-white/20 rounded-lg cursor-pointer transition-all duration-500 hover:border-primary hover:bg-primary/10 hover:scale-[1.02] card-glass" onClick={handleValidationStart}>
-                    <div className="mb-3 sm:mb-4">
-                      <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white group-hover:gradient-text transition-all">Investor-Readiness Assessment</h3>
+                <div className="space-y-2 sm:space-y-3">
+                  <div className="group p-3 sm:p-4 lg:p-5 border-2 border-white/20 rounded-lg cursor-pointer transition-all duration-500 hover:border-primary hover:bg-primary/10 hover:scale-[1.02] card-glass" onClick={handleValidationStart}>
+                    <div className="mb-2 sm:mb-3">
+                      <h3 className="text-sm sm:text-base lg:text-lg font-bold text-white group-hover:gradient-text transition-all">Investor-Readiness Assessment</h3>
                     </div>
-                    <p className="text-xs sm:text-sm lg:text-base text-gray-300 mb-3 sm:mb-4 group-hover:text-white transition-colors">
-                      Get interviewed by founders who've raised capital multiple times, worked inside VC firms, and invested in startups like yours. They'll tell you exactly where you stand and what you're missing — straight, no fluff.
+                    <p className="text-xs sm:text-sm text-gray-300 mb-2 sm:mb-3 group-hover:text-white transition-colors">
+                      Get interviewed by founders who've raised capital multiple times and worked inside VC firms. They'll tell you where you stand—no fluff.
                     </p>
                     
                     {/* Trust Badges */}
-                    <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
-                      <span className="px-2 py-1 bg-green-500/20 border border-green-500/30 rounded text-xs text-green-400 font-medium">
-                        VC-Backed Experts
+                    <div className="flex flex-wrap gap-1.5 mb-2 sm:mb-3">
+                      <span className="px-1.5 py-0.5 bg-green-500/20 border border-green-500/30 rounded text-xs text-green-400 font-medium">
+                        VC-Backed
                       </span>
-                      <span className="px-2 py-1 bg-blue-500/20 border border-blue-500/30 rounded text-xs text-blue-400 font-medium">
+                      <span className="px-1.5 py-0.5 bg-blue-500/20 border border-blue-500/30 rounded text-xs text-blue-400 font-medium">
                         Founder Interviews
                       </span>
-                      <span className="px-2 py-1 bg-purple-500/20 border border-purple-500/30 rounded text-xs text-purple-400 font-medium">
+                      <span className="px-1.5 py-0.5 bg-purple-500/20 border border-purple-500/30 rounded text-xs text-purple-400 font-medium">
                         Real Feedback
                       </span>
                     </div>
                     
-                    <p className="text-xs text-gray-400 mb-3 sm:mb-4 font-medium">
-                      This isn't for idea-stage dreamers. It's for founders who've already put time, significant capital, and heart into their startup.
+                    <p className="text-xs text-gray-400 mb-2 sm:mb-3 font-medium">
+                      For founders who've put time, capital, and heart into their startup.
                     </p>
-                    <Button className="btn-hero w-full group-hover:animate-pulse text-xs sm:text-sm lg:text-base" onClick={handleValidationStart}>
-                      <img src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" alt="StartWise Logo" className="w-3 h-3 sm:w-4 sm:h-4 mr-2 filter drop-shadow-sm flex-shrink-0" style={{
+                    <Button className="btn-hero w-full group-hover:animate-pulse text-xs sm:text-sm" onClick={handleValidationStart}>
+                      <img src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" alt="StartWise Logo" className="w-3 h-3 mr-2 filter drop-shadow-sm flex-shrink-0" style={{
                     background: 'transparent'
                   }} />
-                      <span className="hidden sm:inline">Start Your Assessment — No Fluff, Just Facts</span>
-                      <span className="sm:hidden">Apply for Review</span>
-                      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+                      <span className="hidden sm:inline">Start Assessment</span>
+                      <span className="sm:hidden">Apply</span>
+                      <ArrowRight className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                     </Button>
                   </div>
                   
-                  <div className="group p-4 sm:p-6 lg:p-8 border-2 border-white/20 rounded-lg transition-all duration-500 hover:border-secondary hover:bg-secondary/10 hover:scale-[1.02] card-glass">
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 sm:mb-4 gap-2">
-                      <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white group-hover:gradient-text transition-all">90-Day Investment Readiness Program</h3>
-                      <span className="text-lg sm:text-xl lg:text-2xl font-bold gradient-text animate-pulse-glow">Custom Quote</span>
+                  <div className="group p-3 sm:p-4 lg:p-5 border-2 border-white/20 rounded-lg transition-all duration-500 hover:border-secondary hover:bg-secondary/10 hover:scale-[1.02] card-glass">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2 sm:mb-3 gap-1">
+                      <h3 className="text-sm sm:text-base lg:text-lg font-bold text-white group-hover:gradient-text transition-all">90-Day Investment Readiness Program</h3>
+                      <span className="text-base sm:text-lg lg:text-xl font-bold gradient-text animate-pulse-glow">Custom Quote</span>
                     </div>
-                    <p className="text-xs sm:text-sm lg:text-base text-gray-300 mb-3 sm:mb-4 group-hover:text-white transition-colors">
-                      We'll refine your model, perfect your deck, pressure-test your numbers, and shape your story until investors can't look away. Ready to look like you belong in the boardroom?
+                    <p className="text-xs sm:text-sm text-gray-300 mb-2 sm:mb-3 group-hover:text-white transition-colors">
+                      We'll refine your model, perfect your deck, and shape your story until investors can't look away.
                     </p>
-                    <Button className="btn-secondary w-full group-hover:animate-pulse text-xs sm:text-sm lg:text-base" onClick={() => setCurrentView('prototype-form')}>
-                      <img src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" alt="StartWise Logo" className="w-3 h-3 sm:w-4 sm:h-4 mr-2 filter drop-shadow-sm flex-shrink-0" style={{
+                    <Button className="btn-secondary w-full group-hover:animate-pulse text-xs sm:text-sm" onClick={() => setCurrentView('prototype-form')}>
+                      <img src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" alt="StartWise Logo" className="w-3 h-3 mr-2 filter drop-shadow-sm flex-shrink-0" style={{
                     background: 'transparent'
                   }} />
-                      Schedule Strategy Call
-                      <Calendar className="w-3 h-3 sm:w-4 sm:h-4 ml-2 group-hover:scale-110 transition-transform flex-shrink-0" />
+                      Schedule Call
+                      <Calendar className="w-3 h-3 ml-2 group-hover:scale-110 transition-transform flex-shrink-0" />
                     </Button>
                   </div>
                 </div>
