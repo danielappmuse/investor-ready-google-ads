@@ -135,7 +135,10 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
                 
               </div>
 
-              {/* Product Selection */}
+            </div>
+
+            {/* Right Column - Product Selection */}
+            <div className="space-y-4 sm:space-y-6 lg:space-y-8 animate-slide-in-right mt-6 xl:mt-0">
               <div className="animate-fade-in stagger-4">
                 <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-3 sm:mb-4 lg:mb-6 flex items-center">
                   <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 mr-2 text-primary animate-pulse flex-shrink-0" />
@@ -195,60 +198,6 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
                     </Button>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Right Column - AI Agent Options */}
-            <div className="space-y-4 sm:space-y-6 lg:space-y-8 animate-slide-in-right mt-6 xl:mt-0">
-              <div className="card-glass p-3 sm:p-4 md:p-6 lg:p-8">
-                <div className="text-center mb-3 sm:mb-4 md:mb-6">
-                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-1 sm:mb-2">
-                    Connect with Our AI Agent
-                  </h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-300 px-2">
-                    Get instant answers about your project and connect with specialists
-                  </p>
-                </div>
-
-                <ErrorBoundary fallback={
-                  <div className="p-3 sm:p-4 bg-card/20 rounded-lg border border-border/50">
-                    <p className="text-center text-gray-300 text-xs sm:text-sm">Chat interface temporarily unavailable. Please contact us directly.</p>
-                  </div>
-                }>
-                  <Tabs defaultValue="chat" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2 mb-3 sm:mb-4 md:mb-6 h-9 sm:h-10 md:h-12 bg-white/5 backdrop-blur-sm">
-                      <TabsTrigger 
-                        value="chat" 
-                        className="flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm md:text-base px-1 sm:px-2 md:px-3 py-1.5 sm:py-2 data-[state=active]:bg-primary/20 data-[state=active]:text-white transition-all duration-300 rounded-md"
-                      >
-                        <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
-                        <span className="hidden xs:inline sm:hidden md:inline">Chat Agent</span>
-                        <span className="xs:hidden sm:inline md:hidden">Chat</span>
-                      </TabsTrigger>
-                      <TabsTrigger 
-                        value="call" 
-                        className="flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm md:text-base px-1 sm:px-2 md:px-3 py-1.5 sm:py-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary/20 data-[state=active]:to-secondary/20 data-[state=active]:text-white transition-all duration-300 rounded-md"
-                      >
-                        <Mic className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
-                        <span className="hidden xs:inline sm:hidden md:inline">Voice Agent</span>
-                        <span className="xs:hidden sm:inline md:hidden">Voice</span>
-                      </TabsTrigger>
-                    </TabsList>
-
-                    <TabsContent value="chat" className="mt-0 focus:outline-none">
-                      <div className="h-[300px] xs:h-[320px] sm:h-[340px] md:h-[380px] lg:h-[420px] xl:h-[450px] overflow-hidden rounded-lg">
-                        <ChatAgent />
-                      </div>
-                    </TabsContent>
-
-                    <TabsContent 
-                      value="call" 
-                      className="flex justify-center items-center h-[300px] xs:h-[320px] sm:h-[340px] md:h-[380px] lg:h-[420px] xl:h-[450px] mt-0 focus:outline-none bg-gradient-to-br from-primary/5 to-secondary/5 rounded-lg border border-white/10"
-                    >
-                      <VoiceAgentWrapper />
-                    </TabsContent>
-                  </Tabs>
-                </ErrorBoundary>
               </div>
 
               {/* Data Visualization - Hidden on Mobile */}
