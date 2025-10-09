@@ -129,11 +129,70 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
                   💼 Ready? We'll connect you. ⚙️ Not yet? We'll make you <span className="text-secondary font-semibold">investment-ready in 90 days.</span>
                  </p>
 
-                {/* Trust Indicators */}
-                
-              </div>
+                 {/* Trust Indicators */}
+                 
+               </div>
 
-            </div>
+               {/* As Featured In */}
+               <div className="mt-8 pt-6 border-t border-white/10">
+                 <p className="text-xs text-gray-400 mb-4 text-center">As Featured In</p>
+                 <div className="flex justify-center">
+                   <div className="overflow-hidden max-w-3xl w-full">
+                     <div 
+                       className="flex animate-scroll-smooth"
+                       style={{ 
+                         width: 'calc(200% + 2rem)',
+                         transform: 'translateZ(0)',
+                         backfaceVisibility: 'hidden',
+                         perspective: '1000px'
+                       }}
+                     >
+                       {/* First set of media logos */}
+                       {[
+                         { src: '/media-logos/business-insider.png', alt: 'Business Insider' },
+                         { src: '/media-logos/forbes.png', alt: 'Forbes' },
+                         { src: '/media-logos/yahoo-finance.png', alt: 'Yahoo Finance' },
+                         { src: '/media-logos/globe-and-mail.png?v=5', alt: 'The Globe and Mail' },
+                         { src: '/media-logos/benzinga.png', alt: 'Benzinga' },
+                         { src: '/media-logos/barchart.png', alt: 'Barchart' }
+                       ].map((logo, index) => (
+                         <div
+                           key={`first-${index}`}
+                           className="flex-shrink-0 flex items-center justify-center mx-4 transition-all duration-300 w-24"
+                         >
+                           <img
+                             src={logo.src}
+                             alt={logo.alt}
+                             className={`h-16 w-auto object-contain grayscale opacity-60 hover:opacity-80 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-50 contrast-100' : logo.alt === 'Forbes' ? 'brightness-130 contrast-30' : 'brightness-150 contrast-75'}`}
+                           />
+                         </div>
+                       ))}
+                       {/* Duplicate set for seamless infinite scroll */}
+                       {[
+                         { src: '/media-logos/business-insider.png', alt: 'Business Insider' },
+                         { src: '/media-logos/forbes.png', alt: 'Forbes' },
+                         { src: '/media-logos/yahoo-finance.png', alt: 'Yahoo Finance' },
+                         { src: '/media-logos/globe-and-mail.png?v=5', alt: 'The Globe and Mail' },
+                         { src: '/media-logos/benzinga.png', alt: 'Benzinga' },
+                         { src: '/media-logos/barchart.png', alt: 'Barchart' }
+                       ].map((logo, index) => (
+                         <div
+                           key={`second-${index}`}
+                           className="flex-shrink-0 flex items-center justify-center mx-4 transition-all duration-300 w-24"
+                         >
+                           <img
+                             src={logo.src}
+                             alt={logo.alt}
+                             className={`h-16 w-auto object-contain grayscale opacity-60 hover:opacity-80 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-50 contrast-100' : logo.alt === 'Forbes' ? 'brightness-130 contrast-30' : 'brightness-150 contrast-75'}`}
+                           />
+                         </div>
+                       ))}
+                     </div>
+                   </div>
+                 </div>
+               </div>
+
+             </div>
 
             {/* Right Column - Product Selection */}
             <div className="space-y-3 sm:space-y-4 lg:space-y-5 animate-slide-in-right mt-4 xl:mt-0">
