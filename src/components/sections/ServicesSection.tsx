@@ -10,24 +10,24 @@ const ServicesSection = ({ onValidationClick, onPrototypeClick }: ServicesSectio
   const products = [{
     id: 'validation-exam',
     icon: <Target className="w-8 h-8" />,
-    title: 'Startup Validation Exam',
-    subtitle: 'Test Your Idea Before You Build',
-    price: 'Complete Exam',
+    title: 'Investor-Readiness Assessment',
+    subtitle: 'Are You Ready to Raise Capital?',
+    price: 'Complete Assessment',
     originalPrice: '$997',
-    description: 'Comprehensive market analysis and feasibility study to validate your startup idea with data-driven insights.',
-    features: ['Market size and opportunity analysis', 'Competitive landscape deep-dive', 'Customer validation interviews', 'Revenue model assessment', 'Technical feasibility review', 'Go-to-market strategy framework', 'Risk assessment and mitigation plan', 'Investment recommendation (Go/No-Go)'],
-    deliverables: ['10-15 pages report', 'Market analysis dashboard', 'Competitor comparison matrix', 'Customer persona profiles', 'Revenue projections', 'Strategy session with experienced entrepreneurs & business analysts'],
-    guarantee: 'Money-back guarantee if we can\'t validate your concept',
+    description: 'Comprehensive evaluation of your startup, materials, and pitch. If ready, we connect you to investors. If not, we show you exactly what needs work.',
+    features: ['Pitch deck review and scoring', 'Business model evaluation', 'Market opportunity analysis', 'Competitive positioning assessment', 'Team and traction review', 'Financial projections analysis', 'Materials completeness check', 'Investor-readiness score'],
+    deliverables: ['Detailed assessment report', 'Investor-readiness score', 'Gap analysis and recommendations', 'Materials review feedback', 'Intro to investors (if ready)', 'Strategy session with VC-backed founders'],
+    guarantee: 'Clear roadmap to investment or your money back',
     timeline: '48 hours',
     popular: true
   }, {
     id: 'prototype-prd',
     icon: <Code className="w-8 h-8" />,
-    title: 'Prototype + PRD Package',
-    subtitle: 'Build Your MVP The Right Way',
+    title: 'Development Services',
+    subtitle: 'Build What You Need',
     price: 'from $10,000',
     originalPrice: '$35,000',
-    description: 'Complete prototype development with detailed PRD to transform your validated idea into a market-ready product.',
+    description: 'Missing technical materials? We build prototypes, MVPs, and create comprehensive technical documentation to strengthen your pitch.',
     features: ['Interactive clickable prototype', 'Comprehensive PRD documentation', 'User experience design', 'Technical architecture planning', 'Database schema design', 'API specification document', 'Quality assurance testing plan', 'Deployment and scaling strategy'],
     deliverables: ['Fully interactive prototype', '50-100 page PRD document', 'Figma UI/UX design files', 'Technical specifications', 'Testing protocols', 'Development roadmap', 'Weekly progress calls'],
     guarantee: 'Launch-ready guarantee with 90-day support',
@@ -48,12 +48,12 @@ const ServicesSection = ({ onValidationClick, onPrototypeClick }: ServicesSectio
           </div>
           
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
-            From <span className="gradient-text">validation</span> to <span className="gradient-text">Investors ready</span>
+            From <span className="gradient-text">Assessment</span> to <span className="gradient-text">Investment</span>
           </h2>
           
           <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Start smart with our Validation Exam, then build right with our Prototype + PRD Package starting from $10k. 
-            The proven path from idea to reality.
+            We assess if you're investor-ready and connect you with the right people. Need more work? 
+            We'll help you develop what's missing and train you for investor meetings.
           </p>
         </div>
 
@@ -131,21 +131,21 @@ const ServicesSection = ({ onValidationClick, onPrototypeClick }: ServicesSectio
 
         {/* Process Flow */}
         <div className="text-center mb-8 sm:mb-12">
-          <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Recommended Path</h3>
+          <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">How It Works</h3>
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4 text-sm sm:text-base text-gray-300">
             <div className="flex items-center space-x-2">
               <div className="w-7 h-7 sm:w-8 sm:h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
-              <span>Validation Exam</span>
+              <span>Get Assessed</span>
             </div>
             <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-primary rotate-90 sm:rotate-0" />
             <div className="flex items-center space-x-2">
               <div className="w-7 h-7 sm:w-8 sm:h-8 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
-              <span className="text-center sm:text-left">Prototype + PRD<br className="sm:hidden" />(from $10k)</span>
+              <span className="text-center sm:text-left">Ready? Meet investors<br className="sm:hidden" />Not ready? 90-day program</span>
             </div>
             <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-primary rotate-90 sm:rotate-0" />
             <div className="flex items-center space-x-2">
               <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-sm">✓</div>
-              <span className="text-center sm:text-left">Get in front of<br className="sm:hidden" /> investors</span>
+              <span className="text-center sm:text-left">Raise Capital</span>
             </div>
           </div>
         </div>
@@ -154,18 +154,18 @@ const ServicesSection = ({ onValidationClick, onPrototypeClick }: ServicesSectio
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-center">
           <div className="card-glass p-4 sm:p-6">
             <Target className="w-6 h-6 sm:w-8 sm:h-8 text-primary mx-auto mb-2 sm:mb-3" />
-            <div className="text-xl sm:text-2xl font-bold text-white">99%</div>
-            <div className="text-xs sm:text-sm text-gray-400">Validation Accuracy</div>
+            <div className="text-xl sm:text-2xl font-bold text-white">200+</div>
+            <div className="text-xs sm:text-sm text-gray-400">Startups Assessed</div>
           </div>
           <div className="card-glass p-4 sm:p-6">
             <Code className="w-6 h-6 sm:w-8 sm:h-8 text-primary mx-auto mb-2 sm:mb-3" />
-            <div className="text-xl sm:text-2xl font-bold text-white">200+</div>
-            <div className="text-xs sm:text-sm text-gray-400">Prototypes Built</div>
+            <div className="text-xl sm:text-2xl font-bold text-white">$50M+</div>
+            <div className="text-xs sm:text-sm text-gray-400">Capital Raised</div>
           </div>
           <div className="card-glass p-4 sm:p-6">
             <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-primary mx-auto mb-2 sm:mb-3" />
-            <div className="text-xl sm:text-2xl font-bold text-white">100%</div>
-            <div className="text-xs sm:text-sm text-gray-400">Money-Back Guarantee</div>
+            <div className="text-xl sm:text-2xl font-bold text-white">48hr</div>
+            <div className="text-xs sm:text-sm text-gray-400">Assessment Turnaround</div>
           </div>
         </div>
       </div>

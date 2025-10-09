@@ -6,43 +6,43 @@ const ProcessSection = () => {
     {
       number: '01',
       icon: <Search className="w-8 h-8" />,
-      title: 'Submit Your Idea',
-      description: 'Tell us about your startup concept and we begin our comprehensive analysis process.',
+      title: 'Get Assessed',
+      description: 'We evaluate your startup, team, materials, and pitch to determine if you\'re investor-ready.',
       details: [
-        'Complete our detailed questionnaire',
-        'Share your vision and goals',
-        'Provide any existing research',
-        'Schedule initial consultation call'
+        'Submit your pitch deck and materials',
+        'Share your traction and metrics',
+        'Tell us about your team',
+        'Review call with our team'
       ],
       timeline: '48 hours',
       product: 'validation'
     },
     {
       number: '02',
-      icon: <Code className="w-8 h-8" />,
-      title: 'Prototype Development',
-      description: 'Transform your validated idea into an interactive prototype with complete technical documentation.',
+      icon: <Target className="w-8 h-8" />,
+      title: 'Get Ready or Get Connected',
+      description: 'Ready? We connect you to investors. Not ready? We\'ll refine your materials and prep you in 90 days.',
       details: [
-        'User experience design',
-        'Interactive prototype creation',
-        'Technical architecture planning',
-        'PRD documentation writing'
+        'Investor introductions (if ready)',
+        'Gap analysis and roadmap (if not)',
+        'Materials refinement',
+        'Pitch training and prep'
       ],
-      timeline: '3-4 weeks',
-      product: 'prototype'
+      timeline: '1-90 days',
+      product: 'both'
     },
     {
       number: '03',
       icon: <Rocket className="w-8 h-8" />,
-      title: 'Present to Investors',
-      description: 'Get ready to pitch your validated concept and prototype to potential investors with confidence.',
+      title: 'Raise Capital',
+      description: 'Meet with investors, deliver your pitch, and close your funding round with confidence.',
       details: [
-        'Investor pitch deck creation',
-        'Financial projections preparation',
-        'Demo presentation setup',
-        'Q&A preparation guidance'
+        'Investor meeting preparation',
+        'Pitch delivery coaching',
+        'Due diligence support',
+        'Term sheet negotiation guidance'
       ],
-      timeline: '1-2 weeks',
+      timeline: 'Ongoing',
       product: 'both'
     }
   ]
@@ -56,8 +56,8 @@ const ProcessSection = () => {
             Our Streamlined <span className="gradient-text">Process</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            From idea submission to launch-ready deliverables - our proven process 
-            takes you from concept to reality in weeks, not months.
+            From assessment to investor meetings - our proven process 
+            gets you funded faster with expert guidance every step of the way.
           </p>
         </div>
 
@@ -115,9 +115,9 @@ const ProcessSection = () => {
                       step.product === 'prototype' ? 'bg-blue-500/20 text-blue-400 border border-blue-400/20' :
                       'bg-purple-500/20 text-purple-400 border border-purple-400/20'
                     }`}>
-                    {step.product === 'validation' ? 'Validation Exam' :
-                     step.product === 'prototype' ? 'Prototype from $10k' :
-                     'Both Products'}
+                    {step.product === 'validation' ? 'Assessment' :
+                     step.product === 'prototype' ? '90-Day Program' :
+                     'Full Journey'}
                     </span>
                   </div>
                 </div>

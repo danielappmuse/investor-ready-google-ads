@@ -108,25 +108,23 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
               <div className="space-y-2 sm:space-y-3 lg:space-y-4">
                 <div className="inline-flex items-center px-2 sm:px-3 py-1 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full text-xs font-medium text-white animate-pulse-glow">
                   <Star className="w-3 h-3 mr-1.5 text-yellow-400 animate-float flex-shrink-0" />
-                  <span className="hidden sm:inline">YC-Level Backing. Investor-Ready Results.</span>
+                  <span className="hidden sm:inline">Connecting Startups to Investors</span>
                   <span className="sm:hidden">Get Investor-Ready</span>
                 </div>
                 
                 <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight animate-fade-in stagger-1">
-                  From Startup to <span className="gradient-text relative">
-                    Investment-Ready
+                  Get <span className="gradient-text relative">
+                    Investor-Ready
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-2xl -z-10 animate-pulse-glow" />
                   </span>
                   <br />
-                  in 90 Days or Less
+                  In 90 Days or Less
                 </h1>
                 
                 <p className="text-xs sm:text-sm lg:text-base text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl">
-                  AI made ideas cheap. Investors see thousands of "next big things" weekly, and fund almost none—because they only back founders who've invested in themselves.
+                  We assess your startup and connect you with investors if you're ready. If not, we'll get you there with expert guidance, refined materials, and proven strategies.
                   <br /><br />
-                  At StartWise, we give serious founders YC-level backing with <span className="text-primary font-semibold">product strategists, business model experts, pitch coaches,</span> and investors who only listen when you look investor-ready.
-                  <br /><br />
-                  💼 Ready? We'll connect you. ⚙️ Not yet? We'll make you <span className="text-secondary font-semibold">investment-ready in 90 days.</span>
+                  Our team of VC-backed founders and investors will review your startup, materials, and pitch. Ready? We introduce you to investors. Not ready? We make you investable in 90 days or less.
                  </p>
 
                 {/* Trust Indicators */}
@@ -185,7 +183,7 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
                       <span className="text-base sm:text-lg lg:text-xl font-bold gradient-text animate-pulse-glow">Custom Quote</span>
                     </div>
                     <p className="text-xs sm:text-sm text-gray-300 mb-2 sm:mb-3 group-hover:text-white transition-colors">
-                      We'll refine your model, perfect your deck, and shape your story until investors can't look away.
+                      Not ready yet? We'll refine your pitch, complete missing materials, and train you for investor meetings. Investment-ready in 90 days or less, guaranteed.
                     </p>
                     <Button className="btn-secondary w-full group-hover:animate-pulse text-xs sm:text-sm" onClick={() => setCurrentView('prototype-form')}>
                       <img src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" alt="StartWise Logo" className="w-3 h-3 mr-2 filter drop-shadow-sm flex-shrink-0" style={{

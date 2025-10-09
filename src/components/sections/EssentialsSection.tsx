@@ -14,62 +14,62 @@ const EssentialsSection = ({ onValidationClick }: EssentialsSectionProps) => {
   const essentials = {
     validation: {
       icon: <Target />,
-      title: 'Validation Essentials',
-      subtitle: 'Validate Smart, Build Right',
-      description: 'Everything you need to know about our Validation Exam and why it\'s the smart first step for any startup.',
+      title: 'Assessment Program',
+      subtitle: 'Are You Investor-Ready?',
+      description: 'Our comprehensive assessment evaluates your startup and determines if you\'re ready to meet investors or need more preparation.',
       benefits: [
-        'Save $10K+ by avoiding bad ideas',
-        'Get market-validated insights',
-        'Understand your competition',
-        'Identify revenue opportunities',
-        'Reduce investment risk',
-        'Get professional analysis'
+        'Honest investor-readiness score',
+        'Clear roadmap to funding',
+        'Investor introductions (if ready)',
+        'Gap analysis and recommendations',
+        'Materials review and feedback',
+        'Access to VC-backed founders'
       ],
       process: [
-        'Submit your startup idea (NDA protected)',
-        'Our experts conduct market research',
-        'Competitive analysis performed',
-        'Customer validation interviews',
-        'Financial projections created',
-        'Comprehensive report delivered'
+        'Submit your materials (NDA protected)',
+        'Pitch deck and business review',
+        'Team and traction evaluation',
+        'Market and competitive analysis',
+        'Interview with our team',
+        'Detailed feedback delivered'
       ],
       outcomes: [
-        'Clear Go/No-Go recommendation',
-        'Market size and opportunity data',
-        'Competitive landscape analysis',
-        'Revenue model validation',
-        'Risk assessment and mitigation',
-        'Strategic next steps'
+        'Investor-readiness score',
+        'Ready? Investor introductions',
+        'Not ready? 90-day program access',
+        'Materials feedback report',
+        'Strategic action plan',
+        'Ongoing support and guidance'
       ]
     },
     prototype: {
       icon: <Code />,
-      title: 'Prototype + PRD',
-      subtitle: 'From Validated Idea to Reality',
-      description: 'Transform your validated startup idea into a functional prototype with complete product requirements documentation.',
+      title: '90-Day Program',
+      subtitle: 'Get Investor-Ready Fast',
+      description: 'Not ready yet? We\'ll work with you to refine your pitch, complete missing materials, and train you for investor meetings in 90 days or less.',
       benefits: [
-        'Interactive clickable prototype',
-        'Complete technical specifications',
-        'Professional design system',
-        'Development-ready documentation',
-        'Quality assurance planning',
-        'Investor-ready presentation'
+        'Pitch deck refinement',
+        'Materials completion support',
+        'Investor presentation training',
+        'Q&A preparation coaching',
+        'Financial model review',
+        'Guaranteed investor-readiness'
       ],
       process: [
-        'Requirements gathering session',
-        'User experience design',
-        'Interactive prototype creation',
-        'Technical architecture planning',
-        'PRD documentation writing',
-        'Quality assurance review'
+        'Gap analysis and planning',
+        'Materials development',
+        'Pitch coaching sessions',
+        'Mock investor presentations',
+        'Feedback and iteration',
+        'Final readiness check'
       ],
       outcomes: [
-        'Fully functional prototype',
-        'Comprehensive PRD document',
-        'Technical specifications',
-        'UI/UX design files',
-        'Development roadmap',
-        'Testing protocols'
+        'Polished pitch deck',
+        'Complete investor materials',
+        'Presentation confidence',
+        'Investor Q&A preparation',
+        'Warm investor introductions',
+        'Fundraising support'
       ]
     }
   }
@@ -89,12 +89,12 @@ const EssentialsSection = ({ onValidationClick }: EssentialsSectionProps) => {
           </div>
           
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Why Our <span className="gradient-text">Two-Product</span> System Works
+            Why Our <span className="gradient-text">Two-Path</span> Approach Works
           </h2>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Most startups fail because they skip validation or build without proper planning. 
-            Our proven system eliminates both risks.
+            Most startups waste time pitching before they're ready. We assess first, 
+            then either connect you to investors or get you ready in 90 days.
           </p>
         </div>
 
@@ -214,10 +214,10 @@ const EssentialsSection = ({ onValidationClick }: EssentialsSectionProps) => {
 
                         <div className="text-center mb-6">
                           <div className="text-3xl font-bold gradient-text mb-2">
-                            {key === 'validation' ? 'Complete Exam' : 'from $10k'}
+                            {key === 'validation' ? 'Complete Assessment' : '90-Day Program'}
                           </div>
                           <div className="text-sm text-gray-400">
-                            {key === 'validation' ? '48 hours' : '4-6 weeks delivery'}
+                            {key === 'validation' ? '48 hour turnaround' : 'Investor-ready guarantee'}
                           </div>
                         </div>
 
@@ -225,7 +225,7 @@ const EssentialsSection = ({ onValidationClick }: EssentialsSectionProps) => {
                           onClick={key === 'validation' ? onValidationClick : scrollToContact}
                           className="btn-hero w-full"
                         >
-                          {key === 'validation' ? 'Get Started - Complete Exam' : 'Get Started'}
+                          {key === 'validation' ? 'Get Assessed Now' : 'Join 90-Day Program'}
                           <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
                       </div>
@@ -238,8 +238,8 @@ const EssentialsSection = ({ onValidationClick }: EssentialsSectionProps) => {
                         </h5>
                         <p className="text-gray-300 text-sm">
                           {key === 'validation' 
-                            ? "If we can't validate your concept with actionable insights, full refund."
-                            : "If the prototype doesn't meet specifications, we'll fix it or refund."
+                            ? "Clear assessment and roadmap to funding or your money back."
+                            : "Investor-ready in 90 days or we'll work until you are."
                           }
                         </p>
                       </div>
