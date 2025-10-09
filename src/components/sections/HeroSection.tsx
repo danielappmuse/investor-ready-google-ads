@@ -57,7 +57,7 @@ const HeroSection = ({ startWithPrototype = false }: HeroSectionProps) => {
                 </div>
                 
                 <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight animate-fade-in stagger-1">
-                  From Startup to <span className="gradient-text relative">
+                  From Idea to <span className="gradient-text relative">
                     Investment-Ready
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-2xl -z-10 animate-pulse-glow" />
                   </span>
