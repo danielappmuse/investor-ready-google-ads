@@ -105,7 +105,7 @@ const ProjectCarousel = () => {
     const timer = setInterval(nextSlide, 8000); // Auto-advance every 8 seconds
     return () => clearInterval(timer);
   }, []);
-  return <section id="portfolio" className="py-12">
+  return <section id="portfolio" className="pt-4 pb-12">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
