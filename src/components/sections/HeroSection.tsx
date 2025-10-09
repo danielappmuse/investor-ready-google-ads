@@ -188,69 +188,6 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
             </div>
           </div>}
 
-        {/* As Featured In - Below both columns */}
-        {currentView === 'products' && (
-          <div className="mt-6 sm:mt-8 lg:mt-10 animate-fade-in stagger-5">
-            <div className="text-center mb-4">
-              <p className="text-xs sm:text-sm text-gray-400">As Featured In</p>
-              <p className="text-xs sm:text-sm text-gray-400">Recognized by leading media and financial publications</p>
-            </div>
-            <div className="flex justify-center">
-              <div className="overflow-hidden max-w-5xl w-full">
-                <div 
-                  className="flex animate-scroll-smooth"
-                  style={{ 
-                    width: 'calc(200% + 2rem)',
-                    transform: 'translateZ(0)',
-                    backfaceVisibility: 'hidden',
-                    perspective: '1000px'
-                  }}
-                >
-                  {/* First set of media logos */}
-                  {[
-                    { src: '/media-logos/business-insider.png', alt: 'Business Insider' },
-                    { src: '/media-logos/forbes.png', alt: 'Forbes' },
-                    { src: '/media-logos/yahoo-finance.png', alt: 'Yahoo Finance' },
-                    { src: '/media-logos/globe-and-mail.png?v=5', alt: 'The Globe and Mail' },
-                    { src: '/media-logos/benzinga.png', alt: 'Benzinga' },
-                    { src: '/media-logos/barchart.png', alt: 'Barchart' }
-                  ].map((logo, index) => (
-                    <div
-                      key={`first-${index}`}
-                      className="flex-shrink-0 flex items-center justify-center mx-6 sm:mx-8 transition-all duration-300 w-32 sm:w-40"
-                    >
-                      <img
-                        src={logo.src}
-                        alt={logo.alt}
-                        className={`h-20 sm:h-24 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`}
-                      />
-                    </div>
-                  ))}
-                  {/* Duplicate set for seamless infinite scroll */}
-                  {[
-                    { src: '/media-logos/business-insider.png', alt: 'Business Insider' },
-                    { src: '/media-logos/forbes.png', alt: 'Forbes' },
-                    { src: '/media-logos/yahoo-finance.png', alt: 'Yahoo Finance' },
-                    { src: '/media-logos/globe-and-mail.png?v=5', alt: 'The Globe and Mail' },
-                    { src: '/media-logos/benzinga.png', alt: 'Benzinga' },
-                    { src: '/media-logos/barchart.png', alt: 'Barchart' }
-                  ].map((logo, index) => (
-                    <div
-                      key={`second-${index}`}
-                      className="flex-shrink-0 flex items-center justify-center mx-6 sm:mx-8 transition-all duration-300 w-32 sm:w-40"
-                    >
-                      <img
-                        src={logo.src}
-                        alt={logo.alt}
-                        className={`h-20 sm:h-24 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
 
         {currentView === 'validation-onboarding' && <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
