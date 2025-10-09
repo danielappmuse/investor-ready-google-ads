@@ -136,16 +136,16 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
              </div>
 
             {/* Right Column - Product Selection */}
-            <div className="space-y-2 sm:space-y-3 lg:space-y-4 animate-slide-in-right mt-3 xl:mt-0">
+            <div className="space-y-2 sm:space-y-3 lg:space-y-4 animate-slide-in-right mt-3 xl:mt-0 max-w-lg mx-auto xl:mx-0">
               <div className="animate-fade-in stagger-4">
-                <h2 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-2 sm:mb-3 lg:mb-4 flex items-center">
-                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-primary animate-pulse flex-shrink-0" />
+                <h2 className="text-sm sm:text-base lg:text-lg font-bold text-white mb-2 sm:mb-3 flex items-center">
+                  <Sparkles className="w-4 h-4 mr-2 text-primary animate-pulse flex-shrink-0" />
                   <span className="hidden sm:inline">Apply for Your Investor-Readiness Review</span>
                   <span className="sm:hidden">Apply Now</span>
                 </h2>
                 
                 <div className="space-y-2 sm:space-y-3">
-                  <div className="group p-4 sm:p-6 lg:p-8 border-2 border-white/20 rounded-lg cursor-pointer transition-all duration-500 hover:border-primary hover:bg-primary/10 hover:scale-[1.02] card-glass flex flex-col justify-between min-h-[400px]" onClick={handleValidationStart}>
+                  <div className="group p-4 sm:p-5 lg:p-6 border-2 border-white/20 rounded-lg cursor-pointer transition-all duration-500 hover:border-primary hover:bg-primary/10 hover:scale-[1.02] card-glass flex flex-col justify-between min-h-[320px]" onClick={handleValidationStart}>
                     <div>
                       <div className="mb-3 sm:mb-4">
                         <h3 className="text-sm sm:text-base lg:text-lg font-bold text-white group-hover:gradient-text transition-all">Investor-Readiness Assessment</h3>
