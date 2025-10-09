@@ -143,7 +143,7 @@ const ValidationOnboarding: React.FC<ValidationOnboardingProps> = ({ onComplete,
 
   const renderStep = () => {
     const containerClass = `
-      relative w-full flex flex-col justify-center items-center px-4 py-8 sm:px-6 sm:py-12
+      relative w-full flex flex-col justify-center items-center px-4 py-4 sm:px-6 sm:py-6
       transition-all duration-220 ease-out transform
       ${isTransitioning ? 'opacity-0 translate-x-4' : 'opacity-100 translate-x-0'}
     `
@@ -164,17 +164,7 @@ const ValidationOnboarding: React.FC<ValidationOnboardingProps> = ({ onComplete,
               </Button>
             </div>
             
-            <div className="w-full max-w-xl mx-auto text-center space-y-6">
-              <div>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3">
-                  Let's Get Started
-                </h1>
-                <p className="text-base sm:text-lg text-muted-foreground">
-                  First, we need your basic details
-                </p>
-              </div>
-              
-              <div className="space-y-4">
+            <div className="w-full max-w-xl mx-auto space-y-4">
                 <div>
                   <Input
                     {...register('name')}
@@ -231,7 +221,6 @@ const ValidationOnboarding: React.FC<ValidationOnboardingProps> = ({ onComplete,
                     </Button>
                   </div>
                 )}
-              </div>
             </div>
           </div>
         )
@@ -251,17 +240,7 @@ const ValidationOnboarding: React.FC<ValidationOnboardingProps> = ({ onComplete,
               </Button>
             </div>
             
-            <div className="w-full max-w-xl mx-auto text-center space-y-6">
-              <div>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3">
-                  About Your Project
-                </h1>
-                <p className="text-base sm:text-lg text-muted-foreground">
-                  Tell us about your startup journey
-                </p>
-              </div>
-              
-              <div className="space-y-4">
+            <div className="w-full max-w-xl mx-auto space-y-4">
                 <div>
                   <Input
                     {...register('projectDuration')}
@@ -311,7 +290,6 @@ const ValidationOnboarding: React.FC<ValidationOnboardingProps> = ({ onComplete,
                     </Button>
                   </div>
                 )}
-              </div>
             </div>
           </div>
         )
@@ -331,16 +309,7 @@ const ValidationOnboarding: React.FC<ValidationOnboardingProps> = ({ onComplete,
               </Button>
             </div>
             
-            <div className="w-full max-w-2xl mx-auto text-center space-y-6">
-              <div>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3">
-                  What Have You Completed?
-                </h1>
-                <p className="text-base sm:text-lg text-muted-foreground mb-6">
-                  Select all that apply (you can select multiple options)
-                </p>
-              </div>
-              
+            <div className="w-full max-w-2xl mx-auto space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {completedItemsList.map((item) => (
                   <div
@@ -398,7 +367,7 @@ const ValidationOnboarding: React.FC<ValidationOnboardingProps> = ({ onComplete,
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-background via-background to-muted/20">
       <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full pt-32 sm:pt-36">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full pt-24 sm:pt-28">
         {renderStep()}
       </form>
     </div>
