@@ -145,30 +145,33 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
                 </h2>
                 
                 <div className="space-y-2 sm:space-y-3">
-                  <div className="group p-3 sm:p-4 lg:p-5 border-2 border-white/20 rounded-lg cursor-pointer transition-all duration-500 hover:border-primary hover:bg-primary/10 hover:scale-[1.02] card-glass" onClick={handleValidationStart}>
-                    <div className="mb-2 sm:mb-3">
-                      <h3 className="text-sm sm:text-base lg:text-lg font-bold text-white group-hover:gradient-text transition-all">Investor-Readiness Assessment</h3>
+                  <div className="group p-4 sm:p-6 lg:p-8 border-2 border-white/20 rounded-lg cursor-pointer transition-all duration-500 hover:border-primary hover:bg-primary/10 hover:scale-[1.02] card-glass flex flex-col justify-between min-h-[400px]" onClick={handleValidationStart}>
+                    <div>
+                      <div className="mb-3 sm:mb-4">
+                        <h3 className="text-sm sm:text-base lg:text-lg font-bold text-white group-hover:gradient-text transition-all">Investor-Readiness Assessment</h3>
+                      </div>
+                      <p className="text-xs sm:text-sm text-gray-300 mb-3 sm:mb-4 group-hover:text-white transition-colors">
+                        Get interviewed by founders who've raised capital multiple times and worked inside VC firms. They'll tell you where you stand—no fluff.
+                      </p>
+                      
+                      {/* Trust Badges */}
+                      <div className="flex flex-wrap gap-1.5 mb-3 sm:mb-4">
+                        <span className="px-1.5 py-0.5 bg-green-500/20 border border-green-500/30 rounded text-xs text-green-400 font-medium">
+                          VC-Backed
+                        </span>
+                        <span className="px-1.5 py-0.5 bg-blue-500/20 border border-blue-500/30 rounded text-xs text-blue-400 font-medium">
+                          Founder Interviews
+                        </span>
+                        <span className="px-1.5 py-0.5 bg-purple-500/20 border border-purple-500/30 rounded text-xs text-purple-400 font-medium">
+                          Real Feedback
+                        </span>
+                      </div>
+                      
+                      <p className="text-xs text-gray-400 mb-4 sm:mb-6 font-medium">
+                        For founders who've put time, capital, and heart into their startup.
+                      </p>
                     </div>
-                    <p className="text-xs sm:text-sm text-gray-300 mb-2 sm:mb-3 group-hover:text-white transition-colors">
-                      Get interviewed by founders who've raised capital multiple times and worked inside VC firms. They'll tell you where you stand—no fluff.
-                    </p>
                     
-                    {/* Trust Badges */}
-                    <div className="flex flex-wrap gap-1.5 mb-2 sm:mb-3">
-                      <span className="px-1.5 py-0.5 bg-green-500/20 border border-green-500/30 rounded text-xs text-green-400 font-medium">
-                        VC-Backed
-                      </span>
-                      <span className="px-1.5 py-0.5 bg-blue-500/20 border border-blue-500/30 rounded text-xs text-blue-400 font-medium">
-                        Founder Interviews
-                      </span>
-                      <span className="px-1.5 py-0.5 bg-purple-500/20 border border-purple-500/30 rounded text-xs text-purple-400 font-medium">
-                        Real Feedback
-                      </span>
-                    </div>
-                    
-                    <p className="text-xs text-gray-400 mb-2 sm:mb-3 font-medium">
-                      For founders who've put time, capital, and heart into their startup.
-                    </p>
                     <Button className="btn-hero w-full group-hover:animate-pulse text-xs sm:text-sm" onClick={handleValidationStart}>
                       <img src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" alt="StartWise Logo" className="w-3 h-3 mr-2 filter drop-shadow-sm flex-shrink-0" style={{
                     background: 'transparent'
@@ -176,23 +179,6 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
                       <span className="hidden sm:inline">Start Assessment</span>
                       <span className="sm:hidden">Apply</span>
                       <ArrowRight className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
-                    </Button>
-                  </div>
-                  
-                  <div className="group p-3 sm:p-4 lg:p-5 border-2 border-white/20 rounded-lg transition-all duration-500 hover:border-secondary hover:bg-secondary/10 hover:scale-[1.02] card-glass">
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2 sm:mb-3 gap-1">
-                      <h3 className="text-sm sm:text-base lg:text-lg font-bold text-white group-hover:gradient-text transition-all">90-Day Investment Readiness Program</h3>
-                      <span className="text-base sm:text-lg lg:text-xl font-bold gradient-text animate-pulse-glow">Custom Quote</span>
-                    </div>
-                    <p className="text-xs sm:text-sm text-gray-300 mb-2 sm:mb-3 group-hover:text-white transition-colors">
-                      We'll refine your model, perfect your deck, and shape your story until investors can't look away.
-                    </p>
-                    <Button className="btn-secondary w-full group-hover:animate-pulse text-xs sm:text-sm" onClick={() => setCurrentView('prototype-form')}>
-                      <img src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" alt="StartWise Logo" className="w-3 h-3 mr-2 filter drop-shadow-sm flex-shrink-0" style={{
-                    background: 'transparent'
-                  }} />
-                      Schedule Call
-                      <Calendar className="w-3 h-3 ml-2 group-hover:scale-110 transition-transform flex-shrink-0" />
                     </Button>
                   </div>
                 </div>
