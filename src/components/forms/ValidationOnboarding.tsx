@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -46,14 +45,11 @@ interface ValidationOnboardingProps {
 }
 
 const ValidationOnboarding: React.FC<ValidationOnboardingProps> = ({ onComplete, onBack }) => {
-  const navigate = useNavigate()
   const [currentStep, setCurrentStep] = useState(1)
-  const [isTransitioning, setIsTransitioning] = useState(false)
   const totalSteps = 3
 
   const {
     register,
-    handleSubmit,
     setValue,
     watch,
     getValues,
@@ -81,7 +77,7 @@ const ValidationOnboarding: React.FC<ValidationOnboardingProps> = ({ onComplete,
     localStorage.setItem('validation_onboarding_state', formData)
   }, [watchedFields, currentStep])
 
-  // Load saved state
+  // Load saved state on mount
   useEffect(() => {
     const savedState = localStorage.getItem('validation_onboarding_state')
     if (savedState) {
@@ -92,40 +88,21 @@ const ValidationOnboarding: React.FC<ValidationOnboardingProps> = ({ onComplete,
             setValue(key as keyof ValidationOnboardingData, savedData[key])
           }
         })
-        setCurrentStep(savedStep || 1)
+        if (savedStep) setCurrentStep(savedStep)
       } catch (error) {
         console.error('Failed to load saved state:', error)
       }
     }
   }, [setValue])
 
-  const advanceStep = useCallback(() => {
-    if (currentStep < totalSteps) {
-      setIsTransitioning(true)
-      setTimeout(() => {
-        setCurrentStep(prev => prev + 1)
-        setIsTransitioning(false)
-      }, 220)
-    }
-  }, [currentStep, totalSteps])
-
   const toggleCompletedItem = (value: string) => {
     const currentArray = watchedFields.completedItems || []
-    
     if (currentArray.includes(value)) {
       setValue('completedItems', currentArray.filter(item => item !== value))
     } else {
       setValue('completedItems', [...currentArray, value])
     }
     trigger('completedItems')
-  }
-
-  const onSubmit = async (data: ValidationOnboardingData) => {
-    console.log('Form submitted:', data)
-    const isValid = await trigger()
-    if (isValid) {
-      onComplete(getValues())
-    }
   }
 
   const completedItemsList = [
@@ -141,175 +118,152 @@ const ValidationOnboarding: React.FC<ValidationOnboardingProps> = ({ onComplete,
     'Legal'
   ]
 
-  const renderStep = () => {
-    const containerClass = `
-      relative w-full flex flex-col justify-center items-center px-4 py-4 sm:px-6 sm:py-6
-      transition-all duration-220 ease-out transform
-      ${isTransitioning ? 'opacity-0 translate-x-4' : 'opacity-100 translate-x-0'}
-    `
+  const handleContinueStep1 = async () => {
+    const isValid = await trigger(['name', 'email', 'phone'])
+    if (isValid) setCurrentStep(2)
+  }
 
-    switch (currentStep) {
-      case 1:
-        return (
-          <div className={containerClass}>
-            <div className="absolute top-4 left-4 z-10">
-              <Button
-                onClick={onBack}
-                variant="outline"
-                size="sm"
-                className="bg-background/80 backdrop-blur-sm border-border/50 hover:bg-background/90"
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Go Back
-              </Button>
-            </div>
-            
-            <div className="w-full max-w-xl mx-auto space-y-4">
-                <div>
-                  <Input
-                    {...register('name')}
-                    placeholder="Full Name"
-                    className="text-base py-3 bg-card/50 border-2 border-border/50 focus:border-primary rounded-xl"
-                    autoComplete="name"
-                  />
-                  {errors.name && (
-                    <p className="text-destructive text-sm mt-2">{errors.name.message}</p>
-                  )}
-                </div>
-                
-                <div>
-                  <Input
-                    {...register('email')}
-                    type="email"
-                    placeholder="Email Address"
-                    className="text-base py-3 bg-card/50 border-2 border-border/50 focus:border-primary rounded-xl"
-                    autoComplete="email"
-                  />
-                  {errors.email && (
-                    <p className="text-destructive text-sm mt-2">{errors.email.message}</p>
-                  )}
-                </div>
-                
-                <div>
-                  <Input
-                    type="tel"
-                    onChange={handlePhoneChange}
-                    value={watchedFields.phone || ''}
-                    placeholder="Phone Number: +1 (555) 123-4567"
-                    className="text-base py-3 bg-card/50 border-2 border-border/50 focus:border-primary rounded-xl"
-                    maxLength={17}
-                    autoComplete="tel"
-                  />
-                  {errors.phone && (
-                    <p className="text-destructive text-sm mt-2">{errors.phone.message}</p>
-                  )}
-                </div>
-                
-                {watchedFields.name && watchedFields.email && watchedFields.phone && (
-                  <div className="flex justify-center mt-6">
-                    <Button 
-                      onClick={async () => {
-                        const isValid = await trigger(['name', 'email', 'phone'])
-                        if (isValid) {
-                          advanceStep()
-                        }
-                      }} 
-                      size="lg"
-                      className="px-8 py-3 text-base font-semibold bg-primary text-primary-foreground hover:scale-105 transition-all"
-                    >
-                      Continue
-                    </Button>
-                  </div>
-                )}
-            </div>
+  const handleContinueStep2 = async () => {
+    const isValid = await trigger(['projectDuration', 'teamSize', 'moneyInvested'])
+    if (isValid) setCurrentStep(3)
+  }
+
+  const handleSubmitFinal = async () => {
+    const isValid = await trigger()
+    if (isValid) {
+      onComplete(getValues())
+    }
+  }
+
+  return (
+    <div className="min-h-screen w-full bg-gradient-to-br from-background via-background to-muted/20">
+      <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
+      
+      <div className="w-full pt-24 sm:pt-28 px-4 py-6">
+        <div className="max-w-2xl mx-auto">
+          {/* Back Button */}
+          <div className="mb-6">
+            <Button
+              onClick={currentStep === 1 ? onBack : () => setCurrentStep(currentStep - 1)}
+              variant="outline"
+              size="sm"
+              className="bg-background/80 backdrop-blur-sm border-border/50 hover:bg-background/90"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Go Back
+            </Button>
           </div>
-        )
 
-      case 2:
-        return (
-          <div className={containerClass}>
-            <div className="absolute top-4 left-4 z-10">
-              <Button
-                onClick={() => setCurrentStep(prev => prev - 1)}
-                variant="outline"
-                size="sm"
-                className="bg-background/80 backdrop-blur-sm border-border/50 hover:bg-background/90"
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Go Back
-              </Button>
-            </div>
-            
-            <div className="w-full max-w-xl mx-auto space-y-4">
-                <div>
-                  <Input
-                    {...register('projectDuration')}
-                    placeholder="How long have you been working on this project?"
-                    className="text-base py-3 bg-card/50 border-2 border-border/50 focus:border-primary rounded-xl"
-                  />
-                  {errors.projectDuration && (
-                    <p className="text-destructive text-sm mt-2">{errors.projectDuration.message}</p>
-                  )}
-                </div>
-                
-                <div>
-                  <Input
-                    {...register('teamSize')}
-                    placeholder="What is the size of your current team?"
-                    className="text-base py-3 bg-card/50 border-2 border-border/50 focus:border-primary rounded-xl"
-                  />
-                  {errors.teamSize && (
-                    <p className="text-destructive text-sm mt-2">{errors.teamSize.message}</p>
-                  )}
-                </div>
-                
-                <div>
-                  <Input
-                    {...register('moneyInvested')}
-                    placeholder="How much money was invested so far? (overall)"
-                    className="text-base py-3 bg-card/50 border-2 border-border/50 focus:border-primary rounded-xl"
-                  />
-                  {errors.moneyInvested && (
-                    <p className="text-destructive text-sm mt-2">{errors.moneyInvested.message}</p>
-                  )}
-                </div>
-                
-                {watchedFields.projectDuration && watchedFields.teamSize && watchedFields.moneyInvested && (
-                  <div className="flex justify-center mt-6">
-                    <Button 
-                      onClick={async () => {
-                        const isValid = await trigger(['projectDuration', 'teamSize', 'moneyInvested'])
-                        if (isValid) {
-                          advanceStep()
-                        }
-                      }} 
-                      size="lg"
-                      className="px-8 py-3 text-base font-semibold bg-primary text-primary-foreground hover:scale-105 transition-all"
-                    >
-                      Continue
-                    </Button>
-                  </div>
+          {/* Step 1: Basic Details */}
+          {currentStep === 1 && (
+            <div className="space-y-4">
+              <div>
+                <Input
+                  {...register('name')}
+                  placeholder="Full Name"
+                  className="text-base py-3 bg-card/50 border-2 border-border/50 focus:border-primary rounded-xl"
+                  autoComplete="name"
+                />
+                {errors.name && (
+                  <p className="text-destructive text-sm mt-2">{errors.name.message}</p>
                 )}
+              </div>
+              
+              <div>
+                <Input
+                  {...register('email')}
+                  type="email"
+                  placeholder="Email Address"
+                  className="text-base py-3 bg-card/50 border-2 border-border/50 focus:border-primary rounded-xl"
+                  autoComplete="email"
+                />
+                {errors.email && (
+                  <p className="text-destructive text-sm mt-2">{errors.email.message}</p>
+                )}
+              </div>
+              
+              <div>
+                <Input
+                  type="tel"
+                  onChange={handlePhoneChange}
+                  value={watchedFields.phone || ''}
+                  placeholder="Phone Number: +1 (555) 123-4567"
+                  className="text-base py-3 bg-card/50 border-2 border-border/50 focus:border-primary rounded-xl"
+                  maxLength={17}
+                  autoComplete="tel"
+                />
+                {errors.phone && (
+                  <p className="text-destructive text-sm mt-2">{errors.phone.message}</p>
+                )}
+              </div>
+              
+              {watchedFields.name && watchedFields.email && watchedFields.phone && (
+                <div className="flex justify-center mt-8">
+                  <Button 
+                    onClick={handleContinueStep1}
+                    size="lg"
+                    className="px-8 py-3 text-base font-semibold bg-primary text-primary-foreground hover:scale-105 transition-all"
+                  >
+                    Continue
+                  </Button>
+                </div>
+              )}
             </div>
-          </div>
-        )
+          )}
 
-      case 3:
-        return (
-          <div className={containerClass}>
-            <div className="absolute top-4 left-4 z-10">
-              <Button
-                onClick={() => setCurrentStep(prev => prev - 1)}
-                variant="outline"
-                size="sm"
-                className="bg-background/80 backdrop-blur-sm border-border/50 hover:bg-background/90"
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Go Back
-              </Button>
+          {/* Step 2: Project Details */}
+          {currentStep === 2 && (
+            <div className="space-y-4">
+              <div>
+                <Input
+                  {...register('projectDuration')}
+                  placeholder="How long have you been working on this project?"
+                  className="text-base py-3 bg-card/50 border-2 border-border/50 focus:border-primary rounded-xl"
+                />
+                {errors.projectDuration && (
+                  <p className="text-destructive text-sm mt-2">{errors.projectDuration.message}</p>
+                )}
+              </div>
+              
+              <div>
+                <Input
+                  {...register('teamSize')}
+                  placeholder="What is the size of your current team?"
+                  className="text-base py-3 bg-card/50 border-2 border-border/50 focus:border-primary rounded-xl"
+                />
+                {errors.teamSize && (
+                  <p className="text-destructive text-sm mt-2">{errors.teamSize.message}</p>
+                )}
+              </div>
+              
+              <div>
+                <Input
+                  {...register('moneyInvested')}
+                  placeholder="How much money was invested so far? (overall)"
+                  className="text-base py-3 bg-card/50 border-2 border-border/50 focus:border-primary rounded-xl"
+                />
+                {errors.moneyInvested && (
+                  <p className="text-destructive text-sm mt-2">{errors.moneyInvested.message}</p>
+                )}
+              </div>
+              
+              {watchedFields.projectDuration && watchedFields.teamSize && watchedFields.moneyInvested && (
+                <div className="flex justify-center mt-8">
+                  <Button 
+                    onClick={handleContinueStep2}
+                    size="lg"
+                    className="px-8 py-3 text-base font-semibold bg-primary text-primary-foreground hover:scale-105 transition-all"
+                  >
+                    Continue
+                  </Button>
+                </div>
+              )}
             </div>
-            
-            <div className="w-full max-w-2xl mx-auto space-y-4">
+          )}
+
+          {/* Step 3: Completed Items */}
+          {currentStep === 3 && (
+            <div className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {completedItemsList.map((item) => (
                   <div
@@ -336,18 +290,13 @@ const ValidationOnboarding: React.FC<ValidationOnboardingProps> = ({ onComplete,
               </div>
               
               {errors.completedItems && (
-                <p className="text-destructive text-sm mt-2">{errors.completedItems.message}</p>
+                <p className="text-destructive text-sm mt-2 text-center">{errors.completedItems.message}</p>
               )}
               
               {watchedFields.completedItems && watchedFields.completedItems.length > 0 && (
-                <div className="flex justify-center mt-6">
+                <div className="flex justify-center mt-8">
                   <Button 
-                    onClick={async () => {
-                      const isValid = await trigger()
-                      if (isValid) {
-                        onSubmit(getValues())
-                      }
-                    }} 
+                    onClick={handleSubmitFinal}
                     size="lg"
                     className="px-8 py-3 text-base font-semibold bg-primary text-primary-foreground hover:scale-105 transition-all"
                   >
@@ -356,20 +305,9 @@ const ValidationOnboarding: React.FC<ValidationOnboardingProps> = ({ onComplete,
                 </div>
               )}
             </div>
-          </div>
-        )
-
-      default:
-        return null
-    }
-  }
-
-  return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-background via-background to-muted/20">
-      <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full pt-24 sm:pt-28">
-        {renderStep()}
-      </form>
+          )}
+        </div>
+      </div>
     </div>
   )
 }
