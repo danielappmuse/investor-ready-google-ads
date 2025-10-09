@@ -56,7 +56,7 @@ const HeroSection = ({ startWithPrototype = false }: HeroSectionProps) => {
                   <span className="sm:hidden">Get Investor-Ready</span>
                 </div>
                 
-                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight animate-fade-in stagger-1">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight animate-fade-in stagger-1">
                   From Idea to <span className="gradient-text relative">
                     Investment-Ready
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-2xl -z-10 animate-pulse-glow" />
@@ -65,7 +65,7 @@ const HeroSection = ({ startWithPrototype = false }: HeroSectionProps) => {
                   in 90 Days or Less
                 </h1>
                 
-                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl">
+                <p className="text-sm sm:text-base text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl">
                   AI made ideas cheap. Investors see thousands of "next big things" weekly, and fund almost none—because they only back founders who've invested in themselves.
                   <br /><br />
                   At StartWise, we give serious founders YC-level backing with <span className="text-primary font-semibold">product strategists, business model experts, pitch coaches,</span> and investors who only listen when you look investor-ready.
@@ -78,7 +78,7 @@ const HeroSection = ({ startWithPrototype = false }: HeroSectionProps) => {
             {/* Right Column - CTA */}
             <div className="space-y-2 sm:space-y-3 lg:space-y-4 animate-slide-in-right mt-3 xl:mt-0 max-w-lg mx-auto xl:mx-0">
               <div className="animate-fade-in stagger-4">
-                <h2 className="text-sm sm:text-base lg:text-lg font-bold text-white mb-2 sm:mb-3 flex items-center">
+                <h2 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-2 sm:mb-3 flex items-center">
                   <Sparkles className="w-4 h-4 mr-2 text-primary animate-pulse flex-shrink-0" />
                   <span>Ready to Get Started?</span>
                 </h2>
@@ -86,32 +86,32 @@ const HeroSection = ({ startWithPrototype = false }: HeroSectionProps) => {
                 <div className="space-y-2 sm:space-y-3">
                   <div className="group p-4 sm:p-5 lg:p-6 border-2 border-white/20 rounded-lg card-glass">
                     <div className="mb-3 sm:mb-4">
-                      <h3 className="text-sm sm:text-base lg:text-lg font-bold text-white group-hover:gradient-text transition-all">
+                      <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white group-hover:gradient-text transition-all">
                         Investor-Readiness Assessment
                       </h3>
                     </div>
-                    <p className="text-xs sm:text-sm text-gray-300 mb-3 sm:mb-4">
+                    <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">
                       Get interviewed by founders who've raised capital multiple times and worked inside VC firms. They'll tell you where you stand—no fluff.
                     </p>
                     
                     {/* Trust Badges */}
                     <div className="flex flex-wrap gap-1.5 mb-3 sm:mb-4">
-                      <span className="px-1.5 py-0.5 bg-green-500/20 border border-green-500/30 rounded text-xs text-green-400 font-medium">
+                      <span className="px-1.5 py-0.5 bg-green-500/20 border border-green-500/30 rounded text-sm text-green-400 font-medium">
                         VC-Backed
                       </span>
-                      <span className="px-1.5 py-0.5 bg-blue-500/20 border border-blue-500/30 rounded text-xs text-blue-400 font-medium">
+                      <span className="px-1.5 py-0.5 bg-blue-500/20 border border-blue-500/30 rounded text-sm text-blue-400 font-medium">
                         Founder Interviews
                       </span>
-                      <span className="px-1.5 py-0.5 bg-purple-500/20 border border-purple-500/30 rounded text-xs text-purple-400 font-medium">
+                      <span className="px-1.5 py-0.5 bg-purple-500/20 border border-purple-500/30 rounded text-sm text-purple-400 font-medium">
                         Real Feedback
                       </span>
                     </div>
                     
-                    <p className="text-xs text-gray-400 mb-4 sm:mb-6 font-medium">
+                    <p className="text-sm text-gray-400 mb-4 sm:mb-6 font-medium">
                       For founders who've put time, capital, and heart into their startup.
                     </p>
                     
-                    <Button className="btn-hero w-full text-xs sm:text-sm">
+                    <Button className="btn-hero w-full text-sm sm:text-base">
                       <img 
                         src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" 
                         alt="StartWise Logo" 
