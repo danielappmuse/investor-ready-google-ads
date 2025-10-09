@@ -90,7 +90,7 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
     // Fallback to phone call
     window.open('tel:+16168962290', '_self');
   };
-  return <section id="get-started" className="min-h-screen flex items-center pt-12 sm:pt-16 lg:pt-20 pb-6 sm:pb-8 lg:pb-12 relative overflow-hidden">
+  return <section id="get-started" className="min-h-screen flex items-center pt-8 sm:pt-12 lg:pt-16 pb-4 sm:pb-6 lg:pb-8 relative overflow-hidden">
       {/* Animated Background */}
       <AnimatedBackground />
       
@@ -101,18 +101,18 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
       <FloatingStats />
       
       <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 relative z-10">
-        {currentView === 'products' && <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-center">
+        {currentView === 'products' && <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 items-start">
             {/* Hero Content & Form */}
-            <div className="space-y-3 sm:space-y-4 lg:space-y-5 animate-fade-in-up">
+            <div className="space-y-2 sm:space-y-3 lg:space-y-4 animate-fade-in-up">
               {/* Hero Content */}
-              <div className="space-y-2 sm:space-y-3 lg:space-y-4">
+              <div className="space-y-1.5 sm:space-y-2 lg:space-y-3">
                 <div className="inline-flex items-center px-2 sm:px-3 py-1 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full text-xs font-medium text-white animate-pulse-glow">
                   <Star className="w-3 h-3 mr-1.5 text-yellow-400 animate-float flex-shrink-0" />
                   <span className="hidden sm:inline">YC-Level Backing. Investor-Ready Results.</span>
                   <span className="sm:hidden">Get Investor-Ready</span>
                 </div>
                 
-                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight animate-fade-in stagger-1">
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight animate-fade-in stagger-1">
                   From Startup to <span className="gradient-text relative">
                     Investment-Ready
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-2xl -z-10 animate-pulse-glow" />
@@ -121,7 +121,7 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
                   in 90 Days or Less
                 </h1>
                 
-                <p className="text-xs sm:text-sm lg:text-base text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl">
+                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl">
                   AI made ideas cheap. Investors see thousands of "next big things" weekly, and fund almost none—because they only back founders who've invested in themselves.
                   <br /><br />
                   At StartWise, we give serious founders YC-level backing with <span className="text-primary font-semibold">product strategists, business model experts, pitch coaches,</span> and investors who only listen when you look investor-ready.
@@ -136,7 +136,7 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
              </div>
 
             {/* Right Column - Product Selection */}
-            <div className="space-y-3 sm:space-y-4 lg:space-y-5 animate-slide-in-right mt-4 xl:mt-0">
+            <div className="space-y-2 sm:space-y-3 lg:space-y-4 animate-slide-in-right mt-3 xl:mt-0">
               <div className="animate-fade-in stagger-4">
                 <h2 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-2 sm:mb-3 lg:mb-4 flex items-center">
                   <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-primary animate-pulse flex-shrink-0" />
@@ -184,22 +184,14 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
                 </div>
               </div>
 
-              {/* Data Visualization - Hidden on Mobile */}
-              <div className="hidden lg:block">
-                <DataVisualization />
-              </div>
-              
-              {/* Tech Elements - Hidden on Mobile */}
-              <div className="hidden lg:block">
-                <TechElements />
-              </div>
+              {/* Hidden: Data Visualization and Tech Elements removed to fit above fold */}
             </div>
           </div>}
 
         {/* As Featured In - Below both columns */}
         {currentView === 'products' && (
-          <div className="mt-12 sm:mt-16 animate-fade-in stagger-5">
-            <p className="text-sm text-gray-400 mb-6 text-center">As Featured In</p>
+          <div className="mt-6 sm:mt-8 lg:mt-10 animate-fade-in stagger-5">
+            <p className="text-xs sm:text-sm text-gray-400 mb-4 text-center">As Featured In</p>
             <div className="flex justify-center">
               <div className="overflow-hidden max-w-5xl w-full">
                 <div 
