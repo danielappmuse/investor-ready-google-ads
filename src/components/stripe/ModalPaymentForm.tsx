@@ -3,7 +3,7 @@ import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-
 import { Button } from '@/components/ui/button';
 import { Loader2, CheckCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
-import type { ValidationOnboardingData } from '@/components/forms/ValidationOnboarding';
+import type { ValidationOnboardingData } from '@/types/validation';
 import EnhancedWalletPaymentButtons from './EnhancedWalletPaymentButtons';
 
 interface PaymentFormProps {

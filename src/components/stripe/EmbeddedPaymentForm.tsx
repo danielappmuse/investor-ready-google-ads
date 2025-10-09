@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { CreditCard, AlertCircle } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import type { ValidationOnboardingData } from '@/components/forms/ValidationOnboarding';
+import type { ValidationOnboardingData } from '@/types/validation';
 
 interface EmbeddedPaymentFormProps {
   onSuccess: () => void;

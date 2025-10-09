@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { CreditCard, Smartphone, Building2, Banknote, ShoppingCart, Timer, Apple, Chrome, Zap } from 'lucide-react';
-import type { ValidationOnboardingData } from '@/components/forms/ValidationOnboarding';
+import type { ValidationOnboardingData } from '@/types/validation';
 import EmbeddedStripeCheckout from './EmbeddedStripeCheckout';
 
 interface PaymentMethodOption {

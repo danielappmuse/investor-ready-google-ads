@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { CreditCard, Lock, AlertCircle, CheckCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
-import type { ValidationOnboardingData } from '@/components/forms/ValidationOnboarding';
+import type { ValidationOnboardingData } from '@/types/validation';
 
 interface StripePaymentFormProps {
   onboardingData: ValidationOnboardingData;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PaymentRequestButtonElement, useStripe } from '@stripe/react-stripe-js';
 import { supabase } from '@/integrations/supabase/client';
 import { errorLogger } from '@/utils/errorLogger';
-import type { ValidationOnboardingData } from '@/components/forms/ValidationOnboarding';
+import type { ValidationOnboardingData } from '@/types/validation';
 import { CheckoutErrorBoundary } from '@/components/CheckoutErrorBoundary';
 
 interface EnhancedWalletPaymentButtonsProps {

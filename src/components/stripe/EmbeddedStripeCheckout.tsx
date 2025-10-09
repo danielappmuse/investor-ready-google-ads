@@ -6,7 +6,7 @@ import { Loader2, X, AlertCircle, RefreshCw } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { errorLogger } from '@/utils/errorLogger';
 import { CheckoutErrorBoundary } from '@/components/CheckoutErrorBoundary';
-import type { ValidationOnboardingData } from '@/components/forms/ValidationOnboarding';
+import type { ValidationOnboardingData } from '@/types/validation';
 import ModalPaymentForm from './ModalPaymentForm';
 
 interface EmbeddedStripeCheckoutProps {

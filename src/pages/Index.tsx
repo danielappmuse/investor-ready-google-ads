@@ -167,7 +167,6 @@ const Index = () => {
   return (
     <Layout onPrototypeClick={handlePrototypeClick}>
       <HeroSection 
-        startWithValidation={startWithValidation} 
         startWithPrototype={startWithPrototype}
       />
       <PartnersSection />
