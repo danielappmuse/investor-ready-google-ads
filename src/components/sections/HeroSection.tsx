@@ -118,8 +118,7 @@ const HeroSection = ({ startWithPrototype = false }: HeroSectionProps) => {
                         className="w-3 h-3 mr-2 filter drop-shadow-sm flex-shrink-0" 
                         style={{ background: 'transparent' }}
                       />
-                      <span className="hidden sm:inline">Start Assessment</span>
-                      <span className="sm:hidden">Apply</span>
+                      <span>Start Assessment Now & Become Investor Ready In 90 Days!</span>
                       <ArrowRight className="w-3 h-3 ml-2 flex-shrink-0" />
                     </Button>
                   </div>
