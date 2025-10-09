@@ -5,7 +5,6 @@ import ServicesSection from '@/components/sections/ServicesSection'
 import NDASection from '@/components/sections/NDASection'
 import EssentialsSection from '@/components/sections/EssentialsSection'
 import ProcessSection from '@/components/sections/ProcessSection'
-import AnalyticsSection from '@/components/sections/AnalyticsSection'
 import AboutSection from '@/components/sections/AboutSection'
 import ContactSection from '@/components/sections/ContactSection'
 import ClutchReviewsSection from '@/components/sections/ClutchReviewsSection'
@@ -170,7 +169,6 @@ const Index = () => {
         startWithPrototype={startWithPrototype}
       />
       <PartnersSection />
-      <AnalyticsSection />
       <ProjectCarousel />
       <TechnologiesSection />
       <AboutSection />
