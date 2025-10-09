@@ -172,17 +172,17 @@ const Index = () => {
       />
       <PartnersSection />
       <AnalyticsSection />
+      <ProjectCarousel />
+      <TechnologiesSection />
+      <AboutSection />
       <ServicesSection 
         onValidationClick={handleValidationClick} 
         onPrototypeClick={handlePrototypeClick}
       />
+      <NDASection />
       <ProcessSection />
       <EssentialsSection onValidationClick={handleValidationClick} />
-      <AboutSection />
       <ClutchReviewsSection />
-      <NDASection />
-      <ProjectCarousel />
-      <TechnologiesSection />
       <ContactSection />
     </Layout>
   )

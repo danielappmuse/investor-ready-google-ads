@@ -20,17 +20,17 @@ const AboutSection = () => {
   }, {
     icon: <Users className="w-6 h-6" />,
     title: '200+ Startups',
-    description: 'Assessed and guided',
+    description: 'Successfully validated and launched',
     highlight: false
   }, {
     icon: <Target className="w-6 h-6" />,
-    title: 'VC-Backed',
-    description: 'Founders & Investors',
+    title: '99% Accuracy',
+    description: 'Market validation success rate',
     highlight: false
   }, {
     icon: <Zap className="w-6 h-6" />,
     title: '$50M+ Raised',
-    description: 'By companies we helped',
+    description: 'By our portfolio companies',
     highlight: false
   }];
   return <section id="about" className="py-8 sm:py-12 lg:py-16">
@@ -47,8 +47,8 @@ const AboutSection = () => {
           </h2>
           
           <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            We're VC-backed founders and investors who know what it takes to raise capital. 
-            Our team has helped startups raise over $50M+ and we're here to get you investor-ready.
+            We're not just consultants — we're founders who've been in your shoes. 
+            Our team combines real startup experience with proven methodologies to guide your success.
           </p>
         </div>
 
@@ -193,19 +193,19 @@ const AboutSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-300">VC-backed founders who've raised millions ourselves</span>
+                  <span className="text-sm sm:text-base text-gray-300">Real founders who understand the startup journey</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-300">Direct investor connections and warm introductions</span>
+                  <span className="text-sm sm:text-base text-gray-300">Proven track record with 200+ successful validations</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-300">Forbes-recognized expertise in startup fundraising</span>
+                  <span className="text-sm sm:text-base text-gray-300">Forbes-recognized expertise in startup development</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-300">90-day guarantee: investor-ready or your money back</span>
+                  <span className="text-sm sm:text-base text-gray-300">100% money-back guarantee on all services</span>
                 </div>
               </div>
             </div>
