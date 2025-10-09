@@ -6,35 +6,27 @@ import CalendlyWidget from '@/components/CalendlyWidget';
 import { ContactFormData } from '@/types/form';
 import AnimatedBackground from '@/components/tech/AnimatedBackground';
 import FloatingStats from '@/components/tech/FloatingStats';
-
 interface HeroSectionProps {
-  startWithPrototype?: boolean
+  startWithPrototype?: boolean;
 }
-
-const HeroSection = ({ startWithPrototype = false }: HeroSectionProps) => {
-  const [currentView, setCurrentView] = useState<'products' | 'prototype-form' | 'calendly'>(
-    startWithPrototype ? 'prototype-form' : 'products'
-  );
-
+const HeroSection = ({
+  startWithPrototype = false
+}: HeroSectionProps) => {
+  const [currentView, setCurrentView] = useState<'products' | 'prototype-form' | 'calendly'>(startWithPrototype ? 'prototype-form' : 'products');
   React.useEffect(() => {
     if (startWithPrototype) {
-      setCurrentView('prototype-form')
+      setCurrentView('prototype-form');
     }
-  }, [startWithPrototype])
-
+  }, [startWithPrototype]);
   const [formData, setFormData] = useState<ContactFormData | null>(null);
-
   const handlePrototypeFormSuccess = (data: ContactFormData) => {
     setFormData(data);
     setCurrentView('calendly');
   };
-
   const handleBackToProducts = () => {
     setCurrentView('products');
   };
-
-  return (
-    <section id="get-started" className="min-h-screen flex items-center pt-8 sm:pt-12 lg:pt-16 pb-4 sm:pb-6 lg:pb-8 relative overflow-hidden">
+  return <section id="get-started" className="min-h-screen flex items-center pt-8 sm:pt-12 lg:pt-16 pb-4 sm:pb-6 lg:pb-8 relative overflow-hidden">
       {/* Animated Background */}
       <AnimatedBackground />
       
@@ -45,8 +37,7 @@ const HeroSection = ({ startWithPrototype = false }: HeroSectionProps) => {
       <FloatingStats />
       
       <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 relative z-10">
-        {currentView === 'products' && (
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 items-center">
+        {currentView === 'products' && <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 items-center">
             {/* Hero Content */}
             <div className="space-y-2 sm:space-y-3 lg:space-y-4 animate-fade-in-up">
               <div className="space-y-1.5 sm:space-y-2 lg:space-y-3">
@@ -112,12 +103,7 @@ const HeroSection = ({ startWithPrototype = false }: HeroSectionProps) => {
                     </p>
                     
                     <Button className="btn-hero w-full text-sm sm:text-base">
-                      <img 
-                        src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" 
-                        alt="StartWise Logo" 
-                        className="w-3 h-3 mr-2 filter drop-shadow-sm flex-shrink-0" 
-                        style={{ background: 'transparent' }}
-                      />
+                      
                       <span>Start Assessment Now & Become Investor Ready In 90 Days!</span>
                       <ArrowRight className="w-3 h-3 ml-2 flex-shrink-0" />
                     </Button>
@@ -125,81 +111,70 @@ const HeroSection = ({ startWithPrototype = false }: HeroSectionProps) => {
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          </div>}
 
         {/* As Featured In */}
-        {currentView === 'products' && (
-          <div className="mt-6 sm:mt-8 lg:mt-10 animate-fade-in stagger-5">
+        {currentView === 'products' && <div className="mt-6 sm:mt-8 lg:mt-10 animate-fade-in stagger-5">
             <div className="text-center mb-4">
               <p className="text-lg sm:text-xl font-bold text-white">As Featured In</p>
               <p className="text-xs sm:text-sm text-gray-400">Recognized by leading media and financial publications</p>
             </div>
             <div className="flex justify-center">
               <div className="overflow-hidden max-w-5xl w-full">
-                <div 
-                  className="flex animate-scroll-smooth"
-                  style={{ 
-                    width: 'calc(200% + 2rem)',
-                    transform: 'translateZ(0)',
-                    backfaceVisibility: 'hidden',
-                    perspective: '1000px'
-                  }}
-                >
-                  {[
-                    { src: '/media-logos/business-insider.png', alt: 'Business Insider' },
-                    { src: '/media-logos/forbes.png', alt: 'Forbes' },
-                    { src: '/media-logos/yahoo-finance.png', alt: 'Yahoo Finance' },
-                    { src: '/media-logos/globe-and-mail.png?v=5', alt: 'The Globe and Mail' },
-                    { src: '/media-logos/benzinga.png', alt: 'Benzinga' },
-                    { src: '/media-logos/barchart.png', alt: 'Barchart' }
-                  ].map((logo, index) => (
-                    <div
-                      key={`first-${index}`}
-                      className="flex-shrink-0 flex items-center justify-center mx-6 sm:mx-8 transition-all duration-300 w-32 sm:w-40"
-                    >
-                      <img
-                        src={logo.src}
-                        alt={logo.alt}
-                        className={`h-20 sm:h-24 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${
-                          logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : 
-                          logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 
-                          'brightness-200 contrast-90'
-                        }`}
-                      />
-                    </div>
-                  ))}
-                  {[
-                    { src: '/media-logos/business-insider.png', alt: 'Business Insider' },
-                    { src: '/media-logos/forbes.png', alt: 'Forbes' },
-                    { src: '/media-logos/yahoo-finance.png', alt: 'Yahoo Finance' },
-                    { src: '/media-logos/globe-and-mail.png?v=5', alt: 'The Globe and Mail' },
-                    { src: '/media-logos/benzinga.png', alt: 'Benzinga' },
-                    { src: '/media-logos/barchart.png', alt: 'Barchart' }
-                  ].map((logo, index) => (
-                    <div
-                      key={`second-${index}`}
-                      className="flex-shrink-0 flex items-center justify-center mx-6 sm:mx-8 transition-all duration-300 w-32 sm:w-40"
-                    >
-                      <img
-                        src={logo.src}
-                        alt={logo.alt}
-                        className={`h-20 sm:h-24 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${
-                          logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : 
-                          logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 
-                          'brightness-200 contrast-90'
-                        }`}
-                      />
-                    </div>
-                  ))}
+                <div className="flex animate-scroll-smooth" style={{
+              width: 'calc(200% + 2rem)',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
+              perspective: '1000px'
+            }}>
+                  {[{
+                src: '/media-logos/business-insider.png',
+                alt: 'Business Insider'
+              }, {
+                src: '/media-logos/forbes.png',
+                alt: 'Forbes'
+              }, {
+                src: '/media-logos/yahoo-finance.png',
+                alt: 'Yahoo Finance'
+              }, {
+                src: '/media-logos/globe-and-mail.png?v=5',
+                alt: 'The Globe and Mail'
+              }, {
+                src: '/media-logos/benzinga.png',
+                alt: 'Benzinga'
+              }, {
+                src: '/media-logos/barchart.png',
+                alt: 'Barchart'
+              }].map((logo, index) => <div key={`first-${index}`} className="flex-shrink-0 flex items-center justify-center mx-6 sm:mx-8 transition-all duration-300 w-32 sm:w-40">
+                      <img src={logo.src} alt={logo.alt} className={`h-20 sm:h-24 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
+                    </div>)}
+                  {[{
+                src: '/media-logos/business-insider.png',
+                alt: 'Business Insider'
+              }, {
+                src: '/media-logos/forbes.png',
+                alt: 'Forbes'
+              }, {
+                src: '/media-logos/yahoo-finance.png',
+                alt: 'Yahoo Finance'
+              }, {
+                src: '/media-logos/globe-and-mail.png?v=5',
+                alt: 'The Globe and Mail'
+              }, {
+                src: '/media-logos/benzinga.png',
+                alt: 'Benzinga'
+              }, {
+                src: '/media-logos/barchart.png',
+                alt: 'Barchart'
+              }].map((logo, index) => <div key={`second-${index}`} className="flex-shrink-0 flex items-center justify-center mx-6 sm:mx-8 transition-all duration-300 w-32 sm:w-40">
+                      <img src={logo.src} alt={logo.alt} className={`h-20 sm:h-24 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
+                    </div>)}
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          </div>}
 
-        {currentView === 'prototype-form' && (
-          <div className="max-w-4xl mx-auto">
+        {currentView === 'prototype-form' && <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-white mb-4">
                 90-Day Investment Readiness Program
@@ -209,16 +184,10 @@ const HeroSection = ({ startWithPrototype = false }: HeroSectionProps) => {
               </p>
             </div>
             
-            <EnhancedMultiStepForm 
-              onSuccess={handlePrototypeFormSuccess} 
-              formLocation="top" 
-              onBack={handleBackToProducts} 
-            />
-          </div>
-        )}
+            <EnhancedMultiStepForm onSuccess={handlePrototypeFormSuccess} formLocation="top" onBack={handleBackToProducts} />
+          </div>}
 
-        {currentView === 'calendly' && (
-          <div className="max-w-4xl mx-auto">
+        {currentView === 'calendly' && <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
               <div className="inline-flex items-center px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full text-sm font-medium text-green-400 mb-4">
                 <CheckCircle className="w-4 h-4 mr-2" />
@@ -233,11 +202,8 @@ const HeroSection = ({ startWithPrototype = false }: HeroSectionProps) => {
             </div>
             
             <CalendlyWidget formData={formData!} />
-          </div>
-        )}
+          </div>}
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
