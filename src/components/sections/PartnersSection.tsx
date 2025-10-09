@@ -25,6 +25,6 @@ const PartnersSection = () => {
     alt: 'Barchart',
     type: 'image'
   }];
-  return;
+  return null;
 };
 export default PartnersSection;

@@ -192,7 +192,7 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
         {currentView === 'products' && (
           <div className="mt-6 sm:mt-8 lg:mt-10 animate-fade-in stagger-5">
             <div className="text-center mb-4">
-              <p className="text-xs sm:text-sm text-gray-400">As Featured In</p>
+              <p className="text-lg sm:text-xl font-bold text-white">As Featured In</p>
               <p className="text-xs sm:text-sm text-gray-400">Recognized by leading media and financial publications</p>
             </div>
             <div className="flex justify-center">
