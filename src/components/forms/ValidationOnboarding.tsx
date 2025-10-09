@@ -398,7 +398,7 @@ const ValidationOnboarding: React.FC<ValidationOnboardingProps> = ({ onComplete,
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-background via-background to-muted/20">
       <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full pt-40 sm:pt-44 lg:pt-52">
         {renderStep()}
       </form>
     </div>
