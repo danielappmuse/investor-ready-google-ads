@@ -191,7 +191,10 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
         {/* As Featured In - Below both columns */}
         {currentView === 'products' && (
           <div className="mt-6 sm:mt-8 lg:mt-10 animate-fade-in stagger-5">
-            <p className="text-xs sm:text-sm text-gray-400 mb-4 text-center">As Featured In</p>
+            <div className="text-center mb-4">
+              <p className="text-xs sm:text-sm text-gray-400">As Featured In</p>
+              <p className="text-xs sm:text-sm text-gray-400">Recognized by leading media and financial publications</p>
+            </div>
             <div className="flex justify-center">
               <div className="overflow-hidden max-w-5xl w-full">
                 <div 
