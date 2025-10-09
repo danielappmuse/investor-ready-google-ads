@@ -2,11 +2,13 @@ import React from 'react';
 import { CheckCircle, Shield, Target, Code, Star, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 interface ServicesSectionProps {
-  onValidationClick?: () => void
-  onPrototypeClick?: () => void
+  onValidationClick?: () => void;
+  onPrototypeClick?: () => void;
 }
-
-const ServicesSection = ({ onValidationClick, onPrototypeClick }: ServicesSectionProps) => {
+const ServicesSection = ({
+  onValidationClick,
+  onPrototypeClick
+}: ServicesSectionProps) => {
   const products = [{
     id: 'validation-exam',
     icon: <Target className="w-8 h-8" />,
@@ -117,10 +119,7 @@ const ServicesSection = ({ onValidationClick, onPrototypeClick }: ServicesSectio
                 </div>
               </div>
 
-              <Button 
-                onClick={product.id === 'validation-exam' ? onValidationClick : onPrototypeClick} 
-                className="btn-hero w-full text-xs sm:text-sm lg:text-base"
-              >
+              <Button onClick={product.id === 'validation-exam' ? onValidationClick : onPrototypeClick} className="btn-hero w-full text-xs sm:text-sm lg:text-base">
                 <img src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" alt="StartWise Logo" className="w-3 h-3 sm:w-4 sm:h-4 mr-2 filter drop-shadow-sm flex-shrink-0" style={{
               background: 'transparent'
             }} />
@@ -130,44 +129,10 @@ const ServicesSection = ({ onValidationClick, onPrototypeClick }: ServicesSectio
         </div>
 
         {/* Process Flow */}
-        <div className="text-center mb-8 sm:mb-12">
-          <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Recommended Path</h3>
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4 text-sm sm:text-base text-gray-300">
-            <div className="flex items-center space-x-2">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
-              <span>Validation Exam</span>
-            </div>
-            <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-primary rotate-90 sm:rotate-0" />
-            <div className="flex items-center space-x-2">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
-              <span className="text-center sm:text-left">Prototype + PRD<br className="sm:hidden" />(from $10k)</span>
-            </div>
-            <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-primary rotate-90 sm:rotate-0" />
-            <div className="flex items-center space-x-2">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-sm">✓</div>
-              <span className="text-center sm:text-left">Get in front of<br className="sm:hidden" /> investors</span>
-            </div>
-          </div>
-        </div>
+        
 
         {/* Trust Indicators */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-center">
-          <div className="card-glass p-4 sm:p-6">
-            <Target className="w-6 h-6 sm:w-8 sm:h-8 text-primary mx-auto mb-2 sm:mb-3" />
-            <div className="text-xl sm:text-2xl font-bold text-white">99%</div>
-            <div className="text-xs sm:text-sm text-gray-400">Validation Accuracy</div>
-          </div>
-          <div className="card-glass p-4 sm:p-6">
-            <Code className="w-6 h-6 sm:w-8 sm:h-8 text-primary mx-auto mb-2 sm:mb-3" />
-            <div className="text-xl sm:text-2xl font-bold text-white">200+</div>
-            <div className="text-xs sm:text-sm text-gray-400">Prototypes Built</div>
-          </div>
-          <div className="card-glass p-4 sm:p-6">
-            <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-primary mx-auto mb-2 sm:mb-3" />
-            <div className="text-xl sm:text-2xl font-bold text-white">100%</div>
-            <div className="text-xs sm:text-sm text-gray-400">Money-Back Guarantee</div>
-          </div>
-        </div>
+        
       </div>
     </section>;
 };
