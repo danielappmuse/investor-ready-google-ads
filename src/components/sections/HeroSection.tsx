@@ -101,7 +101,7 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
       <FloatingStats />
       
       <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 relative z-10">
-        {currentView === 'products' && <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 items-start">
+        {currentView === 'products' && <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 items-center">
             {/* Hero Content & Form */}
             <div className="space-y-2 sm:space-y-3 lg:space-y-4 animate-fade-in-up">
               {/* Hero Content */}
