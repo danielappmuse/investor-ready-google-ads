@@ -145,7 +145,7 @@ const HeroSection = ({ startWithValidation = false, startWithPrototype = false, 
                 </h2>
                 
                 <div className="space-y-2 sm:space-y-3">
-                  <div className="group p-4 sm:p-5 lg:p-6 border-2 border-white/20 rounded-lg cursor-pointer transition-all duration-500 hover:border-primary hover:bg-primary/10 hover:scale-[1.02] card-glass flex flex-col justify-between min-h-[320px]" onClick={handleValidationStart}>
+                  <div className="group p-4 sm:p-5 lg:p-6 border-2 border-white/20 rounded-lg cursor-pointer transition-all duration-500 hover:border-primary hover:bg-primary/10 hover:scale-[1.02] card-glass flex flex-col" onClick={handleValidationStart}>
                     <div>
                       <div className="mb-3 sm:mb-4">
                         <h3 className="text-sm sm:text-base lg:text-lg font-bold text-white group-hover:gradient-text transition-all">Investor-Readiness Assessment</h3>
