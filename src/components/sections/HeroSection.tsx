@@ -77,7 +77,7 @@ const HeroSection = ({
                 </h2>
                 
                 <div className="space-y-1.5 sm:space-y-3 2xl:space-y-4 3xl:space-y-5">
-                  <div className="group p-2.5 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
+                  <div className="group w-full max-w-full overflow-hidden p-2.5 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
                     <div className="mb-1.5 sm:mb-4 2xl:mb-5 3xl:mb-6">
                       <h3 className="text-[13px] sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white group-hover:gradient-text transition-all leading-tight">
                         Investor-Readiness Assessment
@@ -106,9 +106,9 @@ const HeroSection = ({
                     
                     <Button 
                       onClick={() => setCurrentView('prototype-form')}
-                      className="btn-hero w-full text-xs sm:text-sm"
+                      className="btn-hero w-full text-xs sm:text-sm whitespace-normal break-words text-left leading-snug sm:whitespace-nowrap sm:text-center min-h-[42px]"
                     >
-                      <span>Start Assessment Now & Become Investor Ready In 90 Days!</span>
+                      <span className="flex-1">Start Assessment Now & Become Investor Ready In 90 Days!</span>
                       <ArrowRight className="w-3 h-3 2xl:w-4 2xl:h-4 3xl:w-5 3xl:h-5 ml-2 flex-shrink-0" />
                     </Button>
                   </div>
