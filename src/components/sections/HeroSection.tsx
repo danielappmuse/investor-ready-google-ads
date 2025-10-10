@@ -92,9 +92,7 @@ const HeroSection = ({
                       <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-green-500/20 border border-green-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-green-400 font-medium">
                         VC-Backed
                       </span>
-                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-blue-500/20 border border-blue-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-blue-400 font-medium">
-                        Founder Interviews
-                      </span>
+                      
                       <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-purple-500/20 border border-purple-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-purple-400 font-medium">
                         Real Feedback
                       </span>
