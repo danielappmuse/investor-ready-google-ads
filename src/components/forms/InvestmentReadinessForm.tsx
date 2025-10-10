@@ -170,16 +170,16 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
     switch (currentStep) {
       case 1:
         return (
-          <div className="space-y-6">
-            <Label htmlFor="app_idea" className="text-white text-lg mb-3 block">
+          <div className="space-y-3">
+            <Label htmlFor="app_idea" className="text-white text-base mb-1 block">
               Briefly describe your app idea and the problem it solves
             </Label>
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-sm text-gray-400 mb-2">
               We have limited capacity and prioritize Founders solving real human problems with potential to scale.
             </p>
             <Textarea
               {...register('app_idea')}
-              className="form-input min-h-[120px]"
+              className="form-input min-h-[100px]"
               placeholder="Describe the problem your app solves..."
             />
             {errors.app_idea && (
@@ -190,11 +190,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       
       case 2:
         return (
-          <div className="space-y-6">
-            <Label htmlFor="project_stage" className="text-white text-lg mb-3 block">
+          <div className="space-y-3">
+            <Label htmlFor="project_stage" className="text-white text-base mb-1 block">
               Where are you in your project journey?
             </Label>
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-sm text-gray-400 mb-2">
               Select the stage that best describes where you are right now.
             </p>
             <Select
@@ -220,11 +220,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
       case 3:
         return (
-          <div className="space-y-6">
-            <Label htmlFor="user_persona" className="text-white text-lg mb-3 block">
+          <div className="space-y-3">
+            <Label htmlFor="user_persona" className="text-white text-base mb-1 block">
               How well do you know your user persona?
             </Label>
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-sm text-gray-400 mb-2">
               The more you know your user, the better your chances of building something investors believe in.
             </p>
             <Select
@@ -250,11 +250,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
       case 4:
         return (
-          <div className="space-y-6">
-            <Label htmlFor="differentiation" className="text-white text-lg mb-3 block">
+          <div className="space-y-3">
+            <Label htmlFor="differentiation" className="text-white text-base mb-1 block">
               What makes your idea stand out?
             </Label>
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-sm text-gray-400 mb-2">
               This helps us understand your competitive edge and positioning.
             </p>
             <Select
@@ -280,14 +280,14 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
       case 5:
         return (
-          <div className="space-y-6">
-            <Label className="text-white text-lg mb-3 block">
+          <div className="space-y-3">
+            <Label className="text-white text-base mb-1 block">
               Which materials have you already completed professionally?
             </Label>
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-sm text-gray-400 mb-2">
               Select everything you've completed so far.
             </p>
-            <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-2">
               {existingMaterials.map((material) => (
                 <div 
                   key={material.id}
@@ -318,11 +318,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
       case 6:
         return (
-          <div className="space-y-6">
-            <Label htmlFor="business_model" className="text-white text-lg mb-3 block">
+          <div className="space-y-3">
+            <Label htmlFor="business_model" className="text-white text-base mb-1 block">
               What is the app business model?
             </Label>
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-sm text-gray-400 mb-2">
               This gives us insight into your revenue strategy.
             </p>
             <Select
@@ -348,11 +348,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
       case 7:
         return (
-          <div className="space-y-6">
-            <Label htmlFor="revenue_goal" className="text-white text-lg mb-3 block">
+          <div className="space-y-3">
+            <Label htmlFor="revenue_goal" className="text-white text-base mb-1 block">
               What's your monthly revenue goal 90 days after launch?
             </Label>
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-sm text-gray-400 mb-2">
               This helps us understand your short-term growth expectations.
             </p>
             <Select
@@ -378,11 +378,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
       case 8:
         return (
-          <div className="space-y-6">
-            <Label htmlFor="build_strategy" className="text-white text-lg mb-3 block">
+          <div className="space-y-3">
+            <Label htmlFor="build_strategy" className="text-white text-base mb-1 block">
               How do you plan to build the product?
             </Label>
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-sm text-gray-400 mb-2">
               This tells us what kind of team or structure you'll need.
             </p>
             <Select
@@ -408,14 +408,14 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
       case 9:
         return (
-          <div className="space-y-6">
-            <Label className="text-white text-lg mb-3 block">
+          <div className="space-y-3">
+            <Label className="text-white text-base mb-1 block">
               What areas do you need help with most?
             </Label>
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-sm text-gray-400 mb-2">
               Select the areas where you need the most support to move forward.
             </p>
-            <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-2">
               {helpNeededAreas.map((area) => (
                 <div 
                   key={area.id}
@@ -449,11 +449,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
       case 10:
         return (
-          <div className="space-y-6">
-            <Label htmlFor="investment_readiness" className="text-white text-lg mb-3 block">
+          <div className="space-y-3">
+            <Label htmlFor="investment_readiness" className="text-white text-base mb-1 block">
               How much are you prepared to personally invest?
             </Label>
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-sm text-gray-400 mb-2">
               Your answer helps us guide you to the right program.
             </p>
             <Select
@@ -484,8 +484,8 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
       case 11:
         return (
-          <div className="space-y-4">
-            <Label htmlFor="full_name" className="text-white text-lg">Full Name</Label>
+          <div className="space-y-3">
+            <Label htmlFor="full_name" className="text-white text-base">Full Name</Label>
             <Input
               {...register('full_name')}
               className="form-input"
@@ -496,7 +496,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               <p className="text-destructive text-sm mt-1">{errors.full_name.message}</p>
             )}
             
-            <Label htmlFor="email" className="text-white text-lg">Email</Label>
+            <Label htmlFor="email" className="text-white text-base">Email</Label>
             <Input
               {...register('email')}
               type="email"
@@ -508,7 +508,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               <p className="text-destructive text-sm mt-1">{errors.email.message}</p>
             )}
 
-            <Label htmlFor="phone" className="text-white text-lg">Phone Number</Label>
+            <Label htmlFor="phone" className="text-white text-base">Phone Number</Label>
             <Input
               {...register('phone')}
               type="tel"
@@ -557,20 +557,20 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   }
 
   return (
-    <div className="card-glass p-6 lg:p-8">
+    <div className="card-glass p-4 lg:p-6">
       {/* Progress Bar */}
-      <div className="mb-8">
-        <div className="flex items-center justify-center mb-4">
+      <div className="mb-4">
+        <div className="flex items-center justify-center mb-2">
           <div className="text-center">
-            <div className="text-3xl font-bold text-white mb-1">
+            <div className="text-xl font-bold text-white mb-0.5">
               {currentStep} / 11
             </div>
-            <p className="text-sm text-gray-400">Questions Complete</p>
+            <p className="text-xs text-gray-400">Questions Complete</p>
           </div>
         </div>
-        <div className="w-full bg-muted rounded-full h-2">
+        <div className="w-full bg-muted rounded-full h-1.5">
           <div
-            className="bg-gradient-to-r from-primary to-secondary h-2 rounded-full transition-all duration-300"
+            className="bg-gradient-to-r from-primary to-secondary h-1.5 rounded-full transition-all duration-300"
             style={{ width: `${(currentStep / 11) * 100}%` }}
           />
         </div>
@@ -579,7 +579,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       <form onSubmit={handleSubmit(onSubmit)}>
         {renderStep()}
         
-        <div className="flex justify-between items-center mt-6 gap-4">
+        <div className="flex justify-between items-center mt-4 gap-4">
           <div>
             {currentStep > 1 && (
               <Button
