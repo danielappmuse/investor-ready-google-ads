@@ -75,10 +75,12 @@ const HeroSection = ({
             {/* Right Column - CTA */}
             <div className="space-y-1 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-slide-in-right mt-2 xl:mt-0 max-w-lg 2xl:max-w-xl 3xl:max-w-2xl mx-auto xl:mx-0">
               <div className="animate-fade-in stagger-4">
-                <h2 className={`${isSmallScreen ? 'text-[15px]' : 'text-[18px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-1 sm:mb-3 flex items-center leading-tight`}>
+                <div className="inline-flex items-center px-3 sm:px-4 2xl:px-5 3xl:px-6 py-1.5 pb-[3px] sm:pb-1.5 2xl:py-2 3xl:py-2.5 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full mb-1 sm:mb-3">
                   <Sparkles className={`${isSmallScreen ? 'w-3 h-3' : 'w-4 h-4'} 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-2 text-primary animate-pulse flex-shrink-0`} />
-                  <span>Ready to Get Started?</span>
-                </h2>
+                  <h2 className={`${isSmallScreen ? 'text-[15px]' : 'text-[18px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white leading-tight`}>
+                    Ready to Get Started?
+                  </h2>
+                </div>
                 
                 <div className="space-y-1 sm:space-y-3 2xl:space-y-4 3xl:space-y-5">
                   <div className="group w-full max-w-full overflow-hidden p-2.5 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
