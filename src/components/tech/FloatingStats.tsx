@@ -14,10 +14,10 @@ const FloatingStats = () => {
     <>
       {/* Toggle Button and Call Button */}
       <div className="fixed bottom-8 right-8 z-50 flex flex-col gap-3">
-        {/* Call Button */}
+        {/* Call Button - Hidden on mobile */}
         <a
           href="tel:+17868291382"
-          className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 group"
+          className="hidden sm:flex w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 group"
           aria-label="Call us now"
         >
           <Phone className="w-5 h-5 text-white group-hover:animate-pulse" />

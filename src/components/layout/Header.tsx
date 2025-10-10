@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Menu, X, Phone, ArrowRight } from 'lucide-react'
+import { Phone, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 interface HeaderProps {
@@ -7,7 +7,6 @@ interface HeaderProps {
 }
 
 const Header = ({ onPrototypeClick }: HeaderProps = {}) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -45,8 +44,6 @@ const Header = ({ onPrototypeClick }: HeaderProps = {}) => {
         })
       }
     }, 100)
-    
-    setIsMenuOpen(false)
   }
 
   return (
@@ -63,7 +60,6 @@ const Header = ({ onPrototypeClick }: HeaderProps = {}) => {
                 top: 0,
                 behavior: 'smooth'
               })
-              setIsMenuOpen(false)
             }}
           >
             <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 flex items-center justify-center">
@@ -129,68 +125,15 @@ const Header = ({ onPrototypeClick }: HeaderProps = {}) => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-foreground hover:text-primary transition-colors rounded-lg"
+          {/* Mobile Call Button */}
+          <a
+            href="tel:+17868291382"
+            className="md:hidden p-2 bg-gradient-to-br from-green-500 to-green-600 rounded-full hover:scale-110 transition-all duration-300 flex items-center justify-center"
+            aria-label="Call us now"
           >
-            {isMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
-          </button>
+          <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          </a>
         </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-lg border-b border-white/10 shadow-lg">
-            <nav className="px-4 py-4 space-y-3">
-              <button 
-                onClick={() => scrollToSection('services')}
-                className="block w-full text-left py-3 px-2 text-foreground hover:text-primary hover:bg-primary/10 transition-all rounded-lg font-medium"
-              >
-                Services
-              </button>
-              <button 
-                onClick={() => scrollToSection('portfolio')}
-                className="block w-full text-left py-3 px-2 text-foreground hover:text-primary hover:bg-primary/10 transition-all rounded-lg font-medium"
-              >
-                Portfolio
-              </button>
-              <button 
-                onClick={() => scrollToSection('about')}
-                className="block w-full text-left py-3 px-2 text-foreground hover:text-primary hover:bg-primary/10 transition-all rounded-lg font-medium"
-              >
-                About
-              </button>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="block w-full text-left py-3 px-2 text-foreground hover:text-primary hover:bg-primary/10 transition-all rounded-lg font-medium"
-              >
-                Contact
-              </button>
-              <div className="pt-3 border-t border-white/10 space-y-3">
-                <a 
-                  href="tel:+17868291382" 
-                  className="flex items-center space-x-2 text-foreground hover:text-primary transition-colors p-2 rounded-lg hover:bg-primary/10"
-                >
-                  <Phone className="w-4 h-4" />
-                  <span className="font-medium">+1 (786) 829-1382</span>
-                </a>
-                <Button 
-                  onClick={onPrototypeClick || (() => scrollToSection('contact'))}
-                  className="btn-hero w-full"
-                >
-                  <img 
-                    src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" 
-                    alt="StartWise Logo" 
-                    className="w-4 h-4 mr-2 filter drop-shadow-sm"
-                    style={{ background: 'transparent' }}
-                  />
-                  Get Started
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </div>
-            </nav>
-          </div>
-        )}
       </div>
     </header>
   )
