@@ -47,7 +47,7 @@ const HeroSection = ({
                   <span className="sm:hidden">Get Investor-Ready</span>
                 </div>
                 
-                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight animate-fade-in stagger-1">
+                <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-tight animate-fade-in stagger-1">
                   From Idea to <span className="gradient-text relative">
                     Investment-Ready
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-2xl -z-10 animate-pulse-glow" />
@@ -56,7 +56,7 @@ const HeroSection = ({
                   in 90 Days or Less
                 </h1>
                 
-                <p className="text-sm sm:text-base text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl">
+                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl">
                   AI made ideas cheap. Investors see thousands of "next big things" weekly, and fund almost none—because they only back founders who've invested in themselves.
                   <br /><br />
                   At StartWise, we give serious founders YC-level backing with <span className="text-primary font-semibold">product strategists, business model experts, pitch coaches,</span> and investors who only listen when you look investor-ready.
