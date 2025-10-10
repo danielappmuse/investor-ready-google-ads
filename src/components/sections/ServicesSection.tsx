@@ -46,93 +46,91 @@ const ServicesSection = ({
         <div className="text-center mb-12 lg:mb-16">
           <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full text-xs sm:text-sm font-medium text-white mb-4 sm:mb-6">
             <Shield className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 flex-shrink-0" />
-            Two Products. One Mission.
+            Investment Readiness Requirements
           </div>
           
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
-            From <span className="gradient-text">validation</span> to <span className="gradient-text">Investors ready</span>
+            What Your Business <span className="gradient-text">Must Have</span>
           </h2>
           
           <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Start smart with our Validation Exam, then build right with our Prototype + PRD Package starting from $10k. 
-            The proven path from idea to reality.
+            Two critical pillars every investor-ready startup needs: solid business fundamentals and compelling investor materials.
           </p>
         </div>
 
-        {/* Products Grid */}
+        {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-12 lg:mb-16">
-          {products.map((product, index) => <div key={product.id} className={`card-glass p-4 sm:p-6 lg:p-8 relative ${product.popular ? 'ring-2 ring-primary' : ''}`}>
-              {product.popular && <div className="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-gradient-to-r from-primary to-secondary px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold text-white">
-                    Start Here
-                  </div>
-                </div>}
-
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 sm:mb-6 gap-3 sm:gap-4">
-                <div className="flex items-center space-x-3 sm:space-x-4">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white flex-shrink-0">
-                    {product.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg sm:text-xl font-bold text-white">{product.title}</h3>
-                    <p className="text-sm text-gray-400">{product.subtitle}</p>
-                  </div>
-                </div>
-                
-                <div className="text-left sm:text-right flex-shrink-0">
-                  <div className="text-xl sm:text-2xl font-bold gradient-text">{product.price}</div>
-                  <div className="text-xs sm:text-sm text-gray-400 line-through">{product.originalPrice}</div>
-                </div>
+          {/* Left Column - Business Essentials */}
+          <div className="card-glass p-6 sm:p-8 lg:p-10">
+            <div className="mb-6">
+              <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-primary to-secondary rounded-xl mb-4">
+                <CheckCircle className="w-8 h-8 text-white" />
               </div>
-
-              <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6 leading-relaxed">
-                {product.description}
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+                Business Essentials
+              </h3>
+              <p className="text-sm sm:text-base text-gray-400">
+                Core requirements to prove your business is viable and ready for investment
               </p>
+            </div>
 
-              <div className="mb-4 sm:mb-6">
-                <h4 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">What's Included:</h4>
-                <div className="space-y-2">
-                  {product.features.map((feature, idx) => <div key={idx} className="flex items-start space-x-3">
-                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-300 text-xs sm:text-sm">{feature}</span>
-                    </div>)}
+            <div className="space-y-4">
+              {[
+                'Marketing Research',
+                'Business Plan',
+                'Business Model',
+                'Product Requirement Document',
+                'UI/UX/Prototype/MVP',
+                'Marketing Strategy'
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-start space-x-3 p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-white text-base sm:text-lg font-medium">{item}</span>
                 </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column - Investor Preparation */}
+          <div className="card-glass p-6 sm:p-8 lg:p-10">
+            <div className="mb-6">
+              <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-secondary to-primary rounded-xl mb-4">
+                <Target className="w-8 h-8 text-white" />
               </div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+                Investor Preparation
+              </h3>
+              <p className="text-sm sm:text-base text-gray-400">
+                Essential materials and strategies to secure funding and close deals
+              </p>
+            </div>
 
-              <div className="mb-4 sm:mb-6">
-                <h4 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">Deliverables:</h4>
-                <div className="space-y-2">
-                  {product.deliverables.map((deliverable, idx) => <div key={idx} className="flex items-start space-x-3">
-                      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-300 text-xs sm:text-sm">{deliverable}</span>
-                    </div>)}
+            <div className="space-y-4">
+              {[
+                'Investor Outreach Strategy',
+                'Investor Preparation',
+                'One Pager',
+                'Pitch Deck',
+                'Investment Terms',
+                'Legal'
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-start space-x-3 p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                  <Star className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-white text-base sm:text-lg font-medium">{item}</span>
                 </div>
-              </div>
-
-              <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
-                <div className="flex items-center space-x-2 text-green-400 mb-2">
-                  <Shield className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
-                  <span className="font-medium text-xs sm:text-sm">{product.guarantee}</span>
-                </div>
-                <div className="text-xs sm:text-sm text-gray-300">
-                  Timeline: {product.timeline}
-                </div>
-              </div>
-
-              <Button onClick={product.id === 'validation-exam' ? onValidationClick : onPrototypeClick} className="btn-hero w-full text-xs sm:text-sm lg:text-base">
-                <img src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" alt="StartWise Logo" className="w-3 h-3 sm:w-4 sm:h-4 mr-2 filter drop-shadow-sm flex-shrink-0" style={{
-              background: 'transparent'
-            }} />
-                Get Started - {product.price}
-              </Button>
-            </div>)}
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Process Flow */}
-        
-
-        {/* Trust Indicators */}
-        
+        {/* CTA Section */}
+        <div className="text-center">
+          <Button onClick={onValidationClick} className="btn-hero text-sm sm:text-base lg:text-lg px-8 py-6">
+            <img src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" alt="StartWise Logo" className="w-4 h-4 mr-2 filter drop-shadow-sm flex-shrink-0" style={{ background: 'transparent' }} />
+            Get Your Business Investment-Ready
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </Button>
+        </div>
       </div>
     </section>;
 };
