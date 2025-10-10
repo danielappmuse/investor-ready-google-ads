@@ -76,7 +76,7 @@ const ServicesSection = ({
 
             <div className="space-y-4">
               {[
-                'Marketing Research',
+                'Market Research',
                 'Business Plan',
                 'Business Model',
                 'Product Requirement Document',
