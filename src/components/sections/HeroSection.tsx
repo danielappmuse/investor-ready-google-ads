@@ -26,7 +26,7 @@ const HeroSection = ({
   const handleBackToProducts = () => {
     setCurrentView('products');
   };
-  return <section id="get-started" className="min-h-screen flex items-center pt-1 sm:pt-24 lg:pt-28 pb-1 sm:pb-6 lg:pb-8 relative overflow-hidden">
+  return <section id="get-started" className="min-h-screen flex items-start sm:items-center pt-[61px] sm:pt-24 lg:pt-28 pb-1 sm:pb-6 lg:pb-8 relative overflow-hidden">
       {/* Animated Background */}
       <AnimatedBackground />
       
@@ -36,7 +36,7 @@ const HeroSection = ({
       {/* Floating Stats */}
       <FloatingStats />
       
-      <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-12 3xl:px-16 relative z-10 -mt-3 sm:mt-0">
+      <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-12 3xl:px-16 relative z-10">
         {currentView === 'products' && <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 items-center">
             {/* Hero Content */}
             <div className="space-y-0.5 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-fade-in-up">
