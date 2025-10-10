@@ -85,7 +85,7 @@ const HeroSection = ({
                         Investor-Readiness Assessment
                       </h3>
                     </div>
-                    <p className="text-[14px] sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-2 sm:mb-5 2xl:mb-6 3xl:mb-7 leading-tight sm:leading-snug">Get interviewed by founders who've raised capital multiple times and worked inside VC firms. They'll tell you where you stand, and help you build a plan to become investable in 90 days.</p>
+                    <p className="text-[14px] sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-2 sm:mb-5 2xl:mb-6 3xl:mb-7 leading-tight sm:leading-snug">Get interviewed by professionals who worked inside VC's & founders who've raised capital multiple times.</p>
                     
                     {/* Trust Badges */}
                     <div className="flex flex-wrap gap-0.5 sm:gap-1.5 2xl:gap-2 3xl:gap-2.5 mb-1 sm:mb-4 2xl:mb-5 3xl:mb-6">
