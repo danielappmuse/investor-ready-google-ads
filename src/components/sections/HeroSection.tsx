@@ -64,9 +64,9 @@ const HeroSection = ({
                 </h1>
                 
                 <p className={`${isSmallScreen ? 'text-[12px]' : 'text-[15px]'} sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl text-gray-300 leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl`}>
-                  AI made it easy to build ideas — and even easier to ignore them. Top investors back founders who are prepared, polished, and investor-ready.
+                  AI made it easy to build ideas — and even easier to ignore them. Top investors back founders who are prepared, polished, and <span className="gradient-text">investor-ready</span>.
                   <br /><br />
-                  At StartWise, we turn serious founders into fundable founders in 90 days — with <span className="text-primary font-semibold">YC-level strategy, pitch training, and direct investor access.</span>
+                  At StartWise, we turn serious founders into fundable founders in <span className="gradient-text">90 days</span> — with <span className="text-primary font-semibold">YC-level strategy, pitch training, and direct investor access.</span>
                   <br />
                   ✅ Ready to raise? We'll connect you.
                   <br />
