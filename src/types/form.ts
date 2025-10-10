@@ -34,6 +34,10 @@ export interface ContactFormData {
   // Q10: Investment Readiness
   investment_readiness: string
   
+  // Scoring Results
+  score?: number
+  segment?: string
+  
   session_id: string
   form_location: 'top' | 'bottom'
   gclid?: string
