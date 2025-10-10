@@ -88,7 +88,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
     }
     
     if (isStepValid) {
-      setCurrentStep(prev => Math.min(prev + 1, 5))
+      setCurrentStep(prev => Math.min(prev + 1, 11))
     }
   }
 
@@ -99,15 +99,27 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   const getFieldsForStep = (step: number) => {
     switch (step) {
       case 1:
-        return ['full_name', 'email', 'phone', 'consent']
+        return ['app_idea']
       case 2:
-        return ['app_idea', 'project_stage', 'user_persona']
+        return ['project_stage']
       case 3:
-        return ['differentiation', 'existing_materials']
+        return ['user_persona']
       case 4:
-        return ['business_model', 'revenue_goal']
+        return ['differentiation']
       case 5:
-        return ['build_strategy', 'help_needed', 'investment_readiness']
+        return ['existing_materials']
+      case 6:
+        return ['business_model']
+      case 7:
+        return ['revenue_goal']
+      case 8:
+        return ['build_strategy']
+      case 9:
+        return ['help_needed']
+      case 10:
+        return ['investment_readiness']
+      case 11:
+        return ['full_name', 'email', 'phone', 'consent']
       default:
         return []
     }
@@ -158,7 +170,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         ...trackingData
       }
 
-      await submitLeadData(5)
+      await submitLeadData(11)
       onSuccess(completeData)
     } catch (error) {
       console.error('Form submission error:', error)
@@ -168,19 +180,432 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   }
 
   const getStepIcon = (step: number) => {
-    switch (step) {
-      case 1: return <User className="w-5 h-5" />
-      case 2: return <Lightbulb className="w-5 h-5" />
-      case 3: return <Target className="w-5 h-5" />
-      case 4: return <TrendingUp className="w-5 h-5" />
-      case 5: return <Rocket className="w-5 h-5" />
-      default: return null
-    }
+    if (step <= 11) return <div className="text-sm font-bold">{step}</div>
+    return null
   }
 
   const renderStep = () => {
     switch (currentStep) {
       case 1:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-semibold text-white mb-2">App Idea & Problem Statement</h3>
+              <p className="text-gray-400">Tell us about your vision</p>
+            </div>
+            <div>
+              <Label htmlFor="app_idea" className="text-white mb-2 block">
+                Briefly describe your app idea and the problem it solves *
+              </Label>
+              <p className="text-sm text-gray-400 mb-3">
+                We have limited capacity and prioritize Founders solving real human problems with potential to scale.
+              </p>
+              <Textarea
+                {...register('app_idea')}
+                className="form-input min-h-[120px]"
+                placeholder="Describe the problem your app solves and how it helps users..."
+              />
+              {errors.app_idea && (
+                <p className="text-destructive text-sm mt-1">{errors.app_idea.message}</p>
+              )}
+          </div>
+        )
+      
+      case 2:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-semibold text-white mb-2">Project Journey Stage</h3>
+              <p className="text-gray-400">Where are you in your journey?</p>
+            </div>
+
+            <div>
+              <Label htmlFor="project_stage" className="text-white mb-2 block">
+                Where are you in your project journey? *
+              </Label>
+              <p className="text-sm text-gray-400 mb-3">
+                Select the stage that best describes where you are right now.
+              </p>
+              <Select
+                value={watchedFields.project_stage || ''}
+                onValueChange={(value) => setValue('project_stage', value)}
+              >
+                <SelectTrigger className="form-input">
+                  <SelectValue placeholder="Select your stage" />
+                </SelectTrigger>
+                <SelectContent>
+                  {projectStages.map((stage) => (
+                    <SelectItem key={stage.id} value={stage.id}>
+                      {stage.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.project_stage && (
+                <p className="text-destructive text-sm mt-1">{errors.project_stage.message}</p>
+              )}
+            </div>
+
+          </div>
+        )
+      
+      case 3:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-semibold text-white mb-2">User Persona Understanding</h3>
+              <p className="text-gray-400">How well do you know your target users?</p>
+            </div>
+
+            <div>
+              <Label htmlFor="user_persona" className="text-white mb-2 block">
+                How well do you know your user persona? *
+              </Label>
+              <p className="text-sm text-gray-400 mb-3">
+                The more you know your user, the better your chances of building something investors believe in.
+              </p>
+              <Select
+                value={watchedFields.user_persona || ''}
+                onValueChange={(value) => setValue('user_persona', value)}
+              >
+                <SelectTrigger className="form-input">
+                  <SelectValue placeholder="Select your understanding level" />
+                </SelectTrigger>
+                <SelectContent>
+                  {userPersonaOptions.map((option) => (
+                    <SelectItem key={option.id} value={option.id}>
+                      {option.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.user_persona && (
+                <p className="text-destructive text-sm mt-1">{errors.user_persona.message}</p>
+              )}
+            </div>
+          </div>
+        )
+
+      case 4:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-semibold text-white mb-2">Idea Differentiation</h3>
+              <p className="text-gray-400">What makes you stand out?</p>
+            </div>
+
+            <div>
+              <Label htmlFor="differentiation" className="text-white mb-2 block">
+                What makes your idea stand out? *
+              </Label>
+              <p className="text-sm text-gray-400 mb-3">
+                This helps us understand your competitive edge and positioning.
+              </p>
+              <Select
+                value={watchedFields.differentiation || ''}
+                onValueChange={(value) => setValue('differentiation', value)}
+              >
+                <SelectTrigger className="form-input">
+                  <SelectValue placeholder="Select what makes you different" />
+                </SelectTrigger>
+                <SelectContent>
+                  {differentiationOptions.map((option) => (
+                    <SelectItem key={option.id} value={option.id}>
+                      {option.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.differentiation && (
+                <p className="text-destructive text-sm mt-1">{errors.differentiation.message}</p>
+              )}
+            </div>
+
+          </div>
+        )
+      
+      case 5:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-semibold text-white mb-2">Existing Materials</h3>
+              <p className="text-gray-400">What have you completed so far?</p>
+            </div>
+
+            <div>
+              <Label className="text-white mb-2 block">
+                Which materials have you already completed professionally?
+              </Label>
+              <p className="text-sm text-gray-400 mb-3">
+                Select everything you've completed so far. This helps us assess your level of preparation.
+              </p>
+              <div className="space-y-3">
+                {existingMaterials.map((material) => (
+                  <div 
+                    key={material.id}
+                    onClick={() => toggleArrayValue('existing_materials', material.id)}
+                    className="flex items-center space-x-3 p-3 rounded-lg border border-white/10 hover:border-primary/50 cursor-pointer transition-all bg-white/5"
+                  >
+                    <div 
+                      className={`
+                        w-6 h-6 border-2 rounded cursor-pointer transition-all duration-200 flex items-center justify-center flex-shrink-0
+                        ${(watchedFields.existing_materials || []).includes(material.id)
+                          ? 'bg-primary border-primary text-white' 
+                          : 'bg-white/10 border-gray-300'
+                        }
+                      `}
+                    >
+                      {(watchedFields.existing_materials || []).includes(material.id) && (
+                        <Check className="w-4 h-4 text-white font-bold stroke-[3]" />
+                      )}
+                    </div>
+                    <Label className="text-sm text-gray-300 cursor-pointer flex-1">
+                      {material.name}
+                    </Label>
+                  </div>
+                ))}
+              </div>
+              {errors.existing_materials && (
+                <p className="text-destructive text-sm mt-1">{errors.existing_materials.message}</p>
+              )}
+            </div>
+          </div>
+        )
+
+      case 6:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-semibold text-white mb-2">Business Model</h3>
+              <p className="text-gray-400">How you plan to generate revenue</p>
+            </div>
+
+            <div>
+              <Label htmlFor="business_model" className="text-white mb-2 block">
+                What is the app business model? *
+              </Label>
+              <p className="text-sm text-gray-400 mb-3">
+                This gives us insight into your revenue strategy.
+              </p>
+              <Select
+                value={watchedFields.business_model || ''}
+                onValueChange={(value) => setValue('business_model', value)}
+              >
+                <SelectTrigger className="form-input">
+                  <SelectValue placeholder="Select your business model" />
+                </SelectTrigger>
+                <SelectContent>
+                  {businessModels.map((model) => (
+                    <SelectItem key={model.id} value={model.id}>
+                      {model.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.business_model && (
+                <p className="text-destructive text-sm mt-1">{errors.business_model.message}</p>
+              )}
+            </div>
+
+          </div>
+        )
+      
+      case 7:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-semibold text-white mb-2">Revenue Goal</h3>
+              <p className="text-gray-400">What are your short-term targets?</p>
+            </div>
+
+            <div>
+              <Label htmlFor="revenue_goal" className="text-white mb-2 block">
+                What's your monthly revenue goal 90 days after launch? *
+              </Label>
+              <p className="text-sm text-gray-400 mb-3">
+                This helps us understand your short-term growth expectations.
+              </p>
+              <Select
+                value={watchedFields.revenue_goal || ''}
+                onValueChange={(value) => setValue('revenue_goal', value)}
+              >
+                <SelectTrigger className="form-input">
+                  <SelectValue placeholder="Select your revenue goal" />
+                </SelectTrigger>
+                <SelectContent>
+                  {revenueGoals.map((goal) => (
+                    <SelectItem key={goal.id} value={goal.id}>
+                      {goal.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.revenue_goal && (
+                <p className="text-destructive text-sm mt-1">{errors.revenue_goal.message}</p>
+              )}
+            </div>
+          </div>
+        )
+
+      case 8:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-semibold text-white mb-2">Build Strategy</h3>
+              <p className="text-gray-400">How will you execute?</p>
+            </div>
+
+            <div>
+              <Label htmlFor="build_strategy" className="text-white mb-2 block">
+                How do you plan to build the product? *
+              </Label>
+              <p className="text-sm text-gray-400 mb-3">
+                This tells us what kind of team or structure you'll need.
+              </p>
+              <Select
+                value={watchedFields.build_strategy || ''}
+                onValueChange={(value) => setValue('build_strategy', value)}
+              >
+                <SelectTrigger className="form-input">
+                  <SelectValue placeholder="Select your build strategy" />
+                </SelectTrigger>
+                <SelectContent>
+                  {buildStrategies.map((strategy) => (
+                    <SelectItem key={strategy.id} value={strategy.id}>
+                      {strategy.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.build_strategy && (
+                <p className="text-destructive text-sm mt-1">{errors.build_strategy.message}</p>
+              )}
+            </div>
+
+              <Label htmlFor="investment_readiness" className="text-white mb-2 block">
+                How much are you prepared to personally invest? *
+              </Label>
+              <p className="text-sm text-gray-400 mb-3">
+                Your answer helps us guide you to the right program.
+              </p>
+              <Select
+                value={watchedFields.investment_readiness || ''}
+                onValueChange={(value) => setValue('investment_readiness', value)}
+              >
+                <SelectTrigger className="form-input">
+                  <SelectValue placeholder="Select your investment level" />
+                </SelectTrigger>
+                <SelectContent>
+                  {investmentLevels.map((level) => (
+                    <SelectItem key={level.id} value={level.id}>
+                      <div className="flex flex-col">
+                        <span>{level.name}</span>
+                        {level.note && (
+                          <span className="text-xs text-muted-foreground">{level.note}</span>
+                        )}
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.investment_readiness && (
+                <p className="text-destructive text-sm mt-1">{errors.investment_readiness.message}</p>
+              )}
+            </div>
+          </div>
+        )
+
+      case 9:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-semibold text-white mb-2">Areas of Help Needed</h3>
+              <p className="text-gray-400">Where do you need the most support?</p>
+            </div>
+
+            <div>
+              <Label className="text-white mb-2 block">
+                What areas do you need help with most? *
+              </Label>
+              <p className="text-sm text-gray-400 mb-3">
+                Select the areas where you need the most support to move forward.
+              </p>
+              <div className="space-y-3">
+                {helpNeededAreas.map((area) => (
+                  <div 
+                    key={area.id}
+                    onClick={() => toggleArrayValue('help_needed', area.id)}
+                    className="flex items-center space-x-3 p-3 rounded-lg border border-white/10 hover:border-primary/50 cursor-pointer transition-all bg-white/5"
+                  >
+                    <div 
+                      className={`
+                        w-6 h-6 border-2 rounded cursor-pointer transition-all duration-200 flex items-center justify-center flex-shrink-0
+                        ${(watchedFields.help_needed || []).includes(area.id)
+                          ? 'bg-primary border-primary text-white' 
+                          : 'bg-white/10 border-gray-300'
+                        }
+                      `}
+                    >
+                      {(watchedFields.help_needed || []).includes(area.id) && (
+                        <Check className="w-4 h-4 text-white font-bold stroke-[3]" />
+                      )}
+                    </div>
+                    <Label className="text-sm text-gray-300 cursor-pointer flex-1">
+                      {area.name}
+                    </Label>
+                  </div>
+                ))}
+              </div>
+              {errors.help_needed && (
+                <p className="text-destructive text-sm mt-1">{errors.help_needed.message}</p>
+              )}
+            </div>
+          </div>
+        )
+
+      case 10:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-semibold text-white mb-2">Investment Readiness</h3>
+              <p className="text-gray-400">Your personal investment capacity</p>
+            </div>
+
+            <div>
+              <Label htmlFor="investment_readiness" className="text-white mb-2 block">
+                How much are you prepared to personally invest? *
+              </Label>
+              <p className="text-sm text-gray-400 mb-3">
+                Your answer helps us guide you to the right program.
+              </p>
+              <Select
+                value={watchedFields.investment_readiness || ''}
+                onValueChange={(value) => setValue('investment_readiness', value)}
+              >
+                <SelectTrigger className="form-input">
+                  <SelectValue placeholder="Select your investment level" />
+                </SelectTrigger>
+                <SelectContent>
+                  {investmentLevels.map((level) => (
+                    <SelectItem key={level.id} value={level.id}>
+                      <div className="flex flex-col">
+                        <span>{level.name}</span>
+                        {level.note && (
+                          <span className="text-xs text-muted-foreground">{level.note}</span>
+                        )}
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.investment_readiness && (
+                <p className="text-destructive text-sm mt-1">{errors.investment_readiness.message}</p>
+              )}
+            </div>
+          </div>
+        )
+
+      case 11:
         return (
           <div className="space-y-4">
             <div className="text-center mb-6">
@@ -259,333 +684,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             )}
           </div>
         )
-      
-      case 2:
-        return (
-          <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Your App Idea</h3>
-              <p className="text-gray-400">Tell us about your vision and where you are</p>
-            </div>
-            
-            <div>
-              <Label htmlFor="app_idea" className="text-white mb-2 block">
-                Briefly describe your app idea and the problem it solves *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                We have limited capacity and prioritize Founders solving real human problems with potential to scale.
-              </p>
-              <Textarea
-                {...register('app_idea')}
-                className="form-input min-h-[120px]"
-                placeholder="Describe the problem your app solves and how it helps users..."
-              />
-              {errors.app_idea && (
-                <p className="text-destructive text-sm mt-1">{errors.app_idea.message}</p>
-              )}
-            </div>
-
-            <div>
-              <Label htmlFor="project_stage" className="text-white mb-2 block">
-                Where are you in your project journey? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                Select the stage that best describes where you are right now.
-              </p>
-              <Select
-                value={watchedFields.project_stage || ''}
-                onValueChange={(value) => setValue('project_stage', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select your stage" />
-                </SelectTrigger>
-                <SelectContent>
-                  {projectStages.map((stage) => (
-                    <SelectItem key={stage.id} value={stage.id}>
-                      {stage.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.project_stage && (
-                <p className="text-destructive text-sm mt-1">{errors.project_stage.message}</p>
-              )}
-            </div>
-
-            <div>
-              <Label htmlFor="user_persona" className="text-white mb-2 block">
-                How well do you know your user persona? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                The more you know your user, the better your chances of building something investors believe in.
-              </p>
-              <Select
-                value={watchedFields.user_persona || ''}
-                onValueChange={(value) => setValue('user_persona', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select your understanding level" />
-                </SelectTrigger>
-                <SelectContent>
-                  {userPersonaOptions.map((option) => (
-                    <SelectItem key={option.id} value={option.id}>
-                      {option.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.user_persona && (
-                <p className="text-destructive text-sm mt-1">{errors.user_persona.message}</p>
-              )}
-            </div>
-          </div>
-        )
-      
-      case 3:
-        return (
-          <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Competitive Edge</h3>
-              <p className="text-gray-400">What makes you different and what you've accomplished</p>
-            </div>
-
-            <div>
-              <Label htmlFor="differentiation" className="text-white mb-2 block">
-                What makes your idea stand out? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                This helps us understand your competitive edge and positioning.
-              </p>
-              <Select
-                value={watchedFields.differentiation || ''}
-                onValueChange={(value) => setValue('differentiation', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select what makes you different" />
-                </SelectTrigger>
-                <SelectContent>
-                  {differentiationOptions.map((option) => (
-                    <SelectItem key={option.id} value={option.id}>
-                      {option.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.differentiation && (
-                <p className="text-destructive text-sm mt-1">{errors.differentiation.message}</p>
-              )}
-            </div>
-
-            <div>
-              <Label className="text-white mb-2 block">
-                Which materials have you already completed professionally?
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                Select everything you've completed so far. This helps us assess your level of preparation.
-              </p>
-              <div className="space-y-3">
-                {existingMaterials.map((material) => (
-                  <div 
-                    key={material.id}
-                    onClick={() => toggleArrayValue('existing_materials', material.id)}
-                    className="flex items-center space-x-3 p-3 rounded-lg border border-white/10 hover:border-primary/50 cursor-pointer transition-all bg-white/5"
-                  >
-                    <div 
-                      className={`
-                        w-6 h-6 border-2 rounded cursor-pointer transition-all duration-200 flex items-center justify-center flex-shrink-0
-                        ${(watchedFields.existing_materials || []).includes(material.id)
-                          ? 'bg-primary border-primary text-white' 
-                          : 'bg-white/10 border-gray-300'
-                        }
-                      `}
-                    >
-                      {(watchedFields.existing_materials || []).includes(material.id) && (
-                        <Check className="w-4 h-4 text-white font-bold stroke-[3]" />
-                      )}
-                    </div>
-                    <Label className="text-sm text-gray-300 cursor-pointer flex-1">
-                      {material.name}
-                    </Label>
-                  </div>
-                ))}
-              </div>
-              {errors.existing_materials && (
-                <p className="text-destructive text-sm mt-1">{errors.existing_materials.message}</p>
-              )}
-            </div>
-          </div>
-        )
-      
-      case 4:
-        return (
-          <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Business Model</h3>
-              <p className="text-gray-400">How you plan to generate revenue</p>
-            </div>
-
-            <div>
-              <Label htmlFor="business_model" className="text-white mb-2 block">
-                What is the app business model? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                This gives us insight into your revenue strategy.
-              </p>
-              <Select
-                value={watchedFields.business_model || ''}
-                onValueChange={(value) => setValue('business_model', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select your business model" />
-                </SelectTrigger>
-                <SelectContent>
-                  {businessModels.map((model) => (
-                    <SelectItem key={model.id} value={model.id}>
-                      {model.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.business_model && (
-                <p className="text-destructive text-sm mt-1">{errors.business_model.message}</p>
-              )}
-            </div>
-
-            <div>
-              <Label htmlFor="revenue_goal" className="text-white mb-2 block">
-                What's your monthly revenue goal 90 days after launch? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                This helps us understand your short-term growth expectations.
-              </p>
-              <Select
-                value={watchedFields.revenue_goal || ''}
-                onValueChange={(value) => setValue('revenue_goal', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select your revenue goal" />
-                </SelectTrigger>
-                <SelectContent>
-                  {revenueGoals.map((goal) => (
-                    <SelectItem key={goal.id} value={goal.id}>
-                      {goal.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.revenue_goal && (
-                <p className="text-destructive text-sm mt-1">{errors.revenue_goal.message}</p>
-              )}
-            </div>
-          </div>
-        )
-      
-      case 5:
-        return (
-          <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Execution Plan</h3>
-              <p className="text-gray-400">How you'll build and what you need</p>
-            </div>
-
-            <div>
-              <Label htmlFor="build_strategy" className="text-white mb-2 block">
-                How do you plan to build the product? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                This tells us what kind of team or structure you'll need.
-              </p>
-              <Select
-                value={watchedFields.build_strategy || ''}
-                onValueChange={(value) => setValue('build_strategy', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select your build strategy" />
-                </SelectTrigger>
-                <SelectContent>
-                  {buildStrategies.map((strategy) => (
-                    <SelectItem key={strategy.id} value={strategy.id}>
-                      {strategy.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.build_strategy && (
-                <p className="text-destructive text-sm mt-1">{errors.build_strategy.message}</p>
-              )}
-            </div>
-
-            <div>
-              <Label className="text-white mb-2 block">
-                What areas do you need help with most? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                Select the areas where you need the most support to move forward.
-              </p>
-              <div className="space-y-3">
-                {helpNeededAreas.map((area) => (
-                  <div 
-                    key={area.id}
-                    onClick={() => toggleArrayValue('help_needed', area.id)}
-                    className="flex items-center space-x-3 p-3 rounded-lg border border-white/10 hover:border-primary/50 cursor-pointer transition-all bg-white/5"
-                  >
-                    <div 
-                      className={`
-                        w-6 h-6 border-2 rounded cursor-pointer transition-all duration-200 flex items-center justify-center flex-shrink-0
-                        ${(watchedFields.help_needed || []).includes(area.id)
-                          ? 'bg-primary border-primary text-white' 
-                          : 'bg-white/10 border-gray-300'
-                        }
-                      `}
-                    >
-                      {(watchedFields.help_needed || []).includes(area.id) && (
-                        <Check className="w-4 h-4 text-white font-bold stroke-[3]" />
-                      )}
-                    </div>
-                    <Label className="text-sm text-gray-300 cursor-pointer flex-1">
-                      {area.name}
-                    </Label>
-                  </div>
-                ))}
-              </div>
-              {errors.help_needed && (
-                <p className="text-destructive text-sm mt-1">{errors.help_needed.message}</p>
-              )}
-            </div>
-
-            <div>
-              <Label htmlFor="investment_readiness" className="text-white mb-2 block">
-                How much are you prepared to personally invest? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                Your answer helps us guide you to the right program.
-              </p>
-              <Select
-                value={watchedFields.investment_readiness || ''}
-                onValueChange={(value) => setValue('investment_readiness', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select your investment level" />
-                </SelectTrigger>
-                <SelectContent>
-                  {investmentLevels.map((level) => (
-                    <SelectItem key={level.id} value={level.id}>
-                      <div className="flex flex-col">
-                        <span>{level.name}</span>
-                        {level.note && (
-                          <span className="text-xs text-muted-foreground">{level.note}</span>
-                        )}
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.investment_readiness && (
-                <p className="text-destructive text-sm mt-1">{errors.investment_readiness.message}</p>
-              )}
-            </div>
-          </div>
-        )
     }
   }
 
@@ -593,22 +691,18 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
     <div className="card-glass p-6 lg:p-8">
       {/* Progress Bar */}
       <div className="mb-8">
-        <div className="flex items-center justify-between mb-4">
-          {[1, 2, 3, 4, 5].map((step) => (
-            <div
-              key={step}
-              className={`flex items-center justify-center w-10 h-10 rounded-full ${
-                step <= currentStep ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'
-              }`}
-            >
-              {step < currentStep ? <CheckCircle className="w-5 h-5" /> : getStepIcon(step)}
+        <div className="flex items-center justify-center mb-4">
+          <div className="text-center">
+            <div className="text-3xl font-bold text-white mb-1">
+              {currentStep} / 11
             </div>
-          ))}
+            <p className="text-sm text-gray-400">Questions Complete</p>
+          </div>
         </div>
         <div className="w-full bg-muted rounded-full h-2">
           <div
             className="bg-gradient-to-r from-primary to-secondary h-2 rounded-full transition-all duration-300"
-            style={{ width: `${(currentStep / 5) * 100}%` }}
+            style={{ width: `${(currentStep / 11) * 100}%` }}
           />
         </div>
       </div>
@@ -631,7 +725,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
           
           <div>
-            {currentStep < 5 ? (
+            {currentStep < 11 ? (
               <Button
                 type="button"
                 onClick={nextStep}

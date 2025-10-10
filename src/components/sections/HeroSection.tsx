@@ -102,8 +102,10 @@ const HeroSection = ({
                       For founders who've put time, capital, and heart into their startup.
                     </p>
                     
-                    <Button className="btn-hero w-full text-xs sm:text-sm">
-                      
+                    <Button 
+                      onClick={() => setCurrentView('prototype-form')}
+                      className="btn-hero w-full text-xs sm:text-sm"
+                    >
                       <span>Start Assessment Now & Become Investor Ready In 90 Days!</span>
                       <ArrowRight className="w-3 h-3 ml-2 flex-shrink-0" />
                     </Button>
