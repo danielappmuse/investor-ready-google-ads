@@ -90,18 +90,7 @@ const HeroSection = ({
                     <p className={`${isSmallScreen ? 'text-[11px]' : 'text-[14px]'} sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-2 sm:mb-5 2xl:mb-6 3xl:mb-7 leading-tight sm:leading-snug`}>Get interviewed by professionals who worked inside VC's & founders who've raised capital multiple times.</p>
                     
                     {/* Trust Badges */}
-                    <div className="flex flex-wrap gap-0.5 sm:gap-1.5 2xl:gap-2 3xl:gap-2.5 mb-1 sm:mb-4 2xl:mb-5 3xl:mb-6">
-                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-green-500/20 border border-green-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-green-400 font-medium">
-                        VC-Backed
-                      </span>
-                      
-                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-purple-500/20 border border-purple-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-purple-400 font-medium">
-                        Real Feedback
-                      </span>
-                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-amber-500/20 border border-amber-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-amber-400 font-medium">
-                        Founder to Founder
-                      </span>
-                    </div>
+                    
                     
                     
                     
