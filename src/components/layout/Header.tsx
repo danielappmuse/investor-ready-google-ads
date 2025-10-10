@@ -51,7 +51,7 @@ const Header = ({ onPrototypeClick }: HeaderProps = {}) => {
       isScrolled ? 'bg-background/80 backdrop-blur-lg border-b border-white/10' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
+        <div className="flex items-center justify-between h-[67px] sm:h-16 lg:h-20">
           {/* Logo */}
           <div 
             className="flex items-center space-x-2 sm:space-x-3 cursor-pointer"
@@ -62,7 +62,7 @@ const Header = ({ onPrototypeClick }: HeaderProps = {}) => {
               })
             }}
           >
-            <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 flex items-center justify-center">
+            <div className="w-[38px] h-[38px] sm:w-10 sm:h-10 lg:w-12 lg:h-12 flex items-center justify-center">
               <img 
                 src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" 
                 alt="StartWise Logo" 
@@ -70,7 +70,7 @@ const Header = ({ onPrototypeClick }: HeaderProps = {}) => {
                 style={{ background: 'transparent' }}
               />
             </div>
-            <span className="text-lg sm:text-xl lg:text-2xl font-bold gradient-text">StartWise</span>
+            <span className="text-[22px] sm:text-xl lg:text-2xl font-bold gradient-text">StartWise</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -128,10 +128,10 @@ const Header = ({ onPrototypeClick }: HeaderProps = {}) => {
           {/* Mobile Call Button */}
           <a
             href="tel:+17868291382"
-            className="md:hidden p-1.5 bg-gradient-to-br from-primary to-secondary rounded-full hover:scale-110 transition-all duration-300 flex items-center justify-center"
+            className="md:hidden p-[7px] bg-gradient-to-br from-primary to-secondary rounded-full hover:scale-110 transition-all duration-300 flex items-center justify-center"
             aria-label="Call us now"
           >
-            <Phone className="w-4 h-4 text-white" />
+            <Phone className="w-[19px] h-[19px] text-white" />
           </a>
         </div>
       </div>
