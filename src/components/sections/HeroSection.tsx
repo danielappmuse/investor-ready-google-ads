@@ -57,11 +57,11 @@ const HeroSection = ({
                 </h1>
                 
                 <p className="text-xs sm:text-sm lg:text-base text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl">
-                  AI made ideas cheap. Investors see thousands of "next big things" weekly, and fund almost none—because they only back founders who've invested in themselves.
+                  AI made it easy to build ideas — and even easier to ignore them. Top investors back founders who are prepared, polished, and investor-ready.
                   <br /><br />
-                  At StartWise, we give serious founders YC-level backing with <span className="text-primary font-semibold">product strategists, business model experts, pitch coaches,</span> and investors who only listen when you look investor-ready.
+                  At StartWise, we turn serious founders into fundable founders in 90 days — with <span className="text-primary font-semibold">YC-level strategy, pitch training, and direct investor access.</span>
                   <br /><br />
-                  💼 Ready? We'll connect you. ⚙️ Not yet? We'll make you <span className="text-secondary font-semibold">investment-ready in 90 days.</span>
+                  ✅ Ready to raise? We'll connect you. ⚙️ Still building? We'll get you ready.
                 </p>
               </div>
             </div>
