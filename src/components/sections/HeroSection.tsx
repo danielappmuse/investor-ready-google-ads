@@ -26,7 +26,7 @@ const HeroSection = ({
   const handleBackToProducts = () => {
     setCurrentView('products');
   };
-  return <section id="get-started" className="min-h-screen flex items-center pt-8 sm:pt-12 lg:pt-16 pb-4 sm:pb-6 lg:pb-8 relative overflow-hidden">
+  return <section id="get-started" className="min-h-screen flex items-center pt-28 sm:pt-32 lg:pt-36 pb-4 sm:pb-6 lg:pb-8 relative overflow-hidden">
       {/* Animated Background */}
       <AnimatedBackground />
       
