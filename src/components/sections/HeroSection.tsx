@@ -57,7 +57,10 @@ const HeroSection = ({
                   </span>
                   <br className="sm:hidden" />
                   <span className="hidden sm:inline"><br /></span>
-                  in 90 Days or Less
+                  <span className="gradient-text relative whitespace-nowrap">
+                    in 90 Days or Less
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-2xl -z-10 animate-pulse-glow" />
+                  </span>
                 </h1>
                 
                 <p className={`${isSmallScreen ? 'text-[12px]' : 'text-[15px]'} sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl text-gray-300 leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl`}>
