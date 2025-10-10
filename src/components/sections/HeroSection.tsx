@@ -41,13 +41,13 @@ const HeroSection = ({
             {/* Hero Content */}
             <div className="space-y-0.5 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-fade-in-up">
               <div className="space-y-0.5 sm:space-y-2 lg:space-y-3 2xl:space-y-4 3xl:space-y-6">
-                <div className="inline-flex items-center px-2 sm:px-3 2xl:px-4 3xl:px-5 py-1 2xl:py-1.5 3xl:py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full text-[13px] sm:text-xs 2xl:text-sm 3xl:text-base font-medium text-white animate-pulse-glow mb-0.5 mt-1">
-                  <Star className="w-3 h-3 2xl:w-4 2xl:h-4 3xl:w-5 3xl:h-5 mr-1.5 text-yellow-400 animate-float flex-shrink-0" />
+                <div className="inline-flex items-center px-2 sm:px-3 2xl:px-4 3xl:px-5 py-1 2xl:py-1.5 3xl:py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full text-[11px] xs:text-[13px] sm:text-xs 2xl:text-sm 3xl:text-base font-medium text-white animate-pulse-glow mb-0.5 mt-1">
+                  <Star className="w-2.5 h-2.5 xs:w-3 xs:h-3 2xl:w-4 2xl:h-4 3xl:w-5 3xl:h-5 mr-1.5 text-yellow-400 animate-float flex-shrink-0" />
                   <span className="hidden sm:inline">YC-Level Backing. Investor-Ready Results.</span>
                   <span className="sm:hidden">Get Investor-Ready</span>
                 </div>
                 
-                <h1 className="text-[22px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white leading-tight tracking-tight animate-fade-in stagger-1">
+                <h1 className="text-[19px] xs:text-[22px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white leading-tight tracking-tight animate-fade-in stagger-1">
                   From Idea to{' '}
                   <span className="gradient-text relative whitespace-nowrap">
                     Investment‑Ready
@@ -58,9 +58,9 @@ const HeroSection = ({
                   in 90 Days or Less
                 </h1>
                 
-                <p className="text-[15px] sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl text-gray-300 leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl">
+                <p className="text-[13px] xs:text-[15px] sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl text-gray-300 leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl">
                   AI made it easy to build ideas — and even easier to ignore them. Top investors back founders who are prepared, polished, and investor-ready.
-                  <br /><br />
+                  <br />
                   At StartWise, we turn serious founders into fundable founders in 90 days — with <span className="text-primary font-semibold">YC-level strategy, pitch training, and direct investor access.</span>
                   <br />
                   ✅ Ready to raise? We'll connect you.
@@ -73,37 +73,37 @@ const HeroSection = ({
             {/* Right Column - CTA */}
             <div className="space-y-1 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-slide-in-right mt-2 xl:mt-0 max-w-lg 2xl:max-w-xl 3xl:max-w-2xl mx-auto xl:mx-0">
               <div className="animate-fade-in stagger-4">
-                <h2 className="text-[18px] sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-1 sm:mb-3 flex items-center leading-tight">
-                  <Sparkles className="w-4 h-4 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-2 text-primary animate-pulse flex-shrink-0" />
+                <h2 className="text-[16px] xs:text-[18px] sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-1 sm:mb-3 flex items-center leading-tight">
+                  <Sparkles className="w-3.5 h-3.5 xs:w-4 xs:h-4 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-2 text-primary animate-pulse flex-shrink-0" />
                   <span>Ready to Get Started?</span>
                 </h2>
                 
                 <div className="space-y-1 sm:space-y-3 2xl:space-y-4 3xl:space-y-5">
-                  <div className="group w-full max-w-full overflow-hidden p-2.5 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
+                  <div className="group w-full max-w-full overflow-hidden p-2 xs:p-2.5 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
                     <div className="mb-1 sm:mb-4 2xl:mb-5 3xl:mb-6">
-                      <h3 className="text-[15px] sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white group-hover:gradient-text transition-all leading-tight">
+                      <h3 className="text-[13px] xs:text-[15px] sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white group-hover:gradient-text transition-all leading-tight">
                         Investor-Readiness Assessment
                       </h3>
                     </div>
-                    <p className="text-[14px] sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-2 sm:mb-5 2xl:mb-6 3xl:mb-7 leading-tight sm:leading-snug">Get interviewed by professionals who worked inside VC's & founders who've raised capital multiple times.</p>
+                    <p className="text-[12px] xs:text-[14px] sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-2 sm:mb-5 2xl:mb-6 3xl:mb-7 leading-tight sm:leading-snug">Get interviewed by professionals who worked inside VC's & founders who've raised capital multiple times.</p>
                     
                     {/* Trust Badges */}
                     <div className="flex flex-wrap gap-0.5 sm:gap-1.5 2xl:gap-2 3xl:gap-2.5 mb-1 sm:mb-4 2xl:mb-5 3xl:mb-6">
-                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-green-500/20 border border-green-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-green-400 font-medium">
+                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-green-500/20 border border-green-500/30 rounded text-[9px] xs:text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-green-400 font-medium">
                         VC-Backed
                       </span>
                       
-                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-purple-500/20 border border-purple-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-purple-400 font-medium">
+                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-purple-500/20 border border-purple-500/30 rounded text-[9px] xs:text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-purple-400 font-medium">
                         Real Feedback
                       </span>
-                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-amber-500/20 border border-amber-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-amber-400 font-medium">
+                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-amber-500/20 border border-amber-500/30 rounded text-[9px] xs:text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-amber-400 font-medium">
                         Founder to Founder
                       </span>
                     </div>
                     
                     
                     
-                    <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-xs sm:text-sm">
+                    <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-[11px] xs:text-xs sm:text-sm">
                       <span>Become Investor Ready in 90 days!</span>
                       <ArrowRight className="w-3 h-3 2xl:w-4 2xl:h-4 3xl:w-5 3xl:h-5 ml-2 flex-shrink-0" />
                     </Button>
@@ -116,8 +116,8 @@ const HeroSection = ({
         {/* As Featured In */}
         {currentView === 'products' && <div className="mt-3 sm:mt-10 lg:mt-12 2xl:mt-16 3xl:mt-20 animate-fade-in stagger-5">
             <div className="text-center mb-2 sm:mb-6 2xl:mb-8 3xl:mb-10">
-              <p className="text-sm sm:text-2xl 2xl:text-3xl 3xl:text-4xl font-bold text-white">As Featured In</p>
-              <p className="text-xs sm:text-lg 2xl:text-xl 3xl:text-2xl text-gray-400">Recognized by leading media and financial publications</p>
+              <p className="text-xs xs:text-sm sm:text-2xl 2xl:text-3xl 3xl:text-4xl font-bold text-white">As Featured In</p>
+              <p className="text-[10px] xs:text-xs sm:text-lg 2xl:text-xl 3xl:text-2xl text-gray-400">Recognized by leading media and financial publications</p>
             </div>
             <div className="flex justify-center">
               <div className="overflow-hidden max-w-6xl w-full">
