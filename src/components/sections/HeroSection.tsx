@@ -80,6 +80,22 @@ const HeroSection = ({
                   <span>Ready to Get Started?</span>
                 </div>
                 
+                {/* Trust Badges */}
+                <div className="flex flex-wrap gap-2 mb-2 sm:mb-3 2xl:mb-4 3xl:mb-5">
+                  <div className={`inline-flex items-center px-2 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-1 sm:py-1.5 2xl:py-2 bg-blue-500/20 border border-blue-400/30 rounded-full ${isSmallScreen ? 'text-[10px]' : 'text-xs'} sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-blue-300`}>
+                    <CheckCircle className={`${isSmallScreen ? 'w-2.5 h-2.5' : 'w-3 h-3'} 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-1.5 flex-shrink-0`} />
+                    NDA Protected
+                  </div>
+                  <div className={`inline-flex items-center px-2 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-1 sm:py-1.5 2xl:py-2 bg-green-500/20 border border-green-400/30 rounded-full ${isSmallScreen ? 'text-[10px]' : 'text-xs'} sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-green-300`}>
+                    <CheckCircle className={`${isSmallScreen ? 'w-2.5 h-2.5' : 'w-3 h-3'} 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-1.5 flex-shrink-0`} />
+                    100% Risk FREE
+                  </div>
+                  <div className={`inline-flex items-center px-2 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-1 sm:py-1.5 2xl:py-2 bg-purple-500/20 border border-purple-400/30 rounded-full ${isSmallScreen ? 'text-[10px]' : 'text-xs'} sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-purple-300`}>
+                    <Star className={`${isSmallScreen ? 'w-2.5 h-2.5' : 'w-3 h-3'} 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-1.5 flex-shrink-0`} />
+                    YC-Level Backing
+                  </div>
+                </div>
+                
                 <div className="space-y-1 sm:space-y-3 2xl:space-y-4 3xl:space-y-5">
                   <div className="group w-full max-w-full overflow-hidden p-2.5 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
                     <div className="mb-1 sm:mb-4 2xl:mb-5 3xl:mb-6">
