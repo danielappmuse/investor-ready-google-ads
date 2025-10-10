@@ -47,7 +47,7 @@ const HeroSection = ({
                   <span className="sm:hidden">Get Investor-Ready</span>
                 </div>
                 
-                <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight animate-fade-in stagger-1">
+                <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl font-bold text-white leading-tight animate-fade-in stagger-1">
                   From Idea to <span className="gradient-text relative">
                     Investment-Ready
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-2xl -z-10 animate-pulse-glow" />
@@ -56,7 +56,7 @@ const HeroSection = ({
                   in 90 Days or Less
                 </h1>
                 
-                <p className="text-xs sm:text-sm lg:text-base text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl">
+                <p className="text-xs sm:text-sm lg:text-base 2xl:text-lg 3xl:text-xl text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl">
                   AI made it easy to build ideas — and even easier to ignore them. Top investors back founders who are prepared, polished, and investor-ready.
                   <br /><br />
                   At StartWise, we turn serious founders into fundable founders in 90 days — with <span className="text-primary font-semibold">YC-level strategy, pitch training, and direct investor access.</span>
@@ -71,7 +71,7 @@ const HeroSection = ({
             {/* Right Column - CTA */}
             <div className="space-y-2 sm:space-y-3 lg:space-y-4 animate-slide-in-right mt-3 xl:mt-0 max-w-lg mx-auto xl:mx-0">
               <div className="animate-fade-in stagger-4">
-                <h2 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-2 sm:mb-3 flex items-center">
+                <h2 className="text-base sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-2 sm:mb-3 flex items-center">
                   <Sparkles className="w-4 h-4 mr-2 text-primary animate-pulse flex-shrink-0" />
                   <span>Ready to Get Started?</span>
                 </h2>
@@ -79,11 +79,11 @@ const HeroSection = ({
                 <div className="space-y-2 sm:space-y-3">
                   <div className="group p-4 sm:p-5 lg:p-6 border-2 border-white/20 rounded-lg card-glass">
                     <div className="mb-3 sm:mb-4">
-                      <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white group-hover:gradient-text transition-all">
+                      <h3 className="text-base sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white group-hover:gradient-text transition-all">
                         Investor-Readiness Assessment
                       </h3>
                     </div>
-                    <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">
+                    <p className="text-sm sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-3 sm:mb-4">
                       Get interviewed by founders who've raised capital multiple times and worked inside VC firms. They'll tell you where you stand, and help you build a plan to become investable in 90 days or less.
                     </p>
                     
@@ -100,7 +100,7 @@ const HeroSection = ({
                       </span>
                     </div>
                     
-                    <p className="text-sm text-gray-400 mb-4 sm:mb-6 font-medium">
+                    <p className="text-sm 2xl:text-base 3xl:text-lg text-gray-400 mb-4 sm:mb-6 font-medium">
                       Start the assessment, and estimate how close you are to investment
                     </p>
                     
