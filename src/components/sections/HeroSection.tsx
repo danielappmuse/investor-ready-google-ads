@@ -101,7 +101,7 @@ const HeroSection = ({
                     </div>
                     
                     <p className="text-sm text-gray-400 mb-4 sm:mb-6 font-medium">
-                      For founders who've put time, capital, and heart into their startup.
+                      Start the assessment, and estimate how close you are to investment
                     </p>
                     
                     <Button 
