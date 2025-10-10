@@ -102,14 +102,9 @@ const HeroSection = ({
                       </span>
                     </div>
                     
-                    <p className="text-[11px] sm:text-sm 2xl:text-base 3xl:text-lg text-gray-400 mb-1.5 sm:mb-6 2xl:mb-7 3xl:mb-8 font-medium leading-tight sm:leading-snug">
-                      Start the assessment, and estimate how close you are to investment
-                    </p>
                     
-                    <Button 
-                      onClick={() => setCurrentView('prototype-form')}
-                      className="btn-hero w-full text-xs sm:text-sm"
-                    >
+                    
+                    <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-xs sm:text-sm">
                       <span>Become Investor Ready in 90 days!</span>
                       <ArrowRight className="w-3 h-3 2xl:w-4 2xl:h-4 3xl:w-5 3xl:h-5 ml-2 flex-shrink-0" />
                     </Button>
