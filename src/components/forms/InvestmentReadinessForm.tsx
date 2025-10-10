@@ -7,8 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Checkbox } from '@/components/ui/checkbox'
-import { ArrowRight, ArrowLeft, CheckCircle, User, Lightbulb, Target, TrendingUp, Rocket, Check } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Check } from 'lucide-react'
 import { ContactFormData, projectStages, userPersonaOptions, differentiationOptions, existingMaterials, businessModels, revenueGoals, buildStrategies, helpNeededAreas, investmentLevels } from '@/types/form'
 import { validateEmail, validatePhoneNumber, formatPhoneNumber, getSessionId } from '@/utils/formValidation'
 import { getTrackingParameters, initializeTracking, fireGoogleAdsConversion } from '@/utils/trackingUtils'
@@ -98,30 +97,18 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
   const getFieldsForStep = (step: number) => {
     switch (step) {
-      case 1:
-        return ['app_idea']
-      case 2:
-        return ['project_stage']
-      case 3:
-        return ['user_persona']
-      case 4:
-        return ['differentiation']
-      case 5:
-        return ['existing_materials']
-      case 6:
-        return ['business_model']
-      case 7:
-        return ['revenue_goal']
-      case 8:
-        return ['build_strategy']
-      case 9:
-        return ['help_needed']
-      case 10:
-        return ['investment_readiness']
-      case 11:
-        return ['full_name', 'email', 'phone', 'consent']
-      default:
-        return []
+      case 1: return ['app_idea']
+      case 2: return ['project_stage']
+      case 3: return ['user_persona']
+      case 4: return ['differentiation']
+      case 5: return ['existing_materials']
+      case 6: return ['business_model']
+      case 7: return ['revenue_goal']
+      case 8: return ['build_strategy']
+      case 9: return ['help_needed']
+      case 10: return ['investment_readiness']
+      case 11: return ['full_name', 'email', 'phone', 'consent']
+      default: return []
     }
   }
 
@@ -179,195 +166,152 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
     }
   }
 
-  const getStepIcon = (step: number) => {
-    if (step <= 11) return <div className="text-sm font-bold">{step}</div>
-    return null
-  }
-
   const renderStep = () => {
     switch (currentStep) {
       case 1:
         return (
           <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">App Idea & Problem Statement</h3>
-              <p className="text-gray-400">Tell us about your vision</p>
-            </div>
-            <div>
-              <Label htmlFor="app_idea" className="text-white mb-2 block">
-                Briefly describe your app idea and the problem it solves *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                We have limited capacity and prioritize Founders solving real human problems with potential to scale.
-              </p>
-              <Textarea
-                {...register('app_idea')}
-                className="form-input min-h-[120px]"
-                placeholder="Describe the problem your app solves and how it helps users..."
-              />
-              {errors.app_idea && (
-                <p className="text-destructive text-sm mt-1">{errors.app_idea.message}</p>
-              )}
+            <Label htmlFor="app_idea" className="text-white text-lg mb-3 block">
+              Briefly describe your app idea and the problem it solves
+            </Label>
+            <p className="text-sm text-gray-400 mb-4">
+              We have limited capacity and prioritize Founders solving real human problems with potential to scale.
+            </p>
+            <Textarea
+              {...register('app_idea')}
+              className="form-input min-h-[120px]"
+              placeholder="Describe the problem your app solves..."
+            />
+            {errors.app_idea && (
+              <p className="text-destructive text-sm mt-1">{errors.app_idea.message}</p>
+            )}
           </div>
         )
       
       case 2:
         return (
           <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Project Journey Stage</h3>
-              <p className="text-gray-400">Where are you in your journey?</p>
-            </div>
-
-            <div>
-              <Label htmlFor="project_stage" className="text-white mb-2 block">
-                Where are you in your project journey? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                Select the stage that best describes where you are right now.
-              </p>
-              <Select
-                value={watchedFields.project_stage || ''}
-                onValueChange={(value) => setValue('project_stage', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select your stage" />
-                </SelectTrigger>
-                <SelectContent>
-                  {projectStages.map((stage) => (
-                    <SelectItem key={stage.id} value={stage.id}>
-                      {stage.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.project_stage && (
-                <p className="text-destructive text-sm mt-1">{errors.project_stage.message}</p>
-              )}
-            </div>
-
+            <Label htmlFor="project_stage" className="text-white text-lg mb-3 block">
+              Where are you in your project journey?
+            </Label>
+            <p className="text-sm text-gray-400 mb-4">
+              Select the stage that best describes where you are right now.
+            </p>
+            <Select
+              value={watchedFields.project_stage || ''}
+              onValueChange={(value) => setValue('project_stage', value)}
+            >
+              <SelectTrigger className="form-input">
+                <SelectValue placeholder="Select your stage" />
+              </SelectTrigger>
+              <SelectContent>
+                {projectStages.map((stage) => (
+                  <SelectItem key={stage.id} value={stage.id}>
+                    {stage.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.project_stage && (
+              <p className="text-destructive text-sm mt-1">{errors.project_stage.message}</p>
+            )}
           </div>
         )
-      
+
       case 3:
         return (
           <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">User Persona Understanding</h3>
-              <p className="text-gray-400">How well do you know your target users?</p>
-            </div>
-
-            <div>
-              <Label htmlFor="user_persona" className="text-white mb-2 block">
-                How well do you know your user persona? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                The more you know your user, the better your chances of building something investors believe in.
-              </p>
-              <Select
-                value={watchedFields.user_persona || ''}
-                onValueChange={(value) => setValue('user_persona', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select your understanding level" />
-                </SelectTrigger>
-                <SelectContent>
-                  {userPersonaOptions.map((option) => (
-                    <SelectItem key={option.id} value={option.id}>
-                      {option.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.user_persona && (
-                <p className="text-destructive text-sm mt-1">{errors.user_persona.message}</p>
-              )}
-            </div>
+            <Label htmlFor="user_persona" className="text-white text-lg mb-3 block">
+              How well do you know your user persona?
+            </Label>
+            <p className="text-sm text-gray-400 mb-4">
+              The more you know your user, the better your chances of building something investors believe in.
+            </p>
+            <Select
+              value={watchedFields.user_persona || ''}
+              onValueChange={(value) => setValue('user_persona', value)}
+            >
+              <SelectTrigger className="form-input">
+                <SelectValue placeholder="Select your understanding level" />
+              </SelectTrigger>
+              <SelectContent>
+                {userPersonaOptions.map((option) => (
+                  <SelectItem key={option.id} value={option.id}>
+                    {option.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.user_persona && (
+              <p className="text-destructive text-sm mt-1">{errors.user_persona.message}</p>
+            )}
           </div>
         )
 
       case 4:
         return (
           <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Idea Differentiation</h3>
-              <p className="text-gray-400">What makes you stand out?</p>
-            </div>
-
-            <div>
-              <Label htmlFor="differentiation" className="text-white mb-2 block">
-                What makes your idea stand out? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                This helps us understand your competitive edge and positioning.
-              </p>
-              <Select
-                value={watchedFields.differentiation || ''}
-                onValueChange={(value) => setValue('differentiation', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select what makes you different" />
-                </SelectTrigger>
-                <SelectContent>
-                  {differentiationOptions.map((option) => (
-                    <SelectItem key={option.id} value={option.id}>
-                      {option.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.differentiation && (
-                <p className="text-destructive text-sm mt-1">{errors.differentiation.message}</p>
-              )}
-            </div>
-
+            <Label htmlFor="differentiation" className="text-white text-lg mb-3 block">
+              What makes your idea stand out?
+            </Label>
+            <p className="text-sm text-gray-400 mb-4">
+              This helps us understand your competitive edge and positioning.
+            </p>
+            <Select
+              value={watchedFields.differentiation || ''}
+              onValueChange={(value) => setValue('differentiation', value)}
+            >
+              <SelectTrigger className="form-input">
+                <SelectValue placeholder="Select what makes you different" />
+              </SelectTrigger>
+              <SelectContent>
+                {differentiationOptions.map((option) => (
+                  <SelectItem key={option.id} value={option.id}>
+                    {option.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.differentiation && (
+              <p className="text-destructive text-sm mt-1">{errors.differentiation.message}</p>
+            )}
           </div>
         )
-      
+
       case 5:
         return (
           <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Existing Materials</h3>
-              <p className="text-gray-400">What have you completed so far?</p>
-            </div>
-
-            <div>
-              <Label className="text-white mb-2 block">
-                Which materials have you already completed professionally?
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                Select everything you've completed so far. This helps us assess your level of preparation.
-              </p>
-              <div className="space-y-3">
-                {existingMaterials.map((material) => (
+            <Label className="text-white text-lg mb-3 block">
+              Which materials have you already completed professionally?
+            </Label>
+            <p className="text-sm text-gray-400 mb-4">
+              Select everything you've completed so far.
+            </p>
+            <div className="space-y-3">
+              {existingMaterials.map((material) => (
+                <div 
+                  key={material.id}
+                  onClick={() => toggleArrayValue('existing_materials', material.id)}
+                  className="flex items-center space-x-3 p-3 rounded-lg border border-white/10 hover:border-primary/50 cursor-pointer transition-all bg-white/5"
+                >
                   <div 
-                    key={material.id}
-                    onClick={() => toggleArrayValue('existing_materials', material.id)}
-                    className="flex items-center space-x-3 p-3 rounded-lg border border-white/10 hover:border-primary/50 cursor-pointer transition-all bg-white/5"
+                    className={`
+                      w-6 h-6 border-2 rounded cursor-pointer transition-all duration-200 flex items-center justify-center flex-shrink-0
+                      ${(watchedFields.existing_materials || []).includes(material.id)
+                        ? 'bg-primary border-primary text-white' 
+                        : 'bg-white/10 border-gray-300'
+                      }
+                    `}
                   >
-                    <div 
-                      className={`
-                        w-6 h-6 border-2 rounded cursor-pointer transition-all duration-200 flex items-center justify-center flex-shrink-0
-                        ${(watchedFields.existing_materials || []).includes(material.id)
-                          ? 'bg-primary border-primary text-white' 
-                          : 'bg-white/10 border-gray-300'
-                        }
-                      `}
-                    >
-                      {(watchedFields.existing_materials || []).includes(material.id) && (
-                        <Check className="w-4 h-4 text-white font-bold stroke-[3]" />
-                      )}
-                    </div>
-                    <Label className="text-sm text-gray-300 cursor-pointer flex-1">
-                      {material.name}
-                    </Label>
+                    {(watchedFields.existing_materials || []).includes(material.id) && (
+                      <Check className="w-4 h-4 text-white font-bold stroke-[3]" />
+                    )}
                   </div>
-                ))}
-              </div>
-              {errors.existing_materials && (
-                <p className="text-destructive text-sm mt-1">{errors.existing_materials.message}</p>
-              )}
+                  <Label className="text-sm text-gray-300 cursor-pointer flex-1">
+                    {material.name}
+                  </Label>
+                </div>
+              ))}
             </div>
           </div>
         )
@@ -375,308 +319,230 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       case 6:
         return (
           <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Business Model</h3>
-              <p className="text-gray-400">How you plan to generate revenue</p>
-            </div>
-
-            <div>
-              <Label htmlFor="business_model" className="text-white mb-2 block">
-                What is the app business model? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                This gives us insight into your revenue strategy.
-              </p>
-              <Select
-                value={watchedFields.business_model || ''}
-                onValueChange={(value) => setValue('business_model', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select your business model" />
-                </SelectTrigger>
-                <SelectContent>
-                  {businessModels.map((model) => (
-                    <SelectItem key={model.id} value={model.id}>
-                      {model.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.business_model && (
-                <p className="text-destructive text-sm mt-1">{errors.business_model.message}</p>
-              )}
-            </div>
-
+            <Label htmlFor="business_model" className="text-white text-lg mb-3 block">
+              What is the app business model?
+            </Label>
+            <p className="text-sm text-gray-400 mb-4">
+              This gives us insight into your revenue strategy.
+            </p>
+            <Select
+              value={watchedFields.business_model || ''}
+              onValueChange={(value) => setValue('business_model', value)}
+            >
+              <SelectTrigger className="form-input">
+                <SelectValue placeholder="Select your business model" />
+              </SelectTrigger>
+              <SelectContent>
+                {businessModels.map((model) => (
+                  <SelectItem key={model.id} value={model.id}>
+                    {model.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.business_model && (
+              <p className="text-destructive text-sm mt-1">{errors.business_model.message}</p>
+            )}
           </div>
         )
-      
+
       case 7:
         return (
           <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Revenue Goal</h3>
-              <p className="text-gray-400">What are your short-term targets?</p>
-            </div>
-
-            <div>
-              <Label htmlFor="revenue_goal" className="text-white mb-2 block">
-                What's your monthly revenue goal 90 days after launch? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                This helps us understand your short-term growth expectations.
-              </p>
-              <Select
-                value={watchedFields.revenue_goal || ''}
-                onValueChange={(value) => setValue('revenue_goal', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select your revenue goal" />
-                </SelectTrigger>
-                <SelectContent>
-                  {revenueGoals.map((goal) => (
-                    <SelectItem key={goal.id} value={goal.id}>
-                      {goal.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.revenue_goal && (
-                <p className="text-destructive text-sm mt-1">{errors.revenue_goal.message}</p>
-              )}
-            </div>
+            <Label htmlFor="revenue_goal" className="text-white text-lg mb-3 block">
+              What's your monthly revenue goal 90 days after launch?
+            </Label>
+            <p className="text-sm text-gray-400 mb-4">
+              This helps us understand your short-term growth expectations.
+            </p>
+            <Select
+              value={watchedFields.revenue_goal || ''}
+              onValueChange={(value) => setValue('revenue_goal', value)}
+            >
+              <SelectTrigger className="form-input">
+                <SelectValue placeholder="Select your revenue goal" />
+              </SelectTrigger>
+              <SelectContent>
+                {revenueGoals.map((goal) => (
+                  <SelectItem key={goal.id} value={goal.id}>
+                    {goal.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.revenue_goal && (
+              <p className="text-destructive text-sm mt-1">{errors.revenue_goal.message}</p>
+            )}
           </div>
         )
 
       case 8:
         return (
           <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Build Strategy</h3>
-              <p className="text-gray-400">How will you execute?</p>
-            </div>
-
-            <div>
-              <Label htmlFor="build_strategy" className="text-white mb-2 block">
-                How do you plan to build the product? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                This tells us what kind of team or structure you'll need.
-              </p>
-              <Select
-                value={watchedFields.build_strategy || ''}
-                onValueChange={(value) => setValue('build_strategy', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select your build strategy" />
-                </SelectTrigger>
-                <SelectContent>
-                  {buildStrategies.map((strategy) => (
-                    <SelectItem key={strategy.id} value={strategy.id}>
-                      {strategy.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.build_strategy && (
-                <p className="text-destructive text-sm mt-1">{errors.build_strategy.message}</p>
-              )}
-            </div>
-
-              <Label htmlFor="investment_readiness" className="text-white mb-2 block">
-                How much are you prepared to personally invest? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                Your answer helps us guide you to the right program.
-              </p>
-              <Select
-                value={watchedFields.investment_readiness || ''}
-                onValueChange={(value) => setValue('investment_readiness', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select your investment level" />
-                </SelectTrigger>
-                <SelectContent>
-                  {investmentLevels.map((level) => (
-                    <SelectItem key={level.id} value={level.id}>
-                      <div className="flex flex-col">
-                        <span>{level.name}</span>
-                        {level.note && (
-                          <span className="text-xs text-muted-foreground">{level.note}</span>
-                        )}
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.investment_readiness && (
-                <p className="text-destructive text-sm mt-1">{errors.investment_readiness.message}</p>
-              )}
-            </div>
+            <Label htmlFor="build_strategy" className="text-white text-lg mb-3 block">
+              How do you plan to build the product?
+            </Label>
+            <p className="text-sm text-gray-400 mb-4">
+              This tells us what kind of team or structure you'll need.
+            </p>
+            <Select
+              value={watchedFields.build_strategy || ''}
+              onValueChange={(value) => setValue('build_strategy', value)}
+            >
+              <SelectTrigger className="form-input">
+                <SelectValue placeholder="Select your build strategy" />
+              </SelectTrigger>
+              <SelectContent>
+                {buildStrategies.map((strategy) => (
+                  <SelectItem key={strategy.id} value={strategy.id}>
+                    {strategy.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.build_strategy && (
+              <p className="text-destructive text-sm mt-1">{errors.build_strategy.message}</p>
+            )}
           </div>
         )
 
       case 9:
         return (
           <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Areas of Help Needed</h3>
-              <p className="text-gray-400">Where do you need the most support?</p>
-            </div>
-
-            <div>
-              <Label className="text-white mb-2 block">
-                What areas do you need help with most? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                Select the areas where you need the most support to move forward.
-              </p>
-              <div className="space-y-3">
-                {helpNeededAreas.map((area) => (
+            <Label className="text-white text-lg mb-3 block">
+              What areas do you need help with most?
+            </Label>
+            <p className="text-sm text-gray-400 mb-4">
+              Select the areas where you need the most support to move forward.
+            </p>
+            <div className="space-y-3">
+              {helpNeededAreas.map((area) => (
+                <div 
+                  key={area.id}
+                  onClick={() => toggleArrayValue('help_needed', area.id)}
+                  className="flex items-center space-x-3 p-3 rounded-lg border border-white/10 hover:border-primary/50 cursor-pointer transition-all bg-white/5"
+                >
                   <div 
-                    key={area.id}
-                    onClick={() => toggleArrayValue('help_needed', area.id)}
-                    className="flex items-center space-x-3 p-3 rounded-lg border border-white/10 hover:border-primary/50 cursor-pointer transition-all bg-white/5"
+                    className={`
+                      w-6 h-6 border-2 rounded cursor-pointer transition-all duration-200 flex items-center justify-center flex-shrink-0
+                      ${(watchedFields.help_needed || []).includes(area.id)
+                        ? 'bg-primary border-primary text-white' 
+                        : 'bg-white/10 border-gray-300'
+                      }
+                    `}
                   >
-                    <div 
-                      className={`
-                        w-6 h-6 border-2 rounded cursor-pointer transition-all duration-200 flex items-center justify-center flex-shrink-0
-                        ${(watchedFields.help_needed || []).includes(area.id)
-                          ? 'bg-primary border-primary text-white' 
-                          : 'bg-white/10 border-gray-300'
-                        }
-                      `}
-                    >
-                      {(watchedFields.help_needed || []).includes(area.id) && (
-                        <Check className="w-4 h-4 text-white font-bold stroke-[3]" />
-                      )}
-                    </div>
-                    <Label className="text-sm text-gray-300 cursor-pointer flex-1">
-                      {area.name}
-                    </Label>
+                    {(watchedFields.help_needed || []).includes(area.id) && (
+                      <Check className="w-4 h-4 text-white font-bold stroke-[3]" />
+                    )}
                   </div>
-                ))}
-              </div>
-              {errors.help_needed && (
-                <p className="text-destructive text-sm mt-1">{errors.help_needed.message}</p>
-              )}
+                  <Label className="text-sm text-gray-300 cursor-pointer flex-1">
+                    {area.name}
+                  </Label>
+                </div>
+              ))}
             </div>
+            {errors.help_needed && (
+              <p className="text-destructive text-sm mt-1">{errors.help_needed.message}</p>
+            )}
           </div>
         )
 
       case 10:
         return (
           <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Investment Readiness</h3>
-              <p className="text-gray-400">Your personal investment capacity</p>
-            </div>
-
-            <div>
-              <Label htmlFor="investment_readiness" className="text-white mb-2 block">
-                How much are you prepared to personally invest? *
-              </Label>
-              <p className="text-sm text-gray-400 mb-3">
-                Your answer helps us guide you to the right program.
-              </p>
-              <Select
-                value={watchedFields.investment_readiness || ''}
-                onValueChange={(value) => setValue('investment_readiness', value)}
-              >
-                <SelectTrigger className="form-input">
-                  <SelectValue placeholder="Select your investment level" />
-                </SelectTrigger>
-                <SelectContent>
-                  {investmentLevels.map((level) => (
-                    <SelectItem key={level.id} value={level.id}>
-                      <div className="flex flex-col">
-                        <span>{level.name}</span>
-                        {level.note && (
-                          <span className="text-xs text-muted-foreground">{level.note}</span>
-                        )}
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.investment_readiness && (
-                <p className="text-destructive text-sm mt-1">{errors.investment_readiness.message}</p>
-              )}
-            </div>
+            <Label htmlFor="investment_readiness" className="text-white text-lg mb-3 block">
+              How much are you prepared to personally invest?
+            </Label>
+            <p className="text-sm text-gray-400 mb-4">
+              Your answer helps us guide you to the right program.
+            </p>
+            <Select
+              value={watchedFields.investment_readiness || ''}
+              onValueChange={(value) => setValue('investment_readiness', value)}
+            >
+              <SelectTrigger className="form-input">
+                <SelectValue placeholder="Select your investment level" />
+              </SelectTrigger>
+              <SelectContent>
+                {investmentLevels.map((level) => (
+                  <SelectItem key={level.id} value={level.id}>
+                    <div className="flex flex-col">
+                      <span>{level.name}</span>
+                      {level.note && (
+                        <span className="text-xs text-muted-foreground">{level.note}</span>
+                      )}
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.investment_readiness && (
+              <p className="text-destructive text-sm mt-1">{errors.investment_readiness.message}</p>
+            )}
           </div>
         )
 
       case 11:
         return (
           <div className="space-y-4">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Let's stay in touch</h3>
-              <p className="text-gray-400">Fill in your contact details so we can share your personalized plan</p>
-            </div>
+            <Label htmlFor="full_name" className="text-white text-lg">Full Name</Label>
+            <Input
+              {...register('full_name')}
+              className="form-input"
+              placeholder="Enter your full name"
+              autoComplete="name"
+            />
+            {errors.full_name && (
+              <p className="text-destructive text-sm mt-1">{errors.full_name.message}</p>
+            )}
             
-            <div>
-              <Label htmlFor="full_name" className="text-white">Full Name *</Label>
-              <Input
-                {...register('full_name')}
-                className="form-input"
-                placeholder="Enter your full name"
-                autoComplete="name"
-              />
-              {errors.full_name && (
-                <p className="text-destructive text-sm mt-1">{errors.full_name.message}</p>
-              )}
-            </div>
-            
-            <div>
-              <Label htmlFor="email" className="text-white">Email *</Label>
-              <Input
-                {...register('email')}
-                type="email"
-                className="form-input"
-                placeholder="Enter your email address"
-                autoComplete="email"
-              />
-              {errors.email && (
-                <p className="text-destructive text-sm mt-1">{errors.email.message}</p>
-              )}
-            </div>
+            <Label htmlFor="email" className="text-white text-lg">Email</Label>
+            <Input
+              {...register('email')}
+              type="email"
+              className="form-input"
+              placeholder="Enter your email address"
+              autoComplete="email"
+            />
+            {errors.email && (
+              <p className="text-destructive text-sm mt-1">{errors.email.message}</p>
+            )}
 
-            <div>
-              <Label htmlFor="phone" className="text-white">Phone Number *</Label>
-              <Input
-                {...register('phone')}
-                type="tel"
-                onChange={handlePhoneChange}
-                value={watchedFields.phone || ''}
-                className="form-input"
-                placeholder="+1 (555) 123-4567"
-                maxLength={17}
-                autoComplete="tel"
-              />
-              {errors.phone && (
-                <p className="text-destructive text-sm mt-1">{errors.phone.message}</p>
-              )}
-            </div>
+            <Label htmlFor="phone" className="text-white text-lg">Phone Number</Label>
+            <Input
+              {...register('phone')}
+              type="tel"
+              onChange={handlePhoneChange}
+              value={watchedFields.phone || ''}
+              className="form-input"
+              placeholder="+1 (555) 123-4567"
+              maxLength={17}
+              autoComplete="tel"
+            />
+            {errors.phone && (
+              <p className="text-destructive text-sm mt-1">{errors.phone.message}</p>
+            )}
 
-            <div className="flex items-start space-x-3">
+            <div className="flex items-start space-x-3 pt-4">
               <div 
                 onClick={() => setValue('consent', !watchedFields.consent)}
                 className={`
-                  w-8 h-8 border-2 rounded-md cursor-pointer transition-all duration-200 flex items-center justify-center flex-shrink-0
+                  w-6 h-6 border-2 rounded cursor-pointer transition-all duration-200 flex items-center justify-center flex-shrink-0
                   ${watchedFields.consent 
-                    ? 'bg-primary border-primary text-white shadow-lg' 
-                    : 'bg-white/10 border-gray-300 hover:border-primary hover:bg-white/20'
+                    ? 'bg-primary border-primary text-white' 
+                    : 'bg-white/10 border-gray-300'
                   }
                 `}
               >
                 {watchedFields.consent && (
-                  <Check className="w-5 h-5 text-white font-bold stroke-[3]" />
+                  <Check className="w-4 h-4 text-white font-bold stroke-[3]" />
                 )}
               </div>
               <Label 
                 onClick={() => setValue('consent', !watchedFields.consent)}
-                className="text-sm text-gray-300 leading-relaxed cursor-pointer hover:text-white transition-colors"
+                className="text-sm text-gray-300 cursor-pointer"
               >
-                I agree to receive communications and understand that my information will be used in accordance with privacy policies. *
+                I agree to receive communications
               </Label>
             </div>
             {errors.consent && (
@@ -684,6 +550,9 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             )}
           </div>
         )
+      
+      default:
+        return null
     }
   }
 
