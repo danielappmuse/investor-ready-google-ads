@@ -48,7 +48,8 @@ const HeroSection = ({
                 </div>
                 
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white leading-tight animate-fade-in stagger-1">
-                  From Idea to <span className="gradient-text relative">
+                  From Idea to{' '}
+                  <span className="gradient-text relative whitespace-nowrap">
                     Investment-Ready
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-2xl -z-10 animate-pulse-glow" />
                   </span>
