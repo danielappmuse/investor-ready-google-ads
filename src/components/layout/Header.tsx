@@ -128,10 +128,10 @@ const Header = ({ onPrototypeClick }: HeaderProps = {}) => {
           {/* Mobile Call Button */}
           <a
             href="tel:+17868291382"
-            className="md:hidden p-2 bg-gradient-to-br from-green-500 to-green-600 rounded-full hover:scale-110 transition-all duration-300 flex items-center justify-center"
+            className="md:hidden p-1.5 bg-gradient-to-br from-primary to-secondary rounded-full hover:scale-110 transition-all duration-300 flex items-center justify-center"
             aria-label="Call us now"
           >
-          <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            <Phone className="w-4 h-4 text-white" />
           </a>
         </div>
       </div>

@@ -106,9 +106,9 @@ const HeroSection = ({
                     
                     <Button 
                       onClick={() => setCurrentView('prototype-form')}
-                      className="btn-hero w-full text-xs sm:text-sm whitespace-normal break-words text-left leading-snug sm:whitespace-nowrap sm:text-center min-h-[42px]"
+                      className="btn-hero w-full text-xs sm:text-sm"
                     >
-                      <span className="flex-1">Start Assessment Now & Become Investor Ready In 90 Days!</span>
+                      <span>Become Investor Ready in 90 days!</span>
                       <ArrowRight className="w-3 h-3 2xl:w-4 2xl:h-4 3xl:w-5 3xl:h-5 ml-2 flex-shrink-0" />
                     </Button>
                   </div>
@@ -118,13 +118,13 @@ const HeroSection = ({
           </div>}
 
         {/* As Featured In */}
-        {currentView === 'products' && <div className="mt-2 sm:mt-8 lg:mt-10 2xl:mt-14 3xl:mt-16 animate-fade-in stagger-5">
-            <div className="text-center mb-1.5 sm:mb-4 2xl:mb-6 3xl:mb-8">
-              <p className="text-xs sm:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white">As Featured In</p>
-              <p className="text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-gray-400">Recognized by leading media and financial publications</p>
+        {currentView === 'products' && <div className="mt-3 sm:mt-10 lg:mt-12 2xl:mt-16 3xl:mt-20 animate-fade-in stagger-5">
+            <div className="text-center mb-2 sm:mb-6 2xl:mb-8 3xl:mb-10">
+              <p className="text-sm sm:text-2xl 2xl:text-3xl 3xl:text-4xl font-bold text-white">As Featured In</p>
+              <p className="text-xs sm:text-lg 2xl:text-xl 3xl:text-2xl text-gray-400">Recognized by leading media and financial publications</p>
             </div>
             <div className="flex justify-center">
-              <div className="overflow-hidden max-w-5xl w-full">
+              <div className="overflow-hidden max-w-6xl w-full">
                 <div className="flex animate-scroll-smooth" style={{
               width: 'calc(200% + 2rem)',
               transform: 'translateZ(0)',
@@ -149,8 +149,8 @@ const HeroSection = ({
               }, {
                 src: '/media-logos/barchart.png',
                 alt: 'Barchart'
-              }].map((logo, index) => <div key={`first-${index}`} className="flex-shrink-0 flex items-center justify-center mx-3 sm:mx-8 transition-all duration-300 w-20 sm:w-40">
-                      <img src={logo.src} alt={logo.alt} className={`h-10 sm:h-24 2xl:h-28 3xl:h-32 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
+              }].map((logo, index) => <div key={`first-${index}`} className="flex-shrink-0 flex items-center justify-center mx-4 sm:mx-10 transition-all duration-300 w-28 sm:w-52">
+                      <img src={logo.src} alt={logo.alt} className={`h-14 sm:h-32 2xl:h-36 3xl:h-40 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
                     </div>)}
                   {[{
                 src: '/media-logos/business-insider.png',
@@ -170,8 +170,8 @@ const HeroSection = ({
               }, {
                 src: '/media-logos/barchart.png',
                 alt: 'Barchart'
-              }].map((logo, index) => <div key={`second-${index}`} className="flex-shrink-0 flex items-center justify-center mx-3 sm:mx-8 transition-all duration-300 w-20 sm:w-40">
-                      <img src={logo.src} alt={logo.alt} className={`h-10 sm:h-24 2xl:h-28 3xl:h-32 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
+              }].map((logo, index) => <div key={`second-${index}`} className="flex-shrink-0 flex items-center justify-center mx-4 sm:mx-10 transition-all duration-300 w-28 sm:w-52">
+                      <img src={logo.src} alt={logo.alt} className={`h-14 sm:h-32 2xl:h-36 3xl:h-40 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
                     </div>)}
                 </div>
               </div>
