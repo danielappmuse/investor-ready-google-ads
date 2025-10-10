@@ -85,7 +85,7 @@ const HeroSection = ({
                         Investor-Readiness Assessment
                       </h3>
                     </div>
-                    <p className="text-[11px] sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-2 sm:mb-5 2xl:mb-6 3xl:mb-7 leading-tight sm:leading-snug">
+                    <p className="text-[13px] sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-2 sm:mb-5 2xl:mb-6 3xl:mb-7 leading-tight sm:leading-snug">
                       Get interviewed by founders who've raised capital multiple times and worked inside VC firms. They'll tell you where you stand, and help you build a plan to become investable in 90 days or less.
                     </p>
                     
