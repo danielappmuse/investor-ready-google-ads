@@ -115,7 +115,7 @@ const ProjectCarousel = () => {
           </div>
           
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            From <span className="gradient-text">Validation</span> to <span className="gradient-text">Success</span>
+            From <span className="gradient-text">Idea</span> to <span className="gradient-text">Success</span>
           </h2>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">Our clients and work</p>
