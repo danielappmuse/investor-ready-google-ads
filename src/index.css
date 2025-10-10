@@ -133,11 +133,22 @@
 @layer components {
   /* StartWise Custom Components */
   .btn-hero {
-    @apply relative inline-flex items-center justify-center gap-2 px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12 py-2 sm:py-3 lg:py-4 2xl:py-5 3xl:py-6 text-sm sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl font-semibold transition-all duration-200 rounded-lg sm:rounded-xl max-w-full;
+    @apply relative inline-flex items-center justify-center gap-2 px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12 py-2 sm:py-3 lg:py-4 2xl:py-5 3xl:py-6 text-sm sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl font-bold transition-all duration-200 rounded-lg sm:rounded-xl max-w-full overflow-hidden;
     background: var(--gradient-primary);
     box-shadow: var(--shadow-glow);
     border: 1px solid rgba(59, 130, 246, 0.3);
     color: white !important;
+  }
+
+  .btn-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: sparkle-slide 2s ease-in-out infinite;
   }
 
   .btn-hero:hover {
@@ -150,11 +161,22 @@
   }
 
   .btn-secondary {
-    @apply relative inline-flex items-center justify-center gap-2 px-3 sm:px-4 lg:px-6 py-2 sm:py-2.5 lg:py-3 text-sm sm:text-base font-medium transition-all duration-200 rounded-lg border max-w-full;
+    @apply relative inline-flex items-center justify-center gap-2 px-3 sm:px-4 lg:px-6 py-2 sm:py-2.5 lg:py-3 text-sm sm:text-base font-bold transition-all duration-200 rounded-lg border max-w-full overflow-hidden;
     background: rgba(59, 130, 246, 0.1);
     border-color: rgba(59, 130, 246, 0.3);
     backdrop-filter: blur(10px);
     color: white !important;
+  }
+
+  .btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: sparkle-slide 2s ease-in-out infinite;
   }
 
   .btn-secondary:hover {
@@ -285,6 +307,15 @@
   }
   50% {
     box-shadow: var(--glow-primary);
+  }
+}
+
+@keyframes sparkle-slide {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
   }
 }
 
