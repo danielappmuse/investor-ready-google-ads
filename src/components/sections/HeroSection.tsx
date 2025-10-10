@@ -116,15 +116,15 @@ const HeroSection = ({
           </div>}
 
         {/* As Featured In */}
-        {currentView === 'products' && <div className="mt-3 sm:mt-10 lg:mt-12 2xl:mt-16 3xl:mt-20 animate-fade-in stagger-5">
-            <div className="text-center mb-2 sm:mb-6 2xl:mb-8 3xl:mb-10">
-              <p className={`${isSmallScreen ? 'text-xs' : 'text-sm'} sm:text-2xl 2xl:text-3xl 3xl:text-4xl font-bold text-white`}>As Featured In</p>
-              <p className={`${isSmallScreen ? 'text-[10px]' : 'text-xs'} sm:text-lg 2xl:text-xl 3xl:text-2xl text-gray-400`}>Recognized by leading media and financial publications</p>
+        {currentView === 'products' && <div className="mt-3.5 sm:mt-12 lg:mt-14 2xl:mt-[18.5rem] 3xl:mt-[23rem] animate-fade-in stagger-5">
+            <div className="text-center mb-2.5 sm:mb-7 2xl:mb-9 3xl:mb-12">
+              <p className={`${isSmallScreen ? 'text-sm' : 'text-base'} sm:text-[1.725rem] 2xl:text-[2.15rem] 3xl:text-[2.875rem] font-bold text-white`}>As Featured In</p>
+              <p className={`${isSmallScreen ? 'text-[11px]' : 'text-sm'} sm:text-[1.3rem] 2xl:text-[1.4375rem] 3xl:text-[1.725rem] text-gray-400`}>Recognized by leading media and financial publications</p>
             </div>
             <div className="flex justify-center">
-              <div className="overflow-hidden max-w-6xl w-full">
+              <div className="overflow-hidden max-w-[69rem] w-full">
                 <div className="flex animate-scroll-smooth" style={{
-              width: 'calc(200% + 2rem)',
+              width: 'calc(200% + 2.3rem)',
               transform: 'translateZ(0)',
               backfaceVisibility: 'hidden',
               perspective: '1000px'
@@ -147,8 +147,8 @@ const HeroSection = ({
               }, {
                 src: '/media-logos/barchart.png',
                 alt: 'Barchart'
-              }].map((logo, index) => <div key={`first-${index}`} className="flex-shrink-0 flex items-center justify-center mx-4 sm:mx-10 transition-all duration-300 w-32 sm:w-60">
-                      <img src={logo.src} alt={logo.alt} className={`h-16 sm:h-36 2xl:h-40 3xl:h-44 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
+              }].map((logo, index) => <div key={`first-${index}`} className="flex-shrink-0 flex items-center justify-center mx-5 sm:mx-12 transition-all duration-300 w-[9.5rem] sm:w-[17.25rem]">
+                      <img src={logo.src} alt={logo.alt} className={`h-[4.5rem] sm:h-[10.25rem] 2xl:h-[11.5rem] 3xl:h-[12.65rem] w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
                     </div>)}
                   {[{
                 src: '/media-logos/business-insider.png',
@@ -168,8 +168,8 @@ const HeroSection = ({
               }, {
                 src: '/media-logos/barchart.png',
                 alt: 'Barchart'
-              }].map((logo, index) => <div key={`second-${index}`} className="flex-shrink-0 flex items-center justify-center mx-4 sm:mx-10 transition-all duration-300 w-32 sm:w-60">
-                      <img src={logo.src} alt={logo.alt} className={`h-16 sm:h-36 2xl:h-40 3xl:h-44 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
+              }].map((logo, index) => <div key={`second-${index}`} className="flex-shrink-0 flex items-center justify-center mx-5 sm:mx-12 transition-all duration-300 w-[9.5rem] sm:w-[17.25rem]">
+                      <img src={logo.src} alt={logo.alt} className={`h-[4.5rem] sm:h-[10.25rem] 2xl:h-[11.5rem] 3xl:h-[12.65rem] w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
                     </div>)}
                 </div>
               </div>
