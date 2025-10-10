@@ -22,16 +22,16 @@ const ContactSection = () => {
             <div className="mb-6 sm:mb-8 text-center">
               <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full text-xs sm:text-sm font-medium text-white mb-4 sm:mb-6">
                 <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 flex-shrink-0" />
-                Two Products. Clear Pricing.
+                90-Day Investment Readiness Program
               </div>
               
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
-                Ready to <span className="gradient-text">Validate</span> or <span className="gradient-text">Build</span>?
+                Get <span className="gradient-text">Investment-Ready</span> in 90 Days
               </h2>
               
               <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed mb-4 sm:mb-6">
-                Start with our Validation Exam to test your idea, or jump straight to 
-                our Prototype + PRD Package starting from $10k if you're ready to build.
+                From business fundamentals to investor pitch materials - we'll transform your startup 
+                into an investor-ready business with everything you need to secure funding.
               </p>
 
               {/* NDA Protection Badges */}
