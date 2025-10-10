@@ -37,7 +37,7 @@ const HeroSection = ({
       <FloatingStats />
       
       <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 relative z-10">
-        {currentView === 'products' && <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 items-center scale-115" style={{ transform: 'scale(1.15)' }}>
+        {currentView === 'products' && <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 items-center">
             {/* Hero Content */}
             <div className="space-y-2 sm:space-y-3 lg:space-y-4 animate-fade-in-up">
               <div className="space-y-1.5 sm:space-y-2 lg:space-y-3">
@@ -47,7 +47,7 @@ const HeroSection = ({
                   <span className="sm:hidden">Get Investor-Ready</span>
                 </div>
                 
-                <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-tight animate-fade-in stagger-1">
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight animate-fade-in stagger-1">
                   From Idea to <span className="gradient-text relative">
                     Investment-Ready
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-2xl -z-10 animate-pulse-glow" />
@@ -56,7 +56,7 @@ const HeroSection = ({
                   in 90 Days or Less
                 </h1>
                 
-                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl">
+                <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed animate-fade-in stagger-2 max-w-2xl">
                   AI made ideas cheap. Investors see thousands of "next big things" weekly, and fund almost none—because they only back founders who've invested in themselves.
                   <br /><br />
                   At StartWise, we give serious founders YC-level backing with <span className="text-primary font-semibold">product strategists, business model experts, pitch coaches,</span> and investors who only listen when you look investor-ready.
