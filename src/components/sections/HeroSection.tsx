@@ -84,7 +84,7 @@ const HeroSection = ({
                       </h3>
                     </div>
                     <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">
-                      Get interviewed by founders who've raised capital multiple times and worked inside VC firms. They'll tell you where you stand—no fluff.
+                      Get interviewed by founders who've raised capital multiple times and worked inside VC firms. They'll tell you where you stand, and help you build a plan to become investable in 90 days or less.
                     </p>
                     
                     {/* Trust Badges */}
