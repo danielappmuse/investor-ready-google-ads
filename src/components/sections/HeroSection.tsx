@@ -26,7 +26,7 @@ const HeroSection = ({
   const handleBackToProducts = () => {
     setCurrentView('products');
   };
-  return <section id="get-started" className="min-h-screen flex items-center pt-16 sm:pt-24 lg:pt-28 pb-2 sm:pb-6 lg:pb-8 relative overflow-hidden">
+  return <section id="get-started" className="min-h-screen flex items-center pt-12 sm:pt-24 lg:pt-28 pb-2 sm:pb-6 lg:pb-8 relative overflow-hidden">
       {/* Animated Background */}
       <AnimatedBackground />
       
@@ -39,7 +39,7 @@ const HeroSection = ({
       <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-12 3xl:px-16 relative z-10">
         {currentView === 'products' && <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 items-center">
             {/* Hero Content */}
-            <div className="space-y-1.5 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-fade-in-up">
+            <div className="space-y-1 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-fade-in-up">
               <div className="space-y-1 sm:space-y-2 lg:space-y-3 2xl:space-y-4 3xl:space-y-6">
                 <div className="inline-flex items-center px-2 sm:px-3 2xl:px-4 3xl:px-5 py-1 2xl:py-1.5 3xl:py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full text-xs 2xl:text-sm 3xl:text-base font-medium text-white animate-pulse-glow">
                   <Star className="w-3 h-3 2xl:w-4 2xl:h-4 3xl:w-5 3xl:h-5 mr-1.5 text-yellow-400 animate-float flex-shrink-0" />
@@ -47,7 +47,7 @@ const HeroSection = ({
                   <span className="sm:hidden">Get Investor-Ready</span>
                 </div>
                 
-                <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl font-bold text-white leading-tight animate-fade-in stagger-1">
+                <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl font-bold text-white leading-snug sm:leading-tight animate-fade-in stagger-1">
                   From Idea to <span className="gradient-text relative">
                     Investment-Ready
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-2xl -z-10 animate-pulse-glow" />
@@ -56,7 +56,7 @@ const HeroSection = ({
                   in 90 Days or Less
                 </h1>
                 
-                <p className="text-[11px] sm:text-sm lg:text-base 2xl:text-lg 3xl:text-xl text-gray-300 leading-snug sm:leading-relaxed animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl">
+                <p className="text-xs sm:text-sm lg:text-base 2xl:text-lg 3xl:text-xl text-gray-300 leading-tight sm:leading-relaxed animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl">
                   AI made it easy to build ideas — and even easier to ignore them. Top investors back founders who are prepared, polished, and investor-ready.
                   <br /><br />
                   At StartWise, we turn serious founders into fundable founders in 90 days — with <span className="text-primary font-semibold">YC-level strategy, pitch training, and direct investor access.</span>
@@ -69,38 +69,38 @@ const HeroSection = ({
             </div>
 
             {/* Right Column - CTA */}
-            <div className="space-y-1.5 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-slide-in-right mt-2 xl:mt-0 max-w-lg 2xl:max-w-xl 3xl:max-w-2xl mx-auto xl:mx-0">
+            <div className="space-y-1 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-slide-in-right mt-2 xl:mt-0 max-w-lg 2xl:max-w-xl 3xl:max-w-2xl mx-auto xl:mx-0">
               <div className="animate-fade-in stagger-4">
-                <h2 className="text-sm sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-1.5 sm:mb-3 flex items-center">
+                <h2 className="text-base sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-1 sm:mb-3 flex items-center leading-tight">
                   <Sparkles className="w-4 h-4 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-2 text-primary animate-pulse flex-shrink-0" />
                   <span>Ready to Get Started?</span>
                 </h2>
                 
-                <div className="space-y-1.5 sm:space-y-3 2xl:space-y-4 3xl:space-y-5">
+                <div className="space-y-1 sm:space-y-3 2xl:space-y-4 3xl:space-y-5">
                   <div className="group w-full max-w-full overflow-hidden p-2.5 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
-                    <div className="mb-1.5 sm:mb-4 2xl:mb-5 3xl:mb-6">
-                      <h3 className="text-[13px] sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white group-hover:gradient-text transition-all leading-tight">
+                    <div className="mb-1 sm:mb-4 2xl:mb-5 3xl:mb-6">
+                      <h3 className="text-sm sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white group-hover:gradient-text transition-all leading-tight">
                         Investor-Readiness Assessment
                       </h3>
                     </div>
-                    <p className="text-[10px] sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-1.5 sm:mb-4 2xl:mb-5 3xl:mb-6 leading-snug">
+                    <p className="text-[11px] sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-1 sm:mb-4 2xl:mb-5 3xl:mb-6 leading-tight sm:leading-snug">
                       Get interviewed by founders who've raised capital multiple times and worked inside VC firms. They'll tell you where you stand, and help you build a plan to become investable in 90 days or less.
                     </p>
                     
                     {/* Trust Badges */}
-                    <div className="flex flex-wrap gap-0.5 sm:gap-1.5 2xl:gap-2 3xl:gap-2.5 mb-1.5 sm:mb-4 2xl:mb-5 3xl:mb-6">
-                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-green-500/20 border border-green-500/30 rounded text-[9px] sm:text-sm 2xl:text-base 3xl:text-lg text-green-400 font-medium">
+                    <div className="flex flex-wrap gap-0.5 sm:gap-1.5 2xl:gap-2 3xl:gap-2.5 mb-1 sm:mb-4 2xl:mb-5 3xl:mb-6">
+                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-green-500/20 border border-green-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-green-400 font-medium">
                         VC-Backed
                       </span>
-                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-blue-500/20 border border-blue-500/30 rounded text-[9px] sm:text-sm 2xl:text-base 3xl:text-lg text-blue-400 font-medium">
+                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-blue-500/20 border border-blue-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-blue-400 font-medium">
                         Founder Interviews
                       </span>
-                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-purple-500/20 border border-purple-500/30 rounded text-[9px] sm:text-sm 2xl:text-base 3xl:text-lg text-purple-400 font-medium">
+                      <span className="px-1 sm:px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-purple-500/20 border border-purple-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-purple-400 font-medium">
                         Real Feedback
                       </span>
                     </div>
                     
-                    <p className="text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-gray-400 mb-2 sm:mb-6 2xl:mb-7 3xl:mb-8 font-medium leading-snug">
+                    <p className="text-[11px] sm:text-sm 2xl:text-base 3xl:text-lg text-gray-400 mb-1.5 sm:mb-6 2xl:mb-7 3xl:mb-8 font-medium leading-tight sm:leading-snug">
                       Start the assessment, and estimate how close you are to investment
                     </p>
                     
