@@ -61,7 +61,9 @@ const HeroSection = ({
                   <br /><br />
                   At StartWise, we turn serious founders into fundable founders in 90 days — with <span className="text-primary font-semibold">YC-level strategy, pitch training, and direct investor access.</span>
                   <br /><br />
-                  ✅ Ready to raise? We'll connect you. ⚙️ Still building? We'll get you ready.
+                  ✅ Ready to raise? We'll connect you.
+                  <br />
+                  ⚙️ Still building? We'll get you ready.
                 </p>
               </div>
             </div>
