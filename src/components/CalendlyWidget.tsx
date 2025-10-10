@@ -60,9 +60,9 @@ const CalendlyWidget = ({ formData }: CalendlyWidgetProps) => {
     `last_name=${encodeURIComponent(lastName)}&` +
     `email=${encodeURIComponent(formData.email)}&` +
     `a1=${encodeURIComponent('1' + phoneClean)}&` +
-    `a2=${encodeURIComponent(formData.project_type)}&` +
-    `a3=${encodeURIComponent(formData.budget_range)}&` +
-    `a4=${encodeURIComponent(formData.project_description)}&` +
+    `a2=${encodeURIComponent(formData.project_stage || '')}&` +
+    `a3=${encodeURIComponent(formData.investment_readiness || '')}&` +
+    `a4=${encodeURIComponent(formData.app_idea || '')}&` +
     `hide_gdpr_banner=1`
 
   return (

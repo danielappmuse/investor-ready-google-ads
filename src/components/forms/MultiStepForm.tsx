@@ -1,2 +1,2 @@
-// Re-export the enhanced form as the default MultiStepForm
-export { default } from './EnhancedMultiStepForm'
+// Re-export the investment readiness form as the default MultiStepForm
+export { default } from './InvestmentReadinessForm'

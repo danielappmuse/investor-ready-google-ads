@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { CheckCircle, ArrowRight, Phone, Mail, MapPin, Shield, Lock, FileText } from 'lucide-react'
-import EnhancedMultiStepForm from '@/components/forms/EnhancedMultiStepForm'
+import { CheckCircle, Phone, Mail, MapPin } from 'lucide-react'
+import InvestmentReadinessForm from '@/components/forms/InvestmentReadinessForm'
 import CalendlyWidget from '@/components/CalendlyWidget'
 import { ContactFormData } from '@/types/form'
 
@@ -29,26 +29,10 @@ const ContactSection = () => {
                 Get <span className="gradient-text">Investment-Ready</span> in 90 Days
               </h2>
               
-              <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed mb-4 sm:mb-6">
-                From business fundamentals to investor pitch materials - we'll transform your startup 
-                into an investor-ready business with everything you need to secure funding.
+              <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed mb-6 sm:mb-8">
+                Complete our Investment Readiness Assessment to get a personalized roadmap 
+                and discover exactly what you need to secure funding.
               </p>
-
-              {/* NDA Protection Badges */}
-              <div className="flex flex-wrap justify-center gap-4 mb-6 sm:mb-8 p-4 bg-card/20 rounded-lg border border-green-500/20">
-                <div className="flex items-center space-x-2 text-green-400">
-                  <Shield className="w-4 h-4" />
-                  <span className="text-xs font-medium">NDA Protected</span>
-                </div>
-                <div className="flex items-center space-x-2 text-green-400">
-                  <Lock className="w-4 h-4" />
-                  <span className="text-xs font-medium">100% Confidential</span>
-                </div>
-                <div className="flex items-center space-x-2 text-green-400">
-                  <FileText className="w-4 h-4" />
-                  <span className="text-xs font-medium">Secure Ideas</span>
-                </div>
-              </div>
 
               {/* Contact Info */}
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-6 lg:space-x-8 mb-6 sm:mb-8">
@@ -67,7 +51,7 @@ const ContactSection = () => {
               </div>
             </div>
 
-            <EnhancedMultiStepForm onSuccess={handleFormSuccess} formLocation="bottom" />
+            <InvestmentReadinessForm onSuccess={handleFormSuccess} formLocation="bottom" />
           </div>
         ) : (
           <div className="max-w-4xl mx-auto">

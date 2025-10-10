@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Calendar, Star, CheckCircle, ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import EnhancedMultiStepForm from '@/components/forms/EnhancedMultiStepForm';
+import InvestmentReadinessForm from '@/components/forms/InvestmentReadinessForm';
 import CalendlyWidget from '@/components/CalendlyWidget';
 import { ContactFormData } from '@/types/form';
 import AnimatedBackground from '@/components/tech/AnimatedBackground';
@@ -184,7 +184,7 @@ const HeroSection = ({
               </p>
             </div>
             
-            <EnhancedMultiStepForm onSuccess={handlePrototypeFormSuccess} formLocation="top" onBack={handleBackToProducts} />
+            <InvestmentReadinessForm onSuccess={handlePrototypeFormSuccess} formLocation="top" onBack={handleBackToProducts} />
           </div>}
 
         {currentView === 'calendly' && <div className="max-w-4xl mx-auto">

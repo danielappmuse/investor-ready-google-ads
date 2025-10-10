@@ -100,11 +100,17 @@ const LegacyMultiStepForm = ({ onSuccess }: LegacyMultiStepFormProps) => {
         full_name: data.full_name,
         email: data.email,
         phone: data.phone,
-        consent: true, // Legacy form assumes consent
-        project_type: data.project_type,
-        budget_range: '', // Not collected in legacy form
-        project_description: data.project_description,
-        nda_agreement: true, // Legacy form assumes NDA agreement
+        consent: true,
+        app_idea: data.project_description,
+        project_stage: data.project_type,
+        user_persona: '',
+        differentiation: '',
+        existing_materials: [],
+        business_model: '',
+        revenue_goal: '',
+        build_strategy: '',
+        help_needed: [],
+        investment_readiness: '',
         session_id: crypto.randomUUID(),
         form_location: 'bottom',
         landing_page: 'startup-validation-landing',
