@@ -28,7 +28,7 @@ const ProcessSection = () => {
         'MVP development',
         'Product Requirement Document (PRD)'
       ],
-      timeline: '3-4 weeks',
+      timeline: '6-8 weeks',
       product: 'tech'
     },
     {
