@@ -53,11 +53,11 @@ const ProcessSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Our Streamlined <span className="gradient-text">Process</span>
+            The Path to <span className="gradient-text">Investment-Ready</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            From idea submission to launch-ready deliverables - our proven process 
-            takes you from concept to reality in weeks, not months.
+            Our proven 3-phase process transforms your startup into an investor-ready business 
+            in 90 days - from solid fundamentals to compelling investor materials.
           </p>
         </div>
 
