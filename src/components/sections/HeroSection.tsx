@@ -113,7 +113,7 @@ const HeroSection = ({
                     
                     
                     
-                    <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-xs sm:text-sm">
+                    <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-sm sm:text-base">
                       <span>Click Here to
 Become Investor Ready in 90 days!</span>
                       
