@@ -15,6 +15,10 @@ const HeroSection = ({
 }: HeroSectionProps) => {
   const isSmallScreen = useIsSmallScreen();
   const [currentView, setCurrentView] = useState<'products' | 'prototype-form' | 'calendly'>(startWithPrototype ? 'prototype-form' : 'products');
+  
+  React.useEffect(() => {
+    console.log('HeroSection isSmallScreen:', isSmallScreen);
+  }, [isSmallScreen]);
   React.useEffect(() => {
     if (startWithPrototype) {
       setCurrentView('prototype-form');
