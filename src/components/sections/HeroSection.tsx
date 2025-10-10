@@ -84,6 +84,19 @@ const HeroSection = ({
                   </h2>
                 </div>
                 
+                {/* Trust Badges */}
+                <div className="flex flex-wrap gap-1 sm:gap-1.5 2xl:gap-2 3xl:gap-2.5 mb-2 sm:mb-4 2xl:mb-5 3xl:mb-6">
+                  <span className="px-1.5 sm:px-2 2xl:px-2.5 3xl:px-3 py-0.5 2xl:py-1 3xl:py-1.5 bg-blue-500/20 border border-blue-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-blue-400 font-medium">
+                    NDA Protected
+                  </span>
+                  <span className="px-1.5 sm:px-2 2xl:px-2.5 3xl:px-3 py-0.5 2xl:py-1 3xl:py-1.5 bg-green-500/20 border border-green-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-green-400 font-medium">
+                    100% Risk FREE
+                  </span>
+                  <span className="px-1.5 sm:px-2 2xl:px-2.5 3xl:px-3 py-0.5 2xl:py-1 3xl:py-1.5 bg-purple-500/20 border border-purple-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-purple-400 font-medium">
+                    YC-Level Backing
+                  </span>
+                </div>
+                
                 <div className="space-y-1 sm:space-y-3 2xl:space-y-4 3xl:space-y-5">
                   <div className="group w-full max-w-full overflow-hidden p-2.5 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
                     <div className="mb-1 sm:mb-4 2xl:mb-5 3xl:mb-6">
