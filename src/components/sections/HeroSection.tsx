@@ -48,13 +48,13 @@ const HeroSection = ({
                 </div>
                 
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white leading-tight animate-fade-in stagger-1">
-                  From Idea to{' '}
-                  <span className="gradient-text relative whitespace-nowrap">
+                  <span className="block sm:inline">From Idea to </span>
+                  <span className="gradient-text relative">
                     Investment-Ready
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-2xl -z-10 animate-pulse-glow" />
                   </span>
-                  <br />
-                  in 90 Days or Less
+                  {' '}<span className="hidden sm:inline"><br /></span>
+                  <span className="block sm:inline">in 90 Days or Less</span>
                 </h1>
                 
                 <p className="text-sm sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl text-gray-300 leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl">
