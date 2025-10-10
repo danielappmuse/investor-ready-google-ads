@@ -23,10 +23,10 @@ const FloatingStats = () => {
           <Phone className="w-5 h-5 text-white group-hover:animate-pulse" />
         </a>
         
-        {/* Stats Toggle Button */}
+        {/* Stats Toggle Button - Hidden on mobile */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 group"
+          className="hidden sm:flex w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 group"
           aria-label="Toggle live stats"
         >
           <BarChart3 className="w-5 h-5 text-white group-hover:animate-pulse" />
