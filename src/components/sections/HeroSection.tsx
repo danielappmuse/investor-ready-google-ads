@@ -43,12 +43,10 @@ const HeroSection = ({
             {/* Hero Content */}
             <div className="space-y-0.5 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-fade-in-up">
               <div className="space-y-0.5 sm:space-y-2 lg:space-y-3 2xl:space-y-4 3xl:space-y-6">
-                <div className={`inline-flex items-center px-3 sm:px-4 2xl:px-5 3xl:px-6 py-1.5 pb-[3px] sm:pb-1.5 2xl:py-2 3xl:py-2.5 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full mb-0.5 mt-1`}>
-                  <Star className={`${isSmallScreen ? 'w-3 h-3' : 'w-4 h-4'} 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-2 text-yellow-400 animate-float flex-shrink-0`} />
-                  <span className={`${isSmallScreen ? 'text-[15px]' : 'text-[18px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white leading-tight`}>
-                    <span className="hidden sm:inline">YC-Level Backing. Investor-Ready Results.</span>
-                    <span className="sm:hidden">Get Investor-Ready</span>
-                  </span>
+                <div className={`inline-flex items-center px-2 sm:px-3 2xl:px-4 3xl:px-5 py-1 2xl:py-1.5 3xl:py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[10px]' : 'text-[13px]'} sm:text-xs 2xl:text-sm 3xl:text-base font-medium text-white animate-pulse-glow mb-0.5 mt-1`}>
+                  <Star className={`${isSmallScreen ? 'w-2.5 h-2.5' : 'w-3 h-3'} 2xl:w-4 2xl:h-4 3xl:w-5 3xl:h-5 mr-1.5 text-yellow-400 animate-float flex-shrink-0`} />
+                  <span className="hidden sm:inline">YC-Level Backing. Investor-Ready Results.</span>
+                  <span className="sm:hidden">Get Investor-Ready</span>
                 </div>
                 
                 <h1 className={`${isSmallScreen ? 'text-[18px]' : 'text-[22px]'} sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white leading-tight tracking-tight animate-fade-in stagger-1`}>
@@ -77,25 +75,10 @@ const HeroSection = ({
             {/* Right Column - CTA */}
             <div className="space-y-1 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-slide-in-right mt-2 xl:mt-0 max-w-lg 2xl:max-w-xl 3xl:max-w-2xl mx-auto xl:mx-0">
               <div className="animate-fade-in stagger-4">
-                <div className="inline-flex items-center px-3 sm:px-4 2xl:px-5 3xl:px-6 py-1.5 pb-[3px] sm:pb-1.5 2xl:py-2 3xl:py-2.5 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full mb-[8px] sm:mb-3">
+                <h2 className={`${isSmallScreen ? 'text-[15px]' : 'text-[18px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-1 sm:mb-3 flex items-center leading-tight`}>
                   <Sparkles className={`${isSmallScreen ? 'w-3 h-3' : 'w-4 h-4'} 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-2 text-primary animate-pulse flex-shrink-0`} />
-                  <h2 className={`${isSmallScreen ? 'text-[15px]' : 'text-[18px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white leading-tight`}>
-                    Ready to Get Started?
-                  </h2>
-                </div>
-                
-                {/* Trust Badges */}
-                <div className="flex flex-wrap gap-1 sm:gap-1.5 2xl:gap-2 3xl:gap-2.5 mb-2 sm:mb-4 2xl:mb-5 3xl:mb-6">
-                  <span className="px-1.5 sm:px-2 2xl:px-2.5 3xl:px-3 py-0.5 2xl:py-1 3xl:py-1.5 bg-blue-500/20 border border-blue-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-blue-400 font-medium">
-                    NDA Protected
-                  </span>
-                  <span className="px-1.5 sm:px-2 2xl:px-2.5 3xl:px-3 py-0.5 2xl:py-1 3xl:py-1.5 bg-green-500/20 border border-green-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-green-400 font-medium">
-                    100% Risk FREE
-                  </span>
-                  <span className="px-1.5 sm:px-2 2xl:px-2.5 3xl:px-3 py-0.5 2xl:py-1 3xl:py-1.5 bg-purple-500/20 border border-purple-500/30 rounded text-[10px] sm:text-sm 2xl:text-base 3xl:text-lg text-purple-400 font-medium">
-                    YC-Level Backing
-                  </span>
-                </div>
+                  <span>Ready to Get Started?</span>
+                </h2>
                 
                 <div className="space-y-1 sm:space-y-3 2xl:space-y-4 3xl:space-y-5">
                   <div className="group w-full max-w-full overflow-hidden p-2.5 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
@@ -124,7 +107,7 @@ const HeroSection = ({
                     
                     <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-xs sm:text-sm">
                       <span>Become Investor Ready in 90 days!</span>
-                      <ArrowRight className="w-3 h-3 2xl:w-4 2xl:h-4 3xl:w-5 3xl:h-5 ml-2 flex-shrink-0" />
+                      
                     </Button>
                   </div>
                 </div>
