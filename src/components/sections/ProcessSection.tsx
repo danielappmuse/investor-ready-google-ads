@@ -1,49 +1,49 @@
 import React from 'react';
-import { ArrowRight, Search, Target, Code, Rocket } from 'lucide-react'
+import { ArrowRight, FileText, Code, PresentationIcon } from 'lucide-react'
 
 const ProcessSection = () => {
   const steps = [
     {
       number: '01',
-      icon: <Search className="w-8 h-8" />,
-      title: 'Submit Your Idea',
-      description: 'Tell us about your startup concept and we begin our comprehensive analysis process.',
+      icon: <FileText className="w-8 h-8" />,
+      title: 'Business Fundamentals',
+      description: 'Build the foundation with comprehensive business planning, market research, and business model validation.',
       details: [
-        'Complete our detailed questionnaire',
-        'Share your vision and goals',
-        'Provide any existing research',
-        'Schedule initial consultation call'
+        'Market research & analysis',
+        'Business plan development',
+        'Business model design',
+        'Marketing strategy framework'
       ],
-      timeline: '48 hours',
-      product: 'validation'
+      timeline: '2-3 weeks',
+      product: 'business'
     },
     {
       number: '02',
       icon: <Code className="w-8 h-8" />,
-      title: 'Prototype Development',
-      description: 'Transform your validated idea into an interactive prototype with complete technical documentation.',
+      title: 'Tech & Design',
+      description: 'Transform your validated business into a tangible product with UI/UX design, prototype, and technical documentation.',
       details: [
-        'User experience design',
-        'Interactive prototype creation',
-        'Technical architecture planning',
-        'PRD documentation writing'
+        'UI/UX design',
+        'Interactive prototype',
+        'MVP development',
+        'Product Requirement Document (PRD)'
       ],
       timeline: '3-4 weeks',
-      product: 'prototype'
+      product: 'tech'
     },
     {
       number: '03',
-      icon: <Rocket className="w-8 h-8" />,
-      title: 'Present to Investors',
-      description: 'Get ready to pitch your validated concept and prototype to potential investors with confidence.',
+      icon: <PresentationIcon className="w-8 h-8" />,
+      title: 'Investor Preparation',
+      description: 'Get investor-ready with professional pitch materials, outreach strategy, and legal preparation.',
       details: [
-        'Investor pitch deck creation',
-        'Financial projections preparation',
-        'Demo presentation setup',
-        'Q&A preparation guidance'
+        'Investor outreach strategy',
+        'One pager & pitch deck',
+        'Investment terms preparation',
+        'Legal documentation'
       ],
-      timeline: '1-2 weeks',
-      product: 'both'
+      timeline: '2-3 weeks',
+      product: 'investor'
     }
   ]
 
@@ -111,13 +111,13 @@ const ProcessSection = () => {
                   {/* Product Tag */}
                   <div>
                     <span className={`text-sm px-3 py-1.5 rounded-full font-medium ${
-                      step.product === 'validation' ? 'bg-green-500/20 text-green-400 border border-green-400/20' :
-                      step.product === 'prototype' ? 'bg-blue-500/20 text-blue-400 border border-blue-400/20' :
-                      'bg-purple-500/20 text-purple-400 border border-purple-400/20'
+                      step.product === 'business' ? 'bg-blue-500/20 text-blue-400 border border-blue-400/20' :
+                      step.product === 'tech' ? 'bg-purple-500/20 text-purple-400 border border-purple-400/20' :
+                      'bg-green-500/20 text-green-400 border border-green-400/20'
                     }`}>
-                    {step.product === 'validation' ? 'Validation Exam' :
-                     step.product === 'prototype' ? 'Prototype from $10k' :
-                     'Both Products'}
+                    {step.product === 'business' ? 'Business Phase' :
+                     step.product === 'tech' ? 'Tech & Design Phase' :
+                     'Investor Phase'}
                     </span>
                   </div>
                 </div>
