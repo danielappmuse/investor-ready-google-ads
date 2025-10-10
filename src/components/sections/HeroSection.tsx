@@ -77,30 +77,30 @@ const HeroSection = ({
                 </h2>
                 
                 <div className="space-y-2 sm:space-y-3 2xl:space-y-4 3xl:space-y-5">
-                  <div className="group p-4 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
-                    <div className="mb-3 sm:mb-4 2xl:mb-5 3xl:mb-6">
-                      <h3 className="text-base sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white group-hover:gradient-text transition-all">
+                  <div className="group p-3 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
+                    <div className="mb-2 sm:mb-4 2xl:mb-5 3xl:mb-6">
+                      <h3 className="text-sm sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white group-hover:gradient-text transition-all">
                         Investor-Readiness Assessment
                       </h3>
                     </div>
-                    <p className="text-sm sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-3 sm:mb-4 2xl:mb-5 3xl:mb-6">
+                    <p className="text-xs sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-2 sm:mb-4 2xl:mb-5 3xl:mb-6">
                       Get interviewed by founders who've raised capital multiple times and worked inside VC firms. They'll tell you where you stand, and help you build a plan to become investable in 90 days or less.
                     </p>
                     
                     {/* Trust Badges */}
-                    <div className="flex flex-wrap gap-1.5 2xl:gap-2 3xl:gap-2.5 mb-3 sm:mb-4 2xl:mb-5 3xl:mb-6">
-                      <span className="px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-green-500/20 border border-green-500/30 rounded text-sm 2xl:text-base 3xl:text-lg text-green-400 font-medium">
+                    <div className="flex flex-wrap gap-1 sm:gap-1.5 2xl:gap-2 3xl:gap-2.5 mb-2 sm:mb-4 2xl:mb-5 3xl:mb-6">
+                      <span className="px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-green-500/20 border border-green-500/30 rounded text-xs sm:text-sm 2xl:text-base 3xl:text-lg text-green-400 font-medium">
                         VC-Backed
                       </span>
-                      <span className="px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-blue-500/20 border border-blue-500/30 rounded text-sm 2xl:text-base 3xl:text-lg text-blue-400 font-medium">
+                      <span className="px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-blue-500/20 border border-blue-500/30 rounded text-xs sm:text-sm 2xl:text-base 3xl:text-lg text-blue-400 font-medium">
                         Founder Interviews
                       </span>
-                      <span className="px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-purple-500/20 border border-purple-500/30 rounded text-sm 2xl:text-base 3xl:text-lg text-purple-400 font-medium">
+                      <span className="px-1.5 2xl:px-2 3xl:px-2.5 py-0.5 2xl:py-1 3xl:py-1.5 bg-purple-500/20 border border-purple-500/30 rounded text-xs sm:text-sm 2xl:text-base 3xl:text-lg text-purple-400 font-medium">
                         Real Feedback
                       </span>
                     </div>
                     
-                    <p className="text-sm 2xl:text-base 3xl:text-lg text-gray-400 mb-4 sm:mb-6 2xl:mb-7 3xl:mb-8 font-medium">
+                    <p className="text-xs sm:text-sm 2xl:text-base 3xl:text-lg text-gray-400 mb-3 sm:mb-6 2xl:mb-7 3xl:mb-8 font-medium">
                       Start the assessment, and estimate how close you are to investment
                     </p>
                     
@@ -118,9 +118,9 @@ const HeroSection = ({
           </div>}
 
         {/* As Featured In */}
-        {currentView === 'products' && <div className="mt-6 sm:mt-8 lg:mt-10 2xl:mt-14 3xl:mt-16 animate-fade-in stagger-5">
-            <div className="text-center mb-4 2xl:mb-6 3xl:mb-8">
-              <p className="text-lg sm:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white">As Featured In</p>
+        {currentView === 'products' && <div className="mt-4 sm:mt-8 lg:mt-10 2xl:mt-14 3xl:mt-16 animate-fade-in stagger-5">
+            <div className="text-center mb-2 sm:mb-4 2xl:mb-6 3xl:mb-8">
+              <p className="text-sm sm:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white">As Featured In</p>
               <p className="text-xs sm:text-sm 2xl:text-base 3xl:text-lg text-gray-400">Recognized by leading media and financial publications</p>
             </div>
             <div className="flex justify-center">
@@ -149,8 +149,8 @@ const HeroSection = ({
               }, {
                 src: '/media-logos/barchart.png',
                 alt: 'Barchart'
-              }].map((logo, index) => <div key={`first-${index}`} className="flex-shrink-0 flex items-center justify-center mx-6 sm:mx-8 transition-all duration-300 w-32 sm:w-40">
-                      <img src={logo.src} alt={logo.alt} className={`h-20 sm:h-24 2xl:h-28 3xl:h-32 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
+              }].map((logo, index) => <div key={`first-${index}`} className="flex-shrink-0 flex items-center justify-center mx-4 sm:mx-8 transition-all duration-300 w-24 sm:w-40">
+                      <img src={logo.src} alt={logo.alt} className={`h-12 sm:h-24 2xl:h-28 3xl:h-32 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
                     </div>)}
                   {[{
                 src: '/media-logos/business-insider.png',
@@ -170,8 +170,8 @@ const HeroSection = ({
               }, {
                 src: '/media-logos/barchart.png',
                 alt: 'Barchart'
-              }].map((logo, index) => <div key={`second-${index}`} className="flex-shrink-0 flex items-center justify-center mx-6 sm:mx-8 transition-all duration-300 w-32 sm:w-40">
-                      <img src={logo.src} alt={logo.alt} className={`h-20 sm:h-24 2xl:h-28 3xl:h-32 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
+              }].map((logo, index) => <div key={`second-${index}`} className="flex-shrink-0 flex items-center justify-center mx-4 sm:mx-8 transition-all duration-300 w-24 sm:w-40">
+                      <img src={logo.src} alt={logo.alt} className={`h-12 sm:h-24 2xl:h-28 3xl:h-32 w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
                     </div>)}
                 </div>
               </div>
