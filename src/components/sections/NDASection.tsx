@@ -106,7 +106,7 @@ const NDASection = () => {
           {/* Right Side - Security Features */}
           <div className="space-y-6">
             {securityFeatures.map((feature, index) => (
-              <div key={index} className="card-glass p-6 hover:border-primary/40 transition-all duration-150">
+              <div key={index} className="card-glass p-6 hover:border-primary/40 transition-all duration-150 text-center">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white flex-shrink-0">
                     {feature.icon}
