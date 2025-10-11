@@ -79,7 +79,7 @@ const ServicesSection = ({
                 'Market Research',
                 'Business Plan',
                 'Business Model',
-                'Product Requirement Document',
+                'PRD',
                 'UI/UX/Prototype/MVP',
                 'Marketing Strategy'
               ].map((item, idx) => (
