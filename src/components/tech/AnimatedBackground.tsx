@@ -59,7 +59,9 @@ const AnimatedBackground = ({ onAnimationComplete }: AnimatedBackgroundProps) =>
     let logoLoaded = false;
     let logoConverged = false;
     let logoShrinkProgress = 0;
-    const logoShrinkSpeed = 0.015; // Faster shrink speed
+    const logoShrinkSpeed = 0.02; // Faster shrink speed
+    let fadeOutProgress = 0;
+    let shouldFadeOut = false;
     
     // Final position for logo (between checkmarks and trust badges - responsive)
     const finalLogoScale = 0.42;
@@ -137,7 +139,7 @@ const AnimatedBackground = ({ onAnimationComplete }: AnimatedBackgroundProps) =>
               color: `rgba(${r}, ${g}, ${b}, `,
               size: isEdge ? 1.4 : (isMobile ? 1.5 : 1.2), // Larger particles on mobile
               convergenceProgress: 0,
-              convergenceSpeed: 0.012 + Math.random() * 0.015 // Much faster convergence
+              convergenceSpeed: 0.018 + Math.random() * 0.022 // Faster convergence
             });
           }
         }
@@ -459,24 +461,33 @@ const AnimatedBackground = ({ onAnimationComplete }: AnimatedBackgroundProps) =>
           const allConverged = logoParticles.every(p => p.convergenceProgress >= 0.99);
           if (allConverged) {
             logoConverged = true;
-            // Wait 2 seconds after convergence, then notify parent and start fade
+            // Wait 3 seconds after convergence, then notify parent and start fade
             setTimeout(() => {
               if (onAnimationComplete) {
                 onAnimationComplete(true);
               }
-            }, 2000);
+              shouldFadeOut = true;
+            }, 3000);
           }
         }
 
-        // Update shrink and move animation
-        if (logoConverged && logoShrinkProgress < 1) {
-          logoShrinkProgress = Math.min(1, logoShrinkProgress + logoShrinkSpeed);
+        // Update fade out
+        if (shouldFadeOut && fadeOutProgress < 1) {
+          fadeOutProgress = Math.min(1, fadeOutProgress + 0.02);
         }
 
-        const shrinkEase = 1 - Math.pow(1 - logoShrinkProgress, 3);
-        const currentScale = logoConverged ? 1 - (1 - finalLogoScale) * shrinkEase : 1;
-        
-        logoParticles.forEach(particle => {
+        // Only render if not fully faded out
+        if (fadeOutProgress < 1) {
+          // Update shrink and move animation
+          if (logoConverged && logoShrinkProgress < 1) {
+            logoShrinkProgress = Math.min(1, logoShrinkProgress + logoShrinkSpeed);
+          }
+
+          const shrinkEase = 1 - Math.pow(1 - logoShrinkProgress, 3);
+          const currentScale = logoConverged ? 1 - (1 - finalLogoScale) * shrinkEase : 1;
+          const opacity = 1 - fadeOutProgress;
+          
+          logoParticles.forEach(particle => {
           // Update convergence progress
           if (particle.convergenceProgress < 1) {
             particle.convergenceProgress = Math.min(1, particle.convergenceProgress + particle.convergenceSpeed);
@@ -519,8 +530,8 @@ const AnimatedBackground = ({ onAnimationComplete }: AnimatedBackgroundProps) =>
           // Draw particle glow (minimal for sharper edges)
           const glowSize = particle.size * 1.5 * currentScale;
           const gradient = ctx.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, glowSize);
-          gradient.addColorStop(0, particle.color + (0.4 * brightnessMultiplier) + ')');
-          gradient.addColorStop(0.6, particle.color + (0.15 * brightnessMultiplier) + ')');
+          gradient.addColorStop(0, particle.color + (0.4 * brightnessMultiplier * opacity) + ')');
+          gradient.addColorStop(0.6, particle.color + (0.15 * brightnessMultiplier * opacity) + ')');
           gradient.addColorStop(1, particle.color + '0)');
           ctx.fillStyle = gradient;
           ctx.fillRect(particle.x - glowSize, particle.y - glowSize, glowSize * 2, glowSize * 2);
@@ -528,13 +539,13 @@ const AnimatedBackground = ({ onAnimationComplete }: AnimatedBackgroundProps) =>
           // Draw particle core (sharp and crisp)
           ctx.beginPath();
           ctx.arc(particle.x, particle.y, particle.size * currentScale, 0, Math.PI * 2);
-          ctx.fillStyle = particle.color + (0.95 * brightnessMultiplier) + ')';
+          ctx.fillStyle = particle.color + (0.95 * brightnessMultiplier * opacity) + ')';
           ctx.fill();
         });
 
-        // Draw "StartWise" text next to logo (behind "Ready to Get Started?")
+        // Draw "StartWise" text next to logo (between checkmarks and trust badges)
         if (logoConverged && logoShrinkProgress > 0.3) {
-          const textOpacity = Math.min(1, (logoShrinkProgress - 0.3) / 0.7);
+          const textOpacity = Math.min(1, (logoShrinkProgress - 0.3) / 0.7) * opacity;
           
           const finalLogoX = getFinalLogoX();
           const finalLogoY = getFinalLogoY();
@@ -560,6 +571,7 @@ const AnimatedBackground = ({ onAnimationComplete }: AnimatedBackgroundProps) =>
           
           ctx.fillStyle = textGradient;
           ctx.fillText('StartWise', startX, textY);
+        }
         }
       }
 
