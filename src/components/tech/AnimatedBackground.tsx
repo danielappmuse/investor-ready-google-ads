@@ -61,8 +61,8 @@ const AnimatedBackground = () => {
     const finalLogoScale = 0.42;
     const getFinalLogoX = () => canvas.width * 0.48; // Slightly left of center
     const getFinalLogoY = () => {
-      // Position higher in the middle area
-      if (canvas.width < 640) return canvas.height * 0.42; // Mobile: higher
+      // Position to match where "Ready to Get Started?" badge is
+      if (canvas.width < 640) return canvas.height * 0.52; // Mobile: middle area where badge is
       if (canvas.width < 1280) return canvas.height * 0.40; // Tablet: higher
       return canvas.height * 0.38; // Desktop: higher up
     };
