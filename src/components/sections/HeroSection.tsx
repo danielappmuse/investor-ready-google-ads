@@ -119,8 +119,13 @@ const HeroSection = ({
 
         {/* As Featured In */}
         {currentView === 'products' && <div className="mt-3.5 sm:mt-12 lg:mt-14 2xl:mt-[18.5rem] 3xl:mt-[23rem] animate-fade-in stagger-5">
-            <div className="text-center mb-2.5 sm:mb-7 2xl:mb-9 3xl:mb-12">
-              <p className={`${isSmallScreen ? 'text-sm' : 'text-base'} sm:text-[1.725rem] 2xl:text-[2.15rem] 3xl:text-[2.875rem] font-bold text-white`}>As Featured In</p>
+            <div className="text-center mb-6 sm:mb-10 2xl:mb-12 3xl:mb-14">
+              <div className="flex justify-center mb-4 sm:mb-6">
+                <div className={`inline-flex items-center justify-center px-3 sm:px-3 2xl:px-4 3xl:px-5 py-1 2xl:py-1.5 3xl:py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[14px]' : 'text-[16px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white w-[280px] sm:w-auto`}>
+                  <Star className={`${isSmallScreen ? 'w-3 h-3' : 'w-3.5 h-3.5'} 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-1.5 sm:mr-2 text-primary animate-pulse flex-shrink-0`} />
+                  <span className="whitespace-nowrap">As Featured In</span>
+                </div>
+              </div>
               <p className={`${isSmallScreen ? 'text-[11px]' : 'text-sm'} sm:text-[1.3rem] 2xl:text-[1.4375rem] 3xl:text-[1.725rem] text-gray-400`}>Recognized by leading media and financial publications</p>
             </div>
             <div className="flex justify-center">
