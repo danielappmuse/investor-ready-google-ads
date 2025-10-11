@@ -127,7 +127,7 @@ const ProjectCarousel = () => {
             <div className="flex transition-transform duration-500 ease-out" style={{
             transform: `translateX(-${currentSlide * 100}%)`
           }}>
-              {successStories.map((story, index) => <div key={story.id} className="w-full flex-shrink-0 px-3 md:px-6">
+              {successStories.map((story, index) => <div key={story.id} className="w-full flex-shrink-0 px-3 md:px-6 text-center">
                   <div className="card-glass p-4 md:p-8 lg:p-12">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center min-h-fit">
                       {/* Story Image */}
