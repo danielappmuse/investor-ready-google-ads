@@ -59,12 +59,12 @@ const AnimatedBackground = () => {
     
     // Final position for logo (behind "Ready to Get Started?" badge - responsive)
     const finalLogoScale = 0.42;
-    const getFinalLogoX = () => canvas.width * 0.5; // Always centered horizontally
+    const getFinalLogoX = () => canvas.width * 0.48; // Slightly left of center
     const getFinalLogoY = () => {
-      // Position in the middle area where "Ready to Get Started?" button is
-      if (canvas.width < 640) return canvas.height * 0.5; // Mobile: middle
-      if (canvas.width < 1280) return canvas.height * 0.48; // Tablet: slightly higher
-      return canvas.height * 0.45; // Desktop: middle area
+      // Position higher in the middle area
+      if (canvas.width < 640) return canvas.height * 0.42; // Mobile: higher
+      if (canvas.width < 1280) return canvas.height * 0.40; // Tablet: higher
+      return canvas.height * 0.38; // Desktop: higher up
     };
 
     // Load and process logo image
