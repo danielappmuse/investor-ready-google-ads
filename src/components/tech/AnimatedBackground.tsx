@@ -57,10 +57,20 @@ const AnimatedBackground = () => {
     let logoShrinkProgress = 0;
     const logoShrinkSpeed = 0.015; // Faster shrink speed
     
-    // Final position for logo (behind "Ready to Get Started?" badge)
+    // Final position for logo (behind "Ready to Get Started?" badge - responsive)
     const finalLogoScale = 0.42;
-    const getFinalLogoX = () => canvas.width * 0.75; // Right side column
-    const getFinalLogoY = () => canvas.height * 0.32; // Upper area behind the badge
+    const getFinalLogoX = () => {
+      // Responsive positioning based on screen width
+      if (canvas.width < 640) return canvas.width * 0.5; // Mobile: centered
+      if (canvas.width < 1280) return canvas.width * 0.68; // Tablet: slightly right
+      return canvas.width * 0.75; // Desktop: right column
+    };
+    const getFinalLogoY = () => {
+      // Responsive positioning based on screen height
+      if (canvas.width < 640) return canvas.height * 0.38; // Mobile: higher up
+      if (canvas.width < 1280) return canvas.height * 0.35; // Tablet
+      return canvas.height * 0.32; // Desktop: upper area behind badge
+    };
 
     // Load and process logo image
     const img = new Image();
