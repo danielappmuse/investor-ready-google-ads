@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Phone, Calendar, Star, CheckCircle, ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import InvestmentReadinessForm from '@/components/forms/InvestmentReadinessForm';
@@ -7,19 +7,25 @@ import { ContactFormData } from '@/types/form';
 import AnimatedBackground from '@/components/tech/AnimatedBackground';
 import FloatingStats from '@/components/tech/FloatingStats';
 import { useIsSmallScreen } from '@/hooks/use-small-screen';
+
 interface HeroSectionProps {
   startWithPrototype?: boolean;
+  onAnimationComplete?: (complete: boolean) => void;
 }
+
 const HeroSection = ({
   startWithPrototype = false
 }: HeroSectionProps) => {
   const isSmallScreen = useIsSmallScreen();
   const [currentView, setCurrentView] = useState<'products' | 'prototype-form' | 'calendly'>(startWithPrototype ? 'prototype-form' : 'products');
+  const [showBadge, setShowBadge] = useState(false);
+  
   React.useEffect(() => {
     if (startWithPrototype) {
       setCurrentView('prototype-form');
     }
   }, [startWithPrototype]);
+  
   const [formData, setFormData] = useState<ContactFormData | null>(null);
   const handlePrototypeFormSuccess = (data: ContactFormData) => {
     setFormData(data);
@@ -30,7 +36,7 @@ const HeroSection = ({
   };
   return <section id="get-started" className="min-h-screen flex items-start sm:items-center pt-[61px] sm:pt-24 lg:pt-28 pb-1 sm:pb-6 lg:pb-8 relative overflow-hidden">
       {/* Animated Background */}
-      <AnimatedBackground />
+      <AnimatedBackground onAnimationComplete={setShowBadge} />
       
       {/* Tech Grid Overlay */}
       <div className="absolute inset-0 tech-grid opacity-10" />
@@ -78,7 +84,9 @@ const HeroSection = ({
             {/* Right Column - CTA */}
             <div className="space-y-1 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-slide-in-right mt-2 xl:mt-0 max-w-lg 2xl:max-w-xl 3xl:max-w-2xl mx-auto xl:mx-0 w-full px-2 flex flex-col items-center xl:items-start">
               <div className="animate-fade-in stagger-4 w-full text-center xl:text-left flex flex-col items-center xl:items-start">
-                <div className={`inline-flex items-center px-2 sm:px-3 2xl:px-4 3xl:px-5 py-1 2xl:py-1.5 3xl:py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[15px]' : 'text-[18px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white animate-pulse-glow mb-0.5 sm:mb-4 -mt-[5px]`}>
+                <div 
+                  className={`inline-flex items-center px-2 sm:px-3 2xl:px-4 3xl:px-5 py-1 2xl:py-1.5 3xl:py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[15px]' : 'text-[18px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white animate-pulse-glow mb-0.5 sm:mb-4 -mt-[5px] transition-opacity duration-500 ${showBadge ? 'opacity-100' : 'opacity-0'}`}
+                >
                   <Sparkles className={`${isSmallScreen ? 'w-3 h-3' : 'w-4 h-4'} 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-2 text-primary animate-pulse flex-shrink-0`} />
                   <span>Ready to Get Started?</span>
                 </div>

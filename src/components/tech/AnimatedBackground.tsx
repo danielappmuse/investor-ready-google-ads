@@ -1,7 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import logoImage from '@/assets/logo.png';
 
-const AnimatedBackground = () => {
+interface AnimatedBackgroundProps {
+  onAnimationComplete?: (complete: boolean) => void;
+}
+
+const AnimatedBackground = ({ onAnimationComplete }: AnimatedBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -455,6 +459,12 @@ const AnimatedBackground = () => {
           const allConverged = logoParticles.every(p => p.convergenceProgress >= 0.99);
           if (allConverged) {
             logoConverged = true;
+            // Wait 2 seconds after convergence, then notify parent and start fade
+            setTimeout(() => {
+              if (onAnimationComplete) {
+                onAnimationComplete(true);
+              }
+            }, 2000);
           }
         }
 
