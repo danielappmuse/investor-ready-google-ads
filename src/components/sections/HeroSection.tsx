@@ -67,11 +67,7 @@ const HeroSection = ({
             {/* Right Column - CTA */}
             <div className="space-y-1 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-slide-in-right mt-0.5 xl:mt-0 max-w-lg 2xl:max-w-xl 3xl:max-w-2xl mx-auto xl:mx-0 w-full px-2 flex flex-col items-center xl:items-start">
               <div className="animate-fade-in stagger-4 w-full text-center xl:text-left flex flex-col items-center xl:items-start">
-                <div className={`inline-flex items-center justify-center px-3 sm:px-3 2xl:px-4 3xl:px-5 py-1 2xl:py-1.5 3xl:py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[14px]' : 'text-[16px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-6 sm:mb-8 mt-6 sm:mt-8 w-[280px] sm:w-auto`}>
-                  <Star className={`${isSmallScreen ? 'w-3 h-3' : 'w-3.5 h-3.5'} 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-1.5 sm:mr-2 text-primary animate-pulse flex-shrink-0`} />
-                  <span className="whitespace-nowrap">Ready to Get Started?</span>
-                </div>
-                <div className="space-y-1 sm:space-y-3 2xl:space-y-4 3xl:space-y-5 mt-[8px]">
+                <div className="space-y-1 sm:space-y-3 2xl:space-y-4 3xl:space-y-5">
                   <div className="group w-full max-w-full overflow-hidden box-border p-3 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
                     <div className="mb-2 sm:mb-4 2xl:mb-5 3xl:mb-6">
                       <h3 className={`${isSmallScreen ? 'text-[15.5px]' : 'text-[17.5px]'} sm:text-xl lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white group-hover:gradient-text transition-all leading-tight`}>
