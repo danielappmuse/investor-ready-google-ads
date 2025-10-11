@@ -100,21 +100,9 @@ const HeroSection = ({
                     <p className={`${isSmallScreen ? 'text-[12.5px]' : 'text-[15.5px]'} sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-3 sm:mb-6 2xl:mb-7 3xl:mb-8 leading-tight sm:leading-snug`}>Fill a short quiz about your startup and vision. Get interviewed by ex-VC insiders and experienced founders who’ve raised funds multiple times. If you pass, we’ll connect you with investors. If not, we’ll make you investor-ready in under 90 days.</p>
                     
                     {/* Urgency Badge */}
-                    <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4">
-                      <div className="inline-flex items-center px-2 sm:px-3 py-1 sm:py-1.5 bg-green-500/20 border border-green-400/40 rounded-full text-[10px] sm:text-xs font-semibold text-green-300 animate-pulse">
-                        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-400 rounded-full mr-1.5 animate-pulse"></span>
-                        Limited Spots Available
-                      </div>
-                      <div className="inline-flex items-center px-2 sm:px-3 py-1 sm:py-1.5 bg-purple-500/20 border border-purple-400/40 rounded-full text-[10px] sm:text-xs font-semibold text-purple-300">
-                        <CheckCircle className="w-3 h-3 mr-1" />
-                        100% Free Assessment
-                      </div>
-                    </div>
                     
-                    <Button 
-                      onClick={() => setCurrentView('prototype-form')} 
-                      className="btn-hero w-full text-[17px] sm:text-[20px] font-extrabold py-4 sm:py-6 rounded-xl animate-cta-pulse group relative overflow-hidden"
-                    >
+                    
+                    <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-[17px] sm:text-[20px] font-extrabold py-4 sm:py-6 rounded-xl animate-cta-pulse group relative overflow-hidden">
                       <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
                         <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
                         Become Investor Ready Under 90 Days
@@ -124,9 +112,7 @@ const HeroSection = ({
                     
                     {/* Social Proof Below Button */}
                     <div className="mt-2 sm:mt-3 text-center">
-                      <p className="text-[9px] sm:text-xs text-gray-400">
-                        <span className="text-green-400 font-semibold">✓</span> Join 500+ founders who got funded
-                      </p>
+                      
                     </div>
                   </div>
                 </div>
