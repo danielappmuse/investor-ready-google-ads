@@ -114,7 +114,7 @@ const HeroSection = ({
                     
                     
                     <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-sm sm:text-base">
-                      <span>Investor-Ready in 90 Days. Apply Now.</span>
+                      <span>Investor-Ready Under 90 Days. Apply Now.</span>
                       
                     </Button>
                   </div>
