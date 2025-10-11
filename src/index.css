@@ -155,12 +155,25 @@
   }
 
   .btn-hero:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--glow-primary);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6), 0 0 80px rgba(147, 51, 234, 0.4);
   }
 
   .btn-hero:active {
-    transform: translateY(0);
+    transform: translateY(-1px) scale(1.01);
+  }
+
+  @keyframes cta-pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(147, 51, 234, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(147, 51, 234, 0.4);
+    }
+  }
+
+  .animate-cta-pulse {
+    animation: cta-pulse 2s ease-in-out infinite;
   }
 
   .btn-secondary {
