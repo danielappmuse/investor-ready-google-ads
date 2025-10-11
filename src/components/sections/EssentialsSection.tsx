@@ -53,7 +53,7 @@ const EssentialsSection = ({
           </TabsList>
 
           <TabsContent value="business" className="space-y-8">
-            <div className="card-glass p-8 rounded-xl">
+            <div className="card-glass p-8 rounded-xl text-center">
               <div className="flex items-start gap-4 mb-6">
                 <div className="p-3 bg-primary/20 rounded-lg">
                   {essentials.business.icon}
@@ -75,7 +75,7 @@ const EssentialsSection = ({
                     {essentials.business.benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start gap-2 text-gray-300">
                         <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                        <span>{benefit}</span>
+                        <span className="flex-1 text-center">{benefit}</span>
                       </li>
                     ))}
                   </ul>
@@ -90,7 +90,7 @@ const EssentialsSection = ({
                     {essentials.business.process.map((step, index) => (
                       <li key={index} className="flex items-start gap-2 text-gray-300">
                         <span className="font-bold text-primary">{index + 1}.</span>
-                        <span>{step}</span>
+                        <span className="flex-1 text-center">{step}</span>
                       </li>
                     ))}
                   </ul>
@@ -105,7 +105,7 @@ const EssentialsSection = ({
                     {essentials.business.outcomes.map((outcome, index) => (
                       <li key={index} className="flex items-start gap-2 text-gray-300">
                         <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                        <span>{outcome}</span>
+                        <span className="flex-1 text-center">{outcome}</span>
                       </li>
                     ))}
                   </ul>
@@ -125,7 +125,7 @@ const EssentialsSection = ({
           </TabsContent>
 
           <TabsContent value="investor" className="space-y-8">
-            <div className="card-glass p-8 rounded-xl">
+            <div className="card-glass p-8 rounded-xl text-center">
               <div className="flex items-start gap-4 mb-6">
                 <div className="p-3 bg-primary/20 rounded-lg">
                   {essentials.investor.icon}
@@ -147,7 +147,7 @@ const EssentialsSection = ({
                     {essentials.investor.benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start gap-2 text-gray-300">
                         <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                        <span>{benefit}</span>
+                        <span className="flex-1 text-center">{benefit}</span>
                       </li>
                     ))}
                   </ul>
@@ -162,7 +162,7 @@ const EssentialsSection = ({
                     {essentials.investor.process.map((step, index) => (
                       <li key={index} className="flex items-start gap-2 text-gray-300">
                         <span className="font-bold text-primary">{index + 1}.</span>
-                        <span>{step}</span>
+                        <span className="flex-1 text-center">{step}</span>
                       </li>
                     ))}
                   </ul>
@@ -177,7 +177,7 @@ const EssentialsSection = ({
                     {essentials.investor.outcomes.map((outcome, index) => (
                       <li key={index} className="flex items-start gap-2 text-gray-300">
                         <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                        <span>{outcome}</span>
+                        <span className="flex-1 text-center">{outcome}</span>
                       </li>
                     ))}
                   </ul>
