@@ -72,7 +72,7 @@ const HeroSection = ({
                   AI made it easy to build ideas — and even easier to ignore them. Top investors back founders who are prepared, polished, and <span className="gradient-text font-bold">investor-ready</span>.
                   <span className="block h-2" />
                   At StartWise, we turn serious founders into fundable founders under <span className="gradient-text font-bold">90 days</span> — with <span className="gradient-text font-bold">YC-level business strategy, pitch training, materials creation/improvement and investor access.</span>
-                  <br />
+                  <span className="block h-2" />
                   ✅ Ready to raise? We'll connect you.
                   <br />
                   ⚙️ Still building? We'll get you ready.
