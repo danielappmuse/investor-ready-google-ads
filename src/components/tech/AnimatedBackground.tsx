@@ -59,7 +59,7 @@ const AnimatedBackground = ({ onAnimationComplete }: AnimatedBackgroundProps) =>
     let logoLoaded = false;
     let logoConverged = false;
     let logoShrinkProgress = 0;
-    const logoShrinkSpeed = 0.02; // Faster shrink speed
+    const logoShrinkSpeed = 0.008; // 2.5x slower shrink speed
     let fadeOutProgress = 0;
     let shouldFadeOut = false;
     
@@ -139,7 +139,7 @@ const AnimatedBackground = ({ onAnimationComplete }: AnimatedBackgroundProps) =>
               color: `rgba(${r}, ${g}, ${b}, `,
               size: isEdge ? 1.4 : (isMobile ? 1.5 : 1.2), // Larger particles on mobile
               convergenceProgress: 0,
-              convergenceSpeed: 0.018 + Math.random() * 0.022 // Faster convergence
+              convergenceSpeed: 0.0072 + Math.random() * 0.0088 // 2.5x slower
             });
           }
         }
@@ -473,7 +473,7 @@ const AnimatedBackground = ({ onAnimationComplete }: AnimatedBackgroundProps) =>
 
         // Update fade out
         if (shouldFadeOut && fadeOutProgress < 1) {
-          fadeOutProgress = Math.min(1, fadeOutProgress + 0.02);
+          fadeOutProgress = Math.min(1, fadeOutProgress + 0.008); // 2.5x slower fade
         }
 
         // Only render if not fully faded out
