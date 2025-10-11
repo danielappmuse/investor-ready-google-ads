@@ -96,9 +96,9 @@ const ProcessSection = () => {
                   {/* Details */}
                   <div className="space-y-3 mb-6">
                     {step.details.map((detail, idx) => (
-                      <div key={idx} className="flex items-start justify-center text-sm text-gray-400">
+                      <div key={idx} className="flex items-start text-sm text-gray-400">
                         <ArrowRight className="w-4 h-4 mr-2 mt-0.5 text-primary flex-shrink-0" />
-                        <span>{detail}</span>
+                        <span className="flex-1 text-center">{detail}</span>
                       </div>
                     ))}
                   </div>
