@@ -57,7 +57,7 @@ const NDASection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           {/* Left Side - NDA Promise */}
           <div className="relative z-10">
-            <div className="card-glass p-8 lg:p-10">
+            <div className="card-glass p-8 lg:p-10 text-center">
               <div className="flex items-center mb-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center mr-4">
                   <FileText className="w-8 h-8 text-white" />
