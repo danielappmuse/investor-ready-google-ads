@@ -62,11 +62,11 @@ const AnimatedBackground = () => {
       const tempCtx = tempCanvas.getContext('2d');
       if (!tempCtx) return;
 
-      // Define logo size and position
-      const logoWidth = 300;
-      const logoHeight = 300;
+      // Define logo size and position (3x smaller, more centered)
+      const logoWidth = 100;
+      const logoHeight = 100;
       const logoX = canvas.width / 2;
-      const logoY = canvas.height / 3;
+      const logoY = canvas.height / 2.2;
 
       tempCanvas.width = logoWidth;
       tempCanvas.height = logoHeight;
@@ -75,8 +75,8 @@ const AnimatedBackground = () => {
       const imageData = tempCtx.getImageData(0, 0, logoWidth, logoHeight);
       const data = imageData.data;
 
-      // Sample pixels and create particles
-      const sampleRate = 3; // Sample every 3rd pixel
+      // Sample pixels and create particles (every pixel for cleaner edges)
+      const sampleRate = 2; // Sample every 2nd pixel for sharper edges
       for (let y = 0; y < logoHeight; y += sampleRate) {
         for (let x = 0; x < logoWidth; x += sampleRate) {
           const index = (y * logoWidth + x) * 4;
@@ -84,9 +84,9 @@ const AnimatedBackground = () => {
 
           // Only create particles for non-transparent pixels
           if (alpha > 50) {
-            const r = data[index];
-            const g = data[index + 1];
-            const b = data[index + 2];
+            const r = Math.floor(data[index] * 0.8); // 20% darker
+            const g = Math.floor(data[index + 1] * 0.8); // 20% darker
+            const b = Math.floor(data[index + 2] * 0.8); // 20% darker
 
             // Calculate target position (centered)
             const targetX = logoX - logoWidth / 2 + x;
@@ -106,7 +106,7 @@ const AnimatedBackground = () => {
               startX,
               startY,
               color: `rgba(${r}, ${g}, ${b}, `,
-              size: 1.5 + Math.random() * 1,
+              size: 1.8 + Math.random() * 0.5, // Slightly larger for cleaner look
               convergenceProgress: 0,
               convergenceSpeed: 0.002 + Math.random() * 0.003
             });
@@ -427,19 +427,19 @@ const AnimatedBackground = () => {
           particle.x = particle.startX + (particle.targetX - particle.startX) * easeProgress;
           particle.y = particle.startY + (particle.targetY - particle.startY) * easeProgress;
 
-          // Draw particle glow
-          const glowSize = particle.size * 2.5;
+          // Draw particle glow (reduced brightness)
+          const glowSize = particle.size * 2;
           const gradient = ctx.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, glowSize);
-          gradient.addColorStop(0, particle.color + '0.64)');
-          gradient.addColorStop(0.5, particle.color + '0.32)');
+          gradient.addColorStop(0, particle.color + '0.48)'); // Reduced from 0.64
+          gradient.addColorStop(0.5, particle.color + '0.24)'); // Reduced from 0.32
           gradient.addColorStop(1, particle.color + '0)');
           ctx.fillStyle = gradient;
           ctx.fillRect(particle.x - glowSize, particle.y - glowSize, glowSize * 2, glowSize * 2);
 
-          // Draw particle core
+          // Draw particle core (reduced brightness)
           ctx.beginPath();
           ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-          ctx.fillStyle = particle.color + '0.8)';
+          ctx.fillStyle = particle.color + '0.9)'; // Slightly increased core opacity for definition
           ctx.fill();
         });
       }
