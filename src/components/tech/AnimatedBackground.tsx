@@ -59,17 +59,12 @@ const AnimatedBackground = () => {
     
     // Final position for logo (behind "Ready to Get Started?" badge - responsive)
     const finalLogoScale = 0.42;
-    const getFinalLogoX = () => {
-      // Responsive positioning based on screen width
-      if (canvas.width < 640) return canvas.width * 0.5; // Mobile: centered
-      if (canvas.width < 1280) return canvas.width * 0.68; // Tablet: slightly right
-      return canvas.width * 0.75; // Desktop: right column
-    };
+    const getFinalLogoX = () => canvas.width * 0.5; // Always centered horizontally
     const getFinalLogoY = () => {
-      // Responsive positioning based on screen height
-      if (canvas.width < 640) return canvas.height * 0.38; // Mobile: higher up
-      if (canvas.width < 1280) return canvas.height * 0.35; // Tablet
-      return canvas.height * 0.32; // Desktop: upper area behind badge
+      // Position in the middle area where "Ready to Get Started?" button is
+      if (canvas.width < 640) return canvas.height * 0.5; // Mobile: middle
+      if (canvas.width < 1280) return canvas.height * 0.48; // Tablet: slightly higher
+      return canvas.height * 0.45; // Desktop: middle area
     };
 
     // Load and process logo image
@@ -93,8 +88,10 @@ const AnimatedBackground = () => {
       const imageData = tempCtx.getImageData(0, 0, logoWidth, logoHeight);
       const data = imageData.data;
 
-      // Sample pixels and create particles (every pixel for maximum sharpness)
-      const sampleRate = 1; // Sample every pixel for razor-sharp edges
+      // Sample pixels and create particles (optimized for mobile performance)
+      const isMobile = canvas.width < 640;
+      const sampleRate = isMobile ? 3 : 1; // Use larger sample rate on mobile for better performance
+      
       for (let y = 0; y < logoHeight; y += sampleRate) {
         for (let x = 0; x < logoWidth; x += sampleRate) {
           const index = (y * logoWidth + x) * 4;
@@ -106,8 +103,8 @@ const AnimatedBackground = () => {
             const g = Math.floor(data[index + 1] * 0.8); // 20% darker
             const b = Math.floor(data[index + 2] * 0.8); // 20% darker
 
-            // Detect edge pixels for sharper definition
-            const isEdge = (
+            // Detect edge pixels for sharper definition (skip on mobile for performance)
+            const isEdge = !isMobile && (
               x === 0 || y === 0 || 
               x === logoWidth - 1 || y === logoHeight - 1 ||
               data[index - 4 + 3] < 50 || // left
@@ -134,7 +131,7 @@ const AnimatedBackground = () => {
               startX,
               startY,
               color: `rgba(${r}, ${g}, ${b}, `,
-              size: isEdge ? 1.4 : 1.2, // Smaller particles for sharper look, edges slightly larger
+              size: isEdge ? 1.4 : (isMobile ? 1.5 : 1.2), // Larger particles on mobile
               convergenceProgress: 0,
               convergenceSpeed: 0.012 + Math.random() * 0.015 // Much faster convergence
             });
