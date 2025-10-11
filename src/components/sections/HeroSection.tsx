@@ -117,7 +117,7 @@ const HeroSection = ({
                     >
                       <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
                         <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
-                        Get Investor-Ready in 90 Days - Start Free
+                        Apply Now & Become Investor Ready Under 90 Days
                         <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
                       </span>
                     </Button>
