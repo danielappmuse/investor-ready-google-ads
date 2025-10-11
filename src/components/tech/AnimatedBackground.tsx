@@ -28,88 +28,148 @@ const AnimatedBackground = () => {
     resizeCanvas();
     window.addEventListener('resize', debouncedResize, { passive: true });
 
-    // Color palette
-    const colors = [
-      { main: 'rgba(59, 130, 246, ', glow: 'rgba(96, 165, 250, ' }, // blue
-      { main: 'rgba(139, 92, 246, ', glow: 'rgba(167, 139, 250, ' }, // purple
-      { main: 'rgba(6, 182, 212, ', glow: 'rgba(34, 211, 238, ' }, // cyan
-    ];
+    // Color palette - electric tech colors
+    const colors = {
+      cyan: 'rgba(6, 182, 212, ',
+      blue: 'rgba(59, 130, 246, ',
+      purple: 'rgba(139, 92, 246, ',
+      green: 'rgba(34, 197, 94, '
+    };
 
-    // Data streams flowing upward
-    const dataStreams: Array<{
-      x: number;
-      y: number;
-      speed: number;
-      length: number;
-      color: typeof colors[0];
-      segments: number[];
+    // Circuit paths - like motherboard traces
+    const circuitPaths: Array<{
+      x1: number;
+      y1: number;
+      x2: number;
+      y2: number;
+      segments: Array<{ x: number; y: number }>;
+      color: string;
     }> = [];
 
-    for (let i = 0; i < 30; i++) {
-      const streamColor = colors[Math.floor(Math.random() * colors.length)];
-      const segments: number[] = [];
-      for (let j = 0; j < 8; j++) {
-        segments.push(Math.random());
-      }
-      dataStreams.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        speed: Math.random() * 2 + 1,
-        length: Math.random() * 100 + 50,
-        color: streamColor,
-        segments
-      });
-    }
+    // Generate grid-based circuit paths
+    const gridSize = 120;
+    const cols = Math.ceil(canvas.width / gridSize);
+    const rows = Math.ceil(canvas.height / gridSize);
+    const gridPoints: Array<{ x: number; y: number }> = [];
 
-    // Geometric nodes
-    const nodes: Array<{
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      rotation: number;
-      rotationSpeed: number;
-      size: number;
-      sides: number;
-      color: typeof colors[0];
-      pulsePhase: number;
-    }> = [];
-
-    for (let i = 0; i < 20; i++) {
-      nodes.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        rotation: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.02,
-        size: Math.random() * 20 + 10,
-        sides: Math.random() > 0.5 ? 6 : 3,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        pulsePhase: Math.random() * Math.PI * 2
-      });
-    }
-
-    // Energy pulses
-    const pulses: Array<{
-      x: number;
-      y: number;
-      radius: number;
-      maxRadius: number;
-      color: typeof colors[0];
-      opacity: number;
-    }> = [];
-
-    const createPulse = () => {
-      if (Math.random() < 0.02) {
-        pulses.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: 0,
-          maxRadius: Math.random() * 150 + 100,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          opacity: 0.4
+    // Create grid points
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        gridPoints.push({
+          x: col * gridSize + Math.random() * 40 - 20,
+          y: row * gridSize + Math.random() * 40 - 20
         });
+      }
+    }
+
+    // Connect nearby grid points to create circuit paths
+    gridPoints.forEach((point, i) => {
+      const colorKeys = Object.keys(colors);
+      const randomColor = colors[colorKeys[Math.floor(Math.random() * colorKeys.length)] as keyof typeof colors];
+      
+      gridPoints.forEach((otherPoint, j) => {
+        if (i >= j) return;
+        const dx = point.x - otherPoint.x;
+        const dy = point.y - otherPoint.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < gridSize * 1.8 && Math.random() < 0.15) {
+          // Create L-shaped path (like circuit board traces)
+          const useHorizontalFirst = Math.random() > 0.5;
+          const segments = useHorizontalFirst
+            ? [point, { x: otherPoint.x, y: point.y }, otherPoint]
+            : [point, { x: point.x, y: otherPoint.y }, otherPoint];
+
+          circuitPaths.push({
+            x1: point.x,
+            y1: point.y,
+            x2: otherPoint.x,
+            y2: otherPoint.y,
+            segments,
+            color: randomColor
+          });
+        }
+      });
+    });
+
+    // Circuit nodes (connection points)
+    const circuitNodes: Array<{
+      x: number;
+      y: number;
+      size: number;
+      color: string;
+      pulsePhase: number;
+      active: boolean;
+    }> = [];
+
+    gridPoints.forEach(point => {
+      if (Math.random() < 0.3) {
+        const colorKeys = Object.keys(colors);
+        circuitNodes.push({
+          x: point.x,
+          y: point.y,
+          size: Math.random() * 4 + 3,
+          color: colors[colorKeys[Math.floor(Math.random() * colorKeys.length)] as keyof typeof colors],
+          pulsePhase: Math.random() * Math.PI * 2,
+          active: Math.random() < 0.3
+        });
+      }
+    });
+
+    // Electrical signals traveling along paths
+    const signals: Array<{
+      pathIndex: number;
+      progress: number;
+      speed: number;
+      color: string;
+      size: number;
+    }> = [];
+
+    const createSignal = () => {
+      if (Math.random() < 0.05 && circuitPaths.length > 0) {
+        const pathIndex = Math.floor(Math.random() * circuitPaths.length);
+        const path = circuitPaths[pathIndex];
+        signals.push({
+          pathIndex,
+          progress: 0,
+          speed: Math.random() * 0.015 + 0.01,
+          color: path.color,
+          size: Math.random() * 3 + 2
+        });
+      }
+    };
+
+    // Electrical arcs between nearby nodes
+    const arcs: Array<{
+      x1: number;
+      y1: number;
+      x2: number;
+      y2: number;
+      opacity: number;
+      color: string;
+    }> = [];
+
+    const createArc = () => {
+      if (Math.random() < 0.01 && circuitNodes.length > 1) {
+        const node1 = circuitNodes[Math.floor(Math.random() * circuitNodes.length)];
+        const node2 = circuitNodes[Math.floor(Math.random() * circuitNodes.length)];
+        
+        if (node1 !== node2) {
+          const dx = node1.x - node2.x;
+          const dy = node1.y - node2.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 200) {
+            arcs.push({
+              x1: node1.x,
+              y1: node1.y,
+              x2: node2.x,
+              y2: node2.y,
+              opacity: 0.8,
+              color: node1.color
+            });
+          }
+        }
       }
     };
 
@@ -118,131 +178,158 @@ const AnimatedBackground = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       time += 0.01;
 
-      // Create occasional pulses
-      createPulse();
+      // Create occasional signals and arcs
+      createSignal();
+      createArc();
 
-      // Draw and update energy pulses
-      for (let i = pulses.length - 1; i >= 0; i--) {
-        const pulse = pulses[i];
-        pulse.radius += 3;
-        pulse.opacity -= 0.008;
+      // Draw circuit paths (static)
+      circuitPaths.forEach(path => {
+        ctx.strokeStyle = path.color + '0.15)';
+        ctx.lineWidth = 2;
+        
+        // Draw L-shaped path with rounded corners
+        ctx.beginPath();
+        ctx.moveTo(path.segments[0].x, path.segments[0].y);
+        for (let i = 1; i < path.segments.length; i++) {
+          ctx.lineTo(path.segments[i].x, path.segments[i].y);
+        }
+        ctx.stroke();
 
-        if (pulse.opacity <= 0) {
-          pulses.splice(i, 1);
+        // Draw corner highlights
+        for (let i = 1; i < path.segments.length - 1; i++) {
+          ctx.beginPath();
+          ctx.arc(path.segments[i].x, path.segments[i].y, 3, 0, Math.PI * 2);
+          ctx.fillStyle = path.color + '0.3)';
+          ctx.fill();
+        }
+      });
+
+      // Draw and update electrical signals
+      for (let i = signals.length - 1; i >= 0; i--) {
+        const signal = signals[i];
+        signal.progress += signal.speed;
+
+        if (signal.progress > 1) {
+          signals.splice(i, 1);
           continue;
         }
 
-        ctx.beginPath();
-        ctx.arc(pulse.x, pulse.y, pulse.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = pulse.color.glow + pulse.opacity + ')';
-        ctx.lineWidth = 2;
-        ctx.stroke();
+        const path = circuitPaths[signal.pathIndex];
+        if (!path) continue;
 
-        // Inner glow
-        ctx.beginPath();
-        ctx.arc(pulse.x, pulse.y, pulse.radius - 5, 0, Math.PI * 2);
-        ctx.strokeStyle = pulse.color.main + (pulse.opacity * 0.5) + ')';
-        ctx.lineWidth = 1;
-        ctx.stroke();
+        // Calculate position along the segmented path
+        const totalSegments = path.segments.length - 1;
+        const currentSegment = Math.floor(signal.progress * totalSegments);
+        const segmentProgress = (signal.progress * totalSegments) - currentSegment;
+        
+        if (currentSegment < totalSegments) {
+          const start = path.segments[currentSegment];
+          const end = path.segments[currentSegment + 1];
+          
+          const x = start.x + (end.x - start.x) * segmentProgress;
+          const y = start.y + (end.y - start.y) * segmentProgress;
+
+          // Draw signal glow
+          const gradient = ctx.createRadialGradient(x, y, 0, x, y, signal.size * 4);
+          gradient.addColorStop(0, signal.color + '0.8)');
+          gradient.addColorStop(0.5, signal.color + '0.4)');
+          gradient.addColorStop(1, signal.color + '0)');
+          ctx.fillStyle = gradient;
+          ctx.fillRect(x - signal.size * 4, y - signal.size * 4, signal.size * 8, signal.size * 8);
+
+          // Draw signal core
+          ctx.beginPath();
+          ctx.arc(x, y, signal.size, 0, Math.PI * 2);
+          ctx.fillStyle = signal.color + '1)';
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = signal.color + '1)';
+          ctx.fill();
+          ctx.shadowBlur = 0;
+
+          // Draw trailing effect
+          for (let t = 1; t <= 3; t++) {
+            const trailProgress = Math.max(0, signal.progress - t * 0.05);
+            const trailSegment = Math.floor(trailProgress * totalSegments);
+            const trailSegmentProgress = (trailProgress * totalSegments) - trailSegment;
+            
+            if (trailSegment >= 0 && trailSegment < totalSegments) {
+              const trailStart = path.segments[trailSegment];
+              const trailEnd = path.segments[trailSegment + 1];
+              const tx = trailStart.x + (trailEnd.x - trailStart.x) * trailSegmentProgress;
+              const ty = trailStart.y + (trailEnd.y - trailStart.y) * trailSegmentProgress;
+              
+              ctx.beginPath();
+              ctx.arc(tx, ty, signal.size * (1 - t * 0.3), 0, Math.PI * 2);
+              ctx.fillStyle = signal.color + (0.4 - t * 0.1) + ')';
+              ctx.fill();
+            }
+          }
+        }
       }
 
-      // Draw and update data streams
-      dataStreams.forEach(stream => {
-        stream.y -= stream.speed;
+      // Draw circuit nodes
+      circuitNodes.forEach(node => {
+        const pulse = Math.sin(time + node.pulsePhase) * 0.4 + 0.6;
         
-        if (stream.y < -stream.length) {
-          stream.y = canvas.height;
-          stream.x = Math.random() * canvas.width;
+        // Outer glow for active nodes
+        if (node.active) {
+          const glowSize = node.size * 3 * pulse;
+          const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glowSize);
+          gradient.addColorStop(0, node.color + '0.3)');
+          gradient.addColorStop(1, node.color + '0)');
+          ctx.fillStyle = gradient;
+          ctx.fillRect(node.x - glowSize, node.y - glowSize, glowSize * 2, glowSize * 2);
         }
 
-        // Draw segmented stream
-        for (let i = 0; i < stream.segments.length; i++) {
-          const segmentY = stream.y + (i * stream.length / stream.segments.length);
-          const segmentHeight = stream.length / stream.segments.length * 0.7;
-          const opacity = stream.segments[i] * 0.6;
-          
-          const gradient = ctx.createLinearGradient(
-            stream.x, segmentY,
-            stream.x, segmentY + segmentHeight
-          );
-          gradient.addColorStop(0, stream.color.glow + '0)');
-          gradient.addColorStop(0.5, stream.color.main + opacity + ')');
-          gradient.addColorStop(1, stream.color.glow + '0)');
-
-          ctx.strokeStyle = gradient;
-          ctx.lineWidth = 2;
-          ctx.beginPath();
-          ctx.moveTo(stream.x, segmentY);
-          ctx.lineTo(stream.x, segmentY + segmentHeight);
-          ctx.stroke();
-        }
-      });
-
-      // Draw and update geometric nodes
-      nodes.forEach(node => {
-        node.x += node.vx;
-        node.y += node.vy;
-        node.rotation += node.rotationSpeed;
-
-        // Wrap around edges
-        if (node.x < -50) node.x = canvas.width + 50;
-        if (node.x > canvas.width + 50) node.x = -50;
-        if (node.y < -50) node.y = canvas.height + 50;
-        if (node.y > canvas.height + 50) node.y = -50;
-
-        const pulse = Math.sin(time + node.pulsePhase) * 0.3 + 0.7;
-        
-        ctx.save();
-        ctx.translate(node.x, node.y);
-        ctx.rotate(node.rotation);
-
-        // Draw polygon
+        // Draw node
         ctx.beginPath();
-        for (let i = 0; i <= node.sides; i++) {
-          const angle = (Math.PI * 2 / node.sides) * i;
-          const x = Math.cos(angle) * node.size;
-          const y = Math.sin(angle) * node.size;
-          if (i === 0) {
-            ctx.moveTo(x, y);
-          } else {
-            ctx.lineTo(x, y);
-          }
+        ctx.arc(node.x, node.y, node.size, 0, Math.PI * 2);
+        ctx.fillStyle = node.color + (node.active ? 0.8 : 0.4) + ')';
+        ctx.fill();
+        
+        // Inner highlight
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.size * 0.5, 0, Math.PI * 2);
+        ctx.fillStyle = node.color + '1)';
+        ctx.fill();
+      });
+
+      // Draw and update electrical arcs
+      for (let i = arcs.length - 1; i >= 0; i--) {
+        const arc = arcs[i];
+        arc.opacity -= 0.05;
+
+        if (arc.opacity <= 0) {
+          arcs.splice(i, 1);
+          continue;
+        }
+
+        // Draw arc with distortion effect
+        const segments = 8;
+        ctx.beginPath();
+        ctx.moveTo(arc.x1, arc.y1);
+        
+        for (let j = 1; j <= segments; j++) {
+          const t = j / segments;
+          const x = arc.x1 + (arc.x2 - arc.x1) * t;
+          const y = arc.y1 + (arc.y2 - arc.y1) * t;
+          
+          // Add random distortion
+          const distortion = Math.sin(t * Math.PI * 3 + time * 10) * 5;
+          const angle = Math.atan2(arc.y2 - arc.y1, arc.x2 - arc.x1) + Math.PI / 2;
+          const offsetX = Math.cos(angle) * distortion;
+          const offsetY = Math.sin(angle) * distortion;
+          
+          ctx.lineTo(x + offsetX, y + offsetY);
         }
         
-        // Outer glow
-        ctx.strokeStyle = node.color.glow + (0.2 * pulse) + ')';
+        ctx.strokeStyle = arc.color + arc.opacity + ')';
         ctx.lineWidth = 2;
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = node.color.glow + (0.4 * pulse) + ')';
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = arc.color + arc.opacity + ')';
         ctx.stroke();
-        
-        // Inner line
-        ctx.strokeStyle = node.color.main + (0.4 * pulse) + ')';
-        ctx.lineWidth = 1;
         ctx.shadowBlur = 0;
-        ctx.stroke();
-
-        ctx.restore();
-      });
-
-      // Connect nearby nodes
-      nodes.forEach((node, i) => {
-        nodes.slice(i + 1).forEach(otherNode => {
-          const dx = node.x - otherNode.x;
-          const dy = node.y - otherNode.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 200) {
-            const opacity = (200 - distance) / 200 * 0.1;
-            ctx.beginPath();
-            ctx.moveTo(node.x, node.y);
-            ctx.lineTo(otherNode.x, otherNode.y);
-            ctx.strokeStyle = node.color.main + opacity + ')';
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        });
-      });
+      }
 
       requestAnimationFrame(animate);
     };
