@@ -39,7 +39,7 @@ const HeroSection = ({
       {/* Floating Stats */}
       <FloatingStats />
       
-      <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-12 3xl:px-16 relative z-10">
+      <div className="container mx-auto px-4 sm:px-4 lg:px-6 xl:px-8 2xl:px-12 3xl:px-16 relative z-10">
         {currentView === 'products' && <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 items-center">
             {/* Hero Content */}
             <div className="space-y-0.5 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-fade-in-up text-center xl:text-left flex flex-col items-center xl:items-start">
@@ -72,22 +72,22 @@ const HeroSection = ({
                   <span>Ready to Get Started?</span>
                 </div>
                 <div className="space-y-1 sm:space-y-3 2xl:space-y-4 3xl:space-y-5 mt-[8px]">
-                  <div className="group w-full max-w-full overflow-hidden box-border p-2.5 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
-                    <div className="mb-1 sm:mb-4 2xl:mb-5 3xl:mb-6">
-                      <h3 className={`${isSmallScreen ? 'text-[15px]' : 'text-[17px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white group-hover:gradient-text transition-all leading-tight`}>
+                  <div className="group w-full max-w-full overflow-hidden box-border p-3 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
+                    <div className="mb-2 sm:mb-4 2xl:mb-5 3xl:mb-6">
+                      <h3 className={`${isSmallScreen ? 'text-[14px]' : 'text-[16px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white group-hover:gradient-text transition-all leading-tight`}>
                         Investor-Readiness Assessment
                       </h3>
                     </div>
-                    <p className={`${isSmallScreen ? 'text-[12.5px]' : 'text-[15.5px]'} sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-3 sm:mb-6 2xl:mb-7 3xl:mb-8 leading-tight sm:leading-snug`}>Fill a short quiz about your startup and vision. Get interviewed by ex-VC insiders and experienced founders who’ve raised funds multiple times. If you pass, we’ll connect you with investors. If not, we’ll make you investor-ready under 90 days.</p>
+                    <p className={`${isSmallScreen ? 'text-[11.5px]' : 'text-[14px]'} sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-3 sm:mb-6 2xl:mb-7 3xl:mb-8 leading-tight sm:leading-snug`}>Fill a short quiz about your startup and vision. Get interviewed by ex-VC insiders and experienced founders who've raised funds multiple times. If you pass, we'll connect you with investors. If not, we'll make you investor-ready under 90 days.</p>
                     
                     {/* Urgency Badge */}
                     
                     
-                    <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-[17px] sm:text-[20px] font-extrabold py-4 sm:py-6 rounded-xl animate-cta-pulse group relative overflow-hidden">
-                      <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
-                        <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
-                        Become Investor Ready Under 90 Days
-                        <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
+                    <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-[14px] sm:text-[20px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse group relative overflow-hidden">
+                      <span className="relative z-10 flex items-center justify-center gap-1.5 sm:gap-3 leading-tight">
+                        <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 animate-pulse flex-shrink-0" />
+                        <span className="text-center">Become Investor Ready Under 90 Days</span>
+                        <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                       </span>
                     </Button>
                     
@@ -98,16 +98,16 @@ const HeroSection = ({
                   </div>
                   
                   {/* Trust Badges */}
-                  <div className="flex flex-nowrap gap-1.5 sm:gap-2 mt-4 sm:mt-6 overflow-x-auto scrollbar-hide justify-center xl:justify-start">
-                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-1 sm:py-1.5 2xl:py-2 bg-blue-500/20 border border-blue-400/30 rounded-full ${isSmallScreen ? 'text-[8px]' : 'text-xs'} sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-blue-300 whitespace-nowrap`}>
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-4 sm:mt-6 justify-center xl:justify-start">
+                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-1 sm:py-1.5 2xl:py-2 bg-blue-500/20 border border-blue-400/30 rounded-full ${isSmallScreen ? 'text-[9px]' : 'text-xs'} sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-blue-300 whitespace-nowrap`}>
                       <CheckCircle className={`${isSmallScreen ? 'w-2 h-2' : 'w-3 h-3'} 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-1 flex-shrink-0`} />
                       NDA Protected
                     </div>
-                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-1 sm:py-1.5 2xl:py-2 bg-green-500/20 border border-green-400/30 rounded-full ${isSmallScreen ? 'text-[8px]' : 'text-xs'} sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-green-300 whitespace-nowrap`}>
+                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-1 sm:py-1.5 2xl:py-2 bg-green-500/20 border border-green-400/30 rounded-full ${isSmallScreen ? 'text-[9px]' : 'text-xs'} sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-green-300 whitespace-nowrap`}>
                       <CheckCircle className={`${isSmallScreen ? 'w-2 h-2' : 'w-3 h-3'} 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-1 flex-shrink-0`} />
                       100% Risk FREE
                     </div>
-                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-1 sm:py-1.5 2xl:py-2 bg-purple-500/20 border border-purple-400/30 rounded-full ${isSmallScreen ? 'text-[8px]' : 'text-xs'} sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-purple-300 whitespace-nowrap`}>
+                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-1 sm:py-1.5 2xl:py-2 bg-purple-500/20 border border-purple-400/30 rounded-full ${isSmallScreen ? 'text-[9px]' : 'text-xs'} sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-purple-300 whitespace-nowrap`}>
                       <Star className={`${isSmallScreen ? 'w-2 h-2' : 'w-3 h-3'} 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-1 flex-shrink-0`} />
                       YC-Level Backing
                     </div>
