@@ -119,8 +119,8 @@ const HeroSection = ({
 
         {/* As Featured In */}
         {currentView === 'products' && <div className="mt-3.5 sm:mt-12 lg:mt-14 2xl:mt-[18.5rem] 3xl:mt-[23rem] animate-fade-in stagger-5">
-            <div className="text-center mb-6 sm:mb-8 mt-6 sm:mt-8">
-              <div className="flex justify-center mb-6 sm:mb-8">
+            <div className="text-center mb-3 sm:mb-4 mt-6 sm:mt-8">
+              <div className="flex justify-center mb-3 sm:mb-4">
                 <div className={`inline-flex items-center justify-center px-3 sm:px-3 2xl:px-4 3xl:px-5 py-1 2xl:py-1.5 3xl:py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[14px]' : 'text-[16px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white w-[280px] sm:w-auto`}>
                   <Star className={`${isSmallScreen ? 'w-3 h-3' : 'w-3.5 h-3.5'} 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-1.5 sm:mr-2 text-primary animate-pulse flex-shrink-0`} />
                   <span className="whitespace-nowrap">As Featured In</span>
