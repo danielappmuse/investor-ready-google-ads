@@ -83,7 +83,7 @@ const ServicesSection = ({
                 'UI/UX/Prototype/MVP',
                 'Marketing Strategy'
               ].map((item, idx) => (
-                <div key={idx} className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                <div key={idx} className="flex items-center justify-center space-x-3 p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
                   <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
                   <span className="text-white text-base sm:text-lg font-medium text-center">{item}</span>
                 </div>
@@ -114,9 +114,9 @@ const ServicesSection = ({
                 'Investment Terms',
                 'Legal'
               ].map((item, idx) => (
-                <div key={idx} className="flex items-start space-x-3 p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                <div key={idx} className="flex items-center justify-center space-x-3 p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
                   <Star className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-white text-base sm:text-lg font-medium">{item}</span>
+                  <span className="text-white text-base sm:text-lg font-medium text-center">{item}</span>
                 </div>
               ))}
             </div>
