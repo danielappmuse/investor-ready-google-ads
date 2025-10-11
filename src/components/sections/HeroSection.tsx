@@ -155,7 +155,7 @@ const HeroSection = ({
                 src: '/media-logos/barchart.png',
                 alt: 'Barchart'
               }].map((logo, index) => <div key={`first-${index}`} className="flex-shrink-0 flex items-center justify-center mx-5 sm:mx-12 transition-all duration-300 w-[9.5rem] sm:w-[17.25rem]">
-                      <img src={logo.src} alt={logo.alt} className={`h-[4.5rem] sm:h-[10.25rem] 2xl:h-[11.5rem] 3xl:h-[12.65rem] w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
+                      <img src={logo.src} alt={logo.alt} className={`h-[4.95rem] sm:h-[11.275rem] 2xl:h-[12.65rem] 3xl:h-[13.915rem] w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
                     </div>)}
                   {[{
                 src: '/media-logos/business-insider.png',
@@ -176,7 +176,7 @@ const HeroSection = ({
                 src: '/media-logos/barchart.png',
                 alt: 'Barchart'
               }].map((logo, index) => <div key={`second-${index}`} className="flex-shrink-0 flex items-center justify-center mx-5 sm:mx-12 transition-all duration-300 w-[9.5rem] sm:w-[17.25rem]">
-                      <img src={logo.src} alt={logo.alt} className={`h-[4.5rem] sm:h-[10.25rem] 2xl:h-[11.5rem] 3xl:h-[12.65rem] w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
+                      <img src={logo.src} alt={logo.alt} className={`h-[4.95rem] sm:h-[11.275rem] 2xl:h-[12.65rem] 3xl:h-[13.915rem] w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
                     </div>)}
                 </div>
               </div>
