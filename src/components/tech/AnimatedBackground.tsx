@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import logoImage from '@/assets/logo.png';
 
 const AnimatedBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -34,6 +35,86 @@ const AnimatedBackground = () => {
       blue: 'rgba(59, 130, 246, ',
       purple: 'rgba(139, 92, 246, ',
       green: 'rgba(34, 197, 94, '
+    };
+
+    // Particle system for logo
+    interface Particle {
+      x: number;
+      y: number;
+      targetX: number;
+      targetY: number;
+      startX: number;
+      startY: number;
+      color: string;
+      size: number;
+      convergenceProgress: number;
+      convergenceSpeed: number;
+    }
+
+    const logoParticles: Particle[] = [];
+    let logoLoaded = false;
+
+    // Load and process logo image
+    const img = new Image();
+    img.src = logoImage;
+    img.onload = () => {
+      const tempCanvas = document.createElement('canvas');
+      const tempCtx = tempCanvas.getContext('2d');
+      if (!tempCtx) return;
+
+      // Define logo size and position
+      const logoWidth = 300;
+      const logoHeight = 300;
+      const logoX = canvas.width / 2;
+      const logoY = canvas.height / 3;
+
+      tempCanvas.width = logoWidth;
+      tempCanvas.height = logoHeight;
+      tempCtx.drawImage(img, 0, 0, logoWidth, logoHeight);
+
+      const imageData = tempCtx.getImageData(0, 0, logoWidth, logoHeight);
+      const data = imageData.data;
+
+      // Sample pixels and create particles
+      const sampleRate = 3; // Sample every 3rd pixel
+      for (let y = 0; y < logoHeight; y += sampleRate) {
+        for (let x = 0; x < logoWidth; x += sampleRate) {
+          const index = (y * logoWidth + x) * 4;
+          const alpha = data[index + 3];
+
+          // Only create particles for non-transparent pixels
+          if (alpha > 50) {
+            const r = data[index];
+            const g = data[index + 1];
+            const b = data[index + 2];
+
+            // Calculate target position (centered)
+            const targetX = logoX - logoWidth / 2 + x;
+            const targetY = logoY - logoHeight / 2 + y;
+
+            // Random start position (spread out)
+            const angle = Math.random() * Math.PI * 2;
+            const distance = 200 + Math.random() * 300;
+            const startX = targetX + Math.cos(angle) * distance;
+            const startY = targetY + Math.sin(angle) * distance;
+
+            logoParticles.push({
+              x: startX,
+              y: startY,
+              targetX,
+              targetY,
+              startX,
+              startY,
+              color: `rgba(${r}, ${g}, ${b}, `,
+              size: 1.5 + Math.random() * 1,
+              convergenceProgress: 0,
+              convergenceSpeed: 0.002 + Math.random() * 0.003
+            });
+          }
+        }
+      }
+
+      logoLoaded = true;
     };
 
     // Circuit paths - like motherboard traces
@@ -329,6 +410,38 @@ const AnimatedBackground = () => {
         ctx.shadowColor = arc.color + (arc.opacity * 0.8) + ')';
         ctx.stroke();
         ctx.shadowBlur = 0;
+      }
+
+      // Draw and update logo particles
+      if (logoLoaded) {
+        logoParticles.forEach(particle => {
+          // Update convergence progress
+          if (particle.convergenceProgress < 1) {
+            particle.convergenceProgress = Math.min(1, particle.convergenceProgress + particle.convergenceSpeed);
+          }
+
+          // Easing function for smooth convergence
+          const easeProgress = 1 - Math.pow(1 - particle.convergenceProgress, 3);
+
+          // Calculate current position
+          particle.x = particle.startX + (particle.targetX - particle.startX) * easeProgress;
+          particle.y = particle.startY + (particle.targetY - particle.startY) * easeProgress;
+
+          // Draw particle glow
+          const glowSize = particle.size * 2.5;
+          const gradient = ctx.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, glowSize);
+          gradient.addColorStop(0, particle.color + '0.64)');
+          gradient.addColorStop(0.5, particle.color + '0.32)');
+          gradient.addColorStop(1, particle.color + '0)');
+          ctx.fillStyle = gradient;
+          ctx.fillRect(particle.x - glowSize, particle.y - glowSize, glowSize * 2, glowSize * 2);
+
+          // Draw particle core
+          ctx.beginPath();
+          ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+          ctx.fillStyle = particle.color + '0.8)';
+          ctx.fill();
+        });
       }
 
       requestAnimationFrame(animate);
