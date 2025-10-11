@@ -57,10 +57,10 @@ const AnimatedBackground = () => {
     let logoShrinkProgress = 0;
     const logoShrinkSpeed = 0.015; // Faster shrink speed
     
-    // Final position for logo (behind "Ready to Get Started?" on the right side)
+    // Final position for logo (behind "Ready to Get Started?" badge)
     const finalLogoScale = 0.42;
-    const getFinalLogoX = () => canvas.width * 0.85; // Right side, near the CTA section
-    const getFinalLogoY = () => canvas.height * 0.25; // Upper area where "Ready to Get Started?" is
+    const getFinalLogoX = () => canvas.width * 0.75; // Right side column
+    const getFinalLogoY = () => canvas.height * 0.32; // Upper area behind the badge
 
     // Load and process logo image
     const img = new Image();
