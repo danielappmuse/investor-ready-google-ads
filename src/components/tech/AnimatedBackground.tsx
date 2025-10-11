@@ -55,12 +55,12 @@ const AnimatedBackground = () => {
     let logoLoaded = false;
     let logoConverged = false;
     let logoShrinkProgress = 0;
-    const logoShrinkSpeed = 0.01;
+    const logoShrinkSpeed = 0.015; // Faster shrink speed
     
-    // Final position for logo (centered)
-    const finalLogoScale = 0.42; // Smaller for better proportions
-    const finalLogoX = canvas.width * 0.5; // Center position
-    const finalLogoY = canvas.height * 0.5; // Vertically centered
+    // Final position for logo (behind "Ready to Get Started?" on the right side)
+    const finalLogoScale = 0.42;
+    const getFinalLogoX = () => canvas.width * 0.85; // Right side, near the CTA section
+    const getFinalLogoY = () => canvas.height * 0.25; // Upper area where "Ready to Get Started?" is
 
     // Load and process logo image
     const img = new Image();
@@ -126,7 +126,7 @@ const AnimatedBackground = () => {
               color: `rgba(${r}, ${g}, ${b}, `,
               size: isEdge ? 1.4 : 1.2, // Smaller particles for sharper look, edges slightly larger
               convergenceProgress: 0,
-              convergenceSpeed: 0.002 + Math.random() * 0.003
+              convergenceSpeed: 0.012 + Math.random() * 0.015 // Much faster convergence
             });
           }
         }
@@ -472,16 +472,19 @@ const AnimatedBackground = () => {
           const convergedX = particle.startX + (particle.targetX - particle.startX) * easeProgress;
           const convergedY = particle.startY + (particle.targetY - particle.startY) * easeProgress;
 
-          // Calculate final position (centered)
+          // Calculate final position (behind "Ready to Get Started?")
           if (logoConverged) {
             const centerX = canvas.width / 2;
             const centerY = canvas.height / 2.2;
             const offsetX = (particle.targetX - centerX) * currentScale;
             const offsetY = (particle.targetY - centerY) * currentScale;
             
+            const finalLogoX = getFinalLogoX();
+            const finalLogoY = getFinalLogoY();
+            
             // Calculate logo offset to center the logo+text combo
             const logoWidth = 120 * finalLogoScale;
-            const textWidth = 150; // Approximate text width
+            const textWidth = 150;
             const spacing = 15;
             const totalWidth = logoWidth + spacing + textWidth;
             const logoOffsetX = -totalWidth / 2 + logoWidth / 2;
@@ -512,9 +515,12 @@ const AnimatedBackground = () => {
           ctx.fill();
         });
 
-        // Draw "StartWise" text next to logo (centered)
+        // Draw "StartWise" text next to logo (behind "Ready to Get Started?")
         if (logoConverged && logoShrinkProgress > 0.3) {
           const textOpacity = Math.min(1, (logoShrinkProgress - 0.3) / 0.7);
+          
+          const finalLogoX = getFinalLogoX();
+          const finalLogoY = getFinalLogoY();
           
           // Measure text to calculate centered position
           ctx.font = 'bold 32px system-ui, -apple-system, sans-serif';
@@ -532,8 +538,8 @@ const AnimatedBackground = () => {
           
           // Create gradient for text
           const textGradient = ctx.createLinearGradient(startX, textY - 16, startX, textY + 16);
-          textGradient.addColorStop(0, `rgba(96, 165, 250, ${textOpacity * 0.8})`); // Blue
-          textGradient.addColorStop(1, `rgba(168, 85, 247, ${textOpacity * 0.8})`); // Purple
+          textGradient.addColorStop(0, `rgba(96, 165, 250, ${textOpacity * 0.8})`);
+          textGradient.addColorStop(1, `rgba(168, 85, 247, ${textOpacity * 0.8})`);
           
           ctx.fillStyle = textGradient;
           ctx.fillText('StartWise', startX, textY);
