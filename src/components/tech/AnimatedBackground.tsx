@@ -53,6 +53,14 @@ const AnimatedBackground = () => {
 
     const logoParticles: Particle[] = [];
     let logoLoaded = false;
+    let logoConverged = false;
+    let logoShrinkProgress = 0;
+    const logoShrinkSpeed = 0.01;
+    
+    // Final position for logo (left side)
+    const finalLogoScale = 0.7; // 30% smaller
+    const finalLogoX = canvas.width * 0.15; // Left side position
+    const finalLogoY = canvas.height * 0.5; // Vertically centered
 
     // Load and process logo image
     const img = new Image();
@@ -259,13 +267,17 @@ const AnimatedBackground = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       time += 0.006;
 
-      // Create occasional signals and arcs
-      createSignal();
-      createArc();
+      // Only create signals and arcs if logo hasn't converged
+      if (!logoConverged) {
+        createSignal();
+        createArc();
+      }
 
-      // Draw circuit paths (static)
-      circuitPaths.forEach(path => {
-        ctx.strokeStyle = path.color + '0.12)';
+      // Draw circuit paths (static) - fade out when logo converges
+      const circuitOpacity = logoConverged ? Math.max(0, 1 - logoShrinkProgress * 2) : 1;
+      if (circuitOpacity > 0) {
+        circuitPaths.forEach(path => {
+        ctx.strokeStyle = path.color + (0.12 * circuitOpacity) + ')';
         ctx.lineWidth = 2;
         
         // Draw L-shaped path with rounded corners
@@ -280,12 +292,14 @@ const AnimatedBackground = () => {
         for (let i = 1; i < path.segments.length - 1; i++) {
           ctx.beginPath();
           ctx.arc(path.segments[i].x, path.segments[i].y, 3, 0, Math.PI * 2);
-          ctx.fillStyle = path.color + '0.24)';
+          ctx.fillStyle = path.color + (0.24 * circuitOpacity) + ')';
           ctx.fill();
         }
       });
+      }
 
-      // Draw and update electrical signals
+      // Draw and update electrical signals (fade out when logo converges)
+      if (circuitOpacity > 0) {
       for (let i = signals.length - 1; i >= 0; i--) {
         const signal = signals[i];
         signal.progress += signal.speed;
@@ -312,8 +326,8 @@ const AnimatedBackground = () => {
 
           // Draw signal glow
           const gradient = ctx.createRadialGradient(x, y, 0, x, y, signal.size * 4);
-          gradient.addColorStop(0, signal.color + '0.64)');
-          gradient.addColorStop(0.5, signal.color + '0.32)');
+          gradient.addColorStop(0, signal.color + (0.64 * circuitOpacity) + ')');
+          gradient.addColorStop(0.5, signal.color + (0.32 * circuitOpacity) + ')');
           gradient.addColorStop(1, signal.color + '0)');
           ctx.fillStyle = gradient;
           ctx.fillRect(x - signal.size * 4, y - signal.size * 4, signal.size * 8, signal.size * 8);
@@ -321,9 +335,9 @@ const AnimatedBackground = () => {
           // Draw signal core
           ctx.beginPath();
           ctx.arc(x, y, signal.size, 0, Math.PI * 2);
-          ctx.fillStyle = signal.color + '0.8)';
+          ctx.fillStyle = signal.color + (0.8 * circuitOpacity) + ')';
           ctx.shadowBlur = 8;
-          ctx.shadowColor = signal.color + '0.8)';
+          ctx.shadowColor = signal.color + (0.8 * circuitOpacity) + ')';
           ctx.fill();
           ctx.shadowBlur = 0;
 
@@ -341,14 +355,16 @@ const AnimatedBackground = () => {
               
               ctx.beginPath();
               ctx.arc(tx, ty, signal.size * (1 - t * 0.3), 0, Math.PI * 2);
-              ctx.fillStyle = signal.color + (0.32 - t * 0.08) + ')';
+              ctx.fillStyle = signal.color + ((0.32 - t * 0.08) * circuitOpacity) + ')';
               ctx.fill();
             }
           }
         }
       }
+      }
 
-      // Draw circuit nodes
+      // Draw circuit nodes (fade out when logo converges)
+      if (circuitOpacity > 0) {
       circuitNodes.forEach(node => {
         const pulse = Math.sin(time + node.pulsePhase) * 0.4 + 0.6;
         
@@ -356,7 +372,7 @@ const AnimatedBackground = () => {
         if (node.active) {
           const glowSize = node.size * 3 * pulse;
           const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glowSize);
-          gradient.addColorStop(0, node.color + '0.24)');
+          gradient.addColorStop(0, node.color + (0.24 * circuitOpacity) + ')');
           gradient.addColorStop(1, node.color + '0)');
           ctx.fillStyle = gradient;
           ctx.fillRect(node.x - glowSize, node.y - glowSize, glowSize * 2, glowSize * 2);
@@ -365,17 +381,19 @@ const AnimatedBackground = () => {
         // Draw node
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.size, 0, Math.PI * 2);
-        ctx.fillStyle = node.color + (node.active ? 0.64 : 0.32) + ')';
+        ctx.fillStyle = node.color + ((node.active ? 0.64 : 0.32) * circuitOpacity) + ')';
         ctx.fill();
         
         // Inner highlight
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.size * 0.5, 0, Math.PI * 2);
-        ctx.fillStyle = node.color + '0.8)';
+        ctx.fillStyle = node.color + (0.8 * circuitOpacity) + ')';
         ctx.fill();
       });
+      }
 
-      // Draw and update electrical arcs
+      // Draw and update electrical arcs (fade out when logo converges)
+      if (circuitOpacity > 0) {
       for (let i = arcs.length - 1; i >= 0; i--) {
         const arc = arcs[i];
         arc.opacity -= 0.03;
@@ -404,16 +422,33 @@ const AnimatedBackground = () => {
           ctx.lineTo(x + offsetX, y + offsetY);
         }
         
-        ctx.strokeStyle = arc.color + (arc.opacity * 0.8) + ')';
+        ctx.strokeStyle = arc.color + (arc.opacity * 0.8 * circuitOpacity) + ')';
         ctx.lineWidth = 2;
         ctx.shadowBlur = 6;
-        ctx.shadowColor = arc.color + (arc.opacity * 0.8) + ')';
+        ctx.shadowColor = arc.color + (arc.opacity * 0.8 * circuitOpacity) + ')';
         ctx.stroke();
         ctx.shadowBlur = 0;
+      }
       }
 
       // Draw and update logo particles
       if (logoLoaded) {
+        // Check if all particles have converged
+        if (!logoConverged) {
+          const allConverged = logoParticles.every(p => p.convergenceProgress >= 0.99);
+          if (allConverged) {
+            logoConverged = true;
+          }
+        }
+
+        // Update shrink and move animation
+        if (logoConverged && logoShrinkProgress < 1) {
+          logoShrinkProgress = Math.min(1, logoShrinkProgress + logoShrinkSpeed);
+        }
+
+        const shrinkEase = 1 - Math.pow(1 - logoShrinkProgress, 3);
+        const currentScale = logoConverged ? 1 - (1 - finalLogoScale) * shrinkEase : 1;
+        
         logoParticles.forEach(particle => {
           // Update convergence progress
           if (particle.convergenceProgress < 1) {
@@ -423,25 +458,61 @@ const AnimatedBackground = () => {
           // Easing function for smooth convergence
           const easeProgress = 1 - Math.pow(1 - particle.convergenceProgress, 3);
 
-          // Calculate current position
-          particle.x = particle.startX + (particle.targetX - particle.startX) * easeProgress;
-          particle.y = particle.startY + (particle.targetY - particle.startY) * easeProgress;
+          // Calculate converged position
+          const convergedX = particle.startX + (particle.targetX - particle.startX) * easeProgress;
+          const convergedY = particle.startY + (particle.targetY - particle.startY) * easeProgress;
 
+          // Calculate final position (left side)
+          if (logoConverged) {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2.2;
+            const offsetX = (particle.targetX - centerX) * currentScale;
+            const offsetY = (particle.targetY - centerY) * currentScale;
+            
+            particle.x = convergedX + (finalLogoX + offsetX - convergedX) * shrinkEase;
+            particle.y = convergedY + (finalLogoY + offsetY - convergedY) * shrinkEase;
+          } else {
+            particle.x = convergedX;
+            particle.y = convergedY;
+          }
+
+          // Reduce brightness by additional 20%
+          const brightnessMultiplier = 0.8; // 20% less bright
+          
           // Draw particle glow (reduced brightness)
-          const glowSize = particle.size * 2;
+          const glowSize = particle.size * 2 * currentScale;
           const gradient = ctx.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, glowSize);
-          gradient.addColorStop(0, particle.color + '0.48)'); // Reduced from 0.64
-          gradient.addColorStop(0.5, particle.color + '0.24)'); // Reduced from 0.32
+          gradient.addColorStop(0, particle.color + (0.48 * brightnessMultiplier) + ')');
+          gradient.addColorStop(0.5, particle.color + (0.24 * brightnessMultiplier) + ')');
           gradient.addColorStop(1, particle.color + '0)');
           ctx.fillStyle = gradient;
           ctx.fillRect(particle.x - glowSize, particle.y - glowSize, glowSize * 2, glowSize * 2);
 
           // Draw particle core (reduced brightness)
           ctx.beginPath();
-          ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-          ctx.fillStyle = particle.color + '0.9)'; // Slightly increased core opacity for definition
+          ctx.arc(particle.x, particle.y, particle.size * currentScale, 0, Math.PI * 2);
+          ctx.fillStyle = particle.color + (0.9 * brightnessMultiplier) + ')';
           ctx.fill();
         });
+
+        // Draw "StartWise" text next to logo
+        if (logoConverged && logoShrinkProgress > 0.3) {
+          const textOpacity = Math.min(1, (logoShrinkProgress - 0.3) / 0.7);
+          const textX = finalLogoX + (100 * finalLogoScale) / 2 + 20;
+          const textY = finalLogoY + 10;
+          
+          ctx.font = 'bold 42px system-ui, -apple-system, sans-serif';
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          
+          // Create gradient for text
+          const textGradient = ctx.createLinearGradient(textX, textY - 20, textX, textY + 20);
+          textGradient.addColorStop(0, `rgba(96, 165, 250, ${textOpacity * 0.8})`); // Blue
+          textGradient.addColorStop(1, `rgba(168, 85, 247, ${textOpacity * 0.8})`); // Purple
+          
+          ctx.fillStyle = textGradient;
+          ctx.fillText('StartWise', textX, textY);
+        }
       }
 
       requestAnimationFrame(animate);
