@@ -7,24 +7,20 @@ import { ContactFormData } from '@/types/form';
 import FuturisticBackground from '@/components/tech/FuturisticBackground';
 import FloatingStats from '@/components/tech/FloatingStats';
 import { useIsSmallScreen } from '@/hooks/use-small-screen';
-
 interface HeroSectionProps {
   startWithPrototype?: boolean;
   onAnimationComplete?: (complete: boolean) => void;
 }
-
 const HeroSection = ({
   startWithPrototype = false
 }: HeroSectionProps) => {
   const isSmallScreen = useIsSmallScreen();
   const [currentView, setCurrentView] = useState<'products' | 'prototype-form' | 'calendly'>(startWithPrototype ? 'prototype-form' : 'products');
-  
   React.useEffect(() => {
     if (startWithPrototype) {
       setCurrentView('prototype-form');
     }
   }, [startWithPrototype]);
-  
   const [formData, setFormData] = useState<ContactFormData | null>(null);
   const handlePrototypeFormSuccess = (data: ContactFormData) => {
     setFormData(data);
@@ -51,7 +47,7 @@ const HeroSection = ({
                 <div className={`inline-flex items-center px-2 sm:px-3 2xl:px-4 3xl:px-5 py-1 2xl:py-1.5 3xl:py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[15px]' : 'text-[18px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white animate-pulse-glow mb-0.5 mt-1`}>
                   <Star className={`${isSmallScreen ? 'w-2.5 h-2.5' : 'w-3 h-3'} 2xl:w-4 2xl:h-4 3xl:w-5 3xl:h-5 mr-1.5 text-yellow-400 animate-float flex-shrink-0`} />
                   <span className="hidden sm:inline">YC-Level Backing. Investor-Ready Results.</span>
-                  <span className="sm:hidden">Get Investor-Ready</span>
+                  <span className="sm:hidden">Investor Ready Under 90 Days</span>
                 </div>
                 
                 <h1 className={`${isSmallScreen ? 'text-[18px]' : 'text-[22px]'} sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white leading-tight tracking-tight animate-fade-in stagger-1`}>
