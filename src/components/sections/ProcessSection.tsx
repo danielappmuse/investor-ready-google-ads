@@ -57,7 +57,7 @@ const ProcessSection = () => {
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Our proven 3-phase process transforms your startup into an investor-ready business 
-            in 90 days - from solid fundamentals to compelling investor materials.
+            under 90 days - from solid fundamentals to compelling investor materials.
           </p>
         </div>
 

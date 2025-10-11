@@ -26,7 +26,7 @@ const ContactSection = () => {
               </div>
               
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
-                Get <span className="gradient-text">Investment-Ready</span> in 90 Days
+                Get <span className="gradient-text">Investment-Ready</span> under 90 Days
               </h2>
               
               <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed mb-6 sm:mb-8">
