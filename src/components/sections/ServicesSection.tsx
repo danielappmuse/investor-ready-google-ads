@@ -59,7 +59,7 @@ const ServicesSection = ({
         </div>
 
         {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-12 lg:mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-12 lg:mb-16 text-center">
           {/* Left Column - Business Essentials */}
           <div className="card-glass p-6 sm:p-8 lg:p-10">
             <div className="mb-6">
