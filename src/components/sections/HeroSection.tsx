@@ -18,7 +18,7 @@ const HeroSection = ({
 }: HeroSectionProps) => {
   const isSmallScreen = useIsSmallScreen();
   const [currentView, setCurrentView] = useState<'products' | 'prototype-form' | 'calendly'>(startWithPrototype ? 'prototype-form' : 'products');
-  const [showBadge, setShowBadge] = useState(false);
+  const [showBadge, setShowBadge] = useState(false); // Start hidden
   
   React.useEffect(() => {
     if (startWithPrototype) {
@@ -85,7 +85,8 @@ const HeroSection = ({
             <div className="space-y-1 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-slide-in-right mt-2 xl:mt-0 max-w-lg 2xl:max-w-xl 3xl:max-w-2xl mx-auto xl:mx-0 w-full px-2 flex flex-col items-center xl:items-start">
               <div className="animate-fade-in stagger-4 w-full text-center xl:text-left flex flex-col items-center xl:items-start">
                 <div 
-                  className={`inline-flex items-center px-2 sm:px-3 2xl:px-4 3xl:px-5 py-1 2xl:py-1.5 3xl:py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[15px]' : 'text-[18px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white animate-pulse-glow mb-0.5 sm:mb-4 -mt-[5px] transition-opacity duration-500 ${showBadge ? 'opacity-100' : 'opacity-0'}`}
+                  className={`inline-flex items-center px-2 sm:px-3 2xl:px-4 3xl:px-5 py-1 2xl:py-1.5 3xl:py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[15px]' : 'text-[18px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white animate-pulse-glow mb-0.5 sm:mb-4 -mt-[5px] transition-opacity duration-1000 ${showBadge ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                  style={{ visibility: showBadge ? 'visible' : 'hidden' }}
                 >
                   <Sparkles className={`${isSmallScreen ? 'w-3 h-3' : 'w-4 h-4'} 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-2 text-primary animate-pulse flex-shrink-0`} />
                   <span>Ready to Get Started?</span>
