@@ -94,7 +94,7 @@ const HeroSection = ({
                   </div>
                   
                   {/* Trust Badges */}
-                  <div className="flex flex-nowrap gap-1 sm:gap-2 mt-2 sm:mt-3 justify-center xl:justify-start">
+                  <div className="flex flex-nowrap gap-1 sm:gap-2 mt-4 sm:mt-6 justify-center xl:justify-start">
                     <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-0.5 sm:py-1.5 2xl:py-2 bg-blue-500/20 border border-blue-400/30 rounded-full text-[9px] xs:text-[10px] min-[450px]:text-xs sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-blue-300 whitespace-nowrap`}>
                       <CheckCircle className="w-2 h-2 xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-0.5 sm:mr-1 flex-shrink-0" />
                       NDA Protected
