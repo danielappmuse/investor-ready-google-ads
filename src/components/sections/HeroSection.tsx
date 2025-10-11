@@ -128,7 +128,7 @@ const HeroSection = ({
               </div>
               <p className={`${isSmallScreen ? 'text-[11px]' : 'text-sm'} sm:text-[1.3rem] 2xl:text-[1.4375rem] 3xl:text-[1.725rem] text-gray-400`}>Recognized by leading media and financial publications</p>
             </div>
-            <div className="flex justify-center mt-4 sm:mt-6">
+            <div className="flex justify-center mt-2 sm:mt-3">
               <div className="overflow-hidden max-w-[69rem] w-full">
                 <div className="flex animate-scroll-smooth" style={{
               width: 'calc(200% + 2.3rem)',
