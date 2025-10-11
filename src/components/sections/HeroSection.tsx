@@ -98,17 +98,17 @@ const HeroSection = ({
                   </div>
                   
                   {/* Trust Badges */}
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-4 sm:mt-6 justify-center xl:justify-start">
-                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-1 sm:py-1.5 2xl:py-2 bg-blue-500/20 border border-blue-400/30 rounded-full ${isSmallScreen ? 'text-[9px]' : 'text-xs'} sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-blue-300 whitespace-nowrap`}>
-                      <CheckCircle className={`${isSmallScreen ? 'w-2 h-2' : 'w-3 h-3'} 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-1 flex-shrink-0`} />
+                  <div className="flex flex-nowrap gap-1 sm:gap-2 mt-4 sm:mt-6 justify-center xl:justify-start">
+                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-0.5 sm:py-1.5 2xl:py-2 bg-blue-500/20 border border-blue-400/30 rounded-full text-[8px] sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-blue-300 whitespace-nowrap`}>
+                      <CheckCircle className={`${isSmallScreen ? 'w-2 h-2' : 'w-3 h-3'} 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-0.5 sm:mr-1 flex-shrink-0`} />
                       NDA Protected
                     </div>
-                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-1 sm:py-1.5 2xl:py-2 bg-green-500/20 border border-green-400/30 rounded-full ${isSmallScreen ? 'text-[9px]' : 'text-xs'} sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-green-300 whitespace-nowrap`}>
-                      <CheckCircle className={`${isSmallScreen ? 'w-2 h-2' : 'w-3 h-3'} 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-1 flex-shrink-0`} />
+                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-0.5 sm:py-1.5 2xl:py-2 bg-green-500/20 border border-green-400/30 rounded-full text-[8px] sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-green-300 whitespace-nowrap`}>
+                      <CheckCircle className={`${isSmallScreen ? 'w-2 h-2' : 'w-3 h-3'} 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-0.5 sm:mr-1 flex-shrink-0`} />
                       100% Risk FREE
                     </div>
-                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-1 sm:py-1.5 2xl:py-2 bg-purple-500/20 border border-purple-400/30 rounded-full ${isSmallScreen ? 'text-[9px]' : 'text-xs'} sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-purple-300 whitespace-nowrap`}>
-                      <Star className={`${isSmallScreen ? 'w-2 h-2' : 'w-3 h-3'} 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-1 flex-shrink-0`} />
+                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-0.5 sm:py-1.5 2xl:py-2 bg-purple-500/20 border border-purple-400/30 rounded-full text-[8px] sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-purple-300 whitespace-nowrap`}>
+                      <Star className={`${isSmallScreen ? 'w-2 h-2' : 'w-3 h-3'} 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-0.5 sm:mr-1 flex-shrink-0`} />
                       YC-Level Backing
                     </div>
                   </div>
