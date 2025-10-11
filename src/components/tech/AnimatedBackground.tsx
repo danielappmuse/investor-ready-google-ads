@@ -58,9 +58,9 @@ const AnimatedBackground = () => {
     const logoShrinkSpeed = 0.01;
     
     // Final position for logo (left side)
-    const finalLogoScale = 0.56; // 20% smaller than before
+    const finalLogoScale = 0.42; // Smaller for better proportions
     const finalLogoX = canvas.width * 0.15; // Left side position
-    const finalLogoY = canvas.height * 0.5; // Vertically centered
+    const finalLogoY = canvas.height * 0.5 + 5; // Slightly lower to align with text middle
 
     // Load and process logo image
     const img = new Image();
@@ -508,15 +508,15 @@ const AnimatedBackground = () => {
         // Draw "StartWise" text next to logo
         if (logoConverged && logoShrinkProgress > 0.3) {
           const textOpacity = Math.min(1, (logoShrinkProgress - 0.3) / 0.7);
-          const textX = finalLogoX + (100 * finalLogoScale) / 2 + 20;
-          const textY = finalLogoY + 10;
+          const textX = finalLogoX + (100 * finalLogoScale) / 2 + 15;
+          const textY = finalLogoY;
           
-          ctx.font = 'bold 42px system-ui, -apple-system, sans-serif';
+          ctx.font = 'bold 32px system-ui, -apple-system, sans-serif';
           ctx.textAlign = 'left';
           ctx.textBaseline = 'middle';
           
           // Create gradient for text
-          const textGradient = ctx.createLinearGradient(textX, textY - 20, textX, textY + 20);
+          const textGradient = ctx.createLinearGradient(textX, textY - 16, textX, textY + 16);
           textGradient.addColorStop(0, `rgba(96, 165, 250, ${textOpacity * 0.8})`); // Blue
           textGradient.addColorStop(1, `rgba(168, 85, 247, ${textOpacity * 0.8})`); // Purple
           
