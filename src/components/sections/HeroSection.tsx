@@ -106,7 +106,7 @@ const HeroSection = ({
                         Investor-Readiness Assessment
                       </h3>
                     </div>
-                    <p className={`${isSmallScreen ? 'text-[11px]' : 'text-[14px]'} sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-2 sm:mb-5 2xl:mb-6 3xl:mb-7 leading-tight sm:leading-snug`}>Get interviewed by professionals who worked inside VC's & founders who've raised capital multiple times.</p>
+                    <p className={`${isSmallScreen ? 'text-[11px]' : 'text-[14px]'} sm:text-base 2xl:text-lg 3xl:text-xl text-gray-300 mb-2 sm:mb-5 2xl:mb-6 3xl:mb-7 leading-tight sm:leading-snug`}>Fill a short quiz regarding your startup, and get interviewed by professionals who worked inside VC's & founders who've raised capital multiple times. If you'll pass thought we'll get you connected </p>
                     
                     {/* Trust Badges */}
                     
