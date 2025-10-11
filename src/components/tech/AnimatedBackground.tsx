@@ -57,10 +57,10 @@ const AnimatedBackground = () => {
     let logoShrinkProgress = 0;
     const logoShrinkSpeed = 0.01;
     
-    // Final position for logo (left side)
+    // Final position for logo (centered)
     const finalLogoScale = 0.42; // Smaller for better proportions
-    const finalLogoX = canvas.width * 0.15; // Left side position
-    const finalLogoY = canvas.height * 0.5 + 5; // Slightly lower to align with text middle
+    const finalLogoX = canvas.width * 0.5; // Center position
+    const finalLogoY = canvas.height * 0.5; // Vertically centered
 
     // Load and process logo image
     const img = new Image();
@@ -70,8 +70,8 @@ const AnimatedBackground = () => {
       const tempCtx = tempCanvas.getContext('2d');
       if (!tempCtx) return;
 
-      // Define logo size and position (3x smaller, more centered)
-      const logoWidth = 100;
+      // Define logo size and position (wider to match original proportions)
+      const logoWidth = 120; // Wider to match original logo
       const logoHeight = 100;
       const logoX = canvas.width / 2;
       const logoY = canvas.height / 2.2;
@@ -472,14 +472,21 @@ const AnimatedBackground = () => {
           const convergedX = particle.startX + (particle.targetX - particle.startX) * easeProgress;
           const convergedY = particle.startY + (particle.targetY - particle.startY) * easeProgress;
 
-          // Calculate final position (left side)
+          // Calculate final position (centered)
           if (logoConverged) {
             const centerX = canvas.width / 2;
             const centerY = canvas.height / 2.2;
             const offsetX = (particle.targetX - centerX) * currentScale;
             const offsetY = (particle.targetY - centerY) * currentScale;
             
-            particle.x = convergedX + (finalLogoX + offsetX - convergedX) * shrinkEase;
+            // Calculate logo offset to center the logo+text combo
+            const logoWidth = 120 * finalLogoScale;
+            const textWidth = 150; // Approximate text width
+            const spacing = 15;
+            const totalWidth = logoWidth + spacing + textWidth;
+            const logoOffsetX = -totalWidth / 2 + logoWidth / 2;
+            
+            particle.x = convergedX + (finalLogoX + logoOffsetX + offsetX - convergedX) * shrinkEase;
             particle.y = convergedY + (finalLogoY + offsetY - convergedY) * shrinkEase;
           } else {
             particle.x = convergedX;
@@ -505,23 +512,31 @@ const AnimatedBackground = () => {
           ctx.fill();
         });
 
-        // Draw "StartWise" text next to logo
+        // Draw "StartWise" text next to logo (centered)
         if (logoConverged && logoShrinkProgress > 0.3) {
           const textOpacity = Math.min(1, (logoShrinkProgress - 0.3) / 0.7);
-          const textX = finalLogoX + (100 * finalLogoScale) / 2 + 15;
+          
+          // Measure text to calculate centered position
+          ctx.font = 'bold 32px system-ui, -apple-system, sans-serif';
+          const textMetrics = ctx.measureText('StartWise');
+          const textWidth = textMetrics.width;
+          const logoWidth = 120 * finalLogoScale;
+          const spacing = 15;
+          const totalWidth = logoWidth + spacing + textWidth;
+          
+          const startX = finalLogoX - totalWidth / 2 + logoWidth + spacing;
           const textY = finalLogoY;
           
-          ctx.font = 'bold 32px system-ui, -apple-system, sans-serif';
           ctx.textAlign = 'left';
           ctx.textBaseline = 'middle';
           
           // Create gradient for text
-          const textGradient = ctx.createLinearGradient(textX, textY - 16, textX, textY + 16);
+          const textGradient = ctx.createLinearGradient(startX, textY - 16, startX, textY + 16);
           textGradient.addColorStop(0, `rgba(96, 165, 250, ${textOpacity * 0.8})`); // Blue
           textGradient.addColorStop(1, `rgba(168, 85, 247, ${textOpacity * 0.8})`); // Purple
           
           ctx.fillStyle = textGradient;
-          ctx.fillText('StartWise', textX, textY);
+          ctx.fillText('StartWise', startX, textY);
         }
       }
 
