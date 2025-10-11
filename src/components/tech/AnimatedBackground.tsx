@@ -57,14 +57,14 @@ const AnimatedBackground = () => {
     let logoShrinkProgress = 0;
     const logoShrinkSpeed = 0.015; // Faster shrink speed
     
-    // Final position for logo (behind "Ready to Get Started?" badge - responsive)
+    // Final position for logo (between checkmarks and trust badges - responsive)
     const finalLogoScale = 0.42;
-    const getFinalLogoX = () => canvas.width * 0.48; // Slightly left of center
+    const getFinalLogoX = () => canvas.width * 0.5; // Centered
     const getFinalLogoY = () => {
-      // Position to match where "Ready to Get Started?" badge is
-      if (canvas.width < 640) return canvas.height * 0.52; // Mobile: middle area where badge is
-      if (canvas.width < 1280) return canvas.height * 0.40; // Tablet: higher
-      return canvas.height * 0.38; // Desktop: higher up
+      // Position exactly between "Ready to raise?" text and trust badges
+      if (canvas.width < 640) return canvas.height * 0.48; // Mobile: between text and badges
+      if (canvas.width < 1280) return canvas.height * 0.40; // Tablet
+      return canvas.height * 0.38; // Desktop
     };
 
     // Load and process logo image
