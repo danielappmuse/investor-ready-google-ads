@@ -74,7 +74,7 @@ const ServicesSection = ({
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 text-center">
               {[
                 'Market Research',
                 'Business Plan',
