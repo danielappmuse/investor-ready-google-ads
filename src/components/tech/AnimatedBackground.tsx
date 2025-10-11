@@ -58,7 +58,7 @@ const AnimatedBackground = () => {
     const logoShrinkSpeed = 0.01;
     
     // Final position for logo (left side)
-    const finalLogoScale = 0.7; // 30% smaller
+    const finalLogoScale = 0.56; // 20% smaller than before
     const finalLogoX = canvas.width * 0.15; // Left side position
     const finalLogoY = canvas.height * 0.5; // Vertically centered
 
@@ -83,8 +83,8 @@ const AnimatedBackground = () => {
       const imageData = tempCtx.getImageData(0, 0, logoWidth, logoHeight);
       const data = imageData.data;
 
-      // Sample pixels and create particles (every pixel for cleaner edges)
-      const sampleRate = 2; // Sample every 2nd pixel for sharper edges
+      // Sample pixels and create particles (every pixel for maximum sharpness)
+      const sampleRate = 1; // Sample every pixel for razor-sharp edges
       for (let y = 0; y < logoHeight; y += sampleRate) {
         for (let x = 0; x < logoWidth; x += sampleRate) {
           const index = (y * logoWidth + x) * 4;
@@ -95,6 +95,16 @@ const AnimatedBackground = () => {
             const r = Math.floor(data[index] * 0.8); // 20% darker
             const g = Math.floor(data[index + 1] * 0.8); // 20% darker
             const b = Math.floor(data[index + 2] * 0.8); // 20% darker
+
+            // Detect edge pixels for sharper definition
+            const isEdge = (
+              x === 0 || y === 0 || 
+              x === logoWidth - 1 || y === logoHeight - 1 ||
+              data[index - 4 + 3] < 50 || // left
+              data[index + 4 + 3] < 50 || // right
+              data[index - logoWidth * 4 + 3] < 50 || // top
+              data[index + logoWidth * 4 + 3] < 50 // bottom
+            );
 
             // Calculate target position (centered)
             const targetX = logoX - logoWidth / 2 + x;
@@ -114,7 +124,7 @@ const AnimatedBackground = () => {
               startX,
               startY,
               color: `rgba(${r}, ${g}, ${b}, `,
-              size: 1.8 + Math.random() * 0.5, // Slightly larger for cleaner look
+              size: isEdge ? 1.4 : 1.2, // Smaller particles for sharper look, edges slightly larger
               convergenceProgress: 0,
               convergenceSpeed: 0.002 + Math.random() * 0.003
             });
@@ -479,19 +489,19 @@ const AnimatedBackground = () => {
           // Reduce brightness by additional 20%
           const brightnessMultiplier = 0.8; // 20% less bright
           
-          // Draw particle glow (reduced brightness)
-          const glowSize = particle.size * 2 * currentScale;
+          // Draw particle glow (minimal for sharper edges)
+          const glowSize = particle.size * 1.5 * currentScale;
           const gradient = ctx.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, glowSize);
-          gradient.addColorStop(0, particle.color + (0.48 * brightnessMultiplier) + ')');
-          gradient.addColorStop(0.5, particle.color + (0.24 * brightnessMultiplier) + ')');
+          gradient.addColorStop(0, particle.color + (0.4 * brightnessMultiplier) + ')');
+          gradient.addColorStop(0.6, particle.color + (0.15 * brightnessMultiplier) + ')');
           gradient.addColorStop(1, particle.color + '0)');
           ctx.fillStyle = gradient;
           ctx.fillRect(particle.x - glowSize, particle.y - glowSize, glowSize * 2, glowSize * 2);
 
-          // Draw particle core (reduced brightness)
+          // Draw particle core (sharp and crisp)
           ctx.beginPath();
           ctx.arc(particle.x, particle.y, particle.size * currentScale, 0, Math.PI * 2);
-          ctx.fillStyle = particle.color + (0.9 * brightnessMultiplier) + ')';
+          ctx.fillStyle = particle.color + (0.95 * brightnessMultiplier) + ')';
           ctx.fill();
         });
 
