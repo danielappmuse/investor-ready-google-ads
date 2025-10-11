@@ -126,13 +126,13 @@ const AnimatedBackground = () => {
     }> = [];
 
     const createSignal = () => {
-      if (Math.random() < 0.05 && circuitPaths.length > 0) {
+      if (Math.random() < 0.03 && circuitPaths.length > 0) {
         const pathIndex = Math.floor(Math.random() * circuitPaths.length);
         const path = circuitPaths[pathIndex];
         signals.push({
           pathIndex,
           progress: 0,
-          speed: Math.random() * 0.015 + 0.01,
+          speed: Math.random() * 0.008 + 0.005,
           color: path.color,
           size: Math.random() * 3 + 2
         });
@@ -150,7 +150,7 @@ const AnimatedBackground = () => {
     }> = [];
 
     const createArc = () => {
-      if (Math.random() < 0.01 && circuitNodes.length > 1) {
+      if (Math.random() < 0.006 && circuitNodes.length > 1) {
         const node1 = circuitNodes[Math.floor(Math.random() * circuitNodes.length)];
         const node2 = circuitNodes[Math.floor(Math.random() * circuitNodes.length)];
         
@@ -176,7 +176,7 @@ const AnimatedBackground = () => {
     let time = 0;
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      time += 0.01;
+      time += 0.006;
 
       // Create occasional signals and arcs
       createSignal();
@@ -184,7 +184,7 @@ const AnimatedBackground = () => {
 
       // Draw circuit paths (static)
       circuitPaths.forEach(path => {
-        ctx.strokeStyle = path.color + '0.15)';
+        ctx.strokeStyle = path.color + '0.12)';
         ctx.lineWidth = 2;
         
         // Draw L-shaped path with rounded corners
@@ -199,7 +199,7 @@ const AnimatedBackground = () => {
         for (let i = 1; i < path.segments.length - 1; i++) {
           ctx.beginPath();
           ctx.arc(path.segments[i].x, path.segments[i].y, 3, 0, Math.PI * 2);
-          ctx.fillStyle = path.color + '0.3)';
+          ctx.fillStyle = path.color + '0.24)';
           ctx.fill();
         }
       });
@@ -231,8 +231,8 @@ const AnimatedBackground = () => {
 
           // Draw signal glow
           const gradient = ctx.createRadialGradient(x, y, 0, x, y, signal.size * 4);
-          gradient.addColorStop(0, signal.color + '0.8)');
-          gradient.addColorStop(0.5, signal.color + '0.4)');
+          gradient.addColorStop(0, signal.color + '0.64)');
+          gradient.addColorStop(0.5, signal.color + '0.32)');
           gradient.addColorStop(1, signal.color + '0)');
           ctx.fillStyle = gradient;
           ctx.fillRect(x - signal.size * 4, y - signal.size * 4, signal.size * 8, signal.size * 8);
@@ -240,9 +240,9 @@ const AnimatedBackground = () => {
           // Draw signal core
           ctx.beginPath();
           ctx.arc(x, y, signal.size, 0, Math.PI * 2);
-          ctx.fillStyle = signal.color + '1)';
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = signal.color + '1)';
+          ctx.fillStyle = signal.color + '0.8)';
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = signal.color + '0.8)';
           ctx.fill();
           ctx.shadowBlur = 0;
 
@@ -260,7 +260,7 @@ const AnimatedBackground = () => {
               
               ctx.beginPath();
               ctx.arc(tx, ty, signal.size * (1 - t * 0.3), 0, Math.PI * 2);
-              ctx.fillStyle = signal.color + (0.4 - t * 0.1) + ')';
+              ctx.fillStyle = signal.color + (0.32 - t * 0.08) + ')';
               ctx.fill();
             }
           }
@@ -275,7 +275,7 @@ const AnimatedBackground = () => {
         if (node.active) {
           const glowSize = node.size * 3 * pulse;
           const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glowSize);
-          gradient.addColorStop(0, node.color + '0.3)');
+          gradient.addColorStop(0, node.color + '0.24)');
           gradient.addColorStop(1, node.color + '0)');
           ctx.fillStyle = gradient;
           ctx.fillRect(node.x - glowSize, node.y - glowSize, glowSize * 2, glowSize * 2);
@@ -284,20 +284,20 @@ const AnimatedBackground = () => {
         // Draw node
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.size, 0, Math.PI * 2);
-        ctx.fillStyle = node.color + (node.active ? 0.8 : 0.4) + ')';
+        ctx.fillStyle = node.color + (node.active ? 0.64 : 0.32) + ')';
         ctx.fill();
         
         // Inner highlight
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.size * 0.5, 0, Math.PI * 2);
-        ctx.fillStyle = node.color + '1)';
+        ctx.fillStyle = node.color + '0.8)';
         ctx.fill();
       });
 
       // Draw and update electrical arcs
       for (let i = arcs.length - 1; i >= 0; i--) {
         const arc = arcs[i];
-        arc.opacity -= 0.05;
+        arc.opacity -= 0.03;
 
         if (arc.opacity <= 0) {
           arcs.splice(i, 1);
@@ -323,10 +323,10 @@ const AnimatedBackground = () => {
           ctx.lineTo(x + offsetX, y + offsetY);
         }
         
-        ctx.strokeStyle = arc.color + arc.opacity + ')';
+        ctx.strokeStyle = arc.color + (arc.opacity * 0.8) + ')';
         ctx.lineWidth = 2;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = arc.color + arc.opacity + ')';
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = arc.color + (arc.opacity * 0.8) + ')';
         ctx.stroke();
         ctx.shadowBlur = 0;
       }
