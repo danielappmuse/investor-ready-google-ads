@@ -153,7 +153,7 @@ const AboutSection = () => {
                     ].map((feature, index) => (
                       <div 
                         key={feature.label}
-                        className={`group p-3 rounded-lg bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 animate-fade-in stagger-${index % 3 + 1}`}
+                        className={`group p-3 rounded-lg bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 animate-fade-in stagger-${index % 3 + 1} text-center`}
                       >
                         <div className="flex items-center space-x-2">
                           <feature.icon className="w-4 h-4 text-primary group-hover:animate-pulse" />
