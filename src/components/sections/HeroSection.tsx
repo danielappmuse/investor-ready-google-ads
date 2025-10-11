@@ -84,7 +84,7 @@ const HeroSection = ({
                 </div>
                 
                 {/* Trust Badges */}
-                <div className="flex flex-nowrap gap-1.5 sm:gap-2 mt-[3px] mb-2 sm:mb-3 2xl:mb-4 3xl:mb-5 overflow-x-auto scrollbar-hide justify-center xl:justify-start">
+                <div className="flex flex-nowrap gap-1.5 sm:gap-2 mt-[3px] mb-1 sm:mb-2 2xl:mb-3 3xl:mb-4 overflow-x-auto scrollbar-hide justify-center xl:justify-start">
                   <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-1 sm:py-1.5 2xl:py-2 bg-blue-500/20 border border-blue-400/30 rounded-full ${isSmallScreen ? 'text-[8px]' : 'text-xs'} sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-blue-300 whitespace-nowrap`}>
                     <CheckCircle className={`${isSmallScreen ? 'w-2 h-2' : 'w-3 h-3'} 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-1 flex-shrink-0`} />
                     NDA Protected
@@ -99,7 +99,7 @@ const HeroSection = ({
                   </div>
                 </div>
                 
-                <div className="space-y-1 sm:space-y-3 2xl:space-y-4 3xl:space-y-5 mt-[15px]">
+                <div className="space-y-1 sm:space-y-3 2xl:space-y-4 3xl:space-y-5 mt-[8px]">
                   <div className="group w-full max-w-full overflow-hidden p-2.5 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass">
                     <div className="mb-1 sm:mb-4 2xl:mb-5 3xl:mb-6">
                       <h3 className={`${isSmallScreen ? 'text-[13px]' : 'text-[15px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white group-hover:gradient-text transition-all leading-tight`}>
