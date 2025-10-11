@@ -54,7 +54,7 @@ const EssentialsSection = ({
 
           <TabsContent value="business" className="space-y-8">
             <div className="card-glass p-8 rounded-xl text-center">
-              <div className="flex items-start gap-4 mb-6">
+              <div className="flex items-start gap-4 mb-6 justify-center">
                 <div className="p-3 bg-primary/20 rounded-lg">
                   {essentials.business.icon}
                 </div>
@@ -126,7 +126,7 @@ const EssentialsSection = ({
 
           <TabsContent value="investor" className="space-y-8">
             <div className="card-glass p-8 rounded-xl text-center">
-              <div className="flex items-start gap-4 mb-6">
+              <div className="flex items-start gap-4 mb-6 justify-center">
                 <div className="p-3 bg-primary/20 rounded-lg">
                   {essentials.investor.icon}
                 </div>
