@@ -28,125 +28,216 @@ const AnimatedBackground = () => {
     resizeCanvas();
     window.addEventListener('resize', debouncedResize, { passive: true });
 
-    // Particle system with color variants
-    const particles: Array<{
+    // Color palette
+    const colors = [
+      { main: 'rgba(59, 130, 246, ', glow: 'rgba(96, 165, 250, ' }, // blue
+      { main: 'rgba(139, 92, 246, ', glow: 'rgba(167, 139, 250, ' }, // purple
+      { main: 'rgba(6, 182, 212, ', glow: 'rgba(34, 211, 238, ' }, // cyan
+    ];
+
+    // Data streams flowing upward
+    const dataStreams: Array<{
+      x: number;
+      y: number;
+      speed: number;
+      length: number;
+      color: typeof colors[0];
+      segments: number[];
+    }> = [];
+
+    for (let i = 0; i < 30; i++) {
+      const streamColor = colors[Math.floor(Math.random() * colors.length)];
+      const segments: number[] = [];
+      for (let j = 0; j < 8; j++) {
+        segments.push(Math.random());
+      }
+      dataStreams.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        speed: Math.random() * 2 + 1,
+        length: Math.random() * 100 + 50,
+        color: streamColor,
+        segments
+      });
+    }
+
+    // Geometric nodes
+    const nodes: Array<{
       x: number;
       y: number;
       vx: number;
       vy: number;
+      rotation: number;
+      rotationSpeed: number;
       size: number;
-      opacity: number;
-      color: string;
-      pulseSpeed: number;
+      sides: number;
+      color: typeof colors[0];
       pulsePhase: number;
     }> = [];
 
-    // Color palette for futuristic look
-    const colors = [
-      'rgba(59, 130, 246, ', // blue
-      'rgba(139, 92, 246, ', // purple
-      'rgba(6, 182, 212, ', // cyan
-      'rgba(168, 85, 247, ', // bright purple
-    ];
-
-    // Create particles with varied sizes and speeds
-    for (let i = 0; i < 100; i++) {
-      particles.push({
+    for (let i = 0; i < 20; i++) {
+      nodes.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
-        size: Math.random() * 3 + 1,
-        opacity: Math.random() * 0.4 + 0.2,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        rotation: Math.random() * Math.PI * 2,
+        rotationSpeed: (Math.random() - 0.5) * 0.02,
+        size: Math.random() * 20 + 10,
+        sides: Math.random() > 0.5 ? 6 : 3,
         color: colors[Math.floor(Math.random() * colors.length)],
-        pulseSpeed: Math.random() * 0.02 + 0.01,
         pulsePhase: Math.random() * Math.PI * 2
       });
     }
 
-    // Add some larger glowing orbs
-    for (let i = 0; i < 8; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        size: Math.random() * 8 + 6,
-        opacity: Math.random() * 0.2 + 0.1,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        pulseSpeed: Math.random() * 0.02 + 0.01,
-        pulsePhase: Math.random() * Math.PI * 2
-      });
-    }
+    // Energy pulses
+    const pulses: Array<{
+      x: number;
+      y: number;
+      radius: number;
+      maxRadius: number;
+      color: typeof colors[0];
+      opacity: number;
+    }> = [];
+
+    const createPulse = () => {
+      if (Math.random() < 0.02) {
+        pulses.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: 0,
+          maxRadius: Math.random() * 150 + 100,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          opacity: 0.4
+        });
+      }
+    };
 
     let time = 0;
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       time += 0.01;
 
-      // Update and draw particles
-      particles.forEach(particle => {
-        particle.x += particle.vx;
-        particle.y += particle.vy;
+      // Create occasional pulses
+      createPulse();
 
-        // Wrap around edges
-        if (particle.x < 0) particle.x = canvas.width;
-        if (particle.x > canvas.width) particle.x = 0;
-        if (particle.y < 0) particle.y = canvas.height;
-        if (particle.y > canvas.height) particle.y = 0;
+      // Draw and update energy pulses
+      for (let i = pulses.length - 1; i >= 0; i--) {
+        const pulse = pulses[i];
+        pulse.radius += 3;
+        pulse.opacity -= 0.008;
 
-        // Pulsing effect
-        const pulse = Math.sin(time + particle.pulsePhase) * 0.3 + 0.7;
-        const currentOpacity = particle.opacity * pulse;
-
-        // Draw glow for larger particles
-        if (particle.size > 4) {
-          const gradient = ctx.createRadialGradient(
-            particle.x, particle.y, 0,
-            particle.x, particle.y, particle.size * 3
-          );
-          gradient.addColorStop(0, particle.color + (currentOpacity * 0.6) + ')');
-          gradient.addColorStop(0.5, particle.color + (currentOpacity * 0.2) + ')');
-          gradient.addColorStop(1, particle.color + '0)');
-          ctx.fillStyle = gradient;
-          ctx.fillRect(
-            particle.x - particle.size * 3,
-            particle.y - particle.size * 3,
-            particle.size * 6,
-            particle.size * 6
-          );
+        if (pulse.opacity <= 0) {
+          pulses.splice(i, 1);
+          continue;
         }
 
-        // Draw particle
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = particle.color + currentOpacity + ')';
-        ctx.shadowBlur = particle.size * 2;
-        ctx.shadowColor = particle.color + currentOpacity + ')';
-        ctx.fill();
-        ctx.shadowBlur = 0;
+        ctx.arc(pulse.x, pulse.y, pulse.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = pulse.color.glow + pulse.opacity + ')';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Inner glow
+        ctx.beginPath();
+        ctx.arc(pulse.x, pulse.y, pulse.radius - 5, 0, Math.PI * 2);
+        ctx.strokeStyle = pulse.color.main + (pulse.opacity * 0.5) + ')';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      // Draw and update data streams
+      dataStreams.forEach(stream => {
+        stream.y -= stream.speed;
+        
+        if (stream.y < -stream.length) {
+          stream.y = canvas.height;
+          stream.x = Math.random() * canvas.width;
+        }
+
+        // Draw segmented stream
+        for (let i = 0; i < stream.segments.length; i++) {
+          const segmentY = stream.y + (i * stream.length / stream.segments.length);
+          const segmentHeight = stream.length / stream.segments.length * 0.7;
+          const opacity = stream.segments[i] * 0.6;
+          
+          const gradient = ctx.createLinearGradient(
+            stream.x, segmentY,
+            stream.x, segmentY + segmentHeight
+          );
+          gradient.addColorStop(0, stream.color.glow + '0)');
+          gradient.addColorStop(0.5, stream.color.main + opacity + ')');
+          gradient.addColorStop(1, stream.color.glow + '0)');
+
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(stream.x, segmentY);
+          ctx.lineTo(stream.x, segmentY + segmentHeight);
+          ctx.stroke();
+        }
       });
 
-      // Draw connections between nearby particles with color
-      particles.forEach((particle, i) => {
-        particles.slice(i + 1).forEach(otherParticle => {
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
+      // Draw and update geometric nodes
+      nodes.forEach(node => {
+        node.x += node.vx;
+        node.y += node.vy;
+        node.rotation += node.rotationSpeed;
+
+        // Wrap around edges
+        if (node.x < -50) node.x = canvas.width + 50;
+        if (node.x > canvas.width + 50) node.x = -50;
+        if (node.y < -50) node.y = canvas.height + 50;
+        if (node.y > canvas.height + 50) node.y = -50;
+
+        const pulse = Math.sin(time + node.pulsePhase) * 0.3 + 0.7;
+        
+        ctx.save();
+        ctx.translate(node.x, node.y);
+        ctx.rotate(node.rotation);
+
+        // Draw polygon
+        ctx.beginPath();
+        for (let i = 0; i <= node.sides; i++) {
+          const angle = (Math.PI * 2 / node.sides) * i;
+          const x = Math.cos(angle) * node.size;
+          const y = Math.sin(angle) * node.size;
+          if (i === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+        
+        // Outer glow
+        ctx.strokeStyle = node.color.glow + (0.2 * pulse) + ')';
+        ctx.lineWidth = 2;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = node.color.glow + (0.4 * pulse) + ')';
+        ctx.stroke();
+        
+        // Inner line
+        ctx.strokeStyle = node.color.main + (0.4 * pulse) + ')';
+        ctx.lineWidth = 1;
+        ctx.shadowBlur = 0;
+        ctx.stroke();
+
+        ctx.restore();
+      });
+
+      // Connect nearby nodes
+      nodes.forEach((node, i) => {
+        nodes.slice(i + 1).forEach(otherNode => {
+          const dx = node.x - otherNode.x;
+          const dy = node.y - otherNode.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 150 && particle.size < 5 && otherParticle.size < 5) {
-            const opacity = (150 - distance) / 150 * 0.15;
-            const gradient = ctx.createLinearGradient(
-              particle.x, particle.y,
-              otherParticle.x, otherParticle.y
-            );
-            gradient.addColorStop(0, particle.color + opacity + ')');
-            gradient.addColorStop(1, otherParticle.color + opacity + ')');
-            
+          if (distance < 200) {
+            const opacity = (200 - distance) / 200 * 0.1;
             ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = gradient;
+            ctx.moveTo(node.x, node.y);
+            ctx.lineTo(otherNode.x, otherNode.y);
+            ctx.strokeStyle = node.color.main + opacity + ')';
             ctx.lineWidth = 1;
             ctx.stroke();
           }
