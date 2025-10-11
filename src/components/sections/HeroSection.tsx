@@ -128,7 +128,7 @@ const HeroSection = ({
               </div>
               <p className={`${isSmallScreen ? 'text-[11px]' : 'text-sm'} sm:text-[1.3rem] 2xl:text-[1.4375rem] 3xl:text-[1.725rem] text-gray-400`}>Recognized by leading media and financial publications</p>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4 sm:mt-6">
               <div className="overflow-hidden max-w-[69rem] w-full">
                 <div className="flex animate-scroll-smooth" style={{
               width: 'calc(200% + 2.3rem)',
@@ -155,7 +155,7 @@ const HeroSection = ({
                 src: '/media-logos/barchart.png',
                 alt: 'Barchart'
               }].map((logo, index) => <div key={`first-${index}`} className="flex-shrink-0 flex items-center justify-center mx-5 sm:mx-12 transition-all duration-300 w-[9.5rem] sm:w-[17.25rem]">
-                      <img src={logo.src} alt={logo.alt} className={`h-[4.95rem] sm:h-[11.275rem] 2xl:h-[12.65rem] 3xl:h-[13.915rem] w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
+                      <img src={logo.src} alt={logo.alt} className={`h-[5.45rem] sm:h-[12.4rem] 2xl:h-[13.915rem] 3xl:h-[15.31rem] w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
                     </div>)}
                   {[{
                 src: '/media-logos/business-insider.png',
@@ -176,7 +176,7 @@ const HeroSection = ({
                 src: '/media-logos/barchart.png',
                 alt: 'Barchart'
               }].map((logo, index) => <div key={`second-${index}`} className="flex-shrink-0 flex items-center justify-center mx-5 sm:mx-12 transition-all duration-300 w-[9.5rem] sm:w-[17.25rem]">
-                      <img src={logo.src} alt={logo.alt} className={`h-[4.95rem] sm:h-[11.275rem] 2xl:h-[12.65rem] 3xl:h-[13.915rem] w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
+                      <img src={logo.src} alt={logo.alt} className={`h-[5.45rem] sm:h-[12.4rem] 2xl:h-[13.915rem] 3xl:h-[15.31rem] w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
                     </div>)}
                 </div>
               </div>
