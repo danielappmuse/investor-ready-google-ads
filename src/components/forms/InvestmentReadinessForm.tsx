@@ -751,50 +751,46 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       <form onSubmit={handleSubmit(onSubmit)}>
         {renderStep()}
         
-        <div className="flex justify-between items-center mt-2 gap-3">
-          <div>
-            {currentStep > 1 && (
-              <Button
-                type="button"
-                onClick={prevStep}
-                className="btn-secondary"
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Previous
-              </Button>
-            )}
-          </div>
+        <div className="flex flex-col gap-3 mt-2">
+          {currentStep > 1 && (
+            <Button
+              type="button"
+              onClick={prevStep}
+              className="btn-secondary w-full"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Previous
+            </Button>
+          )}
           
-          <div>
-            {currentStep < 10 ? (
-              <Button
-                type="button"
-                onClick={nextStep}
-                className="btn-hero"
-              >
-                Next
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            ) : currentStep === 10 ? (
-              <Button
-                type="button"
-                onClick={nextStep}
-                className="btn-hero"
-              >
-                See My Score
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            ) : (
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="btn-hero"
-              >
-                {isSubmitting ? 'Submitting...' : 'Get Your Personalized Plan'}
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            )}
-          </div>
+          {currentStep < 10 ? (
+            <Button
+              type="button"
+              onClick={nextStep}
+              className="btn-hero w-full animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all"
+            >
+              Next
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          ) : currentStep === 10 ? (
+            <Button
+              type="button"
+              onClick={nextStep}
+              className="btn-hero w-full animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all"
+            >
+              See My Score
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="btn-hero w-full animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all"
+            >
+              {isSubmitting ? 'Submitting...' : 'Get Your Personalized Plan'}
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          )}
         </div>
       </form>
     </div>
