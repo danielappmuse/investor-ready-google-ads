@@ -195,6 +195,25 @@ const HeroSection = ({
                   Why Serious Founders Choose <span className="gradient-text">StartWise</span>
                 </h4>
                 
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm sm:text-base text-gray-300">Real founders who understand the startup journey</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm sm:text-base text-gray-300">Proven track record with 200+ successful validations</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm sm:text-base text-gray-300">Forbes-recognized expertise in startup development</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm sm:text-base text-gray-300">100% money-back guarantee on all services</span>
+                  </div>
+                </div>
+                
                 {/* TechElements Content */}
                 <div className="relative mb-8">
                   {/* Tech Grid Background */}
@@ -259,25 +278,6 @@ const HeroSection = ({
                         />
                       ))}
                     </div>
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-300">Real founders who understand the startup journey</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-300">Proven track record with 200+ successful validations</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-300">Forbes-recognized expertise in startup development</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-300">100% money-back guarantee on all services</span>
                   </div>
                 </div>
               </div>
