@@ -194,11 +194,11 @@ const HeroSection = ({
         {/* Why Choose Us */}
         {currentView === 'products' && <div className="mt-16 lg:mt-20">
             <div className="max-w-4xl mx-auto">
+              <h4 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6 text-center">
+                Why Serious Founders Choose <span className="gradient-text">StartWise</span>
+              </h4>
+              
               <div className="card-glass p-6 sm:p-8 lg:p-10 text-center">
-                <h4 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6 text-center">
-                  Why Serious Founders Choose <span className="gradient-text">StartWise</span>
-                </h4>
-                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
