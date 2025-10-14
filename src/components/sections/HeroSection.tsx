@@ -229,12 +229,12 @@ const HeroSection = ({
                     <span className="text-sm font-medium text-white">Founder to Founder</span>
                   </div>
                   <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
-                    <Briefcase className="w-8 h-8 text-primary mb-2" />
-                    <span className="text-sm font-medium text-white">Full-stack Business Suite</span>
-                  </div>
-                  <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
                     <Target className="w-8 h-8 text-primary mb-2" />
                     <span className="text-sm font-medium text-white">YC-level Process</span>
+                  </div>
+                  <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
+                    <Briefcase className="w-8 h-8 text-primary mb-2" />
+                    <span className="text-sm font-medium text-white">Full-stack Business Suite</span>
                   </div>
                   <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
                     <BadgeCheck className="w-8 h-8 text-primary mb-2" />
