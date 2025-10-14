@@ -787,9 +787,9 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               type="button"
               onClick={prevStep}
               variant="outline"
-              className="w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl text-white border-white/20 hover:bg-white/5 transition-all"
+              className="w-full text-[15.5px] sm:text-[21.5px] font-bold py-3.5 sm:py-6 rounded-xl text-white border-2 border-white/30 hover:bg-white/10 hover:border-white/50 transition-all"
             >
-              <ArrowLeft className="w-4 h-4 mr-2" />
+              <ArrowLeft className="w-4 h-4 sm:w-6 sm:h-6 mr-2" />
               Previous
             </Button>
           )}
