@@ -38,7 +38,7 @@ const ContactSection = ({ onAssessmentClick }: ContactSectionProps) => {
             >
               <span className="relative z-10 flex items-center justify-center gap-1.5 sm:gap-3 leading-tight">
                 <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 animate-pulse flex-shrink-0" />
-                <span className="text-center">Start Your Investment Readiness Assessment</span>
+                <span className="text-center">Start Your Assessment Now!</span>
                 <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" />
               </span>
             </Button>
