@@ -281,7 +281,7 @@ const HeroSection = ({
                       number: '01',
                       icon: <FileText className="w-8 h-8" />,
                       title: 'Business Fundamentals',
-                      description: 'Market research, business plan & model.',
+                      description: 'Build the foundation with comprehensive market research, business plan & model.',
                       details: [
                         'Market research & analysis',
                         'Business plan development',
