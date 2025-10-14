@@ -175,9 +175,9 @@ const Index = () => {
             onValidationClick={handleValidationClick} 
             onPrototypeClick={handlePrototypeClick}
           />
-          <NDASection />
+          <NDASection onAssessmentClick={handlePrototypeClick} />
           <ProcessSection />
-          <EssentialsSection onValidationClick={handleValidationClick} />
+          <EssentialsSection onValidationClick={handlePrototypeClick} />
           <ContactSection onAssessmentClick={handlePrototypeClick} />
         </>
       )}

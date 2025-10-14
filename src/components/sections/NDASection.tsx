@@ -2,7 +2,11 @@ import React from 'react';
 import { Shield, Lock, FileText, Users, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const NDASection = () => {
+interface NDASectionProps {
+  onAssessmentClick?: () => void;
+}
+
+const NDASection = ({ onAssessmentClick }: NDASectionProps) => {
   const securityFeatures = [
     {
       icon: <FileText className="w-6 h-6" />,
@@ -143,7 +147,7 @@ const NDASection = () => {
         {/* CTA */}
         <div className="text-center">
           <Button 
-            onClick={scrollToContact}
+            onClick={onAssessmentClick}
             size="lg"
             className="btn-hero px-4 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold w-full sm:w-auto"
           >

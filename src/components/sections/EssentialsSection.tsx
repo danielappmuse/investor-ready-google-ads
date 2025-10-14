@@ -112,13 +112,10 @@ const EssentialsSection = ({
                 </div>
               </div>
 
-              <div className="mt-8 flex gap-4">
+              <div className="mt-8 flex gap-4 justify-center">
                 <Button onClick={onValidationClick} className="btn-hero">
                   Get Started
                   <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-                <Button onClick={scrollToContact} variant="outline">
-                  Learn More
                 </Button>
               </div>
             </div>
@@ -184,13 +181,10 @@ const EssentialsSection = ({
                 </div>
               </div>
 
-              <div className="mt-8 flex gap-4">
+              <div className="mt-8 flex gap-4 justify-center">
                 <Button onClick={onValidationClick} className="btn-hero">
                   Get Started
                   <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-                <Button onClick={scrollToContact} variant="outline">
-                  Learn More
                 </Button>
               </div>
             </div>
