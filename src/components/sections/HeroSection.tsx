@@ -207,7 +207,7 @@ const HeroSection = ({
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                     <div className="text-sm sm:text-base text-gray-300">
-                      <strong>Full-stack startup support under one roof</strong> From market research and business plan/modeling to PRDs, design, MVP development and investor materials — every piece is built in-house for consistency and speed.
+                      <strong>Full-stack startup support under one roof</strong> From market research and business plan/modeling to PRDs, design, MVP development and investor materials. Every piece is built in-house for consistency and speed.
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
