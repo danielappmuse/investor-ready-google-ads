@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Calendar, Star, CheckCircle, ArrowRight, Sparkles, Cpu, Zap, Database, Shield, Code2, Rocket } from 'lucide-react';
+import { Phone, Calendar, Star, CheckCircle, ArrowRight, Sparkles, Cpu, Zap, Database, Shield, Code2, Rocket, Users, Briefcase, Target, BadgeCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import InvestmentReadinessForm from '@/components/forms/InvestmentReadinessForm';
 import CalendlyWidget from '@/components/CalendlyWidget';
@@ -219,6 +219,26 @@ const HeroSection = ({
                     <div className="text-sm sm:text-base text-gray-300">
                       <strong>Investor-ready, not theory-ready</strong> Every deliverable is built with one goal: to make real investors say "yes." You'll walk away with a fundable, data-driven business — not a slide deck of ideas.
                     </div>
+                  </div>
+                </div>
+                
+                {/* Icons Section */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                  <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
+                    <Users className="w-8 h-8 text-primary mb-2" />
+                    <span className="text-sm font-medium text-white">Founder to Founder</span>
+                  </div>
+                  <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
+                    <Briefcase className="w-8 h-8 text-primary mb-2" />
+                    <span className="text-sm font-medium text-white">Full-stack Business Suite</span>
+                  </div>
+                  <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
+                    <Target className="w-8 h-8 text-primary mb-2" />
+                    <span className="text-sm font-medium text-white">YC-level Process</span>
+                  </div>
+                  <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
+                    <BadgeCheck className="w-8 h-8 text-primary mb-2" />
+                    <span className="text-sm font-medium text-white">Investor Ready</span>
                   </div>
                 </div>
               </div>
