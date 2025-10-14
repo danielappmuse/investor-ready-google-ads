@@ -273,11 +273,11 @@ const HeroSection = ({
         {currentView === 'products' && <section id="process" className="py-12">
             <div className="container mx-auto px-4">
               {/* Section Header */}
-              <div className="text-center mb-16">
+              <div className="text-center mb-16 mx-auto max-w-4xl">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
                   The Path to <span className="gradient-text">Investment-Ready</span>
                 </h2>
-                <p className="text-sm sm:text-base lg:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                <p className="text-sm sm:text-base lg:text-lg text-gray-300 mx-auto leading-relaxed">
                   Our proven 3-phase process transforms your startup into an investor-ready business 
                   under 90 days. From solid fundamentals to compelling investor materials.
                 </p>
