@@ -731,21 +731,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
   return (
     <div className="card-glass p-3 lg:p-4">
-      {/* Back Button */}
-      {onBack && (
-        <div className="mb-3">
-          <Button
-            type="button"
-            onClick={onBack}
-            variant="ghost"
-            className="text-white hover:text-primary transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Home
-          </Button>
-        </div>
-      )}
-      
       {/* Progress Bar */}
       <div className="mb-2">
         <div className="flex items-center justify-center mb-1.5">
@@ -768,17 +753,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         {renderStep()}
         
         <div className="flex flex-col gap-3 mt-2">
-          {currentStep > 1 && (
-            <Button
-              type="button"
-              onClick={prevStep}
-              className="btn-secondary w-full"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Previous
-            </Button>
-          )}
-          
           {currentStep < 10 ? (
             <Button
               type="button"
@@ -805,6 +779,18 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             >
               {isSubmitting ? 'Submitting...' : 'Get Your Personalized Plan'}
               <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          )}
+          
+          {currentStep > 1 && (
+            <Button
+              type="button"
+              onClick={prevStep}
+              variant="outline"
+              className="w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl text-white border-white/20 hover:bg-white/5 transition-all"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Previous
             </Button>
           )}
         </div>
