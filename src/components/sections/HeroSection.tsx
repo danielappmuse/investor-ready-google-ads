@@ -391,13 +391,8 @@ const HeroSection = ({
                           ))}
                         </div>
 
-                        {/* Timeline */}
-                        <div className="inline-flex items-center px-4 py-2 bg-primary/20 border border-primary/30 rounded-full text-sm font-medium text-primary mb-6">
-                          {step.timeline}
-                        </div>
-
                         {/* Advantage Section */}
-                        <div className="border-t border-white/10 pt-6 text-left">
+                        <div className="border-t border-white/10 pt-6 text-left mb-4">
                           <h4 className="text-lg font-bold text-white mb-3">{step.advantageTitle}</h4>
                           <p className="text-sm text-gray-300 mb-4 leading-relaxed">{step.advantageDescription}</p>
                           <div className="space-y-4">
@@ -408,6 +403,11 @@ const HeroSection = ({
                               </div>
                             ))}
                           </div>
+                        </div>
+
+                        {/* Timeline */}
+                        <div className="inline-flex items-center px-4 py-2 bg-primary/20 border border-primary/30 rounded-full text-sm font-medium text-primary mt-2.5">
+                          {step.timeline}
                         </div>
 
                         {/* Product Tag */}
