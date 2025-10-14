@@ -44,7 +44,7 @@ const HeroSection = ({
             {/* Hero Content */}
             <div className="space-y-0.5 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-fade-in-up text-center xl:text-left flex flex-col items-center xl:items-start">
               <div className="space-y-0.5 sm:space-y-2 lg:space-y-3 2xl:space-y-4 3xl:space-y-6">
-                <div className={`inline-flex items-center justify-center px-3 sm:px-3 2xl:px-4 3xl:px-5 py-1 2xl:py-1.5 3xl:py-2 bg-primary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[21px]' : 'text-[23px]'} sm:text-[25px] lg:text-[27px] 2xl:text-[31px] 3xl:text-[37px] font-bold text-white mb-6 sm:mb-8 mt-6 sm:mt-8 w-[280px] sm:w-auto`}>
+                <div className={`inline-flex items-center justify-center px-4 sm:px-3 2xl:px-4 3xl:px-5 py-1.5 2xl:py-1.5 3xl:py-2 bg-primary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[21px]' : 'text-[23px]'} sm:text-[25px] lg:text-[27px] 2xl:text-[31px] 3xl:text-[37px] font-bold text-white mb-6 sm:mb-8 mt-6 sm:mt-8 w-[310px] sm:w-auto`}>
                   <Star className={`${isSmallScreen ? 'w-3 h-3' : 'w-3.5 h-3.5'} 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-1.5 sm:mr-2 text-primary animate-pulse flex-shrink-0`} />
                   <span className="hidden sm:inline whitespace-nowrap">YC-Level Backing. Investor-Ready Results.</span>
                   <span className={`sm:hidden font-bold ${isSmallScreen ? 'text-[18px]' : 'text-[20px]'} whitespace-nowrap`}>
