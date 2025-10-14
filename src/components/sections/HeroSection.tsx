@@ -61,7 +61,7 @@ const HeroSection = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-8 items-center xl:-mt-6">
             {/* Left Column - Hero Content */}
             <div className="space-y-0.5 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-fade-in-up text-center xl:text-center flex flex-col items-center">
               <div className="space-y-0.5 sm:space-y-2 lg:space-y-3 2xl:space-y-4 3xl:space-y-6">
@@ -138,7 +138,7 @@ const HeroSection = ({
         </>}
 
         {/* Media Logos */}
-        {currentView === 'products' && <div className="mt-[26px] sm:mt-12 lg:mt-14 xl:mt-16 2xl:mt-20 3xl:mt-24 animate-fade-in stagger-5">
+        {currentView === 'products' && <div className="mt-[26px] sm:mt-12 lg:mt-14 xl:mt-10 2xl:mt-20 3xl:mt-24 animate-fade-in stagger-5">
             <div className="text-center mb-2">
               <p className={`${isSmallScreen ? 'text-[11px]' : 'text-sm'} sm:text-base lg:text-lg text-white font-bold`}>Recognized by leading media and financial publications</p>
             </div>
