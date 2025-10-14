@@ -461,7 +461,7 @@ const HeroSection = ({
 
         {currentView === 'prototype-form' && <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+              <h2 className="text-[21px] sm:text-[27px] lg:text-[33px] font-bold text-white mb-4">
                 Check Whether You're Qualified for Our 90-Day Investment Readiness Program
               </h2>
               <p className="text-lg sm:text-xl lg:text-2xl text-gray-300">
