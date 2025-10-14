@@ -127,7 +127,7 @@ const HeroSection = ({
         {/* Media Logos */}
         {currentView === 'products' && <div className="mt-[26px] sm:mt-12 lg:mt-14 2xl:mt-[18.5rem] 3xl:mt-[23rem] animate-fade-in stagger-5">
             <div className="text-center mb-2">
-              <p className={`${isSmallScreen ? 'text-[11px]' : 'text-sm'} sm:text-base lg:text-lg text-white`}>Recognized by leading media and financial publications</p>
+              <p className={`${isSmallScreen ? 'text-[11px]' : 'text-sm'} sm:text-base lg:text-lg text-white font-bold`}>Recognized by leading media and financial publications</p>
             </div>
             <div className="flex justify-center">
               <div className="overflow-hidden max-w-[69rem] w-full">
