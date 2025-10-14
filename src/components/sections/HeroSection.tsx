@@ -96,7 +96,7 @@ const HeroSection = ({
             </div>
 
             {/* Right Column - Assessment Card */}
-            <div className="space-y-1 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-slide-in-right mt-0.5 xl:mt-0 max-w-lg 2xl:max-w-xl 3xl:max-w-2xl mx-auto w-full px-2 flex flex-col items-center">
+            <div className="space-y-1 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-slide-in-right mt-0.5 xl:mt-16 max-w-lg 2xl:max-w-xl 3xl:max-w-2xl mx-auto w-full px-2 flex flex-col items-center">
               <div className="animate-fade-in stagger-4 w-full text-center flex flex-col items-center">
                 <div className="space-y-2 sm:space-y-3 2xl:space-y-4 3xl:space-y-5">
                   <div className="group w-full max-w-full overflow-hidden box-border p-3 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass mt-3">
