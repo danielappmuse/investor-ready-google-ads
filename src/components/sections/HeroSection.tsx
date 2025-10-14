@@ -54,7 +54,7 @@ const HeroSection = ({
                 
                 
                 
-                <p className={`${isSmallScreen ? 'text-[12.5px]' : 'text-[15.5px]'} sm:text-[15px] lg:text-[17px] 2xl:text-[19px] 3xl:text-[23px] text-white leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl mt-1.5`}>
+                <p className={`${isSmallScreen ? 'text-[12.5px]' : 'text-[15.5px]'} sm:text-base lg:text-lg text-white leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl mt-1.5`}>
                   <strong>Why Serious Founders Choose StartWise?</strong>
                   <span className="block h-2" />
                   At <strong>StartWise</strong>, we turn serious founders into <strong>fundable founders under 90 days.</strong>
@@ -84,7 +84,7 @@ const HeroSection = ({
                         Investor-Readiness Assessment
                       </h3>
                     </div>
-                    <p className={`${isSmallScreen ? 'text-[13px]' : 'text-[15.5px]'} sm:text-[17.5px] 2xl:text-lg 3xl:text-xl text-white mb-3 sm:mb-6 2xl:mb-7 3xl:mb-8 leading-tight sm:leading-snug`}>Your path to investment starts here. Take a quick quiz, get interviewed by ex-VCs and founders who've raised before multiple times.</p>
+                    <p className={`${isSmallScreen ? 'text-[13px]' : 'text-[15.5px]'} sm:text-base lg:text-lg text-white mb-3 sm:mb-6 2xl:mb-7 3xl:mb-8 leading-tight sm:leading-snug`}>Your path to investment starts here. Take a quick quiz, get interviewed by ex-VCs and founders who've raised before multiple times.</p>
                     
                     {/* Urgency Badge */}
                     
@@ -187,7 +187,7 @@ const HeroSection = ({
               </div>
             </div>
             <div className="text-center mt-6 sm:mt-8">
-              <p className={`${isSmallScreen ? 'text-[11px]' : 'text-sm'} sm:text-[1.3rem] 2xl:text-[1.4375rem] 3xl:text-[1.725rem] text-white`}>Recognized by leading media and financial publications</p>
+              <p className={`${isSmallScreen ? 'text-[11px]' : 'text-sm'} sm:text-base lg:text-lg text-white`}>Recognized by leading media and financial publications</p>
             </div>
           </div>}
 
@@ -202,31 +202,31 @@ const HeroSection = ({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <div className="text-sm sm:text-base text-gray-300">
+                    <div className="text-sm sm:text-base lg:text-lg text-gray-300">
                       <strong>Built by founders, not consultants</strong> We've raised millions ourselves, we know what actually gets funded. Now we help other founders avoid mistakes and move faster.
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <div className="text-sm sm:text-base text-gray-300">
+                    <div className="text-sm sm:text-base lg:text-lg text-gray-300">
                       <strong>Full-stack startup support under one roof</strong> From market research and business plan/modeling to PRDs, design, MVP development and investor materials. Every piece is built in-house for consistency and speed.
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <div className="text-sm sm:text-base text-gray-300">
+                    <div className="text-sm sm:text-base lg:text-lg text-gray-300">
                       <strong>Structured, YC-level process</strong> Our frameworks mirror what top accelerators use to evaluate startups. Ensuring your business meets investor standards in 90 days or less. However, we also help you build the core of the business.
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <div className="text-sm sm:text-base text-gray-300">
+                    <div className="text-sm sm:text-base lg:text-lg text-gray-300">
                       <strong>Investor-ready, not theory-ready</strong> Every deliverable is built with one goal: to make real investors say "yes." You'll walk away with a fundable, data-driven business, not a slide deck of ideas.
                     </div>
                   </div>
                   <div className="flex items-start space-x-3 md:col-span-2">
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <div className="text-sm sm:text-base text-gray-300">
+                    <div className="text-sm sm:text-base lg:text-lg text-gray-300">
                       <strong>Access to investors who actually invest</strong> We don't just "prepare" you. We connect you to real funds and angels looking for your exact stage and vertical, so your next step is traction, not chasing meetings.
                     </div>
                   </div>
@@ -236,23 +236,23 @@ const HeroSection = ({
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
                   <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
                     <Users className="w-8 h-8 text-primary mb-2" />
-                    <span className="text-sm font-medium text-white">Founder to Founder</span>
+                    <span className="text-sm sm:text-base font-medium text-white">Founder to Founder</span>
                   </div>
                   <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
                     <Target className="w-8 h-8 text-primary mb-2" />
-                    <span className="text-sm font-medium text-white">YC-level Process</span>
+                    <span className="text-sm sm:text-base font-medium text-white">YC-level Process</span>
                   </div>
                   <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
                     <Briefcase className="w-8 h-8 text-primary mb-2" />
-                    <span className="text-sm font-medium text-white">Full-stack Business Suite</span>
+                    <span className="text-sm sm:text-base font-medium text-white">Full-stack Business Suite</span>
                   </div>
                   <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
                     <BadgeCheck className="w-8 h-8 text-primary mb-2" />
-                    <span className="text-sm font-medium text-white">Become Investor Ready</span>
+                    <span className="text-sm sm:text-base font-medium text-white">Become Investor Ready</span>
                   </div>
                   <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-primary/30 col-span-2 md:col-span-4">
                     <Handshake className="w-10 h-10 text-primary mb-2 animate-pulse" />
-                    <span className="text-base font-bold text-white">Access to Real Investors</span>
+                    <span className="text-base sm:text-lg font-bold text-white">Access to Real Investors</span>
                   </div>
                 </div>
                 
@@ -457,10 +457,10 @@ const HeroSection = ({
 
         {currentView === 'prototype-form' && <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-white mb-4">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
                 90-Day Investment Readiness Program
               </h2>
-              <p className="text-gray-300">
+              <p className="text-sm sm:text-base lg:text-lg text-gray-300">
                 Tell us about your startup and we'll schedule a strategy call to discuss how we'll make you investor-ready
               </p>
             </div>
@@ -474,10 +474,10 @@ const HeroSection = ({
                 <CheckCircle className="w-4 h-4 mr-2" />
                 Form Submitted Successfully!
               </div>
-              <h2 className="text-3xl font-bold text-white mb-4">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
                 Schedule Your Free Consultation
               </h2>
-              <p className="text-gray-300">
+              <p className="text-sm sm:text-base lg:text-lg text-gray-300">
                 Thank you {formData?.full_name}! Now let's schedule a time to discuss your startup and get you started with the right product.
               </p>
             </div>
