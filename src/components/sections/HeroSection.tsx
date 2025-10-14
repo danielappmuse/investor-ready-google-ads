@@ -78,9 +78,9 @@ const HeroSection = ({
                 </div>
                 
                 <p className={`${isSmallScreen ? 'text-[12.5px]' : 'text-[15.5px]'} sm:text-base lg:text-lg text-white leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl mt-1.5`}>
-                  <strong>Fewer than 1% of startups receive VC funding, Forbes reported.</strong>
+                  <strong>You've pitched for months, maybe years, and still don't know what's missing.</strong>
                   <span className="block h-2" />
-                  But even if the funding came tomorrow, <strong>would you really know how to utilize it?</strong>
+                  <strong>Even if the funding came tomorrow, would it disappear before the dream becomes real?</strong>
                   <span className="block h-2" />
                   <strong>StartWise</strong> makes it <strong>simple</strong>:
                   <span className="block h-2" />
