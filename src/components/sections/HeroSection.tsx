@@ -213,7 +213,7 @@ const HeroSection = ({
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                     <div className="text-sm sm:text-base text-gray-300">
-                      <strong>Structured, YC-level process</strong> Our frameworks mirror what top accelerators use to evaluate startups — ensuring your business meets investor standards in 90 days or less. However, we also help you build the core of the business.
+                      <strong>Structured, YC-level process</strong> Our frameworks mirror what top accelerators use to evaluate startups. Ensuring your business meets investor standards in 90 days or less. However, we also help you build the core of the business.
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
