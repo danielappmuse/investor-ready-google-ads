@@ -464,7 +464,7 @@ const HeroSection = ({
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
                 Check Whether You're Qualified for Our 90-Day Investment Readiness Program
               </h2>
-              <p className="text-sm sm:text-base lg:text-lg text-gray-300">
+              <p className="text-lg sm:text-xl lg:text-2xl text-gray-300">
                 Tell us briefly about your startup. If you match our criteria, according to your stage, we will either connect you, or help you become investable.
               </p>
             </div>
