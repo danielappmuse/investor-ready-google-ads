@@ -62,6 +62,15 @@ const HeroSection = ({
                   <strong>📈 Market research, business plan/modeling</strong>
                   <br />
                   <strong>💼 Pitch-ready materials & investor network</strong>
+                  <br />
+                  <div className="mt-2 mb-2 flex items-start gap-2">
+                    <span className="text-2xl mt-[-2px]">✅</span>
+                    <div>
+                      <strong>Access to investors who actually invest</strong>
+                      <br />
+                      <span className="text-gray-300">We don't just "prepare" you — we connect you to real funds and angels looking for your exact stage and vertical, so your next step is traction, not chasing meetings.</span>
+                    </div>
+                  </div>
                   <span className="block h-2" />
                   → <strong>Ready to raise?</strong> We'll connect you.
                   <br />
