@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Calendar, Star, CheckCircle, ArrowRight, Sparkles, Cpu, Zap, Database, Shield, Code2, Rocket, Users, Briefcase, Target, BadgeCheck, FileText, Code, PresentationIcon } from 'lucide-react';
+import { Phone, Calendar, Star, CheckCircle, ArrowRight, Sparkles, Cpu, Zap, Database, Shield, Code2, Rocket, Users, Briefcase, Target, BadgeCheck, FileText, Code, PresentationIcon, Handshake } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import InvestmentReadinessForm from '@/components/forms/InvestmentReadinessForm';
 import CalendlyWidget from '@/components/CalendlyWidget';
@@ -245,6 +245,10 @@ const HeroSection = ({
                   <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
                     <BadgeCheck className="w-8 h-8 text-primary mb-2" />
                     <span className="text-sm font-medium text-white">Become Investor Ready</span>
+                  </div>
+                  <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-primary/30 md:col-span-2">
+                    <Handshake className="w-10 h-10 text-primary mb-2 animate-pulse" />
+                    <span className="text-base font-bold text-white">Access to Real Investors</span>
                   </div>
                 </div>
               </div>
