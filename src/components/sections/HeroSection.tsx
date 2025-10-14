@@ -225,7 +225,7 @@ const HeroSection = ({
                   <div className="flex items-start space-x-3 md:col-span-2">
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                     <div className="text-sm sm:text-base text-gray-300">
-                      <strong>Access to investors who actually invest</strong> We don't just "prepare" you — we connect you to real funds and angels looking for your exact stage and vertical, so your next step is traction, not chasing meetings.
+                      <strong>Access to investors who actually invest</strong> We don't just "prepare" you. We connect you to real funds and angels looking for your exact stage and vertical, so your next step is traction, not chasing meetings.
                     </div>
                   </div>
                 </div>
