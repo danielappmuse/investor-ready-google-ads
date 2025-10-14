@@ -245,6 +245,17 @@ const HeroSection = ({
             </div>
           </div>}
 
+        {/* The Path to Investment-Ready Section */}
+        {currentView === 'products' && <div className="mt-16 lg:mt-20">
+            <div className="max-w-4xl mx-auto">
+              <div className="card-glass p-6 sm:p-8 lg:p-10 text-center">
+                <h4 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6">
+                  The Path to <span className="gradient-text">Investment-Ready</span>
+                </h4>
+              </div>
+            </div>
+          </div>}
+
         {currentView === 'prototype-form' && <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-white mb-4">
