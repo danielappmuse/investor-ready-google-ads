@@ -63,9 +63,9 @@ const HeroSection = ({
                   <br />
                   <strong>💼 Pitch-ready materials & investor network</strong>
                   <span className="block h-2" />
-                  ⚙️ <strong>Ready to raise?</strong> We'll connect you.
+                  → <strong>Ready to raise?</strong> We'll connect you.
                   <br />
-                  🚀 <strong>Still building?</strong> We'll get you ready.
+                  → <strong>Still building?</strong> We'll get you ready.
                 </p>
               </div>
             </div>
