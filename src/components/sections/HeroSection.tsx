@@ -128,7 +128,8 @@ const HeroSection = ({
               <div className="flex justify-center mb-3 sm:mb-4">
                 <div className={`inline-flex items-center justify-center px-5 sm:px-4 2xl:px-5 3xl:px-6 py-1.5 2xl:py-1.5 3xl:py-2 bg-primary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[21px]' : 'text-[23px]'} sm:text-[25px] lg:text-[27px] 2xl:text-[31px] 3xl:text-[37px] font-bold text-white w-[320px] sm:w-auto`}>
                   <Star className={`${isSmallScreen ? 'w-3 h-3' : 'w-3.5 h-3.5'} 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-1.5 sm:mr-2 text-primary animate-pulse flex-shrink-0`} />
-                  <span className="whitespace-nowrap">As Featured In</span>
+                  <span className="hidden sm:inline whitespace-nowrap">As Featured In</span>
+                  <span className={`sm:hidden font-bold ${isSmallScreen ? 'text-[18px]' : 'text-[20px]'} whitespace-nowrap`}>As Featured In</span>
                 </div>
               </div>
             </div>
