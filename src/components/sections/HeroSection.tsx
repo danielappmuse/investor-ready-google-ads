@@ -409,15 +409,15 @@ const HeroSection = ({
                         {/* Details */}
                         <div className="space-y-3 mb-6">
                           {step.details.map((detail, idx) => (
-                            <div key={idx} className="flex items-start text-sm sm:text-base text-gray-400">
+                            <div key={idx} className="flex items-start text-sm sm:text-base text-gray-400 justify-center">
                               <ArrowRight className="w-4 h-4 mr-2 mt-0.5 text-primary flex-shrink-0" />
-                              <span className="flex-1 text-left">{detail}</span>
+                              <span className="flex-1 text-center">{detail}</span>
                             </div>
                           ))}
                         </div>
 
                         {/* Advantage Section */}
-                        <div className="border-t border-white/10 pt-6 text-left mb-4">
+                        <div className="border-t border-white/10 pt-6 text-center mb-4">
                           <h4 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-3">{step.advantageTitle}</h4>
                           <p className="text-sm sm:text-base lg:text-lg text-gray-300 mb-4 leading-relaxed">{step.advantageDescription}</p>
                           <div className="space-y-4">
