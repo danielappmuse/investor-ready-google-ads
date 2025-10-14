@@ -26,20 +26,12 @@ const Index = () => {
   const handleValidationClick = () => {
     setStartWithValidation(true)
     setStartWithPrototype(false)
-    // Scroll to hero section to show validation onboarding
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }, 100)
   }
 
   const handlePrototypeClick = () => {
     setStartWithPrototype(true)
     setStartWithValidation(false)
     setCurrentView('prototype-form')
-    // Scroll to hero section to show prototype consultation
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }, 100)
   }
 
   useEffect(() => {
