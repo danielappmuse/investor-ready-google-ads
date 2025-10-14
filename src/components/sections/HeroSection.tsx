@@ -198,19 +198,27 @@ const HeroSection = ({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-300">Real founders who understand the startup journey</span>
+                    <div className="text-sm sm:text-base text-gray-300">
+                      <strong>Built by founders, not consultants</strong> We've raised over $3M+ ourselves — we know what actually gets funded. Now we help other founders avoid mistakes and move faster.
+                    </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-300">Proven track record with 200+ successful validations</span>
+                    <div className="text-sm sm:text-base text-gray-300">
+                      <strong>Full-stack startup support under one roof</strong> From market research and business plan/modeling to PRDs, design, MVP development and investor materials — every piece is built in-house for consistency and speed.
+                    </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-300">Forbes-recognized expertise in startup development</span>
+                    <div className="text-sm sm:text-base text-gray-300">
+                      <strong>Structured, YC-level process</strong> Our frameworks mirror what top accelerators use to evaluate startups — ensuring your business meets investor standards in 90 days or less. However, we also help you build the core of the business.
+                    </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-300">100% money-back guarantee on all services</span>
+                    <div className="text-sm sm:text-base text-gray-300">
+                      <strong>Investor-ready, not theory-ready</strong> Every deliverable is built with one goal: to make real investors say "yes." You'll walk away with a fundable, data-driven business — not a slide deck of ideas.
+                    </div>
                   </div>
                 </div>
                 
