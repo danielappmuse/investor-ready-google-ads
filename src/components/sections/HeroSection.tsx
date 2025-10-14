@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Calendar, Star, CheckCircle, ArrowRight, Sparkles, Cpu, Zap, Database, Shield, Code2, Rocket, Users, Briefcase, Target, BadgeCheck } from 'lucide-react';
+import { Phone, Calendar, Star, CheckCircle, ArrowRight, Sparkles, Cpu, Zap, Database, Shield, Code2, Rocket, Users, Briefcase, Target, BadgeCheck, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import InvestmentReadinessForm from '@/components/forms/InvestmentReadinessForm';
 import CalendlyWidget from '@/components/CalendlyWidget';
@@ -248,10 +248,68 @@ const HeroSection = ({
         {/* The Path to Investment-Ready Section */}
         {currentView === 'products' && <div className="mt-16 lg:mt-20">
             <div className="max-w-4xl mx-auto">
-              <div className="card-glass p-6 sm:p-8 lg:p-10 text-center">
-                <h4 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6">
-                  The Path to <span className="gradient-text">Investment-Ready</span>
-                </h4>
+              <div className="card-glass p-6 sm:p-8 lg:p-10">
+                <div className="text-center mb-12">
+                  <h4 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                    The Path to <span className="gradient-text">Investment-Ready</span>
+                  </h4>
+                  <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto">
+                    Our proven 3-phase process transforms your startup into an investor-ready business under 90 days - from solid fundamentals to compelling investor materials.
+                  </p>
+                </div>
+
+                {/* Phase 01 */}
+                <div className="relative mb-8">
+                  <div className="border-2 border-white/20 rounded-2xl p-6 sm:p-8 bg-white/5">
+                    <div className="flex justify-center mb-6">
+                      <div className="bg-primary text-white font-bold text-xl w-12 h-12 rounded-full flex items-center justify-center">
+                        01
+                      </div>
+                    </div>
+                    
+                    <div className="flex justify-center mb-6">
+                      <div className="bg-primary/20 border border-primary/30 rounded-lg p-4">
+                        <FileText className="w-8 h-8 text-primary" />
+                      </div>
+                    </div>
+
+                    <h5 className="text-2xl font-bold text-white text-center mb-4">
+                      Business Fundamentals
+                    </h5>
+                    
+                    <p className="text-gray-300 text-center mb-6">
+                      Build the foundation with comprehensive business planning, market research, and business model validation.
+                    </p>
+
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-center text-gray-300">
+                        <ArrowRight className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
+                        <span>Market research & analysis</span>
+                      </div>
+                      <div className="flex items-center text-gray-300">
+                        <ArrowRight className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
+                        <span>Business plan development</span>
+                      </div>
+                      <div className="flex items-center text-gray-300">
+                        <ArrowRight className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
+                        <span>Business model design</span>
+                      </div>
+                      <div className="flex items-center text-gray-300">
+                        <ArrowRight className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
+                        <span>Marketing strategy framework</span>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="inline-flex items-center px-4 py-2 bg-primary/20 border border-primary/30 rounded-full text-sm font-medium text-primary">
+                        2-3 weeks
+                      </div>
+                      <div className="inline-flex items-center px-4 py-2 bg-primary/20 border border-primary/30 rounded-full text-sm font-medium text-primary">
+                        Business Phase
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>}
