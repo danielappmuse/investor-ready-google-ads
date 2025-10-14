@@ -269,43 +269,91 @@ const HeroSection = ({
                       number: '01',
                       icon: <FileText className="w-8 h-8" />,
                       title: 'Business Fundamentals',
-                      description: 'Build the foundation with comprehensive business planning, market research, and business model validation.',
+                      description: 'Build the foundation with comprehensive planning, market research, and business-model validation.',
                       details: [
                         'Market research & analysis',
                         'Business plan development',
                         'Business model design',
                         'Marketing strategy framework'
                       ],
-                      timeline: '2-3 weeks',
-                      product: 'business'
+                      timeline: '2–3 weeks',
+                      product: 'business',
+                      advantageTitle: 'What Makes This Phase Different',
+                      advantageDescription: "We don't just write business plans — we build investment logic.",
+                      advantages: [
+                        {
+                          name: 'Deal-Logic Map™',
+                          description: 'translates your business model into the decision frameworks investors use, so your story makes instant sense.'
+                        },
+                        {
+                          name: 'Traction Math Check™',
+                          description: "pressure-tests your growth and revenue assumptions against real benchmarks, eliminating the \"too early\" excuse."
+                        },
+                        {
+                          name: 'Market Narrative Engine™',
+                          description: "transforms data into an investor thesis: why this market, why now, and why you're the one to win it."
+                        }
+                      ]
                     },
                     {
                       number: '02',
                       icon: <Code className="w-8 h-8" />,
                       title: 'Tech & Design',
-                      description: 'Transform your validated business into a tangible product with UI/UX design, prototype, and technical documentation.',
+                      description: 'Turn your validated idea into a tangible product with UI/UX, prototype, and technical documentation.',
                       details: [
                         'UI/UX design',
                         'Interactive prototype',
                         'MVP development',
-                        'Product Requirement Document (PRD)'
+                        'Product Requirements Document (PRD)'
                       ],
-                      timeline: '6-8 weeks',
-                      product: 'tech'
+                      timeline: '6–8 weeks',
+                      product: 'tech',
+                      advantageTitle: 'Inside the StartWise Method™',
+                      advantageDescription: "Our design & development phase is built to impress investors — not just users.",
+                      advantages: [
+                        {
+                          name: 'PRD-to-Pitch Bridge™',
+                          description: 'connects your roadmap directly to investor milestones, proving every dollar raised accelerates real traction.'
+                        },
+                        {
+                          name: 'Signal-First UX™',
+                          description: "prototypes are designed to highlight investor signals — activation, retention, and monetization potential — not just look pretty."
+                        },
+                        {
+                          name: 'Risk-Slice MVP™',
+                          description: 'we scope your MVP to prove the riskiest assumption first, turning uncertainty into early validation.'
+                        }
+                      ]
                     },
                     {
                       number: '03',
                       icon: <PresentationIcon className="w-8 h-8" />,
                       title: 'Investor Preparation',
-                      description: 'Get investor-ready with professional pitch materials, outreach strategy, and legal preparation.',
+                      description: 'Get investor-ready with professional pitch materials, outreach, and legal preparation.',
                       details: [
                         'Investor outreach strategy',
-                        'One pager & pitch deck',
+                        'One-pager & pitch deck',
                         'Investment terms preparation',
                         'Legal documentation'
                       ],
-                      timeline: '2-3 weeks',
-                      product: 'investor'
+                      timeline: '2–3 weeks',
+                      product: 'investor',
+                      advantageTitle: 'The StartWise Advantage',
+                      advantageDescription: "We bridge the gap between being \"ready\" and actually getting funded.",
+                      advantages: [
+                        {
+                          name: 'IC Simulation™',
+                          description: 'a real mock Investment Committee, where founders face authentic VC questions before stepping into the real room.'
+                        },
+                        {
+                          name: 'Fund-Fit Map™',
+                          description: 'a curated list of investors who align with your stage, sector, and check size — so you pitch fewer rooms and close faster.'
+                        },
+                        {
+                          name: 'Data Room Lite™',
+                          description: 'a clean, DD-ready folder with all your materials, cutting weeks off investor decision cycles.'
+                        }
+                      ]
                     }
                   ].map((step, index) => (
                     <div key={index} className="relative flex justify-center">
@@ -338,14 +386,28 @@ const HeroSection = ({
                           {step.details.map((detail, idx) => (
                             <div key={idx} className="flex items-start text-sm text-gray-400">
                               <ArrowRight className="w-4 h-4 mr-2 mt-0.5 text-primary flex-shrink-0" />
-                              <span className="flex-1 text-center">{detail}</span>
+                              <span className="flex-1 text-left">{detail}</span>
                             </div>
                           ))}
                         </div>
 
                         {/* Timeline */}
-                        <div className="inline-flex items-center px-4 py-2 bg-primary/20 border border-primary/30 rounded-full text-sm font-medium text-primary mb-4">
+                        <div className="inline-flex items-center px-4 py-2 bg-primary/20 border border-primary/30 rounded-full text-sm font-medium text-primary mb-6">
                           {step.timeline}
+                        </div>
+
+                        {/* Advantage Section */}
+                        <div className="border-t border-white/10 pt-6 text-left">
+                          <h4 className="text-lg font-bold text-white mb-3">{step.advantageTitle}</h4>
+                          <p className="text-sm text-gray-300 mb-4 leading-relaxed">{step.advantageDescription}</p>
+                          <div className="space-y-4">
+                            {step.advantages.map((advantage, idx) => (
+                              <div key={idx} className="space-y-1">
+                                <div className="text-sm font-semibold text-primary">{advantage.name}</div>
+                                <div className="text-xs text-gray-400 leading-relaxed">{advantage.description}</div>
+                              </div>
+                            ))}
+                          </div>
                         </div>
 
                         {/* Product Tag */}
