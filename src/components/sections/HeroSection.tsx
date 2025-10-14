@@ -238,7 +238,7 @@ const HeroSection = ({
                   </div>
                   <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
                     <BadgeCheck className="w-8 h-8 text-primary mb-2" />
-                    <span className="text-sm font-medium text-white">Investor Ready</span>
+                    <span className="text-sm font-medium text-white">Become Investor Ready Fast</span>
                   </div>
                 </div>
               </div>
