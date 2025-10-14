@@ -782,7 +782,19 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             </Button>
           )}
           
-          {currentStep > 1 && (
+          {currentStep === 1 ? (
+            onBack && (
+              <Button
+                type="button"
+                onClick={onBack}
+                variant="outline"
+                className="w-full text-[15.5px] sm:text-[21.5px] font-bold py-3.5 sm:py-6 rounded-xl text-white border-2 border-white/30 hover:bg-white/10 hover:border-white/50 transition-all"
+              >
+                <ArrowLeft className="w-4 h-4 sm:w-6 sm:h-6 mr-2" />
+                Back to Home
+              </Button>
+            )
+          ) : (
             <Button
               type="button"
               onClick={prevStep}
