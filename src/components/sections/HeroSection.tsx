@@ -466,6 +466,7 @@ const HeroSection = ({
               </h2>
               <p className="text-lg sm:text-xl lg:text-2xl text-gray-300">
                 Tell us briefly about your startup. If you match our criteria, according to your stage, we will either connect you, or help you become investable.
+                <span className="block mt-2 text-sm text-gray-400">(Fill the questions carefully, we can only onboard up to 10 new entrepreneurs per month)</span>
               </p>
             </div>
             
