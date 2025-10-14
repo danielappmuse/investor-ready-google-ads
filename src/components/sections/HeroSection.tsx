@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Calendar, Star, CheckCircle, ArrowRight, Sparkles, Cpu, Zap, Database, Shield, Code2, Rocket } from 'lucide-react';
+import { Phone, Calendar, Star, CheckCircle, ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import InvestmentReadinessForm from '@/components/forms/InvestmentReadinessForm';
 import CalendlyWidget from '@/components/CalendlyWidget';
@@ -54,18 +54,12 @@ const HeroSection = ({
                 
                 
                 
-                <p className={`${isSmallScreen ? 'text-[12.5px]' : 'text-[15.5px]'} sm:text-[15px] lg:text-[17px] 2xl:text-[19px] 3xl:text-[23px] text-white leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl mt-1.5`}>
-                  At <strong>StartWise</strong>, we turn serious founders into <strong>fundable founders — in under 90 days.</strong>
+                <p className={`${isSmallScreen ? 'text-[13.5px]' : 'text-[16.5px]'} sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl text-white leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl mt-1.5`}>
+                  At StartWise, we turn serious founders into fundable founders  — with <span className="text-white font-bold">YC-level business strategy, pitch training, materials creation/improvement and investor access.</span>
                   <span className="block h-2" />
-                  <strong>✅ YC-level strategy & implementation</strong>
+                  ✅ Ready to raise? We'll connect you.
                   <br />
-                  <strong>📈 Market research, business plan/modeling</strong>
-                  <br />
-                  <strong>💼 Pitch-ready materials & investor network</strong>
-                  <span className="block h-2" />
-                  → <strong>Ready to raise?</strong> We'll connect you.
-                  <br />
-                  → <strong>Still building?</strong> We'll get you ready.
+                  ⚙️ Still building? We'll get you ready.
                 </p>
               </div>
             </div>
@@ -187,103 +181,6 @@ const HeroSection = ({
             </div>
           </div>}
 
-        {/* Why Choose Us */}
-        {currentView === 'products' && <div className="mt-16 lg:mt-20">
-            <div className="max-w-4xl mx-auto">
-              <div className="card-glass p-6 sm:p-8 lg:p-10 text-center">
-                <h4 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6 text-center">
-                  Why Serious Founders Choose <span className="gradient-text">StartWise</span>
-                </h4>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-300">Real founders who understand the startup journey</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-300">Proven track record with 200+ successful validations</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-300">Forbes-recognized expertise in startup development</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-300">100% money-back guarantee on all services</span>
-                  </div>
-                </div>
-                
-                {/* TechElements Content */}
-                <div className="relative mb-8">
-                  {/* Tech Grid Background */}
-                  <div className="absolute inset-0 tech-grid opacity-20" />
-                  
-                  {/* Holographic Border Effect */}
-                  <div className="absolute inset-0 holographic-border rounded-2xl" />
-                  
-                  {/* Content */}
-                  <div className="relative p-6 space-y-6">
-                    <div className="text-center">
-                      <h3 className="text-xl font-bold text-white mb-2">
-                        Powered by Advanced Technology
-                      </h3>
-                      <p className="text-gray-400 text-sm">
-                        Cutting-edge tools for startup success
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-3">
-                      {[
-                        { icon: Cpu, label: 'AI Analysis', description: 'Advanced machine learning algorithms' },
-                        { icon: Zap, label: 'Real-time Processing', description: 'Instant market validation' },
-                        { icon: Database, label: 'Big Data Insights', description: 'Comprehensive market data' },
-                        { icon: Shield, label: 'Secure Infrastructure', description: 'Enterprise-grade security' },
-                        { icon: Code2, label: 'Custom Development', description: 'Tailored solutions' },
-                        { icon: Rocket, label: 'Fast Deployment', description: 'Rapid prototype delivery' }
-                      ].map((feature, index) => (
-                        <div 
-                          key={feature.label}
-                          className={`group p-3 rounded-lg bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 animate-fade-in stagger-${index % 3 + 1} text-center`}
-                        >
-                          <div className="flex items-center space-x-2">
-                            <feature.icon className="w-4 h-4 text-primary group-hover:animate-pulse" />
-                            <div>
-                              <div className="text-white text-xs font-medium">{feature.label}</div>
-                              <div className="text-gray-400 text-xs">{feature.description}</div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Data Streams */}
-                    <div className="space-y-2">
-                      <div className="data-stream" />
-                      <div className="data-stream" style={{ animationDelay: '1s' }} />
-                      <div className="data-stream" style={{ animationDelay: '2s' }} />
-                    </div>
-
-                    {/* Floating Particles */}
-                    <div className="absolute inset-0 pointer-events-none">
-                      {[...Array(5)].map((_, i) => (
-                        <div 
-                          key={i}
-                          className="particle"
-                          style={{
-                            left: `${20 + i * 15}%`,
-                            top: `${30 + i * 10}%`,
-                            animationDelay: `${i * 1.2}s`
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>}
-
         {currentView === 'prototype-form' && <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-white mb-4">
@@ -311,7 +208,7 @@ const HeroSection = ({
               </p>
             </div>
             
-            <CalendlyWidget formData={formData!} />
+            
           </div>}
       </div>
     </section>;
