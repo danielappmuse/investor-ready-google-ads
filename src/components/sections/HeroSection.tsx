@@ -261,10 +261,10 @@ const HeroSection = ({
             <div className="container mx-auto px-4">
               {/* Section Header */}
               <div className="text-center mb-16">
-                <h2 className={`${isSmallScreen ? 'text-[15.5px]' : 'text-[17.5px]'} sm:text-xl lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-6`}>
+                <h2 className="text-[18px] sm:text-[22px] lg:text-[24px] 2xl:text-[28px] 3xl:text-[32px] font-bold text-white mb-4">
                   The Path to <span className="gradient-text">Investment-Ready</span>
                 </h2>
-                <p className={`${isSmallScreen ? 'text-[12.5px]' : 'text-[15.5px]'} sm:text-[15px] lg:text-[17px] 2xl:text-[19px] 3xl:text-[23px] text-gray-300 max-w-3xl mx-auto leading-relaxed`}>
+                <p className="text-[13.5px] sm:text-[15px] lg:text-[17px] 2xl:text-[19px] 3xl:text-[21px] text-gray-300 max-w-3xl mx-auto leading-relaxed">
                   Our proven 3-phase process transforms your startup into an investor-ready business 
                   under 90 days - from solid fundamentals to compelling investor materials.
                 </p>
@@ -390,13 +390,13 @@ const HeroSection = ({
                         </div>
 
                         {/* Content */}
-                        <h3 className={`${isSmallScreen ? 'text-[15.5px]' : 'text-[17.5px]'} sm:text-xl lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-4`}>{step.title}</h3>
-                        <p className={`${isSmallScreen ? 'text-[12.5px]' : 'text-[15.5px]'} sm:text-[15px] lg:text-[17px] 2xl:text-[19px] 3xl:text-[23px] text-gray-300 mb-6 leading-relaxed`}>{step.description}</p>
+                        <h3 className="text-[15px] sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-3">{step.title}</h3>
+                        <p className="text-[13px] sm:text-[15px] lg:text-[17px] 2xl:text-[19px] 3xl:text-[21px] text-gray-300 mb-5 leading-relaxed">{step.description}</p>
 
                         {/* Details */}
                         <div className="space-y-3 mb-6">
                           {step.details.map((detail, idx) => (
-                            <div key={idx} className="flex items-start text-sm text-gray-400">
+                            <div key={idx} className="flex items-start text-xs sm:text-sm text-gray-400">
                               <ArrowRight className="w-4 h-4 mr-2 mt-0.5 text-primary flex-shrink-0" />
                               <span className="flex-1 text-left">{detail}</span>
                             </div>
@@ -405,8 +405,8 @@ const HeroSection = ({
 
                         {/* Advantage Section */}
                         <div className="border-t border-white/10 pt-6 text-left mb-4">
-                          <h4 className={`${isSmallScreen ? 'text-[15.5px]' : 'text-[17.5px]'} sm:text-xl lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-3`}>{step.advantageTitle}</h4>
-                          <p className={`${isSmallScreen ? 'text-[12.5px]' : 'text-[15.5px]'} sm:text-[15px] lg:text-[17px] 2xl:text-[19px] 3xl:text-[23px] text-gray-300 mb-4 leading-relaxed`}>{step.advantageDescription}</p>
+                          <h4 className="text-[14.5px] sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-3">{step.advantageTitle}</h4>
+                          <p className="text-[13px] sm:text-[15px] lg:text-[17px] 2xl:text-[19px] 3xl:text-[21px] text-gray-300 mb-4 leading-relaxed">{step.advantageDescription}</p>
                           <div className="space-y-4">
                             {step.advantages.map((advantage, idx) => (
                               <div key={idx} className="space-y-1">
