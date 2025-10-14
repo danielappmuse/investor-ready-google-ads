@@ -757,28 +757,34 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             <Button
               type="button"
               onClick={nextStep}
-              className="btn-hero w-full animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all"
+              className="btn-hero w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all"
             >
-              Next
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <span className="flex items-center justify-center w-full">
+                Next
+                <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 ml-2" />
+              </span>
             </Button>
           ) : currentStep === 10 ? (
             <Button
               type="button"
               onClick={nextStep}
-              className="btn-hero w-full animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all"
+              className="btn-hero w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all"
             >
-              See My Score
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <span className="flex items-center justify-center w-full">
+                See My Score
+                <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 ml-2" />
+              </span>
             </Button>
           ) : (
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="btn-hero w-full animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all"
+              className="btn-hero w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all"
             >
-              {isSubmitting ? 'Submitting...' : 'Get Your Personalized Plan'}
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <span className="flex items-center justify-center w-full">
+                {isSubmitting ? 'Submitting...' : 'Get Your Personalized Plan'}
+                <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 ml-2" />
+              </span>
             </Button>
           )}
           
@@ -788,10 +794,12 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                 type="button"
                 onClick={onBack}
                 variant="outline"
-                className="w-full text-[15.5px] sm:text-[21.5px] font-bold py-3.5 sm:py-6 rounded-xl text-white border-2 border-white/30 hover:bg-white/10 hover:border-white/50 transition-all"
+                className="w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl text-white border-2 border-white/30 hover:bg-white/10 hover:border-white/50 transition-all"
               >
-                <ArrowLeft className="w-4 h-4 sm:w-6 sm:h-6 mr-2" />
-                Back to Home
+                <span className="flex items-center justify-center w-full">
+                  <ArrowLeft className="w-4 h-4 sm:w-6 sm:h-6 mr-2" />
+                  Back to Home
+                </span>
               </Button>
             )
           ) : (
@@ -799,10 +807,12 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               type="button"
               onClick={prevStep}
               variant="outline"
-              className="w-full text-[15.5px] sm:text-[21.5px] font-bold py-3.5 sm:py-6 rounded-xl text-white border-2 border-white/30 hover:bg-white/10 hover:border-white/50 transition-all"
+              className="w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl text-white border-2 border-white/30 hover:bg-white/10 hover:border-white/50 transition-all"
             >
-              <ArrowLeft className="w-4 h-4 sm:w-6 sm:h-6 mr-2" />
-              Previous
+              <span className="flex items-center justify-center w-full">
+                <ArrowLeft className="w-4 h-4 sm:w-6 sm:h-6 mr-2" />
+                Previous
+              </span>
             </Button>
           )}
         </div>
