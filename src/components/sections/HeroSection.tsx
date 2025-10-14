@@ -61,7 +61,7 @@ const HeroSection = ({
                   <span className="block h-2" />
                   <strong>✅ YC-level Business Strategy</strong>
                   <br />
-                  <strong>🚀 Execution that rivals Musk's intensity</strong>
+                  <strong>🚀 Musk-level Execution Intensity</strong>
                   <br />
                   <strong>📈 Market research, business plan/modeling</strong>
                   <br />
