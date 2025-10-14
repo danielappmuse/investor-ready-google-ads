@@ -55,11 +55,19 @@ const HeroSection = ({
                 
                 
                 <p className={`${isSmallScreen ? 'text-[13.5px]' : 'text-[16.5px]'} sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl text-white leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl mt-1.5`}>
-                  At StartWise, we turn serious founders into fundable founders <span className="text-white font-bold">under 90 days</span> — with <span className="text-white font-bold">YC-level business strategy, pitch training, materials creation/improvement and investor access.</span>
+                  <span className="text-white font-bold">Investor-Ready in 90 Days</span>
                   <span className="block h-2" />
-                  ✅ Ready to raise? We'll connect you.
+                  At StartWise, we turn serious founders into fundable founders — in under 90 days.
+                  <span className="block h-2" />
+                  ✅ YC-level business strategy
                   <br />
-                  ⚙️ Still building? We'll get you ready.
+                  📈 Market research, business plan/model & PRD development
+                  <br />
+                  💼 Pitch-ready materials & investor network
+                  <span className="block h-2" />
+                  ⚙️ Ready to raise? We'll connect you.
+                  <br />
+                  🚀 Still building? We'll get you ready.
                 </p>
               </div>
             </div>
