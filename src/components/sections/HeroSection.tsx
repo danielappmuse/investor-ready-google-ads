@@ -406,7 +406,7 @@ const HeroSection = ({
                         </div>
 
                         {/* Timeline */}
-                        <div className="inline-flex items-center px-4 py-2 bg-primary/20 border border-primary/30 rounded-full text-sm font-medium text-primary mt-2.5">
+                        <div className="inline-flex items-center px-4 py-2 bg-primary/20 border border-primary/30 rounded-full text-sm font-medium text-primary mt-2.5 mb-1.5">
                           {step.timeline}
                         </div>
 
