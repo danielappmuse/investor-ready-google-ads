@@ -730,6 +730,21 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
   return (
     <div className="card-glass p-3 lg:p-4">
+      {/* Back Button */}
+      {onBack && (
+        <div className="mb-3">
+          <Button
+            type="button"
+            onClick={onBack}
+            variant="ghost"
+            className="text-white hover:text-primary transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Home
+          </Button>
+        </div>
+      )}
+      
       {/* Progress Bar */}
       <div className="mb-2">
         <div className="flex items-center justify-center mb-1.5">
