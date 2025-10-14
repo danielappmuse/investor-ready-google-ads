@@ -752,7 +752,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             <div className="text-base font-bold text-white">
               {currentStep} / 11
             </div>
-            <p className="text-[10px] text-gray-400">Questions Complete</p>
+            <p className="text-[13px] text-gray-400">Questions Complete</p>
           </div>
         </div>
         <div className="w-full bg-muted rounded-full h-1">
