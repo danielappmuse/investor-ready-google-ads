@@ -62,7 +62,7 @@ const HeroSection = ({
                   <span className="block h-2" />
                   Even if the funding came tomorrow, <strong>would it disappear before the dream becomes real?</strong>
                   <span className="block h-2" />
-                  <strong>StartWise makes it simple:</strong>
+                  <strong>StartWise</strong> makes it <strong>simple</strong>:
                   <span className="block h-2" />
                   <strong>✅ YC-level Business Strategy</strong>
                   <br />
