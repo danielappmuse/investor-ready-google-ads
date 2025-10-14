@@ -48,14 +48,14 @@ const HeroSection = ({
                   <Star className={`${isSmallScreen ? 'w-3 h-3' : 'w-3.5 h-3.5'} 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-1.5 sm:mr-2 text-primary animate-pulse flex-shrink-0`} />
                   <span className="hidden sm:inline whitespace-nowrap">YC-Level Backing. Investor-Ready Results.</span>
                   <span className={`sm:hidden font-bold ${isSmallScreen ? 'text-[14px]' : 'text-[16px]'} whitespace-nowrap`}>
-                    <span className="text-white">Investor Ready</span> <span className="text-primary font-bold">Under 90 Days</span>
+                    <span className="text-white">Investor Ready</span> <span className="text-white font-bold">Under 90 Days</span>
                   </span>
                 </div>
                 
                 
                 
-                <p className={`${isSmallScreen ? 'text-[13.5px]' : 'text-[16.5px]'} sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl text-gray-300 leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl mt-1.5`}>
-                  At StartWise, we turn serious founders into fundable founders <span className="text-primary font-bold">under 90 days</span> — with <span className="text-primary font-bold">YC-level business strategy, pitch training, materials creation/improvement and investor access.</span>
+                <p className={`${isSmallScreen ? 'text-[13.5px]' : 'text-[16.5px]'} sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl text-white leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl mt-1.5`}>
+                  At StartWise, we turn serious founders into fundable founders <span className="text-white font-bold">under 90 days</span> — with <span className="text-white font-bold">YC-level business strategy, pitch training, materials creation/improvement and investor access.</span>
                   <span className="block h-2" />
                   ✅ Ready to raise? We'll connect you.
                   <br />
@@ -74,7 +74,7 @@ const HeroSection = ({
                         Investor-Readiness Assessment
                       </h3>
                     </div>
-                    <p className={`${isSmallScreen ? 'text-[13px]' : 'text-[15.5px]'} sm:text-[17.5px] 2xl:text-lg 3xl:text-xl text-gray-300 mb-3 sm:mb-6 2xl:mb-7 3xl:mb-8 leading-tight sm:leading-snug`}>Your path to investment starts here. Take a quick quiz, get interviewed by ex-VCs and founders who've raised before multiple times.</p>
+                    <p className={`${isSmallScreen ? 'text-[13px]' : 'text-[15.5px]'} sm:text-[17.5px] 2xl:text-lg 3xl:text-xl text-white mb-3 sm:mb-6 2xl:mb-7 3xl:mb-8 leading-tight sm:leading-snug`}>Your path to investment starts here. Take a quick quiz, get interviewed by ex-VCs and founders who've raised before multiple times.</p>
                     
                     {/* Urgency Badge */}
                     
@@ -95,15 +95,15 @@ const HeroSection = ({
                   
                   {/* Trust Badges */}
                   <div className="flex flex-nowrap gap-1 sm:gap-2 mt-[6px] sm:mt-[14px] mb-[5px] justify-center xl:justify-start">
-                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-0.5 sm:py-1.5 2xl:py-2 bg-blue-500/20 border border-blue-400/30 rounded-full text-[9px] xs:text-[10px] min-[450px]:text-xs sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-blue-300 whitespace-nowrap`}>
+                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-0.5 sm:py-1.5 2xl:py-2 bg-blue-500/20 border border-blue-400/30 rounded-full text-[9px] xs:text-[10px] min-[450px]:text-xs sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-white whitespace-nowrap`}>
                       <CheckCircle className="w-2 h-2 xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-0.5 sm:mr-1 flex-shrink-0" />
                       NDA Protected
                     </div>
-                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-0.5 sm:py-1.5 2xl:py-2 bg-green-500/20 border border-green-400/30 rounded-full text-[9px] xs:text-[10px] min-[450px]:text-xs sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-green-300 whitespace-nowrap`}>
+                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-0.5 sm:py-1.5 2xl:py-2 bg-green-500/20 border border-green-400/30 rounded-full text-[9px] xs:text-[10px] min-[450px]:text-xs sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-white whitespace-nowrap`}>
                       <CheckCircle className="w-2 h-2 xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-0.5 sm:mr-1 flex-shrink-0" />
                       100% Risk FREE
                     </div>
-                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-0.5 sm:py-1.5 2xl:py-2 bg-purple-500/20 border border-purple-400/30 rounded-full text-[9px] xs:text-[10px] min-[450px]:text-xs sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-purple-300 whitespace-nowrap`}>
+                    <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-0.5 sm:py-1.5 2xl:py-2 bg-purple-500/20 border border-purple-400/30 rounded-full text-[9px] xs:text-[10px] min-[450px]:text-xs sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-white whitespace-nowrap`}>
                       <Star className="w-2 h-2 xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-0.5 sm:mr-1 flex-shrink-0" />
                       YC-Level Backing
                     </div>
@@ -177,7 +177,7 @@ const HeroSection = ({
               </div>
             </div>
             <div className="text-center mt-6 sm:mt-8">
-              <p className={`${isSmallScreen ? 'text-[11px]' : 'text-sm'} sm:text-[1.3rem] 2xl:text-[1.4375rem] 3xl:text-[1.725rem] text-gray-400`}>Recognized by leading media and financial publications</p>
+              <p className={`${isSmallScreen ? 'text-[11px]' : 'text-sm'} sm:text-[1.3rem] 2xl:text-[1.4375rem] 3xl:text-[1.725rem] text-white`}>Recognized by leading media and financial publications</p>
             </div>
           </div>}
 
