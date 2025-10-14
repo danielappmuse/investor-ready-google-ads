@@ -59,7 +59,9 @@ const HeroSection = ({
                   <span className="block h-2" />
                   At <strong>StartWise</strong>, we turn serious founders into <strong>fundable founders under 90 days.</strong>
                   <span className="block h-2" />
-                  <strong>✅ YC-level strategy & implementation</strong>
+                  <strong>✅ YC-level Business Strategy</strong>
+                  <br />
+                  <strong>🚀 Execution that rivals Musk's intensity</strong>
                   <br />
                   <strong>📈 Market research, business plan/modeling</strong>
                   <br />
