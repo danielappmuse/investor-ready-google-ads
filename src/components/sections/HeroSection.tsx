@@ -62,15 +62,6 @@ const HeroSection = ({
                   <strong>📈 Market research, business plan/modeling</strong>
                   <br />
                   <strong>💼 Pitch-ready materials & investor network</strong>
-                  <br />
-                  <div className="mt-2 mb-2 flex items-start gap-2">
-                    <span className="text-2xl mt-[-2px]">✅</span>
-                    <div>
-                      <strong>Access to investors who actually invest</strong>
-                      <br />
-                      <span className="text-gray-300">We don't just "prepare" you — we connect you to real funds and angels looking for your exact stage and vertical, so your next step is traction, not chasing meetings.</span>
-                    </div>
-                  </div>
                   <span className="block h-2" />
                   → <strong>Ready to raise?</strong> We'll connect you.
                   <br />
@@ -227,6 +218,12 @@ const HeroSection = ({
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                     <div className="text-sm sm:text-base text-gray-300">
                       <strong>Investor-ready, not theory-ready</strong> Every deliverable is built with one goal: to make real investors say "yes." You'll walk away with a fundable, data-driven business — not a slide deck of ideas.
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3 md:col-span-2">
+                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <div className="text-sm sm:text-base text-gray-300">
+                      <strong>Access to investors who actually invest</strong> We don't just "prepare" you — we connect you to real funds and angels looking for your exact stage and vertical, so your next step is traction, not chasing meetings.
                     </div>
                   </div>
                 </div>
