@@ -7,6 +7,7 @@ import { ContactFormData } from '@/types/form';
 import FuturisticBackground from '@/components/tech/FuturisticBackground';
 import FloatingStats from '@/components/tech/FloatingStats';
 import { useIsSmallScreen } from '@/hooks/use-small-screen';
+import underlineAccent from '@/assets/underline-accent.png';
 interface HeroSectionProps {
   startWithPrototype?: boolean;
   onAnimationComplete?: (complete: boolean) => void;
@@ -48,7 +49,11 @@ const HeroSection = ({
                   <Star className={`${isSmallScreen ? 'w-3 h-3' : 'w-3.5 h-3.5'} 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-1.5 sm:mr-2 text-primary animate-pulse flex-shrink-0`} />
                   <span className="hidden sm:inline whitespace-nowrap">YC-Level Backing. Investor-Ready Results.</span>
                   <span className={`sm:hidden font-bold ${isSmallScreen ? 'text-[14px]' : 'text-[16px]'} whitespace-nowrap`}>
-                    <span className="text-white">Investor Ready</span> <span className="text-white font-bold">Under 90 Days</span>
+                    <span className="text-white">Investor Ready</span> 
+                    <span className="inline-flex flex-col items-center">
+                      <span className="text-white font-bold">Under 90 Days</span>
+                      <img src={underlineAccent} alt="" className="w-[80px] mt-[-2px]" />
+                    </span>
                   </span>
                 </div>
                 
