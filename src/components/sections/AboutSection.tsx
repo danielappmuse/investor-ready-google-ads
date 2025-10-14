@@ -42,11 +42,11 @@ const AboutSection = () => {
             Meet Our Team
           </div>
           
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             The <span className="gradient-text">Team</span> Behind StartWise
           </h2>
           
-          <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             We're not just consultants — we're founders who've been in your shoes. 
             Our team combines real startup experience with proven methodologies to guide your success.
           </p>
@@ -66,7 +66,7 @@ const AboutSection = () => {
               <div className="card-glass p-4 sm:p-6 inline-flex items-center space-x-4 rounded-xl">
                 <img src="/lovable-uploads/7104bb15-7ae8-41a9-a71b-b8b04037b57f.png" alt="Forbes Agency Council 2025 Official Member" className="h-24 sm:h-16 lg:h-32 w-auto" />
                 <div>
-                  <div className="text-sm sm:text-base font-semibold text-white">Forbes Recognition</div>
+                  <div className="text-base font-semibold text-white">Forbes Recognition</div>
                   <div className="text-xs sm:text-sm text-gray-400">Agency Council Member 2025</div>
                 </div>
               </div>
@@ -76,7 +76,7 @@ const AboutSection = () => {
 
           {/* Right Column - Team Members */}
           <div className="space-y-6 sm:space-y-8">
-            <h3 className="text-2xl sm:text-3xl font-bold text-white text-center xl:text-left">
+            <h3 className="text-xl font-bold text-white text-center xl:text-left">
               Meet the Founders
             </h3>
             
@@ -84,9 +84,9 @@ const AboutSection = () => {
                 <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
                   <img src={member.image} alt={member.name} className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full object-cover flex-shrink-0 border-4 border-primary/20" />
                   <div className="flex-1 text-center sm:text-left">
-                    <h4 className="text-xl sm:text-2xl font-bold text-white mb-2">{member.name}</h4>
+                    <h4 className="text-xl font-bold text-white mb-2">{member.name}</h4>
                     <p className="text-primary font-semibold mb-3">{member.role}</p>
-                    <p className="text-sm sm:text-base text-gray-300 leading-relaxed">{member.bio}</p>
+                    <p className="text-base text-gray-300 leading-relaxed">{member.bio}</p>
                   </div>
                 </div>
               </div>)}
@@ -96,10 +96,10 @@ const AboutSection = () => {
         {/* Office Section */}
         <div className="mt-16 lg:mt-20">
           <div className="text-center mb-8 lg:mb-12">
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+            <h3 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Our <span className="gradient-text">Miami Office</span>
             </h3>
-            <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Located in the heart of Miami's business district, our office reflects our commitment to innovation and excellence.
             </p>
           </div>

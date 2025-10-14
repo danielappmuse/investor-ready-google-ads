@@ -25,11 +25,11 @@ const ContactSection = () => {
                 90-Day Investment Readiness Program
               </div>
               
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Get <span className="gradient-text">Investment-Ready</span> under 90 Days
               </h2>
               
-              <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed mb-6 sm:mb-8">
+              <p className="text-xl text-gray-300 leading-relaxed mb-6 sm:mb-8">
                 Complete our Investment Readiness Assessment to get a personalized roadmap 
                 and discover exactly what you need to secure funding.
               </p>
@@ -38,15 +38,15 @@ const ContactSection = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-6 lg:space-x-8 mb-6 sm:mb-8">
                 <div className="flex items-center space-x-2 sm:space-x-3 text-gray-300">
                   <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
-                  <span className="text-sm sm:text-base">+1 (786) 829-1382</span>
+                  <span className="text-base">+1 (786) 829-1382</span>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3 text-gray-300">
                   <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
-                  <span className="text-sm sm:text-base">support@start-wise.io</span>
+                  <span className="text-base">support@start-wise.io</span>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3 text-gray-300">
                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
-                  <span className="text-sm sm:text-base">1001 Brickell Bay Dr 33131</span>
+                  <span className="text-base">1001 Brickell Bay Dr 33131</span>
                 </div>
               </div>
             </div>
@@ -60,10 +60,10 @@ const ContactSection = () => {
                 <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 flex-shrink-0" />
                 Form Submitted Successfully!
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">
+              <h2 className="text-xl font-bold text-white mb-3 sm:mb-4">
                 Schedule Your Free Consultation
               </h2>
-              <p className="text-sm sm:text-base text-gray-300">
+              <p className="text-base text-gray-300">
                 Thank you {formData?.full_name}! Let's discuss your startup and 
                 create a roadmap for success.
               </p>

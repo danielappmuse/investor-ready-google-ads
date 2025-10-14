@@ -13,7 +13,7 @@ const TechnologiesSection = () => {
     <section className="py-16 bg-background/50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h3 className="text-lg font-medium text-muted-foreground mb-2">
+          <h3 className="text-xl font-medium text-muted-foreground mb-2">
             Technologies we use
           </h3>
         </div>

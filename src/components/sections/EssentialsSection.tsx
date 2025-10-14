@@ -40,8 +40,8 @@ const EssentialsSection = ({
     <section id="essentials" className="py-20 relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">Everything Your Business Must Have</h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Everything Your Business Must Have</h2>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Two critical pillars for investment readiness
           </p>
         </div>
@@ -59,15 +59,15 @@ const EssentialsSection = ({
                   {essentials.business.icon}
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{essentials.business.title}</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">{essentials.business.title}</h3>
                   <p className="text-primary font-semibold">{essentials.business.subtitle}</p>
                 </div>
               </div>
-              <p className="text-gray-300 mb-8">{essentials.business.description}</p>
+              <p className="text-base text-gray-300 mb-8">{essentials.business.description}</p>
 
               <div className="grid md:grid-cols-3 gap-8">
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                  <h4 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
                     <Star className="w-5 h-5 text-primary" />
                     Benefits
                   </h4>
@@ -82,7 +82,7 @@ const EssentialsSection = ({
                 </div>
 
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                  <h4 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
                     <FileText className="w-5 h-5 text-primary" />
                     Process
                   </h4>
@@ -97,7 +97,7 @@ const EssentialsSection = ({
                 </div>
 
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                  <h4 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
                     <Target className="w-5 h-5 text-primary" />
                     Outcomes
                   </h4>
@@ -131,15 +131,15 @@ const EssentialsSection = ({
                   {essentials.investor.icon}
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{essentials.investor.title}</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">{essentials.investor.title}</h3>
                   <p className="text-primary font-semibold">{essentials.investor.subtitle}</p>
                 </div>
               </div>
-              <p className="text-gray-300 mb-8">{essentials.investor.description}</p>
+              <p className="text-base text-gray-300 mb-8">{essentials.investor.description}</p>
 
               <div className="grid md:grid-cols-3 gap-8">
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                  <h4 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
                     <Star className="w-5 h-5 text-primary" />
                     Benefits
                   </h4>
@@ -154,7 +154,7 @@ const EssentialsSection = ({
                 </div>
 
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                  <h4 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
                     <FileText className="w-5 h-5 text-primary" />
                     Process
                   </h4>
@@ -169,7 +169,7 @@ const EssentialsSection = ({
                 </div>
 
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                  <h4 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
                     <Target className="w-5 h-5 text-primary" />
                     Outcomes
                   </h4>
