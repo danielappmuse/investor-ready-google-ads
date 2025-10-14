@@ -47,11 +47,21 @@ const HeroSection = ({
       <FloatingStats />
       
       <div className="container mx-auto px-4 sm:px-4 lg:px-6 xl:px-8 2xl:px-12 3xl:px-16 relative z-10">
-        {currentView === 'products' && <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 items-center">
-            {/* Hero Content */}
-            <div className="space-y-0.5 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-fade-in-up text-center xl:text-left flex flex-col items-center xl:items-start">
+        {currentView === 'products' && <>
+          {/* Main Title - Desktop centered, Mobile as is */}
+          <div className="hidden xl:flex justify-center mb-8 animate-fade-in">
+            <div className="inline-flex items-center justify-center px-5 py-1.5 2xl:py-2 3xl:py-2 bg-primary/20 border border-primary/30 rounded-full text-[25px] lg:text-[27px] 2xl:text-[31px] 3xl:text-[37px] font-bold text-white">
+              <Star className="w-4 h-4 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-2 text-primary animate-pulse flex-shrink-0" />
+              <span className="whitespace-nowrap">YC-Level Backing. Investor-Ready Results.</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-8 items-center">
+            {/* Left Column - Hero Content */}
+            <div className="space-y-0.5 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-fade-in-up text-center xl:text-center flex flex-col items-center">
               <div className="space-y-0.5 sm:space-y-2 lg:space-y-3 2xl:space-y-4 3xl:space-y-6">
-                <div className={`inline-flex items-center justify-center px-5 sm:px-4 2xl:px-5 3xl:px-6 py-1.5 2xl:py-1.5 3xl:py-2 bg-primary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[21px]' : 'text-[23px]'} sm:text-[25px] lg:text-[27px] 2xl:text-[31px] 3xl:text-[37px] font-bold text-white mb-6 sm:mb-8 mt-6 sm:mt-8 w-[320px] sm:w-auto`}>
+                {/* Mobile Title Only */}
+                <div className={`xl:hidden inline-flex items-center justify-center px-5 sm:px-4 2xl:px-5 3xl:px-6 py-1.5 2xl:py-1.5 3xl:py-2 bg-primary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[21px]' : 'text-[23px]'} sm:text-[25px] lg:text-[27px] 2xl:text-[31px] 3xl:text-[37px] font-bold text-white mb-6 sm:mb-8 mt-6 sm:mt-8 w-[320px] sm:w-auto`}>
                   <Star className={`${isSmallScreen ? 'w-3 h-3' : 'w-3.5 h-3.5'} 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-1.5 sm:mr-2 text-primary animate-pulse flex-shrink-0`} />
                   <span className="hidden sm:inline whitespace-nowrap">YC-Level Backing. Investor-Ready Results.</span>
                   <span className={`sm:hidden font-bold ${isSmallScreen ? 'text-[18px]' : 'text-[20px]'} whitespace-nowrap`}>
@@ -61,8 +71,6 @@ const HeroSection = ({
                     </span>
                   </span>
                 </div>
-                
-                
                 
                 <p className={`${isSmallScreen ? 'text-[12.5px]' : 'text-[15.5px]'} sm:text-base lg:text-lg text-white leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl mt-1.5`}>
                   <strong>You've pitched for months, maybe years, and still don't know what's missing.</strong>
@@ -82,20 +90,17 @@ const HeroSection = ({
               </div>
             </div>
 
-            {/* Right Column - CTA */}
-            <div className="space-y-1 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-slide-in-right mt-0.5 xl:mt-0 max-w-lg 2xl:max-w-xl 3xl:max-w-2xl mx-auto xl:mx-0 w-full px-2 flex flex-col items-center xl:items-start">
-              <div className="animate-fade-in stagger-4 w-full text-center xl:text-left flex flex-col items-center xl:items-start">
+            {/* Right Column - Assessment Card */}
+            <div className="space-y-1 sm:space-y-3 lg:space-y-4 2xl:space-y-6 3xl:space-y-8 animate-slide-in-right mt-0.5 xl:mt-0 max-w-lg 2xl:max-w-xl 3xl:max-w-2xl mx-auto w-full px-2 flex flex-col items-center">
+              <div className="animate-fade-in stagger-4 w-full text-center flex flex-col items-center">
                 <div className="space-y-2 sm:space-y-3 2xl:space-y-4 3xl:space-y-5">
                   <div className="group w-full max-w-full overflow-hidden box-border p-3 sm:p-5 lg:p-6 2xl:p-8 3xl:p-10 border-2 border-white/20 rounded-lg card-glass mt-3">
-                    <div className="mb-2 sm:mb-4 2xl:mb-5 3xl:mb-6">
+                    <div className="mb-2 sm:mb-4 2xl:mb-5 3xl:mb-6 text-center">
                       <h3 className={`${isSmallScreen ? 'text-[15.5px]' : 'text-[17.5px]'} sm:text-xl lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white transition-all leading-tight`}>
                         Investor-Readiness Assessment
                       </h3>
                     </div>
-                    <p className={`${isSmallScreen ? 'text-[13px]' : 'text-[15.5px]'} sm:text-base lg:text-lg text-white mb-3 sm:mb-6 2xl:mb-7 3xl:mb-8 leading-tight sm:leading-snug`}>Your path to investment starts here. Take a quick quiz, get interviewed by ex-VCs and founders who've raised before multiple times.</p>
-                    
-                    {/* Urgency Badge */}
-                    
+                    <p className={`${isSmallScreen ? 'text-[13px]' : 'text-[15.5px]'} sm:text-base lg:text-lg text-white mb-3 sm:mb-6 2xl:mb-7 3xl:mb-8 leading-tight sm:leading-snug text-center`}>Your path to investment starts here. Take a quick quiz, get interviewed by ex-VCs and founders who've raised before multiple times.</p>
                     
                     <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse group relative overflow-hidden">
                       <span className="relative z-10 flex items-center justify-center gap-1.5 sm:gap-3 leading-tight">
@@ -104,15 +109,10 @@ const HeroSection = ({
                         <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                       </span>
                     </Button>
-                    
-                    {/* Social Proof Below Button */}
-                    <div className="mt-2 sm:mt-3 text-center">
-                      
-                    </div>
                   </div>
                   
                   {/* Trust Badges */}
-                  <div className="flex flex-nowrap gap-1 sm:gap-2 mt-[6px] sm:mt-[14px] mb-[5px] justify-center xl:justify-start">
+                  <div className="flex flex-nowrap gap-1 sm:gap-2 mt-[6px] sm:mt-[14px] mb-[5px] justify-center">
                     <div className={`inline-flex items-center px-1.5 sm:px-2.5 2xl:px-3 3xl:px-3.5 py-0.5 sm:py-1.5 2xl:py-2 bg-blue-500/20 border border-blue-400/30 rounded-full text-[9px] xs:text-[10px] min-[450px]:text-xs sm:text-sm 2xl:text-base 3xl:text-lg font-medium text-white whitespace-nowrap`}>
                       <CheckCircle className="w-2 h-2 xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3 2xl:w-3.5 2xl:h-3.5 3xl:w-4 3xl:h-4 mr-0.5 sm:mr-1 flex-shrink-0" />
                       NDA Protected
@@ -129,10 +129,11 @@ const HeroSection = ({
                 </div>
               </div>
             </div>
-          </div>}
+          </div>
+        </>}
 
         {/* Media Logos */}
-        {currentView === 'products' && <div className="mt-[26px] sm:mt-12 lg:mt-14 2xl:mt-[18.5rem] 3xl:mt-[23rem] animate-fade-in stagger-5">
+        {currentView === 'products' && <div className="mt-[26px] sm:mt-12 lg:mt-14 xl:mt-16 2xl:mt-20 3xl:mt-24 animate-fade-in stagger-5">
             <div className="text-center mb-2">
               <p className={`${isSmallScreen ? 'text-[11px]' : 'text-sm'} sm:text-base lg:text-lg text-white font-bold`}>Recognized by leading media and financial publications</p>
             </div>
