@@ -291,7 +291,7 @@ const HeroSection = ({
                       timeline: '2–3 weeks',
                       product: 'business',
                       advantageTitle: 'What Makes This Phase Different',
-                      advantageDescription: "We don't just write business plans — we build investment logic.",
+                      advantageDescription: "We don't just write business plans, we build investment logic.",
                       advantages: [
                         {
                           name: 'Deal-Logic Map™',
@@ -321,7 +321,7 @@ const HeroSection = ({
                       timeline: '6–8 weeks',
                       product: 'tech',
                       advantageTitle: 'Inside the StartWise Method™',
-                      advantageDescription: "Our design & development phase is built to impress investors — not just users.",
+                      advantageDescription: "Our design & development phase is built to impress investors, not just users.",
                       advantages: [
                         {
                           name: 'PRD-to-Pitch Bridge™',
