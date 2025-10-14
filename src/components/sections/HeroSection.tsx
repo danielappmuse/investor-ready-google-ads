@@ -57,7 +57,7 @@ const HeroSection = ({
                 <p className={`${isSmallScreen ? 'text-[12.5px]' : 'text-[15.5px]'} sm:text-[15px] lg:text-[17px] 2xl:text-[19px] 3xl:text-[23px] text-white leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl mt-1.5`}>
                   <strong>Why Serious Founders Choose StartWise?</strong>
                   <span className="block h-2" />
-                  At <strong>StartWise</strong>, we turn serious founders into <strong>fundable founders — in under 90 days.</strong>
+                  At <strong>StartWise</strong>, we turn serious founders into <strong>fundable founders under 90 days.</strong>
                   <span className="block h-2" />
                   <strong>✅ YC-level strategy & implementation</strong>
                   <br />
