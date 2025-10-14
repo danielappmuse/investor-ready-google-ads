@@ -201,7 +201,7 @@ const HeroSection = ({
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                     <div className="text-sm sm:text-base text-gray-300">
-                      <strong>Built by founders, not consultants</strong> We've raised over $3M+ ourselves — we know what actually gets funded. Now we help other founders avoid mistakes and move faster.
+                      <strong>Built by founders, not consultants</strong> We've raised millions ourselves, we know what actually gets funded. Now we help other founders avoid mistakes and move faster.
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
