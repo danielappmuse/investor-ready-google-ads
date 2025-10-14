@@ -445,6 +445,17 @@ const HeroSection = ({
                   ))}
                 </div>
               </div>
+              
+              {/* CTA Button */}
+              <div className="mt-12 max-w-md mx-auto">
+                <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse group relative overflow-hidden">
+                  <span className="relative z-10 flex items-center justify-center gap-1.5 sm:gap-3 leading-tight">
+                    <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 animate-pulse flex-shrink-0" />
+                    <span className="text-center">I'm excited! Let's proceed</span>
+                    <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+                  </span>
+                </Button>
+              </div>
             </div>
           </section>}
 
