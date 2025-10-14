@@ -404,12 +404,12 @@ const HeroSection = ({
 
                         {/* Content */}
                         <h3 className="text-[15px] sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-3">{step.title}</h3>
-                        <p className="text-[13px] sm:text-[15px] lg:text-[17px] 2xl:text-[19px] 3xl:text-[21px] text-gray-300 mb-5 leading-relaxed">{step.description}</p>
+                        <p className="text-sm sm:text-base lg:text-lg text-gray-300 mb-5 leading-relaxed">{step.description}</p>
 
                         {/* Details */}
                         <div className="space-y-3 mb-6">
                           {step.details.map((detail, idx) => (
-                            <div key={idx} className="flex items-start text-xs sm:text-sm text-gray-400">
+                            <div key={idx} className="flex items-start text-sm sm:text-base text-gray-400">
                               <ArrowRight className="w-4 h-4 mr-2 mt-0.5 text-primary flex-shrink-0" />
                               <span className="flex-1 text-left">{detail}</span>
                             </div>
@@ -418,13 +418,13 @@ const HeroSection = ({
 
                         {/* Advantage Section */}
                         <div className="border-t border-white/10 pt-6 text-left mb-4">
-                          <h4 className="text-[14.5px] sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-3">{step.advantageTitle}</h4>
-                          <p className="text-[13px] sm:text-[15px] lg:text-[17px] 2xl:text-[19px] 3xl:text-[21px] text-gray-300 mb-4 leading-relaxed">{step.advantageDescription}</p>
+                          <h4 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-3">{step.advantageTitle}</h4>
+                          <p className="text-sm sm:text-base lg:text-lg text-gray-300 mb-4 leading-relaxed">{step.advantageDescription}</p>
                           <div className="space-y-4">
                             {step.advantages.map((advantage, idx) => (
                               <div key={idx} className="space-y-1">
-                                <div className="text-sm font-semibold text-primary">{advantage.name}</div>
-                                <div className="text-xs text-gray-400 leading-relaxed">{advantage.description}</div>
+                                <div className="text-sm sm:text-base font-semibold text-primary">{advantage.name}</div>
+                                <div className="text-xs sm:text-sm text-gray-400 leading-relaxed">{advantage.description}</div>
                               </div>
                             ))}
                           </div>
