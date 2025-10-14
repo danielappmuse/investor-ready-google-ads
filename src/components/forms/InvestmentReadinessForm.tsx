@@ -282,7 +282,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         return (
           <div className="space-y-2">
             <Label htmlFor="app_idea" className="text-white text-lg mb-0.5 block">
-              Briefly describe your app idea and the problem it solves
+              Briefly describe your app idea and the problem it solves <span className="text-gray-400 text-sm">(Your idea stays yours, fully protected by our NDA)</span>
             </Label>
             <p className="text-base text-gray-400 mb-1">
               We have <span className="relative inline-block">limited capacity<span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-red-600/40 to-red-600" style={{ clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)' }}></span></span> and prioritize Founders solving real human problems with potential to scale.
