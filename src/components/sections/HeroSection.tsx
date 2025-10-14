@@ -465,7 +465,7 @@ const HeroSection = ({
                 Check Whether You're Qualified for Our 90-Day Investment Readiness Program
               </h2>
               <p className="text-sm sm:text-base lg:text-lg text-gray-300">
-                Tell us about your startup and we'll schedule a strategy call to discuss how we'll make you investor-ready
+                Tell us briefly about your startup. If you match our criteria, according to your stage, we will either connect you, or help you become investable.
               </p>
             </div>
             
