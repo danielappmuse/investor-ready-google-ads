@@ -7,6 +7,7 @@ import { ContactFormData } from '@/types/form';
 import FuturisticBackground from '@/components/tech/FuturisticBackground';
 import FloatingStats from '@/components/tech/FloatingStats';
 import { useIsSmallScreen } from '@/hooks/use-small-screen';
+import arrowPointer from '@/assets/arrow-pointer.png';
 interface HeroSectionProps {
   startWithPrototype?: boolean;
   onAnimationComplete?: (complete: boolean) => void;
@@ -47,8 +48,12 @@ const HeroSection = ({
                 <div className={`inline-flex items-center justify-center px-3 sm:px-3 2xl:px-4 3xl:px-5 py-1 2xl:py-1.5 3xl:py-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full ${isSmallScreen ? 'text-[14px]' : 'text-[16px]'} sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-6 sm:mb-8 mt-6 sm:mt-8 w-[280px] sm:w-auto`}>
                   <Star className={`${isSmallScreen ? 'w-3 h-3' : 'w-3.5 h-3.5'} 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-1.5 sm:mr-2 text-primary animate-pulse flex-shrink-0`} />
                   <span className="hidden sm:inline whitespace-nowrap">YC-Level Backing. Investor-Ready Results.</span>
-                  <span className={`sm:hidden font-bold ${isSmallScreen ? 'text-[14px]' : 'text-[16px]'} whitespace-nowrap`}>
-                    <span className="text-white">Investor Ready</span> <span className="gradient-text">Under 90 Days</span>
+                  <span className={`sm:hidden font-bold ${isSmallScreen ? 'text-[14px]' : 'text-[16px]'} whitespace-nowrap flex items-center gap-1`}>
+                    <span className="text-white">Investor Ready</span>
+                    <span className="flex flex-col items-center">
+                      <img src={arrowPointer} alt="" className="w-5 h-5 mb-[-2px]" />
+                      <span className="gradient-text">Under 90 Days</span>
+                    </span>
                   </span>
                 </div>
                 
