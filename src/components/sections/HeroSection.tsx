@@ -246,7 +246,7 @@ const HeroSection = ({
                     <BadgeCheck className="w-8 h-8 text-primary mb-2" />
                     <span className="text-sm font-medium text-white">Become Investor Ready</span>
                   </div>
-                  <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-primary/30 md:col-span-2">
+                  <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-primary/30 col-span-2 md:col-span-4">
                     <Handshake className="w-10 h-10 text-primary mb-2 animate-pulse" />
                     <span className="text-base font-bold text-white">Access to Real Investors</span>
                   </div>
