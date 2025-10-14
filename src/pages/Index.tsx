@@ -178,7 +178,7 @@ const Index = () => {
           <NDASection />
           <ProcessSection />
           <EssentialsSection onValidationClick={handleValidationClick} />
-          <ContactSection />
+          <ContactSection onAssessmentClick={handlePrototypeClick} />
         </>
       )}
     </Layout>
