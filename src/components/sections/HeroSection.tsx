@@ -50,7 +50,7 @@ const HeroSection = ({
                   <span className={`sm:hidden font-bold ${isSmallScreen ? 'text-[14px]' : 'text-[16px]'} whitespace-nowrap`}>
                     <span className="text-white">Investor Ready</span> <span className="text-white font-bold relative inline-block">
                       Under 90 Days
-                      <span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent to-red-600" style={{ clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)' }}></span>
+                      <span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-red-600/40 to-red-600" style={{ clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)' }}></span>
                     </span>
                   </span>
                 </div>
