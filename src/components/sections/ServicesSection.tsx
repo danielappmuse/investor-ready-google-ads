@@ -46,7 +46,7 @@ const ServicesSection = ({
         <div className="text-center">
           <Button onClick={onValidationClick} className="btn-hero text-base px-8 py-6">
             <img src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" alt="StartWise Logo" className="w-4 h-4 mr-2 filter drop-shadow-sm flex-shrink-0" style={{ background: 'transparent' }} />
-            Get Your Business Investment-Ready
+            Become Investment Ready Today!
             <ArrowRight className="w-5 h-5 ml-2" />
           </Button>
         </div>
