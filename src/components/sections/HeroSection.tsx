@@ -245,8 +245,7 @@ const HeroSection = ({
             </div>
           </div>}
 
-        {/* The Path to Investment-Ready Section */}
-        {currentView === 'products' && <div className="py-12">
+        {currentView === 'products' && <section id="process" className="py-12">
             <div className="container mx-auto px-4">
               {/* Section Header */}
               <div className="text-center mb-16">
@@ -367,7 +366,7 @@ const HeroSection = ({
                 </div>
               </div>
             </div>
-          </div>}
+          </section>}
 
         {currentView === 'prototype-form' && <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
