@@ -757,34 +757,34 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             <Button
               type="button"
               onClick={nextStep}
-              className="btn-hero w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all"
+              className="btn-hero w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all relative"
             >
-              <span className="flex items-center justify-center w-full">
+              <span className="absolute inset-0 flex items-center justify-center">
                 Next
-                <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 ml-2" />
               </span>
+              <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 ml-auto relative z-10" />
             </Button>
           ) : currentStep === 10 ? (
             <Button
               type="button"
               onClick={nextStep}
-              className="btn-hero w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all"
+              className="btn-hero w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all relative"
             >
-              <span className="flex items-center justify-center w-full">
+              <span className="absolute inset-0 flex items-center justify-center">
                 See My Score
-                <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 ml-2" />
               </span>
+              <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 ml-auto relative z-10" />
             </Button>
           ) : (
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="btn-hero w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all"
+              className="btn-hero w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 transition-all relative"
             >
-              <span className="flex items-center justify-center w-full">
+              <span className="absolute inset-0 flex items-center justify-center">
                 {isSubmitting ? 'Submitting...' : 'Get Your Personalized Plan'}
-                <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 ml-2" />
               </span>
+              <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 ml-auto relative z-10" />
             </Button>
           )}
           
@@ -794,10 +794,10 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                 type="button"
                 onClick={onBack}
                 variant="outline"
-                className="w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl text-white border-2 border-white/30 hover:bg-white/10 hover:border-white/50 transition-all"
+                className="w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl text-white border-2 border-white/30 hover:bg-white/10 hover:border-white/50 transition-all relative"
               >
-                <span className="flex items-center justify-center w-full">
-                  <ArrowLeft className="w-4 h-4 sm:w-6 sm:h-6 mr-2" />
+                <ArrowLeft className="w-4 h-4 sm:w-6 sm:h-6 mr-auto relative z-10" />
+                <span className="absolute inset-0 flex items-center justify-center">
                   Back to Home
                 </span>
               </Button>
@@ -807,10 +807,10 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               type="button"
               onClick={prevStep}
               variant="outline"
-              className="w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl text-white border-2 border-white/30 hover:bg-white/10 hover:border-white/50 transition-all"
+              className="w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl text-white border-2 border-white/30 hover:bg-white/10 hover:border-white/50 transition-all relative"
             >
-              <span className="flex items-center justify-center w-full">
-                <ArrowLeft className="w-4 h-4 sm:w-6 sm:h-6 mr-2" />
+              <ArrowLeft className="w-4 h-4 sm:w-6 sm:h-6 mr-auto relative z-10" />
+              <span className="absolute inset-0 flex items-center justify-center">
                 Previous
               </span>
             </Button>
