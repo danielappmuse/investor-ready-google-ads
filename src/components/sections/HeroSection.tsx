@@ -90,7 +90,7 @@ const HeroSection = ({
                     {/* Urgency Badge */}
                     
                     
-                    <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-[14px] sm:text-[20px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse group relative overflow-hidden">
+                    <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse group relative overflow-hidden">
                       <span className="relative z-10 flex items-center justify-center gap-1.5 sm:gap-3 leading-tight">
                         <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 animate-pulse flex-shrink-0" />
                         <span className="text-center">Become Investor Ready Under 90 Days</span>
@@ -251,7 +251,7 @@ const HeroSection = ({
                 
                 {/* CTA Button */}
                 <div className="mt-8">
-                  <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-[14px] sm:text-[20px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse group relative overflow-hidden">
+                  <Button onClick={() => setCurrentView('prototype-form')} className="btn-hero w-full text-[15.5px] sm:text-[21.5px] font-extrabold py-3.5 sm:py-6 rounded-xl animate-cta-pulse group relative overflow-hidden">
                     <span className="relative z-10 flex items-center justify-center gap-1.5 sm:gap-3 leading-tight">
                       <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 animate-pulse flex-shrink-0" />
                       <span className="text-center">Start Assessment Now!</span>
