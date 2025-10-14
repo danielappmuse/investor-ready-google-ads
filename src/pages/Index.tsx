@@ -168,6 +168,7 @@ const Index = () => {
       <HeroSection 
         startWithPrototype={startWithPrototype}
       />
+      <ClutchReviewsSection />
       <PartnersSection />
       <ProjectCarousel />
       <TechnologiesSection />
@@ -179,7 +180,6 @@ const Index = () => {
       <NDASection />
       <ProcessSection />
       <EssentialsSection onValidationClick={handleValidationClick} />
-      <ClutchReviewsSection />
       <ContactSection />
     </Layout>
   )
