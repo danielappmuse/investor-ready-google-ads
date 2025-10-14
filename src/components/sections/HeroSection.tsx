@@ -65,10 +65,6 @@ const HeroSection = ({
                   <strong>✅ YC-level Business Strategy</strong>
                   <br />
                   <strong>🚀 Musk-level Execution Intensity</strong>
-                  <br />
-                  <strong>📈 Market research, business plan/modeling</strong>
-                  <br />
-                  <strong>💼 Pitch-ready materials & investor network</strong>
                   <span className="block h-2" />
                   → <strong>Ready to raise?</strong> We'll connect you.
                   <br />
