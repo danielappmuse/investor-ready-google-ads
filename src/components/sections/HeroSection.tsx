@@ -52,7 +52,12 @@ const HeroSection = ({
           <div className="hidden xl:flex justify-center mb-8 animate-fade-in">
             <div className="inline-flex items-center justify-center px-5 py-1.5 2xl:py-2 3xl:py-2 bg-primary/20 border border-primary/30 rounded-full text-[25px] lg:text-[27px] 2xl:text-[31px] 3xl:text-[37px] font-bold text-white">
               <Star className="w-4 h-4 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 mr-2 text-primary animate-pulse flex-shrink-0" />
-              <span className="whitespace-nowrap">YC-Level Backing. Investor-Ready Results.</span>
+              <span className="whitespace-nowrap">
+                <span className="text-white">Investor Ready</span> <span className="text-white font-bold relative inline-block">
+                  Under 90 Days
+                  <span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-red-600/40 to-red-600" style={{ clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)' }}></span>
+                </span>
+              </span>
             </div>
           </div>
 
