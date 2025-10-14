@@ -274,10 +274,10 @@ const HeroSection = ({
             <div className="container mx-auto px-4">
               {/* Section Header */}
               <div className="text-center mb-16">
-                <h2 className="text-[18px] sm:text-[22px] lg:text-[24px] 2xl:text-[28px] 3xl:text-[32px] font-bold text-white mb-4">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
                   The Path to <span className="gradient-text">Investment-Ready</span>
                 </h2>
-                <p className="text-[13.5px] sm:text-[15px] lg:text-[17px] 2xl:text-[19px] 3xl:text-[21px] text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                <p className="text-sm sm:text-base lg:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
                   Our proven 3-phase process transforms your startup into an investor-ready business 
                   under 90 days. From solid fundamentals to compelling investor materials.
                 </p>
