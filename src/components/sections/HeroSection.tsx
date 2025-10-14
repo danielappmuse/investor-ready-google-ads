@@ -266,7 +266,7 @@ const HeroSection = ({
                 </h2>
                 <p className="text-[13.5px] sm:text-[15px] lg:text-[17px] 2xl:text-[19px] 3xl:text-[21px] text-gray-300 max-w-3xl mx-auto leading-relaxed">
                   Our proven 3-phase process transforms your startup into an investor-ready business 
-                  under 90 days - from solid fundamentals to compelling investor materials.
+                  under 90 days. From solid fundamentals to compelling investor materials.
                 </p>
               </div>
 
