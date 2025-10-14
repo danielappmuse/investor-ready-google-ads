@@ -229,7 +229,7 @@ const HeroSection = ({
                 </div>
                 
                 {/* Icons Section */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
                   <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
                     <Users className="w-8 h-8 text-primary mb-2" />
                     <span className="text-sm font-medium text-white">Founder to Founder</span>
@@ -238,10 +238,6 @@ const HeroSection = ({
                     <Target className="w-8 h-8 text-primary mb-2" />
                     <span className="text-sm font-medium text-white">YC-level Process</span>
                   </div>
-                  <div className="flex flex-col items-center justify-center text-center p-6 bg-white/5 rounded-lg border border-primary/30 md:row-span-2">
-                    <Handshake className="w-12 h-12 text-primary mb-3 animate-pulse" />
-                    <span className="text-base font-bold text-white">Access to Real Investors</span>
-                  </div>
                   <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
                     <Briefcase className="w-8 h-8 text-primary mb-2" />
                     <span className="text-sm font-medium text-white">Full-stack Business Suite</span>
@@ -249,6 +245,10 @@ const HeroSection = ({
                   <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-white/10">
                     <BadgeCheck className="w-8 h-8 text-primary mb-2" />
                     <span className="text-sm font-medium text-white">Become Investor Ready</span>
+                  </div>
+                  <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg border border-primary/30 md:col-span-2">
+                    <Handshake className="w-10 h-10 text-primary mb-2 animate-pulse" />
+                    <span className="text-base font-bold text-white">Access to Real Investors</span>
                   </div>
                 </div>
               </div>
