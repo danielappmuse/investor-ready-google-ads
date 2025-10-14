@@ -43,11 +43,11 @@ const NDASection = () => {
             Your Ideas Are Safe With Us
           </div>
           
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6">
             <span className="gradient-text">Ironclad Confidentiality</span> Guaranteed
           </h2>
           
-          <p className="text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
             We understand your startup idea is your most valuable asset. That's why we've built enterprise-level 
             security measures to protect every detail you share with us.
           </p>
@@ -63,27 +63,27 @@ const NDASection = () => {
                   <FileText className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">NDA Signed Before Discovery</h3>
-                  <p className="text-gray-300">100% Legal Protection</p>
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2">NDA Signed Before Discovery</h3>
+                  <p className="text-sm sm:text-base lg:text-lg text-gray-300">100% Legal Protection</p>
                 </div>
               </div>
               
               <div className="space-y-4 mb-8">
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
-                  <span className="text-gray-300">Comprehensive Non-Disclosure Agreement covering all aspects of your business</span>
+                  <span className="text-sm sm:text-base lg:text-lg text-gray-300">Comprehensive Non-Disclosure Agreement covering all aspects of your business</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
-                  <span className="text-gray-300">Legal enforceability with substantial penalty clauses for any breaches</span>
+                  <span className="text-sm sm:text-base lg:text-lg text-gray-300">Legal enforceability with substantial penalty clauses for any breaches</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
-                  <span className="text-gray-300">Mutual protection ensuring both parties are legally bound</span>
+                  <span className="text-sm sm:text-base lg:text-lg text-gray-300">Mutual protection ensuring both parties are legally bound</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
-                  <span className="text-gray-300">Immediate destruction of all materials upon project completion (if requested)</span>
+                  <span className="text-sm sm:text-base lg:text-lg text-gray-300">Immediate destruction of all materials upon project completion (if requested)</span>
                 </div>
               </div>
 
@@ -92,7 +92,7 @@ const NDASection = () => {
                   <Shield className="w-5 h-5 mr-2" />
                   <span className="font-semibold">Our Promise to You</span>
                 </div>
-                <p className="text-gray-300 text-sm leading-relaxed">
+                <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">
                   "Your intellectual property is treated with the same level of security as our own. 
                   We've never had a single breach in over 5 years of operation, and we're committed to maintaining that perfect record."
                 </p>
@@ -112,8 +112,8 @@ const NDASection = () => {
                     {feature.icon}
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-lg font-semibold text-white mb-2">{feature.title}</h4>
-                    <p className="text-gray-300 text-sm leading-relaxed">{feature.description}</p>
+                    <h4 className="text-lg sm:text-xl lg:text-2xl font-semibold text-white mb-2">{feature.title}</h4>
+                    <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">{feature.description}</p>
                   </div>
                 </div>
               </div>
@@ -124,19 +124,19 @@ const NDASection = () => {
         {/* Trust Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
           <div className="text-center card-glass p-6">
-            <div className="text-3xl font-bold text-white mb-2">0</div>
-            <div className="text-sm text-gray-400">Security Breaches</div>
-            <div className="text-xs text-green-400 mt-1">In 5+ Years</div>
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">0</div>
+            <div className="text-sm sm:text-base lg:text-lg text-gray-400">Security Breaches</div>
+            <div className="text-xs sm:text-sm text-green-400 mt-1">In 5+ Years</div>
           </div>
           <div className="text-center card-glass p-6">
-            <div className="text-3xl font-bold text-white mb-2">100%</div>
-            <div className="text-sm text-gray-400">NDA Compliance</div>
-            <div className="text-xs text-green-400 mt-1">Every Project</div>
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">100%</div>
+            <div className="text-sm sm:text-base lg:text-lg text-gray-400">NDA Compliance</div>
+            <div className="text-xs sm:text-sm text-green-400 mt-1">Every Project</div>
           </div>
           <div className="text-center card-glass p-6">
-            <div className="text-3xl font-bold text-white mb-2">24hrs</div>
-            <div className="text-sm text-gray-400">Data Deletion</div>
-            <div className="text-xs text-green-400 mt-1">Upon Request</div>
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">24hrs</div>
+            <div className="text-sm sm:text-base lg:text-lg text-gray-400">Data Deletion</div>
+            <div className="text-xs sm:text-sm text-green-400 mt-1">Upon Request</div>
           </div>
         </div>
 
@@ -156,7 +156,7 @@ const NDASection = () => {
             <span className="truncate">Start With Complete Confidentiality</span>
             <Shield className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3 flex-shrink-0" />
           </Button>
-          <p className="text-sm text-gray-400 mt-4">
+          <p className="text-sm sm:text-base lg:text-lg text-gray-400 mt-4">
             NDA signed within 24 hours • No idea is too early or too sensitive
           </p>
         </div>
