@@ -21,6 +21,7 @@ const Index = () => {
   const [isProcessingSuccess, setIsProcessingSuccess] = useState(false)
   const [startWithValidation, setStartWithValidation] = useState(false)
   const [startWithPrototype, setStartWithPrototype] = useState(false)
+  const [currentView, setCurrentView] = useState<'products' | 'prototype-form' | 'calendly'>('products')
 
   const handleValidationClick = () => {
     setStartWithValidation(true)
@@ -34,6 +35,7 @@ const Index = () => {
   const handlePrototypeClick = () => {
     setStartWithPrototype(true)
     setStartWithValidation(false)
+    setCurrentView('prototype-form')
     // Scroll to hero section to show prototype consultation
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -167,20 +169,26 @@ const Index = () => {
     <Layout onPrototypeClick={handlePrototypeClick}>
       <HeroSection 
         startWithPrototype={startWithPrototype}
+        currentView={currentView}
+        setCurrentView={setCurrentView}
       />
-      <ClutchReviewsSection />
-      <PartnersSection />
-      <ProjectCarousel />
-      <TechnologiesSection />
-      <AboutSection />
-      <ServicesSection 
-        onValidationClick={handleValidationClick} 
-        onPrototypeClick={handlePrototypeClick}
-      />
-      <NDASection />
-      <ProcessSection />
-      <EssentialsSection onValidationClick={handleValidationClick} />
-      <ContactSection />
+      {currentView === 'products' && (
+        <>
+          <ClutchReviewsSection />
+          <PartnersSection />
+          <ProjectCarousel />
+          <TechnologiesSection />
+          <AboutSection />
+          <ServicesSection 
+            onValidationClick={handleValidationClick} 
+            onPrototypeClick={handlePrototypeClick}
+          />
+          <NDASection />
+          <ProcessSection />
+          <EssentialsSection onValidationClick={handleValidationClick} />
+          <ContactSection />
+        </>
+      )}
     </Layout>
   )
 }

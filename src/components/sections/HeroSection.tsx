@@ -10,12 +10,19 @@ import { useIsSmallScreen } from '@/hooks/use-small-screen';
 interface HeroSectionProps {
   startWithPrototype?: boolean;
   onAnimationComplete?: (complete: boolean) => void;
+  currentView?: 'products' | 'prototype-form' | 'calendly';
+  setCurrentView?: (view: 'products' | 'prototype-form' | 'calendly') => void;
 }
 const HeroSection = ({
-  startWithPrototype = false
+  startWithPrototype = false,
+  currentView: externalCurrentView,
+  setCurrentView: externalSetCurrentView
 }: HeroSectionProps) => {
   const isSmallScreen = useIsSmallScreen();
-  const [currentView, setCurrentView] = useState<'products' | 'prototype-form' | 'calendly'>(startWithPrototype ? 'prototype-form' : 'products');
+  const [internalCurrentView, setInternalCurrentView] = useState<'products' | 'prototype-form' | 'calendly'>(startWithPrototype ? 'prototype-form' : 'products');
+  
+  const currentView = externalCurrentView !== undefined ? externalCurrentView : internalCurrentView;
+  const setCurrentView = externalSetCurrentView || setInternalCurrentView;
   React.useEffect(() => {
     if (startWithPrototype) {
       setCurrentView('prototype-form');
