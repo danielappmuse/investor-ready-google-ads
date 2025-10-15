@@ -82,7 +82,9 @@ const HeroSection = ({
                   <span className="block h-2" />
                   Even if the funding came tomorrow, would you know how to <strong>turn it into real traction?</strong>
                   <span className="block h-2" />
-                  <strong>StartWise</strong> makes it <strong>simple</strong>:
+                  That's where <strong>StartWise comes in.</strong>
+                  <span className="block h-2" />
+                  We turn the chaos of <strong>fundraising into a clear path</strong>, from strategy to execution, all in <strong>one place.</strong>
                   <span className="block h-2" />
                   <strong>✅ YC-level Business Strategy</strong>
                   <br />
