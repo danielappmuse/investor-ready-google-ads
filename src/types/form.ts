@@ -137,12 +137,12 @@ export const helpNeededAreas = [
 
 // Q10: Investment Readiness Options
 export const investmentLevels = [
-  { id: 'under_2k', name: 'Less than $2000', note: 'Best to start with outside resources before working with us' },
-  { id: '3k-5k', name: '$3000 - $5000', note: "Entry point for Founders starting with Naked's fundraising coaching program" },
-  { id: '8k-15k', name: '$8,000 - $15,000', note: 'Minimum entry point for Founders starting development' },
-  { id: '20k-40k', name: '$20,000 - $40,000', note: 'Common entry point for serious Founders looking to launch' },
-  { id: '50k-90k', name: '$50,000 - $90,000', note: 'Founders who are looking to both launch and scale users rapidly' },
-  { id: '100k+', name: '$100k+', note: 'Unlocks our highest level of partnership and access to exclusive opportunities' }
+  { id: 'under_5k', name: 'Less than $5000', note: 'Best to start with outside resources before working with us, and peruse a Bootstrap.' },
+  { id: '5k-10k', name: '$5000 - $10,000', note: 'Entry point for Founders looking to start with StartWise 90 Days Investor Ready Program and are looking only for materials refinement & connections' },
+  { id: '10k-30k', name: '$10,000 - $30,000', note: 'Minimum entry point for Founders who needs significant business oriented support' },
+  { id: '30k-50k', name: '$30,000 - $50,000', note: 'Common entry point for serious Founders looking to start MVP development' },
+  { id: '50k-100k', name: '$50,000 - $100,000', note: 'Founders who are looking to both launch and scale users rapidly' },
+  { id: '100k+', name: '$100k+', note: 'Full business suit & unlocks our highest level of partnership and access to exclusive opportunities' }
 ]
 
 // Legacy exports for backwards compatibility
