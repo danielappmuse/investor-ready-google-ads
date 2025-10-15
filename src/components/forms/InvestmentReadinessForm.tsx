@@ -7,7 +7,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { ArrowRight, ArrowLeft, Check } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Check, ExternalLink } from 'lucide-react'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { ContactFormData, projectStages, userPersonaOptions, differentiationOptions, existingMaterials, businessModels, revenueGoals, buildStrategies, helpNeededAreas, investmentLevels } from '@/types/form'
 import { validateEmail, validatePhoneNumber, formatPhoneNumber, getSessionId } from '@/utils/formValidation'
 import { getTrackingParameters, initializeTracking, fireGoogleAdsConversion } from '@/utils/trackingUtils'
@@ -774,10 +775,38 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                 )}
               </div>
               <Label 
-                onClick={() => setValue('consent', !watchedFields.consent)}
-                className="text-base text-gray-300 cursor-pointer flex-1"
+                className="text-base text-gray-300 flex-1"
               >
-                By checking this box, you confirm that you have read and agree to the terms of the Mutual Non-Disclosure Agreement & agree to receive communications.
+                <span onClick={() => setValue('consent', !watchedFields.consent)} className="cursor-pointer">
+                  By checking this box, you confirm that you have read and agree to the terms of the{' '}
+                </span>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button 
+                      type="button"
+                      className="text-primary hover:underline inline-flex items-center gap-1"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Mutual Non-Disclosure Agreement
+                      <ExternalLink className="w-3 h-3" />
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
+                    <DialogHeader>
+                      <DialogTitle>Mutual Non-Disclosure Agreement</DialogTitle>
+                    </DialogHeader>
+                    <div className="overflow-auto max-h-[calc(90vh-8rem)]">
+                      <iframe 
+                        src="/Start_Wise_NDA.pdf" 
+                        className="w-full h-[70vh]"
+                        title="NDA Document"
+                      />
+                    </div>
+                  </DialogContent>
+                </Dialog>
+                <span onClick={() => setValue('consent', !watchedFields.consent)} className="cursor-pointer">
+                  {' '}& agree to receive communications.
+                </span>
               </Label>
             </div>
             {errors.consent && (
