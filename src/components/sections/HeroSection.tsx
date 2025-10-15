@@ -78,7 +78,9 @@ const HeroSection = ({
                   <span className="block h-2" />
                   Even if the funding came tomorrow, would you know how to <strong>turn it into real traction?</strong>
                   <span className="block h-2 lg:h-8" />
-                  We turn the chaos of <strong>fundraising into a clear path.</strong> From strategy to execution, all in <strong>one place.</strong>
+                  We turn the chaos of <strong>fundraising into a clear path.</strong>
+                  <br />
+                  From strategy to execution, all in <strong>one place.</strong>
                   <span className="block h-2 lg:h-8" />
                   <strong>✅ YC-level Business Strategy</strong>
                   <br />
