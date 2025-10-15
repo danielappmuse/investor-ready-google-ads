@@ -94,7 +94,6 @@ export const existingMaterials = [
   { id: 'prd', name: 'Product Requirements Document (PRD)' },
   { id: 'mvp_prototype', name: 'MVP or Prototype' },
   { id: 'pitch_deck', name: 'One Pager and Pitch Deck' },
-  { id: 'deal_terms', name: 'Deal Terms' },
   { id: 'legal', name: 'Legal' }
 ]
 
