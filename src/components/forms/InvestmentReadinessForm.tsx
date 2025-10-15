@@ -318,7 +318,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             <Label htmlFor="app_idea" className="text-white text-lg mb-0.5 block text-center">
               Briefly describe your app idea and the problem it solves
             </Label>
-            <p className="text-base text-gray-400 mb-1 text-center">
+            <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               We have <span className="relative inline-block">limited capacity<span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-red-600/40 to-red-600" style={{ clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)' }}></span></span> and prioritize Founders solving real human problems with potential to scale.
             </p>
             <Textarea
@@ -338,7 +338,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             <Label htmlFor="project_stage" className="text-white text-lg mb-0.5 block text-center">
               Where are you in your project journey?
             </Label>
-            <p className="text-base text-gray-400 mb-1 text-center">
+            <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               Select the stage that best describes where you are right now.
             </p>
             <Select
@@ -368,7 +368,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             <Label htmlFor="user_persona" className="text-white text-lg mb-0.5 block text-center">
               How well do you know your user persona?
             </Label>
-            <p className="text-base text-gray-400 mb-1 text-center">
+            <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               The more you know your user, the better your chances of building something investors believe in.
             </p>
             <Select
@@ -398,7 +398,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             <Label htmlFor="differentiation" className="text-white text-lg mb-0.5 block text-center">
               What makes your idea stand out?
             </Label>
-            <p className="text-base text-gray-400 mb-1 text-center">
+            <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               This helps us understand your competitive edge and positioning.
             </p>
             <Select
@@ -428,7 +428,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             <Label className="text-white text-lg mb-0.5 block text-center">
               Which materials have you already completed professionally?
             </Label>
-            <p className="text-base text-gray-400 mb-1 text-center">
+            <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               Select everything you've completed so far.
             </p>
             <div className="grid grid-cols-2 gap-1.5">
@@ -451,7 +451,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                       <Check className="w-3 h-3 text-white font-bold stroke-[3]" />
                     )}
                   </div>
-                  <Label className="text-base text-gray-300 cursor-pointer flex-1">
+                  <Label className="text-[15px] sm:text-base text-gray-300 cursor-pointer flex-1">
                     {material.name}
                   </Label>
                 </div>
@@ -466,7 +466,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             <Label htmlFor="business_model" className="text-white text-lg mb-0.5 block text-center">
               What is the app business model?
             </Label>
-            <p className="text-base text-gray-400 mb-1 text-center">
+            <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               This gives us insight into your revenue strategy.
             </p>
             <Select
@@ -496,7 +496,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             <Label htmlFor="revenue_goal" className="text-white text-lg mb-0.5 block text-center">
               What's your monthly revenue goal 90 days after launch?
             </Label>
-            <p className="text-base text-gray-400 mb-1 text-center">
+            <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               This helps us understand your short-term growth expectations.
             </p>
             <Select
@@ -526,7 +526,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             <Label htmlFor="build_strategy" className="text-white text-lg mb-0.5 block text-center">
               How do you plan to build the product?
             </Label>
-            <p className="text-base text-gray-400 mb-1 text-center">
+            <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               This tells us what kind of team or structure you'll need.
             </p>
             <Select
@@ -556,7 +556,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             <Label className="text-white text-lg mb-0.5 block text-center">
               What areas do you need help with most?
             </Label>
-            <p className="text-base text-gray-400 mb-1 text-center">
+            <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               Select the areas where you need the most support to move forward.
             </p>
             <div className="grid grid-cols-2 gap-1.5">
@@ -579,7 +579,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                       <Check className="w-3 h-3 text-white font-bold stroke-[3]" />
                     )}
                   </div>
-                  <Label className="text-base text-gray-300 cursor-pointer flex-1">
+                  <Label className="text-[15px] sm:text-base text-gray-300 cursor-pointer flex-1">
                     {area.name}
                   </Label>
                 </div>
@@ -597,7 +597,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             <Label htmlFor="investment_readiness" className="text-white text-lg mb-0.5 block text-center">
               How much are you prepared to personally invest until you'll find an investor?
             </Label>
-            <p className="text-base text-gray-400 mb-1 text-center">
+            <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               Those days, in the AI age, investors has high expectation from entrepreneurs. They expect you to take the project to further point that you can by yourself, before looking for outside funding
             </p>
             <Select
@@ -613,7 +613,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                     <div className="flex flex-col">
                       <span>{level.name}</span>
                       {level.note && (
-                        <span className="text-base text-muted-foreground">{level.note}</span>
+                        <span className="text-[15px] sm:text-base text-muted-foreground">{level.note}</span>
                       )}
                     </div>
                   </SelectItem>
@@ -701,7 +701,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               </div>
               <Label 
                 onClick={() => setValue('consent', !watchedFields.consent)}
-                className="text-base text-gray-300 cursor-pointer text-center flex-1"
+                className="text-[16.5px] sm:text-base text-gray-300 cursor-pointer text-center flex-1"
               >
                 I agree to receive communications
               </Label>
@@ -757,7 +757,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           <div className={`text-xl font-bold ${segment.color} mb-1`}>
             {segment.name}
           </div>
-          <p className="text-lg text-gray-300">
+          <p className="text-[16.5px] sm:text-lg text-gray-300">
             {segment.name === 'Feasibility' && "Let's validate your idea before you waste time & money"}
             {segment.name === 'Business Logic' && "Turn your idea into a fundable plan"}
             {segment.name === 'Design & Tech' && "Build the product investors fund"}
@@ -841,7 +841,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                 )}
               </div>
               <Label 
-                className="text-base text-gray-300 flex-1"
+                className="text-[16.5px] sm:text-base text-gray-300 flex-1"
               >
                 <span onClick={() => setValue('consent', !watchedFields.consent)} className="cursor-pointer">
                   By checking this box, you confirm that you have read and agree to the terms of the{' '}
