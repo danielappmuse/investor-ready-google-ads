@@ -118,7 +118,7 @@ const ProjectCarousel = () => {
             From <span className="gradient-text">Idea</span> to <span className="gradient-text">Success</span>
           </h2>
           
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">Our clients and work</p>
+          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">Our clients and work</p>
         </div>
 
         {/* Carousel */}
@@ -148,7 +148,7 @@ const ProjectCarousel = () => {
                           <h3 className="text-lg md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 lg:mb-4 leading-tight break-words hyphens-auto">
                             {story.title}
                           </h3>
-                          <p className="text-gray-300 leading-relaxed text-sm md:text-base lg:text-lg break-words overflow-wrap-anywhere hyphens-auto">
+                          <p className="text-gray-300 leading-relaxed text-lg md:text-base lg:text-lg break-words overflow-wrap-anywhere hyphens-auto">
                             {story.description}
                           </p>
                         </div>

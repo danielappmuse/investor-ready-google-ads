@@ -41,7 +41,7 @@ const EssentialsSection = ({
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Everything Your Business Must Have</h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
             Two critical pillars for investment readiness
           </p>
         </div>
@@ -63,7 +63,7 @@ const EssentialsSection = ({
                   <p className="text-primary font-semibold">{essentials.business.subtitle}</p>
                 </div>
               </div>
-              <p className="text-base text-gray-300 mb-8">{essentials.business.description}</p>
+              <p className="text-lg sm:text-base text-gray-300 mb-8">{essentials.business.description}</p>
 
               <div className="grid md:grid-cols-3 gap-8">
                 <div>
@@ -75,7 +75,7 @@ const EssentialsSection = ({
                     {essentials.business.benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start gap-2 text-gray-300">
                         <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                        <span className="flex-1 text-center">{benefit}</span>
+                        <span className="flex-1 text-center text-lg sm:text-base">{benefit}</span>
                       </li>
                     ))}
                   </ul>
@@ -90,7 +90,7 @@ const EssentialsSection = ({
                     {essentials.business.process.map((step, index) => (
                       <li key={index} className="flex items-start gap-2 text-gray-300">
                         <span className="font-bold text-primary">{index + 1}.</span>
-                        <span className="flex-1 text-center">{step}</span>
+                        <span className="flex-1 text-center text-lg sm:text-base">{step}</span>
                       </li>
                     ))}
                   </ul>
@@ -105,7 +105,7 @@ const EssentialsSection = ({
                     {essentials.business.outcomes.map((outcome, index) => (
                       <li key={index} className="flex items-start gap-2 text-gray-300">
                         <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                        <span className="flex-1 text-center">{outcome}</span>
+                        <span className="flex-1 text-center text-lg sm:text-base">{outcome}</span>
                       </li>
                     ))}
                   </ul>
@@ -132,7 +132,7 @@ const EssentialsSection = ({
                   <p className="text-primary font-semibold">{essentials.investor.subtitle}</p>
                 </div>
               </div>
-              <p className="text-base text-gray-300 mb-8">{essentials.investor.description}</p>
+              <p className="text-lg sm:text-base text-gray-300 mb-8">{essentials.investor.description}</p>
 
               <div className="grid md:grid-cols-3 gap-8">
                 <div>
@@ -144,7 +144,7 @@ const EssentialsSection = ({
                     {essentials.investor.benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start gap-2 text-gray-300">
                         <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                        <span className="flex-1 text-center">{benefit}</span>
+                        <span className="flex-1 text-center text-lg sm:text-base">{benefit}</span>
                       </li>
                     ))}
                   </ul>
@@ -159,7 +159,7 @@ const EssentialsSection = ({
                     {essentials.investor.process.map((step, index) => (
                       <li key={index} className="flex items-start gap-2 text-gray-300">
                         <span className="font-bold text-primary">{index + 1}.</span>
-                        <span className="flex-1 text-center">{step}</span>
+                        <span className="flex-1 text-center text-lg sm:text-base">{step}</span>
                       </li>
                     ))}
                   </ul>
@@ -174,7 +174,7 @@ const EssentialsSection = ({
                     {essentials.investor.outcomes.map((outcome, index) => (
                       <li key={index} className="flex items-start gap-2 text-gray-300">
                         <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                        <span className="flex-1 text-center">{outcome}</span>
+                        <span className="flex-1 text-center text-lg sm:text-base">{outcome}</span>
                       </li>
                     ))}
                   </ul>

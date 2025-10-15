@@ -27,7 +27,7 @@ const ContactSection = ({ onAssessmentClick }: ContactSectionProps) => {
               Ready to Get <span className="gradient-text">Investment-Ready?</span>
             </h2>
             
-            <p className="text-xl text-gray-300 leading-relaxed mb-8">
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-8">
               Start your journey to securing funding. Complete our assessment and get a personalized roadmap tailored to your startup.
             </p>
 
@@ -47,15 +47,15 @@ const ContactSection = ({ onAssessmentClick }: ContactSectionProps) => {
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-6 lg:space-x-8 mt-8">
               <div className="flex items-center space-x-2 sm:space-x-3 text-gray-300">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
-                <span className="text-base">+1 (786) 829-1382</span>
+                <span className="text-lg sm:text-base">+1 (786) 829-1382</span>
               </div>
               <div className="flex items-center space-x-2 sm:space-x-3 text-gray-300">
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
-                <span className="text-base">support@start-wise.io</span>
+                <span className="text-lg sm:text-base">support@start-wise.io</span>
               </div>
               <div className="flex items-center space-x-2 sm:space-x-3 text-gray-300">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
-                <span className="text-base">1001 Brickell Bay Dr 33131</span>
+                <span className="text-lg sm:text-base">1001 Brickell Bay Dr 33131</span>
               </div>
             </div>
           </div>

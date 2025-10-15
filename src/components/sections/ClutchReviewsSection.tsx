@@ -37,7 +37,7 @@ const ClutchReviewsSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Industry Recognition & Client Reviews
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
             Recognized as a top AI company by Clutch and trusted by clients worldwide
           </p>
         </div>

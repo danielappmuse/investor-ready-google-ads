@@ -51,7 +51,7 @@ const NDASection = ({ onAssessmentClick }: NDASectionProps) => {
             <span className="gradient-text">Ironclad Confidentiality</span> Guaranteed
           </h2>
           
-          <p className="text-sm sm:text-base lg:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-base lg:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
             We understand your startup idea is your most valuable asset. That's why we've built enterprise-level 
             security measures to protect every detail you share with us.
           </p>
@@ -68,26 +68,26 @@ const NDASection = ({ onAssessmentClick }: NDASectionProps) => {
                 </div>
                 <div>
                   <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2">NDA Signed Before Discovery</h3>
-                  <p className="text-sm sm:text-base lg:text-lg text-gray-300">100% Legal Protection</p>
+                  <p className="text-lg sm:text-base lg:text-lg text-gray-300">100% Legal Protection</p>
                 </div>
               </div>
               
               <div className="space-y-4 mb-8">
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
-                  <span className="text-sm sm:text-base lg:text-lg text-gray-300">Comprehensive Non-Disclosure Agreement covering all aspects of your business</span>
+                  <span className="text-lg sm:text-base lg:text-lg text-gray-300">Comprehensive Non-Disclosure Agreement covering all aspects of your business</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
-                  <span className="text-sm sm:text-base lg:text-lg text-gray-300">Legal enforceability with substantial penalty clauses for any breaches</span>
+                  <span className="text-lg sm:text-base lg:text-lg text-gray-300">Legal enforceability with substantial penalty clauses for any breaches</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
-                  <span className="text-sm sm:text-base lg:text-lg text-gray-300">Mutual protection ensuring both parties are legally bound</span>
+                  <span className="text-lg sm:text-base lg:text-lg text-gray-300">Mutual protection ensuring both parties are legally bound</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
-                  <span className="text-sm sm:text-base lg:text-lg text-gray-300">Immediate destruction of all materials upon project completion (if requested)</span>
+                  <span className="text-lg sm:text-base lg:text-lg text-gray-300">Immediate destruction of all materials upon project completion (if requested)</span>
                 </div>
               </div>
 
@@ -96,11 +96,11 @@ const NDASection = ({ onAssessmentClick }: NDASectionProps) => {
                   <Shield className="w-5 h-5 mr-2" />
                   <span className="font-semibold">Our Promise to You</span>
                 </div>
-                <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">
+                <p className="text-lg sm:text-base lg:text-lg text-gray-300 leading-relaxed">
                   "Your intellectual property is treated with the same level of security as our own. 
                   We've never had a single breach in over 5 years of operation, and we're committed to maintaining that perfect record."
                 </p>
-                <p className="text-gray-400 text-xs mt-3 italic">
+                <p className="text-gray-400 text-lg sm:text-xs mt-3 italic">
                   - StartWise Security Team
                 </p>
               </div>
@@ -117,7 +117,7 @@ const NDASection = ({ onAssessmentClick }: NDASectionProps) => {
                   </div>
                   <div className="flex-1">
                     <h4 className="text-lg sm:text-xl lg:text-2xl font-semibold text-white mb-2">{feature.title}</h4>
-                    <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">{feature.description}</p>
+                    <p className="text-lg sm:text-base lg:text-lg text-gray-300 leading-relaxed">{feature.description}</p>
                   </div>
                 </div>
               </div>
@@ -129,18 +129,18 @@ const NDASection = ({ onAssessmentClick }: NDASectionProps) => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
           <div className="text-center card-glass p-6">
             <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">0</div>
-            <div className="text-sm sm:text-base lg:text-lg text-gray-400">Security Breaches</div>
-            <div className="text-xs sm:text-sm text-green-400 mt-1">In 5+ Years</div>
+            <div className="text-lg sm:text-base lg:text-lg text-gray-400">Security Breaches</div>
+            <div className="text-lg sm:text-sm text-green-400 mt-1">In 5+ Years</div>
           </div>
           <div className="text-center card-glass p-6">
             <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">100%</div>
-            <div className="text-sm sm:text-base lg:text-lg text-gray-400">NDA Compliance</div>
-            <div className="text-xs sm:text-sm text-green-400 mt-1">Every Project</div>
+            <div className="text-lg sm:text-base lg:text-lg text-gray-400">NDA Compliance</div>
+            <div className="text-lg sm:text-sm text-green-400 mt-1">Every Project</div>
           </div>
           <div className="text-center card-glass p-6">
             <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">24hrs</div>
-            <div className="text-sm sm:text-base lg:text-lg text-gray-400">Data Deletion</div>
-            <div className="text-xs sm:text-sm text-green-400 mt-1">Upon Request</div>
+            <div className="text-lg sm:text-base lg:text-lg text-gray-400">Data Deletion</div>
+            <div className="text-lg sm:text-sm text-green-400 mt-1">Upon Request</div>
           </div>
         </div>
 
