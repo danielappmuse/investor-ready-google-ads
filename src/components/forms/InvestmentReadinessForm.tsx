@@ -796,11 +796,23 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                       <DialogTitle>Mutual Non-Disclosure Agreement</DialogTitle>
                     </DialogHeader>
                     <div className="overflow-auto max-h-[calc(90vh-8rem)]">
-                      <iframe 
-                        src="/Start_Wise_NDA.pdf" 
+                      <object 
+                        data="/Start_Wise_NDA.pdf" 
+                        type="application/pdf"
                         className="w-full h-[70vh]"
-                        title="NDA Document"
-                      />
+                      >
+                        <p className="text-center p-4">
+                          Unable to display PDF. 
+                          <a 
+                            href="/Start_Wise_NDA.pdf" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-primary hover:underline ml-2"
+                          >
+                            Click here to view or download the NDA
+                          </a>
+                        </p>
+                      </object>
                     </div>
                   </DialogContent>
                 </Dialog>
