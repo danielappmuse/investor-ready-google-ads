@@ -562,10 +562,10 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         return (
           <div className="space-y-2">
             <Label htmlFor="investment_readiness" className="text-white text-lg mb-0.5 block text-center">
-              How much are you prepared to personally invest?
+              How much are you prepared to personally invest until you'll find an investor?
             </Label>
             <p className="text-base text-gray-400 mb-1 text-center">
-              Your answer helps us guide you to the right program.
+              Those days, in the AI age, investors has high expectation from entrepreneurs. They expect you to take the project to further point that you can by yourself, before looking for outside funding
             </p>
             <Select
               value={watchedFields.investment_readiness || ''}
