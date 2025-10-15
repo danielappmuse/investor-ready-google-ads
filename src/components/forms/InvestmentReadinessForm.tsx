@@ -827,7 +827,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             disabled={isSubmitting}
             className="btn-hero w-full text-lg py-4"
           >
-            {isSubmitting ? 'Submitting...' : 'Get Your Personalized Plan'}
+            {isSubmitting ? 'Submitting...' : 'Book Your Interview'}
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
         </form>
