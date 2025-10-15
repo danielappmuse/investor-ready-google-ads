@@ -73,7 +73,7 @@ const HeroSection = ({
                   </span>
                 </div>
                 
-                <p className={`${isSmallScreen ? 'text-[12.5px]' : 'text-[15.5px]'} sm:text-base lg:text-[19.5px] text-white leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl mt-1.5`}>
+                <p className={`${isSmallScreen ? 'text-[12.5px]' : 'text-[15.5px]'} sm:text-base lg:text-[18px] text-white leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl mt-1.5`}>
                   You've pitched for months, maybe years, <strong>and still don't know what's missing.</strong>
                   <span className="block h-2" />
                   Even if the funding came tomorrow, would you know how to <strong>turn it into real traction?</strong>
