@@ -53,7 +53,7 @@ const AboutSection = () => {
         </div>
 
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Left Column - Team Photo & Forbes Badge */}
+          {/* Left Column - Team Photo & Forbes Badge (mobile/tablet) */}
           <div className="space-y-6 sm:space-y-8">
             {/* Team Photo */}
             <div className="relative">
@@ -61,8 +61,8 @@ const AboutSection = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent rounded-2xl"></div>
             </div>
 
-            {/* Forbes Badge */}
-            <div className="flex justify-center">
+            {/* Forbes Badge - visible on mobile/tablet only */}
+            <div className="flex justify-center xl:hidden">
               <div className="card-glass p-4 sm:p-6 inline-flex items-center space-x-4 rounded-xl">
                 <img src="/lovable-uploads/7104bb15-7ae8-41a9-a71b-b8b04037b57f.png" alt="Forbes Agency Council 2025 Official Member" className="h-24 sm:h-16 lg:h-32 w-auto" />
                 <div>
@@ -74,7 +74,7 @@ const AboutSection = () => {
 
           </div>
 
-          {/* Right Column - Team Members */}
+          {/* Right Column - Team Members & Forbes Badge (desktop) */}
           <div className="space-y-6 sm:space-y-8">
             <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white text-center xl:text-left">
               Meet the Founders
@@ -90,6 +90,17 @@ const AboutSection = () => {
                   </div>
                 </div>
               </div>)}
+
+            {/* Forbes Badge - visible on desktop only, after team members */}
+            <div className="hidden xl:flex justify-center">
+              <div className="card-glass p-4 sm:p-6 inline-flex items-center space-x-4 rounded-xl">
+                <img src="/lovable-uploads/7104bb15-7ae8-41a9-a71b-b8b04037b57f.png" alt="Forbes Agency Council 2025 Official Member" className="h-24 sm:h-16 lg:h-32 w-auto" />
+                <div>
+                  <div className="text-base font-semibold text-white">Forbes Recognition</div>
+                  <div className="text-xs sm:text-sm text-gray-400">Agency Council Member 2025</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
