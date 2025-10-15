@@ -13,6 +13,7 @@ import { ContactFormData, projectStages, userPersonaOptions, differentiationOpti
 import { validateEmail, validatePhoneNumber, formatPhoneNumber, getSessionId } from '@/utils/formValidation'
 import { getTrackingParameters, initializeTracking, fireGoogleAdsConversion } from '@/utils/trackingUtils'
 import { supabase } from '@/integrations/supabase/client'
+import InlinePDFViewer from '@/components/documents/InlinePDFViewer'
 
 const formSchema = z.object({
   full_name: z.string().min(2, 'Full name must be at least 2 characters'),
@@ -796,23 +797,18 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                       <DialogTitle>Mutual Non-Disclosure Agreement</DialogTitle>
                     </DialogHeader>
                     <div className="overflow-auto max-h-[calc(90vh-8rem)]">
-                      <object 
-                        data="/Start_Wise_NDA.pdf" 
-                        type="application/pdf"
-                        className="w-full h-[70vh]"
-                      >
-                        <p className="text-center p-4">
-                          Unable to display PDF. 
-                          <a 
-                            href="/Start_Wise_NDA.pdf" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-primary hover:underline ml-2"
-                          >
-                            Click here to view or download the NDA
-                          </a>
-                        </p>
-                      </object>
+                      <InlinePDFViewer fileUrl="/Start_Wise_NDA.pdf" />
+                      <p className="text-center text-sm mt-3">
+                        If the preview doesn't load,
+                        <a 
+                          href="/Start_Wise_NDA.pdf" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline ml-1"
+                        >
+                          open the NDA in a new tab
+                        </a>.
+                      </p>
                     </div>
                   </DialogContent>
                 </Dialog>
