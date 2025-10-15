@@ -79,12 +79,12 @@ const HeroSection = ({
                   Even if the funding came tomorrow, would you know how to <strong>turn it into real traction?</strong>
                   <span className="block h-2 lg:h-8" />
                   We turn the chaos of <strong>fundraising into a clear path.</strong>
-                  <br />
-                  From strategy to execution, all in <strong>one place.</strong>
+                  <span className="hidden sm:inline"><br />
+                  From strategy to execution, all in <strong>one place.</strong></span>
                   <span className="block h-2 lg:h-8" />
-                  <strong>✅ YC-level Business Strategy</strong>
+                  <span className="hidden sm:inline"><strong>✅ YC-level Business Strategy</strong>
                   <br />
-                  <strong>🚀 Musk-level Execution Intensity</strong>
+                  <strong>🚀 Musk-level Execution Intensity</strong></span>
                   <span className="block h-2 lg:h-8" />
                   → <strong>Ready to raise?</strong> We'll connect you.
                   <br />
