@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import HeroSection from '@/components/sections/HeroSection'
-import ProjectCarousel from '@/components/sections/ProjectCarousel'
 import ServicesSection from '@/components/sections/ServicesSection'
 import NDASection from '@/components/sections/NDASection'
 import EssentialsSection from '@/components/sections/EssentialsSection'
@@ -168,7 +167,6 @@ const Index = () => {
         <>
           <ClutchReviewsSection />
           <PartnersSection />
-          <ProjectCarousel />
           <TechnologiesSection />
           <AboutSection />
           <ServicesSection 
