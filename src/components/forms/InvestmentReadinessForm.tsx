@@ -16,7 +16,8 @@ import { supabase } from '@/integrations/supabase/client'
 import InlinePDFViewer from '@/components/documents/InlinePDFViewer'
 
 const formSchema = z.object({
-  full_name: z.string().min(2, 'Full name must be at least 2 characters'),
+  first_name: z.string().min(2, 'First name must be at least 2 characters'),
+  last_name: z.string().min(2, 'Last name must be at least 2 characters'),
   email: z.string().refine(validateEmail, 'Please enter a valid email address'),
   phone: z.string().min(1, 'Phone number is required').refine(validatePhoneNumber, 'Please enter a valid US phone number'),
   consent: z.boolean().refine(val => val === true, 'You must agree to the terms'),
@@ -214,14 +215,14 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       case 8: return ['build_strategy']
       case 9: return ['help_needed']
       case 10: return ['investment_readiness']
-      case 11: return ['full_name', 'email', 'phone', 'consent']
+      case 11: return ['first_name', 'last_name', 'email', 'phone', 'consent']
       default: return []
     }
   }
 
   const submitLeadData = async (step: number) => {
     const leadData: ContactFormData = {
-      full_name: watchedFields.full_name || '',
+      full_name: `${watchedFields.first_name || ''} ${watchedFields.last_name || ''}`.trim(),
       email: watchedFields.email || '',
       phone: watchedFields.phone || '',
       consent: watchedFields.consent || false,
@@ -260,8 +261,35 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       const score = calculateScore()
       const segment = getSegment(score)
       
+      const phoneClean = data.phone.replace(/\D/g, '')
+      
+      // Build Calendly URL with parameters
+      const calendlyUrl = 
+        'https://calendly.com/startnow-start-wise/30min?' +
+        'name=' + encodeURIComponent(data.first_name) +
+        '&last_name=' + encodeURIComponent(data.last_name) +
+        '&email=' + encodeURIComponent(data.email || '') +
+        '&a1=' + encodeURIComponent('1' + phoneClean) +
+        '&a2=' + encodeURIComponent(data.project_stage || '') +
+        '&a3=' + encodeURIComponent(data.investment_readiness || '') +
+        '&a4=' + encodeURIComponent(data.app_idea || '') +
+        '&hide_gdpr_banner=1'
+      
       const completeData: ContactFormData = {
-        ...data,
+        full_name: `${data.first_name} ${data.last_name}`,
+        email: data.email,
+        phone: data.phone,
+        consent: data.consent,
+        app_idea: data.app_idea,
+        project_stage: data.project_stage,
+        user_persona: data.user_persona,
+        differentiation: data.differentiation,
+        existing_materials: data.existing_materials,
+        business_model: data.business_model,
+        revenue_goal: data.revenue_goal,
+        build_strategy: data.build_strategy,
+        help_needed: data.help_needed,
+        investment_readiness: data.investment_readiness,
         session_id: sessionId,
         form_location: formLocation,
         score: score,
@@ -271,6 +299,9 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
       await submitLeadData(11)
       onSuccess(completeData)
+      
+      // Redirect to Calendly
+      window.location.href = calendlyUrl
     } catch (error) {
       console.error('Form submission error:', error)
     } finally {
@@ -598,16 +629,33 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       case 11:
         return (
           <div className="space-y-2">
-            <Label htmlFor="full_name" className="text-white text-lg text-center block">Full Name</Label>
-            <Input
-              {...register('full_name')}
-              className="form-input text-lg"
-              placeholder="Enter your full name"
-              autoComplete="name"
-            />
-            {errors.full_name && (
-              <p className="text-destructive text-base mt-0.5 text-center">{errors.full_name.message}</p>
-            )}
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <Label htmlFor="first_name" className="text-white text-lg text-center block">First Name</Label>
+                <Input
+                  {...register('first_name')}
+                  className="form-input text-lg"
+                  placeholder="First name"
+                  autoComplete="given-name"
+                />
+                {errors.first_name && (
+                  <p className="text-destructive text-base mt-0.5 text-center">{errors.first_name.message}</p>
+                )}
+              </div>
+              
+              <div>
+                <Label htmlFor="last_name" className="text-white text-lg text-center block">Last Name</Label>
+                <Input
+                  {...register('last_name')}
+                  className="form-input text-lg"
+                  placeholder="Last name"
+                  autoComplete="family-name"
+                />
+                {errors.last_name && (
+                  <p className="text-destructive text-base mt-0.5 text-center">{errors.last_name.message}</p>
+                )}
+              </div>
+            </div>
             
             <Label htmlFor="email" className="text-white text-lg text-center block">Email</Label>
             <Input
@@ -718,19 +766,36 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         </div>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-left">
-          <div className="space-y-2">
-            <Label htmlFor="full_name" className="text-white text-base">
-              Full Name
-            </Label>
-            <Input
-              id="full_name"
-              {...register('full_name')}
-              className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-              placeholder="Enter your full name"
-            />
-            {errors.full_name && (
-              <p className="text-destructive text-sm">{errors.full_name.message}</p>
-            )}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-2">
+              <Label htmlFor="first_name" className="text-white text-base">
+                First Name
+              </Label>
+              <Input
+                id="first_name"
+                {...register('first_name')}
+                className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                placeholder="First name"
+              />
+              {errors.first_name && (
+                <p className="text-destructive text-sm">{errors.first_name.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="last_name" className="text-white text-base">
+                Last Name
+              </Label>
+              <Input
+                id="last_name"
+                {...register('last_name')}
+                className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                placeholder="Last name"
+              />
+              {errors.last_name && (
+                <p className="text-destructive text-sm">{errors.last_name.message}</p>
+              )}
+            </div>
           </div>
 
           <div className="space-y-2">
