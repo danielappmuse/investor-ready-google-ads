@@ -673,7 +673,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   if (showScore) {
     return (
       <div className="card-glass p-4 lg:p-6 text-center">
-        <div className="mb-4">
+        <div className="mb-6">
           <h2 className="text-2xl font-bold text-white mb-3">Your Investment Readiness Score</h2>
           <div className="relative w-40 h-40 mx-auto mb-4">
             <svg className="transform -rotate-90 w-40 h-40">
@@ -714,17 +714,86 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             {segment.name === 'Investors' && "You're ready to scale — let's get you funded"}
           </p>
         </div>
-        <Button
-          type="button"
-          onClick={() => {
-            setShowScore(false)
-            setCurrentStep(11)
-          }}
-          className="btn-hero text-lg"
-        >
-          Continue to Get Your Personalized Plan
-          <ArrowRight className="w-4 h-4 ml-2" />
-        </Button>
+        
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-left">
+          <div className="space-y-2">
+            <Label htmlFor="full_name" className="text-white text-base">
+              Full Name
+            </Label>
+            <Input
+              id="full_name"
+              {...register('full_name')}
+              className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+              placeholder="Enter your full name"
+            />
+            {errors.full_name && (
+              <p className="text-destructive text-sm">{errors.full_name.message}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="email" className="text-white text-base">
+              Email
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              {...register('email')}
+              className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+              placeholder="Enter your email"
+            />
+            {errors.email && (
+              <p className="text-destructive text-sm">{errors.email.message}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="phone" className="text-white text-base">
+              Phone
+            </Label>
+            <Input
+              id="phone"
+              type="tel"
+              {...register('phone')}
+              className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+              placeholder="Enter your phone number"
+            />
+            {errors.phone && (
+              <p className="text-destructive text-sm">{errors.phone.message}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-start gap-3">
+              <div 
+                onClick={() => setValue('consent', !watchedFields.consent)}
+                className="flex items-center justify-center w-5 h-5 border-2 border-white/30 rounded cursor-pointer mt-0.5 flex-shrink-0"
+              >
+                {watchedFields.consent && (
+                  <Check className="w-4 h-4 text-primary" />
+                )}
+              </div>
+              <Label 
+                onClick={() => setValue('consent', !watchedFields.consent)}
+                className="text-base text-gray-300 cursor-pointer flex-1"
+              >
+                By checking this box, you confirm that you have read and agree to the terms of the Mutual Non-Disclosure Agreement & agree to receive communications.
+              </Label>
+            </div>
+            {errors.consent && (
+              <p className="text-destructive text-sm">{errors.consent.message}</p>
+            )}
+          </div>
+
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="btn-hero w-full text-lg py-4"
+          >
+            {isSubmitting ? 'Submitting...' : 'Get Your Personalized Plan'}
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </Button>
+        </form>
       </div>
     )
   }
