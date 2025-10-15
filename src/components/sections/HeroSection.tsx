@@ -5,7 +5,6 @@ import InvestmentReadinessForm from '@/components/forms/InvestmentReadinessForm'
 import CalendlyWidget from '@/components/CalendlyWidget';
 import { ContactFormData } from '@/types/form';
 import FuturisticBackground from '@/components/tech/FuturisticBackground';
-import FloatingStats from '@/components/tech/FloatingStats';
 import { useIsSmallScreen } from '@/hooks/use-small-screen';
 interface HeroSectionProps {
   startWithPrototype?: boolean;
@@ -42,9 +41,6 @@ const HeroSection = ({
       
       {/* Tech Grid Overlay */}
       <div className="absolute inset-0 tech-grid opacity-10" />
-      
-      {/* Floating Stats */}
-      <FloatingStats />
       
       <div className="container mx-auto px-4 sm:px-4 lg:px-6 xl:px-8 2xl:px-12 3xl:px-16 relative z-10">
         {currentView === 'products' && <>
