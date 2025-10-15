@@ -77,13 +77,13 @@ const HeroSection = ({
                   You've pitched for months, maybe years, <strong>and still don't know what's missing.</strong>
                   <span className="block h-2" />
                   Even if the funding came tomorrow, would you know how to <strong>turn it into real traction?</strong>
-                  <span className="block h-2" />
+                  <span className="block h-2 lg:h-8" />
                   We turn the chaos of <strong>fundraising into a clear path</strong>, from strategy to execution, all in <strong>one place.</strong>
-                  <span className="block h-2" />
+                  <span className="block h-2 lg:h-8" />
                   <strong>✅ YC-level Business Strategy</strong>
                   <br />
                   <strong>🚀 Musk-level Execution Intensity</strong>
-                  <span className="block h-2" />
+                  <span className="block h-2 lg:h-8" />
                   → <strong>Ready to raise?</strong> We'll connect you.
                   <br />
                   → <strong>Still building?</strong> We'll get you ready.
