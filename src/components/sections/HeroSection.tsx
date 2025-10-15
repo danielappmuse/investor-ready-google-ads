@@ -6,7 +6,6 @@ import CalendlyWidget from '@/components/CalendlyWidget';
 import { ContactFormData } from '@/types/form';
 import FuturisticBackground from '@/components/tech/FuturisticBackground';
 import { useIsSmallScreen } from '@/hooks/use-small-screen';
-import clutchBadge from '@/assets/clutch-badge.png';
 interface HeroSectionProps {
   startWithPrototype?: boolean;
   onAnimationComplete?: (complete: boolean) => void;
@@ -134,14 +133,63 @@ const HeroSection = ({
           </div>
         </>}
 
-        {/* Clutch Badge */}
+        {/* Media Logos */}
         {currentView === 'products' && <div className="mt-[26px] sm:mt-12 lg:mt-14 xl:mt-10 2xl:mt-20 3xl:mt-24 animate-fade-in stagger-5">
+            <div className="text-center mb-2">
+              <p className={`${isSmallScreen ? 'text-[11px]' : 'text-sm'} sm:text-base lg:text-lg text-white font-bold`}>Recognized by leading media and financial publications</p>
+            </div>
             <div className="flex justify-center">
-              <img 
-                src={clutchBadge} 
-                alt="Top AI Consulting Company Florida 2025 - Clutch" 
-                className="h-32 sm:h-40 lg:h-48 w-auto object-contain"
-              />
+              <div className="overflow-hidden max-w-[69rem] w-full">
+                <div className="flex animate-scroll-smooth" style={{
+              width: 'calc(200% + 2.3rem)',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
+              perspective: '1000px'
+            }}>
+                  {[{
+                src: '/media-logos/business-insider.png',
+                alt: 'Business Insider'
+              }, {
+                src: '/media-logos/forbes.png',
+                alt: 'Forbes'
+              }, {
+                src: '/media-logos/yahoo-finance.png',
+                alt: 'Yahoo Finance'
+              }, {
+                src: '/media-logos/globe-and-mail.png?v=5',
+                alt: 'The Globe and Mail'
+              }, {
+                src: '/media-logos/benzinga.png',
+                alt: 'Benzinga'
+              }, {
+                src: '/media-logos/barchart.png',
+                alt: 'Barchart'
+              }].map((logo, index) => <div key={`first-${index}`} className="flex-shrink-0 flex items-center justify-center mx-5 sm:mx-12 transition-all duration-300 w-[9.5rem] sm:w-[17.25rem]">
+                      <img src={logo.src} alt={logo.alt} className={`h-[5.45rem] sm:h-[6.2rem] 2xl:h-[7rem] 3xl:h-[7.7rem] w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
+                    </div>)}
+                  {[{
+                src: '/media-logos/business-insider.png',
+                alt: 'Business Insider'
+              }, {
+                src: '/media-logos/forbes.png',
+                alt: 'Forbes'
+              }, {
+                src: '/media-logos/yahoo-finance.png',
+                alt: 'Yahoo Finance'
+              }, {
+                src: '/media-logos/globe-and-mail.png?v=5',
+                alt: 'The Globe and Mail'
+              }, {
+                src: '/media-logos/benzinga.png',
+                alt: 'Benzinga'
+              }, {
+                src: '/media-logos/barchart.png',
+                alt: 'Barchart'
+              }].map((logo, index) => <div key={`second-${index}`} className="flex-shrink-0 flex items-center justify-center mx-5 sm:mx-12 transition-all duration-300 w-[9.5rem] sm:w-[17.25rem]">
+                      <img src={logo.src} alt={logo.alt} className={`h-[5.45rem] sm:h-[6.2rem] 2xl:h-[7rem] 3xl:h-[7.7rem] w-auto object-contain grayscale opacity-80 hover:opacity-100 transition-all duration-300 ${logo.alt === 'The Globe and Mail' ? 'brightness-75 contrast-100' : logo.alt === 'Forbes' ? 'brightness-150 contrast-50' : 'brightness-200 contrast-90'}`} />
+                    </div>)}
+                </div>
+              </div>
             </div>
           </div>}
 
