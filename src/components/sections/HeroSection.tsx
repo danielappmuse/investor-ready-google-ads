@@ -22,11 +22,23 @@ const HeroSection = ({
   
   const currentView = externalCurrentView !== undefined ? externalCurrentView : internalCurrentView;
   const setCurrentView = externalSetCurrentView || setInternalCurrentView;
+  
+  // Prevent scroll jump on view changes
   React.useEffect(() => {
     if (startWithPrototype) {
       setCurrentView('prototype-form');
     }
   }, [startWithPrototype]);
+
+  // Scroll to top smoothly when view changes, especially important for mobile
+  React.useEffect(() => {
+    // Use setTimeout to ensure DOM has updated
+    const timeoutId = setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 50);
+    
+    return () => clearTimeout(timeoutId);
+  }, [currentView]);
   const [formData, setFormData] = useState<ContactFormData | null>(null);
   const handlePrototypeFormSuccess = (data: ContactFormData) => {
     setFormData(data);

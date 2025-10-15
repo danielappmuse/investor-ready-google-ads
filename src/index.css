@@ -67,6 +67,8 @@
 
   html {
     scroll-behavior: smooth;
+    /* Prevent scroll jump on mobile when modals/selects trigger */
+    position: relative;
   }
 
   body {
@@ -79,6 +81,26 @@
     min-height: 100vh;
     overflow-x: hidden;
     box-sizing: border-box;
+    /* Prevent scroll jump when data-scroll-locked is applied */
+    position: relative;
+  }
+
+  /* Prevent scroll position jump when scroll is locked (e.g., by Radix Dialog/Select) */
+  body[data-scroll-locked] {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    /* Maintain scroll position */
+    top: 0;
+    left: 0;
+  }
+
+  /* On mobile, ensure smooth transitions when content height changes */
+  @media (max-width: 768px) {
+    body {
+      /* Improve scroll performance on mobile */
+      -webkit-overflow-scrolling: touch;
+    }
   }
 
   /* Prevent horizontal scroll on mobile */

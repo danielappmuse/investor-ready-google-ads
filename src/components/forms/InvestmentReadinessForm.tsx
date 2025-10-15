@@ -66,6 +66,12 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
   useEffect(() => {
     initializeTracking()
+    
+    // Prevent scroll jump on mobile when form loads
+    // Reset scroll position without animation on initial load
+    if (window.scrollY > 0) {
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    }
   }, [])
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
