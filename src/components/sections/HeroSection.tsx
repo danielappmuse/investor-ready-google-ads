@@ -281,7 +281,7 @@ const HeroSection = ({
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
                   The Path to <span className="gradient-text">Investment-Ready</span>
                 </h2>
-                <p className="text-sm sm:text-base lg:text-lg text-gray-300 mx-auto leading-relaxed">
+                <p className="text-[16.5px] sm:text-base lg:text-lg text-gray-300 mx-auto leading-relaxed">
                   Our proven 3-phase process transforms your startup into an investor-ready business 
                   under 90 days. From solid fundamentals to compelling investor materials.
                 </p>
@@ -408,12 +408,12 @@ const HeroSection = ({
 
                         {/* Content */}
                         <h3 className="text-[15px] sm:text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl font-bold text-white mb-3">{step.title}</h3>
-                        <p className="text-sm sm:text-base lg:text-lg text-gray-300 mb-5 leading-relaxed">{step.description}</p>
+                        <p className="text-[16.5px] sm:text-base lg:text-lg text-gray-300 mb-5 leading-relaxed">{step.description}</p>
 
                         {/* Details */}
                         <div className="space-y-3 mb-6">
                           {step.details.map((detail, idx) => (
-                            <div key={idx} className="flex items-start text-sm sm:text-base text-gray-400 justify-center">
+                            <div key={idx} className="flex items-start text-[16.5px] sm:text-base text-gray-400 justify-center">
                               <ArrowRight className="w-4 h-4 mr-2 mt-0.5 text-primary flex-shrink-0" />
                               <span className="flex-1 text-center">{detail}</span>
                             </div>
@@ -423,12 +423,12 @@ const HeroSection = ({
                         {/* Advantage Section */}
                         <div className="border-t border-white/10 pt-6 text-center mb-4">
                           <h4 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-3">{step.advantageTitle}</h4>
-                          <p className="text-sm sm:text-base lg:text-lg text-gray-300 mb-4 leading-relaxed">{step.advantageDescription}</p>
+                          <p className="text-[16.5px] sm:text-base lg:text-lg text-gray-300 mb-4 leading-relaxed">{step.advantageDescription}</p>
                           <div className="space-y-4">
                             {step.advantages.map((advantage, idx) => (
                               <div key={idx} className="space-y-1">
-                                <div className="text-sm sm:text-base font-semibold text-primary">{advantage.name}</div>
-                                <div className="text-xs sm:text-sm text-gray-400 leading-relaxed">{advantage.description}</div>
+                                <div className="text-[16.5px] sm:text-base font-semibold text-primary">{advantage.name}</div>
+                                <div className="text-[16.5px] sm:text-sm text-gray-400 leading-relaxed">{advantage.description}</div>
                               </div>
                             ))}
                           </div>
