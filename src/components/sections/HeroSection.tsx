@@ -327,7 +327,7 @@ const HeroSection = ({
                     {
                       number: '02',
                       icon: <Code className="w-8 h-8" />,
-                      title: 'Tech & Design',
+                      title: 'Technology & Design',
                       description: 'Turn your validated idea into a tangible product with UI/UX, prototype, and technical documentation.',
                       details: [
                         'UI/UX design',
@@ -446,8 +446,8 @@ const HeroSection = ({
                             step.product === 'tech' ? 'bg-purple-500/20 text-purple-400 border border-purple-400/20' :
                             'bg-green-500/20 text-green-400 border border-green-400/20'
                           }`}>
-                          {step.product === 'business' ? 'Business Phase' :
-                           step.product === 'tech' ? 'Tech & Design Phase' :
+                           {step.product === 'business' ? 'Business Phase' :
+                           step.product === 'tech' ? 'Technology & Design Phase' :
                            'Investor Phase'}
                           </span>
                         </div>
