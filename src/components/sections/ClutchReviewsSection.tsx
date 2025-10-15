@@ -6,14 +6,27 @@ const ClutchReviewsSection = () => {
   const isMobile = useIsMobile()
   
   useEffect(() => {
-    // Load Clutch widget script if not already loaded
-    if (!document.querySelector('script[src="https://widget.clutch.co/static/js/widget.js"]')) {
-      const script = document.createElement('script')
-      script.type = 'text/javascript'
-      script.src = 'https://widget.clutch.co/static/js/widget.js'
-      script.async = true
-      document.head.appendChild(script)
+    const initClutch = () => {
+      // Some builds need manual init for widgets already in DOM
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).CLUTCHCO?.Init?.()
     }
+
+    const existing = document.querySelector(
+      'script[src="https://widget.clutch.co/static/js/widget.js"]'
+    ) as HTMLScriptElement | null
+
+    if (existing) {
+      initClutch()
+      return
+    }
+
+    const script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.src = 'https://widget.clutch.co/static/js/widget.js'
+    script.async = true
+    script.onload = initClutch
+    document.head.appendChild(script)
   }, [])
 
 
@@ -46,7 +59,7 @@ const ClutchReviewsSection = () => {
               className={isMobile ? "clutch-widget w-full max-w-sm mx-auto" : "clutch-widget w-full mx-auto"}
               data-url="https://widget.clutch.co" 
               data-widget-type={isMobile ? "12" : "4"} 
-              data-height={isMobile ? "320" : "auto"}
+              data-height={isMobile ? "320" : "560"}
               data-nofollow="false" 
               data-expandifr="true" 
               data-scale="100"
