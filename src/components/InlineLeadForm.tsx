@@ -14,17 +14,33 @@ const InlineLeadForm: React.FC<InlineLeadFormProps> = ({ onSuccess }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: ''
+    phone: '+1 '
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    
+    if (name === 'phone') {
+      // Ensure +1 prefix is always present
+      if (!value.startsWith('+1')) {
+        setFormData(prev => ({
+          ...prev,
+          [name]: '+1 ' + value.replace(/^\+1\s*/, '')
+        }))
+      } else {
+        setFormData(prev => ({
+          ...prev,
+          [name]: value
+        }))
+      }
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }))
+    }
   }
 
   const validateForm = () => {
@@ -46,7 +62,7 @@ const InlineLeadForm: React.FC<InlineLeadFormProps> = ({ onSuccess }) => {
       return false
     }
     
-    if (!formData.phone.trim()) {
+    if (!formData.phone.trim() || formData.phone.trim() === '+1') {
       toast({
         title: "Error",
         description: "Please enter your phone number",
