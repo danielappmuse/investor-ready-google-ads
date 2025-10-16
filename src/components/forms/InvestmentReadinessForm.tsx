@@ -195,7 +195,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
     
     if (isStepValid && currentStep === 1) {
       await submitLeadData(1)
-      fireGoogleAdsConversion()
+      // Conversion now fires only on final submit to ensure redirect ordering
     }
     
     if (isStepValid) {
@@ -354,6 +354,20 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         if (webhookError) {
           console.error('❌ Webhook error:', webhookError)
           console.error('❌ Full error details:', JSON.stringify(webhookError, null, 2))
+          // Fallback: send directly to Make webhook from client (non-blocking with short timeout)
+          try {
+            console.log('🟡 Falling back to client-side webhook call...')
+            await Promise.race([
+              fetch('https://hook.eu1.make.com/wupz8z02hj9jqjxkngm1foxed2aud1ya', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...assessmentPayload, fallback: true })
+              }),
+              new Promise((resolve) => setTimeout(resolve, 1500))
+            ])
+          } catch (fallbackErr) {
+            console.error('❌ Client-side webhook fallback failed:', fallbackErr)
+          }
           toast({
             title: "Webhook Error",
             description: `Failed to send data: ${webhookError.message}`,
@@ -370,6 +384,20 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       } catch (webhookErr) {
         console.error('❌ Webhook submission exception:', webhookErr)
         console.error('❌ Exception details:', JSON.stringify(webhookErr, null, 2))
+        // Fallback: send directly to Make webhook from client (non-blocking with short timeout)
+        try {
+          console.log('🟡 Falling back to client-side webhook call (exception path)...')
+          await Promise.race([
+            fetch('https://hook.eu1.make.com/wupz8z02hj9jqjxkngm1foxed2aud1ya', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ ...assessmentPayload, fallback: true })
+            }),
+            new Promise((resolve) => setTimeout(resolve, 1500))
+          ])
+        } catch (fallbackErr) {
+          console.error('❌ Client-side webhook fallback failed (exception path):', fallbackErr)
+        }
         toast({
           title: "Submission Error",
           description: "Failed to submit assessment",
