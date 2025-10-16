@@ -78,7 +78,19 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   }, [])
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = formatPhoneNumber(e.target.value)
+    let value = e.target.value
+    
+    // Ensure the value always starts with "+1 "
+    if (!value.startsWith('+1 ')) {
+      value = '+1 ' + value.replace(/^\+1\s*/, '')
+    }
+    
+    // If user tries to delete the prefix, reset to "+1 "
+    if (value.length < 3) {
+      value = '+1 '
+    }
+    
+    const formatted = formatPhoneNumber(value)
     setValue('phone', formatted)
   }
 
@@ -988,6 +1000,21 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               id="phone"
               type="tel"
               {...register('phone')}
+              onChange={handlePhoneChange}
+              onClick={(e) => {
+                const input = e.currentTarget
+                // Ensure cursor stays after "+1 " prefix
+                if (input.selectionStart !== null && input.selectionStart < 3) {
+                  input.setSelectionRange(3, 3)
+                }
+              }}
+              onKeyDown={(e) => {
+                const input = e.currentTarget
+                // Prevent deleting the "+1 " prefix
+                if ((e.key === 'Backspace' || e.key === 'Delete') && input.selectionStart !== null && input.selectionStart <= 3) {
+                  e.preventDefault()
+                }
+              }}
               className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
               placeholder="+1 (555) 123-4567"
             />
