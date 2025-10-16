@@ -328,30 +328,26 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         email: data.email,
         phone: data.phone,
         consent: data.consent,
-        nda_consent_timestamp: new Date().toISOString(),
-        nda_link: 'https://startwiseapp.com/Start_Wise_NDA.pdf',
+        // Miami local time for NDA consent
+        nda_consent_timestamp: new Intl.DateTimeFormat('en-US', {
+          timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit',
+          hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+        }).format(new Date()),
+        nda_consent_timestamp_iso: new Date().toISOString(),
+        nda_link: `${window.location.origin}/Start_Wise_NDA.pdf`,
         
-        // Assessment Q&A with both keys and human-readable labels
+        // Assessment Q&A with single human-readable answers
         assessment: {
           q1_app_idea: data.app_idea,
           q2_project_stage: getProjectStageLabel(data.project_stage),
-          q2_project_stage_key: data.project_stage,
           q3_user_persona: getUserPersonaLabel(data.user_persona),
-          q3_user_persona_key: data.user_persona,
           q4_differentiation: getDifferentiationLabel(data.differentiation),
-          q4_differentiation_key: data.differentiation,
           q5_existing_materials: getMaterialsLabels(data.existing_materials),
-          q5_existing_materials_keys: data.existing_materials,
           q6_business_model: getBusinessModelLabel(data.business_model),
-          q6_business_model_key: data.business_model,
           q7_revenue_goal: getRevenueGoalLabel(data.revenue_goal),
-          q7_revenue_goal_key: data.revenue_goal,
           q8_build_strategy: getBuildStrategyLabel(data.build_strategy),
-          q8_build_strategy_key: data.build_strategy,
           q9_help_needed: getHelpNeededLabels(data.help_needed),
-          q9_help_needed_keys: data.help_needed,
           q10_investment_level: getInvestmentLevelLabel(data.investment_readiness),
-          q10_investment_level_key: data.investment_readiness,
           investment_readiness_score: score,
           segment: segment.name
         },
@@ -387,14 +383,19 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               }),
               new Promise((resolve) => setTimeout(resolve, 1500))
             ])
+            // Treat successful fallback as success
+            toast({
+              title: "Success!",
+              description: "Assessment submitted successfully",
+            })
           } catch (fallbackErr) {
             console.error('❌ Client-side webhook fallback failed:', fallbackErr)
+            toast({
+              title: "Submission Error",
+              description: `Failed to send data: ${webhookError.message}`,
+              variant: "destructive"
+            })
           }
-          toast({
-            title: "Webhook Error",
-            description: `Failed to send data: ${webhookError.message}`,
-            variant: "destructive"
-          })
         } else {
           console.log('✅ Assessment sent to webhook successfully')
           console.log('✅ Response data:', responseData)
