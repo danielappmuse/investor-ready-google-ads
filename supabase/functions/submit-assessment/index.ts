@@ -99,6 +99,7 @@ serve(async (req) => {
         } catch (e2) {
           console.error('❌ Failed all geolocation attempts:', e2)
         }
+      }
     }
 
     // Miami local timestamp for NDA consent
