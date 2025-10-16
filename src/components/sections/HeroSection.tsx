@@ -208,7 +208,7 @@ const HeroSection = ({
           </div>}
 
         {/* Why Choose Us */}
-        {currentView === 'products' && <div className="mt-16 lg:mt-20">
+        {currentView === 'products' && <div id="why-choose-us" className="mt-16 lg:mt-20">
             <div className="max-w-4xl mx-auto">
               <h4 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6 text-center">
                 Why Serious Founders Choose <span className="gradient-text">StartWise</span>
