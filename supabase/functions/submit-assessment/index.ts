@@ -55,10 +55,36 @@ serve(async (req) => {
                'unknown'
     console.log('🌐 Client IP:', ip)
     
+    // Detect city from IP using ipapi.co (free, no API key needed)
+    let city = 'Unknown'
+    let country = 'Unknown'
+    let region = 'Unknown'
+    
+    if (ip && ip !== 'unknown') {
+      try {
+        console.log('🌍 Fetching geolocation for IP:', ip)
+        const geoResponse = await fetch(`https://ipapi.co/${ip}/json/`)
+        if (geoResponse.ok) {
+          const geoData = await geoResponse.json()
+          city = geoData.city || 'Unknown'
+          region = geoData.region || 'Unknown'
+          country = geoData.country_name || 'Unknown'
+          console.log('✅ Geolocation detected:', { city, region, country })
+        } else {
+          console.warn('⚠️ Geolocation API returned non-ok status:', geoResponse.status)
+        }
+      } catch (geoError) {
+        console.error('❌ Failed to fetch geolocation:', geoError)
+      }
+    }
+    
     // Construct complete webhook payload
     const webhookPayload = {
       ...payload,
       ip_address: ip,
+      city: city,
+      region: region,
+      country: country,
       server_timestamp: new Date().toISOString()
     }
     
