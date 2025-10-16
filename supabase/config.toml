@@ -6,6 +6,9 @@ verify_jwt = false
 [functions.submit-lead]
 verify_jwt = false
 
+[functions.submit-assessment]
+verify_jwt = false
+
 [functions.create-payment]
 verify_jwt = false
 

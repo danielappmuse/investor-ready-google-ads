@@ -150,7 +150,7 @@ const HeroSectionCRO = ({ startWithPrototype = false }: HeroSectionCROProps) => 
             <InvestmentReadinessForm 
               onSuccess={handleFormSuccess} 
               formLocation="top" 
-              onBack={handleBackToHero} 
+              onBack={handleBackToHero}
             />
           </div>
         )}

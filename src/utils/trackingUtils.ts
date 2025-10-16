@@ -5,7 +5,9 @@ export interface TrackingData {
   keyword?: string
   match_type?: string
   city?: string
-  device?: string
+  device_type?: string
+  os?: string
+  browser?: string
   ip?: string
   landing_page: string
   utm_source?: string
@@ -16,6 +18,7 @@ export interface TrackingData {
 // Get URL parameters and cookies
 export const getTrackingParameters = (): TrackingData => {
   const params = new URLSearchParams(window.location.search)
+  const deviceInfo = detectDevice()
   
   const trackingData = {
     gclid: params.get('gclid') || getCookie('gclid') || undefined,
@@ -26,7 +29,9 @@ export const getTrackingParameters = (): TrackingData => {
     utm_medium: params.get('utm_medium') || undefined,
     landing_page: 'startup-validation-landing',
     city: detectCity(),
-    device: detectDevice(),
+    device_type: deviceInfo.device_type,
+    os: deviceInfo.os,
+    browser: deviceInfo.browser,
     ip: undefined // Will be detected server-side
   }
   
@@ -76,18 +81,34 @@ export const storeTrackingInCookies = (): void => {
   })
 }
 
-// Device detection
-export const detectDevice = (): string => {
-  const userAgent = navigator.userAgent.toLowerCase()
+// Device detection with detailed info
+export const detectDevice = (): { device_type: string; os: string; browser: string } => {
+  const ua = navigator.userAgent.toLowerCase()
   
-  if (/mobile|android|iphone|ipad|phone/i.test(userAgent)) {
-    if (/ipad/i.test(userAgent)) return 'tablet'
-    return 'mobile'
+  // Device type
+  let device_type = 'desktop'
+  if (/ipad|tablet/.test(ua)) {
+    device_type = 'tablet'
+  } else if (/mobile|iphone|android|phone/.test(ua)) {
+    device_type = 'mobile'
   }
   
-  if (/tablet/i.test(userAgent)) return 'tablet'
+  // Operating System
+  let os = 'Other'
+  if (/windows/.test(ua)) os = 'Windows'
+  else if (/mac os|macintosh/.test(ua)) os = 'macOS'
+  else if (/android/.test(ua)) os = 'Android'
+  else if (/iphone|ipad|ipod|ios/.test(ua)) os = 'iOS'
+  else if (/linux/.test(ua)) os = 'Linux'
   
-  return 'desktop'
+  // Browser
+  let browser = 'Other'
+  if (/edg\//.test(ua)) browser = 'Edge'
+  else if (/chrome|crios/.test(ua)) browser = 'Chrome'
+  else if (/safari/.test(ua) && !/chrome|crios|edg\//.test(ua)) browser = 'Safari'
+  else if (/firefox/.test(ua)) browser = 'Firefox'
+  
+  return { device_type, os, browser }
 }
 
 // City detection (basic implementation - can be enhanced with IP geolocation service)

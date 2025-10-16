@@ -270,6 +270,82 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       
       const phoneClean = data.phone.replace(/\D/g, '')
       
+      // Fire Google Ads conversion and WAIT for it to complete
+      console.log('Firing Google Ads conversion...')
+      await new Promise<void>((resolve) => {
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'conversion', {
+            'send_to': 'AW-16893733356/33kJCOvWv6waEOzTx_c-',
+            'event_callback': () => {
+              console.log('✅ Google Ads conversion tracked successfully')
+              resolve()
+            }
+          })
+          // Fallback timeout in case callback doesn't fire
+          setTimeout(() => {
+            console.log('⏱️ Google Ads conversion timeout reached')
+            resolve()
+          }, 2000)
+        } else {
+          console.warn('⚠️ Google Ads gtag not available')
+          resolve()
+        }
+      })
+      
+      // Prepare comprehensive assessment payload for webhook
+      const assessmentPayload = {
+        event: 'assessment_complete',
+        session_id: sessionId,
+        timestamp: new Date().toISOString(),
+        landing_page_name: 'investor ready in 90 days',
+        
+        // Contact information
+        first_name: data.first_name,
+        last_name: data.last_name,
+        full_name: `${data.first_name} ${data.last_name}`,
+        email: data.email,
+        phone: data.phone,
+        consent: data.consent,
+        
+        // Assessment Q&A
+        assessment: {
+          q1_app_idea: data.app_idea,
+          q2_project_stage: data.project_stage,
+          q3_user_persona: data.user_persona,
+          q4_differentiation: data.differentiation,
+          q5_existing_materials: data.existing_materials,
+          q6_business_model: data.business_model,
+          q7_revenue_goal: data.revenue_goal,
+          q8_build_strategy: data.build_strategy,
+          q9_help_needed: data.help_needed,
+          q10_investment_readiness: data.investment_readiness,
+          score: score,
+          segment: segment.name
+        },
+        
+        // Tracking data
+        ...trackingData,
+        form_location: formLocation,
+        page_url: window.location.href,
+        referrer: document.referrer || null
+      }
+      
+      // Send to webhook via edge function
+      console.log('Sending assessment to webhook...')
+      try {
+        const { error: webhookError } = await supabase.functions.invoke('submit-assessment', {
+          body: assessmentPayload
+        })
+        
+        if (webhookError) {
+          console.error('❌ Webhook error:', webhookError)
+        } else {
+          console.log('✅ Assessment sent to webhook successfully')
+        }
+      } catch (webhookErr) {
+        console.error('❌ Webhook submission failed:', webhookErr)
+      }
+      
       // Build Calendly URL with parameters
       const calendlyUrl = 
         'https://calendly.com/startnow-start-wise/30min?' +
@@ -307,7 +383,8 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       await submitLeadData(11)
       onSuccess(completeData)
       
-      // Redirect to Calendly
+      // Redirect to Calendly ONLY after conversion is tracked
+      console.log('🚀 Redirecting to Calendly...')
       window.location.href = calendlyUrl
     } catch (error) {
       console.error('Form submission error:', error)
