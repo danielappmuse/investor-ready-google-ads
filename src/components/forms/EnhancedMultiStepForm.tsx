@@ -46,7 +46,8 @@ const EnhancedMultiStepForm = ({ onSuccess, formLocation, onBack }: EnhancedMult
     trigger
   } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    mode: 'onChange'
+    mode: 'onChange',
+    defaultValues: { phone: '+1 ' }
   })
 
   const watchedFields = watch()

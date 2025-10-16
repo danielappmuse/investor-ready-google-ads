@@ -58,7 +58,8 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
     mode: 'onChange',
     defaultValues: {
       existing_materials: [],
-      help_needed: []
+      help_needed: [],
+      phone: '+1 '
     }
   })
 
@@ -829,7 +830,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               type="tel"
               {...register('phone')}
               className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-              placeholder="Enter your phone number"
+              placeholder="+1 (555) 123-4567"
             />
             {errors.phone && (
               <p className="text-destructive text-sm">{errors.phone.message}</p>
