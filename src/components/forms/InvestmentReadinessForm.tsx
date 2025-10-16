@@ -303,6 +303,17 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         }
       })
       
+      // Helper functions to get human-readable labels
+      const getProjectStageLabel = (id: string) => projectStages.find(s => s.id === id)?.name || id
+      const getUserPersonaLabel = (id: string) => userPersonaOptions.find(o => o.id === id)?.name || id
+      const getDifferentiationLabel = (id: string) => differentiationOptions.find(o => o.id === id)?.name || id
+      const getBusinessModelLabel = (id: string) => businessModels.find(m => m.id === id)?.name || id
+      const getRevenueGoalLabel = (id: string) => revenueGoals.find(g => g.id === id)?.name || id
+      const getBuildStrategyLabel = (id: string) => buildStrategies.find(s => s.id === id)?.name || id
+      const getInvestmentLevelLabel = (id: string) => investmentLevels.find(l => l.id === id)?.name || id
+      const getMaterialsLabels = (ids: string[]) => ids.map(id => existingMaterials.find(m => m.id === id)?.name || id)
+      const getHelpNeededLabels = (ids: string[]) => ids.map(id => helpNeededAreas.find(h => h.id === id)?.name || id)
+      
       // Prepare comprehensive assessment payload for webhook
       const assessmentPayload = {
         event: 'assessment_complete',
@@ -320,19 +331,28 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         nda_consent_timestamp: new Date().toISOString(),
         nda_link: 'https://startwiseapp.com/Start_Wise_NDA.pdf',
         
-        // Assessment Q&A
+        // Assessment Q&A with both keys and human-readable labels
         assessment: {
           q1_app_idea: data.app_idea,
-          q2_project_stage: data.project_stage,
-          q3_user_persona: data.user_persona,
-          q4_differentiation: data.differentiation,
-          q5_existing_materials: data.existing_materials,
-          q6_business_model: data.business_model,
-          q7_revenue_goal: data.revenue_goal,
-          q8_build_strategy: data.build_strategy,
-          q9_help_needed: data.help_needed,
-          q10_investment_readiness: data.investment_readiness,
-          score: score,
+          q2_project_stage: getProjectStageLabel(data.project_stage),
+          q2_project_stage_key: data.project_stage,
+          q3_user_persona: getUserPersonaLabel(data.user_persona),
+          q3_user_persona_key: data.user_persona,
+          q4_differentiation: getDifferentiationLabel(data.differentiation),
+          q4_differentiation_key: data.differentiation,
+          q5_existing_materials: getMaterialsLabels(data.existing_materials),
+          q5_existing_materials_keys: data.existing_materials,
+          q6_business_model: getBusinessModelLabel(data.business_model),
+          q6_business_model_key: data.business_model,
+          q7_revenue_goal: getRevenueGoalLabel(data.revenue_goal),
+          q7_revenue_goal_key: data.revenue_goal,
+          q8_build_strategy: getBuildStrategyLabel(data.build_strategy),
+          q8_build_strategy_key: data.build_strategy,
+          q9_help_needed: getHelpNeededLabels(data.help_needed),
+          q9_help_needed_keys: data.help_needed,
+          q10_investment_level: getInvestmentLevelLabel(data.investment_readiness),
+          q10_investment_level_key: data.investment_readiness,
+          investment_readiness_score: score,
           segment: segment.name
         },
         
