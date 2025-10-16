@@ -14,6 +14,7 @@ import { validateEmail, validatePhoneNumber, formatPhoneNumber, getSessionId } f
 import { getTrackingParameters, initializeTracking, fireGoogleAdsConversion } from '@/utils/trackingUtils'
 import { supabase } from '@/integrations/supabase/client'
 import InlinePDFViewer from '@/components/documents/InlinePDFViewer'
+import { useToast } from '@/hooks/use-toast'
 
 const formSchema = z.object({
   first_name: z.string().min(2, 'First name must be at least 2 characters'),
@@ -45,6 +46,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   const [showScore, setShowScore] = useState(false)
   const [sessionId] = useState(() => getSessionId())
   const [trackingData] = useState(() => getTrackingParameters())
+  const { toast } = useToast()
 
   const {
     register,
@@ -263,7 +265,14 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     console.log('🚀 FORM SUBMISSION STARTED')
+    console.log('📋 Form data:', data)
     setIsSubmitting(true)
+    
+    // Show toast immediately
+    toast({
+      title: "Processing...",
+      description: "Submitting your assessment",
+    })
     
     try {
       const score = calculateScore()
@@ -336,6 +345,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       
       // Send to webhook via edge function
       console.log('📡 Invoking submit-assessment edge function...')
+      
       try {
         const { data: responseData, error: webhookError } = await supabase.functions.invoke('submit-assessment', {
           body: assessmentPayload
@@ -344,13 +354,27 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         if (webhookError) {
           console.error('❌ Webhook error:', webhookError)
           console.error('❌ Full error details:', JSON.stringify(webhookError, null, 2))
+          toast({
+            title: "Webhook Error",
+            description: `Failed to send data: ${webhookError.message}`,
+            variant: "destructive"
+          })
         } else {
           console.log('✅ Assessment sent to webhook successfully')
           console.log('✅ Response data:', responseData)
+          toast({
+            title: "Success!",
+            description: "Assessment submitted successfully",
+          })
         }
       } catch (webhookErr) {
         console.error('❌ Webhook submission exception:', webhookErr)
         console.error('❌ Exception details:', JSON.stringify(webhookErr, null, 2))
+        toast({
+          title: "Submission Error",
+          description: "Failed to submit assessment",
+          variant: "destructive"
+        })
       }
       
       // Build Calendly URL with parameters
