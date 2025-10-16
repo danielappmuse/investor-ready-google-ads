@@ -8,6 +8,7 @@ export interface TrackingData {
   device_type?: string
   os?: string
   browser?: string
+  user_agent?: string
   ip?: string
   landing_page: string
   utm_source?: string
@@ -20,25 +21,35 @@ export const getTrackingParameters = (): TrackingData => {
   const params = new URLSearchParams(window.location.search)
   const deviceInfo = detectDevice()
   
+  // First try to get gclid from URL, then from cookie
+  const gclidFromUrl = params.get('gclid')
+  const gclidFromCookie = getCookie('gclid')
+  
+  console.log('🔍 GCLID Detection:', {
+    fromUrl: gclidFromUrl,
+    fromCookie: gclidFromCookie,
+    allCookies: document.cookie
+  })
+  
   const trackingData = {
-    gclid: params.get('gclid') || getCookie('gclid') || undefined,
+    gclid: gclidFromUrl || gclidFromCookie || undefined,
     keyword: params.get('keyword') || getCookie('keyword') || undefined,
     match_type: params.get('matchtype') || getCookie('matchtype') || undefined,
-    utm_source: params.get('utm_source') || undefined,
-    utm_campaign: params.get('utm_campaign') || undefined,
-    utm_medium: params.get('utm_medium') || undefined,
+    utm_source: params.get('utm_source') || getCookie('utm_source') || undefined,
+    utm_campaign: params.get('utm_campaign') || getCookie('utm_campaign') || undefined,
+    utm_medium: params.get('utm_medium') || getCookie('utm_medium') || undefined,
     landing_page: 'startup-validation-landing',
-    city: detectCity(),
+    city: undefined, // Will be detected server-side via IP geolocation
     device_type: deviceInfo.device_type,
     os: deviceInfo.os,
     browser: deviceInfo.browser,
+    user_agent: navigator.userAgent,
     ip: undefined // Will be detected server-side
   }
   
   // Debug logging to see what we're collecting
   console.log('Tracking parameters collected:', trackingData)
   console.log('Current URL parameters:', Object.fromEntries(params.entries()))
-  console.log('Available cookies:', document.cookie)
   
   return trackingData
 }
@@ -64,7 +75,9 @@ export const getCookie = (name: string): string | null => {
 export const setCookie = (name: string, value: string, days: number = 30): void => {
   const date = new Date()
   date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000))
-  document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`
+  const expires = date.toUTCString()
+  document.cookie = `${name}=${value}; expires=${expires}; path=/; SameSite=Lax`
+  console.log(`🍪 Cookie set: ${name}=${value}`)
 }
 
 // Store tracking parameters in cookies for future use
@@ -73,10 +86,12 @@ export const storeTrackingInCookies = (): void => {
   
   const trackingParams = ['gclid', 'keyword', 'matchtype', 'utm_source', 'utm_campaign', 'utm_medium']
   
+  console.log('🍪 Storing tracking params in cookies...')
   trackingParams.forEach(param => {
     const value = params.get(param)
     if (value) {
-      setCookie(param, value, 30)
+      setCookie(param, value, 90) // Store for 90 days
+      console.log(`✅ Stored ${param}:`, value)
     }
   })
 }
@@ -111,13 +126,10 @@ export const detectDevice = (): { device_type: string; os: string; browser: stri
   return { device_type, os, browser }
 }
 
-// City detection (basic implementation - can be enhanced with IP geolocation service)
-export const detectCity = (): string => {
-  // This is a basic implementation
-  // In production, you would use a geolocation service or IP-based detection
-  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-  const city = timezone.split('/').pop()?.replace(/_/g, ' ') || 'Unknown'
-  return city
+// City detection (removed - will be done server-side via IP geolocation)
+export const detectCity = (): string | undefined => {
+  // City will be detected server-side using IP geolocation
+  return undefined
 }
 
 // Google Ads conversion tracking function

@@ -317,6 +317,8 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         email: data.email,
         phone: data.phone,
         consent: data.consent,
+        nda_consent_timestamp: new Date().toISOString(),
+        nda_link: 'https://startwiseapp.com/Start_Wise_NDA.pdf',
         
         // Assessment Q&A
         assessment: {
