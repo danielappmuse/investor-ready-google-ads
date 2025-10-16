@@ -281,28 +281,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       
       const phoneClean = data.phone.replace(/\D/g, '')
       
-      // Fire Google Ads conversion and WAIT for it to complete
-      console.log('🎯 Firing Google Ads conversion...')
-      await new Promise<void>((resolve) => {
-        if (typeof window !== 'undefined' && (window as any).gtag) {
-          (window as any).gtag('event', 'conversion', {
-            'send_to': 'AW-16893733356/33kJCOvWv6waEOzTx_c-',
-            'event_callback': () => {
-              console.log('✅ Google Ads conversion tracked successfully')
-              resolve()
-            }
-          })
-          // Fallback timeout in case callback doesn't fire
-          setTimeout(() => {
-            console.log('⏱️ Google Ads conversion timeout reached')
-            resolve()
-          }, 2000)
-        } else {
-          console.warn('⚠️ Google Ads gtag not available')
-          resolve()
-        }
-      })
-      
       // Helper functions to get human-readable labels
       const getProjectStageLabel = (id: string) => projectStages.find(s => s.id === id)?.name || id
       const getUserPersonaLabel = (id: string) => userPersonaOptions.find(o => o.id === id)?.name || id
@@ -464,6 +442,28 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
       await submitLeadData(11)
       onSuccess(completeData)
+      
+      // Fire Google Ads conversion AFTER successful submission
+      console.log('🎯 Firing Google Ads conversion after successful submission...')
+      await new Promise<void>((resolve) => {
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'conversion', {
+            'send_to': 'AW-16893733356/33kJCOvWv6waEOzTx_c-',
+            'event_callback': () => {
+              console.log('✅ Google Ads conversion tracked successfully')
+              resolve()
+            }
+          })
+          // Fallback timeout in case callback doesn't fire
+          setTimeout(() => {
+            console.log('⏱️ Google Ads conversion timeout reached')
+            resolve()
+          }, 2000)
+        } else {
+          console.warn('⚠️ Google Ads gtag not available')
+          resolve()
+        }
+      })
       
       // Redirect to Calendly ONLY after conversion is tracked
       console.log('🚀 Redirecting to Calendly...')
