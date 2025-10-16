@@ -448,7 +448,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       await new Promise<void>((resolve) => {
         if (typeof window !== 'undefined' && (window as any).gtag) {
           (window as any).gtag('event', 'conversion', {
-            'send_to': 'AW-16893733356/33kJCOvWv6waEOzTx_c-',
+            'send_to': 'AW-16893733356/txnICNTu5OQaEOzTx_c-',
             'event_callback': () => {
               console.log('✅ Google Ads conversion tracked successfully')
               resolve()
