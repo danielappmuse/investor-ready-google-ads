@@ -32,18 +32,28 @@ interface AssessmentPayload {
 }
 
 serve(async (req) => {
+  console.log('🟢 submit-assessment function invoked')
+  console.log('📥 Request method:', req.method)
+  
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
+    console.log('✅ CORS preflight - returning headers')
     return new Response(null, { headers: corsHeaders })
   }
 
   try {
+    console.log('📖 Parsing request body...')
     const payload: AssessmentPayload = await req.json()
+    console.log('✅ Payload parsed successfully')
+    console.log('📋 Session ID:', payload.session_id)
+    console.log('📋 Email:', payload.email)
+    console.log('📋 Event:', payload.event)
     
     // Get client IP from headers
     const ip = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 
                req.headers.get('x-real-ip') || 
                'unknown'
+    console.log('🌐 Client IP:', ip)
     
     // Construct complete webhook payload
     const webhookPayload = {
@@ -52,11 +62,8 @@ serve(async (req) => {
       server_timestamp: new Date().toISOString()
     }
     
-    console.log('Sending assessment to webhook:', {
-      event: webhookPayload.event,
-      session_id: webhookPayload.session_id,
-      email: webhookPayload.email
-    })
+    console.log('📤 Sending to webhook:', WEBHOOK_URL)
+    console.log('📦 Webhook payload:', JSON.stringify(webhookPayload, null, 2))
     
     // Send to Make.com webhook
     const webhookResponse = await fetch(WEBHOOK_URL, {
@@ -67,12 +74,16 @@ serve(async (req) => {
       body: JSON.stringify(webhookPayload)
     })
     
+    console.log('📨 Webhook response status:', webhookResponse.status)
+    console.log('📨 Webhook response ok:', webhookResponse.ok)
+    
     if (!webhookResponse.ok) {
-      console.error('Webhook failed:', await webhookResponse.text())
+      const responseText = await webhookResponse.text()
+      console.error('❌ Webhook failed with response:', responseText)
       throw new Error(`Webhook returned status ${webhookResponse.status}`)
     }
     
-    console.log('Successfully sent to webhook')
+    console.log('✅ Successfully sent to webhook')
     
     return new Response(
       JSON.stringify({ 
@@ -85,7 +96,9 @@ serve(async (req) => {
       }
     )
   } catch (error) {
-    console.error('Error in submit-assessment function:', error)
+    console.error('❌ Error in submit-assessment function:', error)
+    console.error('❌ Error type:', typeof error)
+    console.error('❌ Error details:', JSON.stringify(error, null, 2))
     return new Response(
       JSON.stringify({ 
         success: false,

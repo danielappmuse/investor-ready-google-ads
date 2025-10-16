@@ -262,16 +262,18 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   }
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    console.log('🚀 FORM SUBMISSION STARTED')
     setIsSubmitting(true)
     
     try {
       const score = calculateScore()
       const segment = getSegment(score)
+      console.log('📊 Score calculated:', score, 'Segment:', segment.name)
       
       const phoneClean = data.phone.replace(/\D/g, '')
       
       // Fire Google Ads conversion and WAIT for it to complete
-      console.log('Firing Google Ads conversion...')
+      console.log('🎯 Firing Google Ads conversion...')
       await new Promise<void>((resolve) => {
         if (typeof window !== 'undefined' && (window as any).gtag) {
           (window as any).gtag('event', 'conversion', {
@@ -330,20 +332,25 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         referrer: document.referrer || null
       }
       
+      console.log('📦 Assessment payload prepared:', JSON.stringify(assessmentPayload, null, 2))
+      
       // Send to webhook via edge function
-      console.log('Sending assessment to webhook...')
+      console.log('📡 Invoking submit-assessment edge function...')
       try {
-        const { error: webhookError } = await supabase.functions.invoke('submit-assessment', {
+        const { data: responseData, error: webhookError } = await supabase.functions.invoke('submit-assessment', {
           body: assessmentPayload
         })
         
         if (webhookError) {
           console.error('❌ Webhook error:', webhookError)
+          console.error('❌ Full error details:', JSON.stringify(webhookError, null, 2))
         } else {
           console.log('✅ Assessment sent to webhook successfully')
+          console.log('✅ Response data:', responseData)
         }
       } catch (webhookErr) {
-        console.error('❌ Webhook submission failed:', webhookErr)
+        console.error('❌ Webhook submission exception:', webhookErr)
+        console.error('❌ Exception details:', JSON.stringify(webhookErr, null, 2))
       }
       
       // Build Calendly URL with parameters
