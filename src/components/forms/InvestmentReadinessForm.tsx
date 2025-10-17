@@ -205,7 +205,10 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
     const fieldsToValidate = getFieldsForStep(currentStep)
     const isStepValid = await trigger(fieldsToValidate as any)
     
-    // Data is only sent once at final submission via submit-assessment
+    if (isStepValid && currentStep === 1) {
+      await submitLeadData(1)
+      // Conversion now fires only on final submit to ensure redirect ordering
+    }
     
     if (isStepValid) {
       if (currentStep === 10) {
@@ -238,7 +241,39 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
     }
   }
 
-  // Removed submitLeadData - all data now sent once via submit-assessment at final submission
+  const submitLeadData = async (step: number) => {
+    const leadData: ContactFormData = {
+      full_name: `${watchedFields.first_name || ''} ${watchedFields.last_name || ''}`.trim(),
+      email: watchedFields.email || '',
+      phone: watchedFields.phone || '',
+      consent: watchedFields.consent || false,
+      app_idea: watchedFields.app_idea || '',
+      project_stage: watchedFields.project_stage || '',
+      user_persona: watchedFields.user_persona || '',
+      differentiation: watchedFields.differentiation || '',
+      existing_materials: watchedFields.existing_materials || [],
+      business_model: watchedFields.business_model || '',
+      revenue_goal: watchedFields.revenue_goal || '',
+      build_strategy: watchedFields.build_strategy || '',
+      help_needed: watchedFields.help_needed || [],
+      investment_readiness: watchedFields.investment_readiness || '',
+      session_id: sessionId,
+      form_location: formLocation,
+      ...trackingData
+    }
+
+    try {
+      const { data, error } = await supabase.functions.invoke('submit-lead', {
+        body: { ...leadData, step }
+      })
+
+      if (error) throw error
+      
+      console.log('Lead data submitted for step:', step)
+    } catch (error) {
+      console.error('Error submitting lead data:', error)
+    }
+  }
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     console.log('🚀 FORM SUBMISSION STARTED')
@@ -417,7 +452,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         ...trackingData
       }
 
-      // Lead data submission removed - all data sent via submit-assessment above
+      await submitLeadData(11)
       onSuccess(completeData)
       
       // Fire Google Ads conversion AFTER successful submission

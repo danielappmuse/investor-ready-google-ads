@@ -5,11 +5,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
-const WEBHOOK_URL = Deno.env.get('MAKE_WEBHOOK_ASSESSMENT_URL')
-
-if (!WEBHOOK_URL) {
-  console.error('❌ MAKE_WEBHOOK_ASSESSMENT_URL not configured')
-}
+const WEBHOOK_URL = 'https://hook.eu1.make.com/wupz8z02hj9jqjxkngm1foxed2aud1ya'
 
 interface AssessmentPayload {
   event: string
@@ -126,11 +122,6 @@ serve(async (req) => {
       server_timestamp: new Date().toISOString(),
       nda_consent_timestamp_local: consentLocal,
       nda_consent_timezone: MIAMI_TZ
-    }
-    
-    // Verify webhook URL is configured
-    if (!WEBHOOK_URL) {
-      throw new Error('MAKE_WEBHOOK_ASSESSMENT_URL not configured')
     }
     
     console.log('📤 Sending to webhook:', WEBHOOK_URL)
