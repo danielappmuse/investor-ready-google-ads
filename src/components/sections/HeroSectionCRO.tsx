@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { CheckCircle, ArrowRight, Shield, Sparkles, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import InvestmentReadinessForm from '@/components/forms/InvestmentReadinessForm';
-import CalendlyWidget from '@/components/CalendlyWidget';
 import { ContactFormData } from '@/types/form';
 import FuturisticBackground from '@/components/tech/FuturisticBackground';
 
@@ -11,14 +10,14 @@ interface HeroSectionCROProps {
 }
 
 const HeroSectionCRO = ({ startWithPrototype = false }: HeroSectionCROProps) => {
-  const [currentView, setCurrentView] = useState<'hero' | 'form' | 'calendly'>(
+  const [currentView, setCurrentView] = useState<'hero' | 'form'>(
     startWithPrototype ? 'form' : 'hero'
   );
   const [formData, setFormData] = useState<ContactFormData | null>(null);
 
   const handleFormSuccess = (data: ContactFormData) => {
     setFormData(data);
-    setCurrentView('calendly');
+    // Form success - data has been submitted
   };
 
   const handleBackToHero = () => {
@@ -152,25 +151,6 @@ const HeroSectionCRO = ({ startWithPrototype = false }: HeroSectionCROProps) => 
               formLocation="top" 
               onBack={handleBackToHero}
             />
-          </div>
-        )}
-
-        {currentView === 'calendly' && (
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full text-sm font-medium text-green-400 mb-4">
-                <CheckCircle className="w-4 h-4 mr-2" />
-                Form Submitted Successfully!
-              </div>
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Schedule Your Free Consultation
-              </h2>
-              <p className="text-gray-300">
-                Thank you {formData?.full_name}! Now let's schedule a time to discuss your startup.
-              </p>
-            </div>
-            
-            <CalendlyWidget formData={formData!} />
           </div>
         )}
       </div>
