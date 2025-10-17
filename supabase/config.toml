@@ -5,9 +5,3 @@ verify_jwt = false
 
 [functions.submit-assessment]
 verify_jwt = false
-
-[functions.save-agent-lead]
-verify_jwt = false
-
-[functions.save-agent-chat]
-verify_jwt = false
