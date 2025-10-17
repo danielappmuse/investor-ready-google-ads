@@ -58,7 +58,12 @@ serve(async (req) => {
     }
 
     // Send to Make.com webhook
-    const webhookResponse = await fetch('https://hook.eu1.make.com/g3vatqcvat1ki4crg8f78dd3tfbo5gw6', {
+    const webhookUrl = Deno.env.get('MAKE_WEBHOOK_LEAD_URL')
+    if (!webhookUrl) {
+      throw new Error('MAKE_WEBHOOK_LEAD_URL not configured')
+    }
+    
+    const webhookResponse = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
