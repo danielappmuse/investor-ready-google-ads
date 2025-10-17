@@ -112,11 +112,6 @@ serve(async (req) => {
     // Get webhook URL from environment
     const webhookUrl = Deno.env.get('MAKE_WEBHOOK_ASSESSMENT_URL')
     
-    if (!webhookUrl) {
-      console.error('❌ MAKE_WEBHOOK_ASSESSMENT_URL not configured')
-      throw new Error('Webhook URL not configured')
-    }
-    
     // Construct complete webhook payload
     const webhookPayload = {
       ...payload,
@@ -130,28 +125,34 @@ serve(async (req) => {
       nda_consent_timezone: MIAMI_TZ
     }
     
-    console.log('📤 Sending to webhook:', webhookUrl)
-    console.log('📦 Webhook payload:', JSON.stringify(webhookPayload, null, 2))
-    
-    // Send to Make.com webhook
-    const webhookResponse = await fetch(webhookUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(webhookPayload)
-    })
-    
-    console.log('📨 Webhook response status:', webhookResponse.status)
-    console.log('📨 Webhook response ok:', webhookResponse.ok)
-    
-    if (!webhookResponse.ok) {
-      const responseText = await webhookResponse.text()
-      console.error('❌ Webhook failed with response:', responseText)
-      throw new Error(`Webhook returned status ${webhookResponse.status}`)
+    // Only send to webhook if URL is configured
+    if (webhookUrl) {
+      console.log('📤 Sending to webhook:', webhookUrl)
+      console.log('📦 Webhook payload:', JSON.stringify(webhookPayload, null, 2))
+      
+      // Send to Make.com webhook
+      const webhookResponse = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(webhookPayload)
+      })
+      
+      console.log('📨 Webhook response status:', webhookResponse.status)
+      console.log('📨 Webhook response ok:', webhookResponse.ok)
+      
+      if (!webhookResponse.ok) {
+        const responseText = await webhookResponse.text()
+        console.error('❌ Webhook failed with response:', responseText)
+        throw new Error(`Webhook returned status ${webhookResponse.status}`)
+      }
+      
+      console.log('✅ Successfully sent to webhook')
+    } else {
+      console.warn('⚠️ MAKE_WEBHOOK_ASSESSMENT_URL not configured - skipping webhook call')
+      console.log('📦 Assessment data (not sent):', JSON.stringify(webhookPayload, null, 2))
     }
-    
-    console.log('✅ Successfully sent to webhook')
     
     return new Response(
       JSON.stringify({ 
