@@ -262,17 +262,8 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       ...trackingData
     }
 
-    try {
-      const { data, error } = await supabase.functions.invoke('submit-lead', {
-        body: { ...leadData, step }
-      })
-
-      if (error) throw error
-      
-      console.log('Lead data submitted for step:', step)
-    } catch (error) {
-      console.error('Error submitting lead data:', error)
-    }
+    // Data is now only submitted once at the end via submit-assessment
+    console.log('Step completed:', step)
   }
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
