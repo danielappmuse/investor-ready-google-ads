@@ -1,21 +1,9 @@
 project_id = "cocuhrhazafkyskeplzj"
 
-[functions.create-checkout-session]
-verify_jwt = false
-
 [functions.submit-lead]
 verify_jwt = false
 
 [functions.submit-assessment]
-verify_jwt = false
-
-[functions.create-payment]
-verify_jwt = false
-
-[functions.create-payment-intent]
-verify_jwt = false
-
-[functions.save-lead-data]
 verify_jwt = false
 
 [functions.save-agent-lead]
