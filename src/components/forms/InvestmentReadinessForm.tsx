@@ -1071,7 +1071,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                   </DialogContent>
                 </Dialog>
                 <span onClick={() => setValue('consent', !watchedFields.consent)} className="cursor-pointer">
-                  {' '}& agree to receive communications.
+                  {' '}& agree to receive communications. Also I am providing written authorization for Wise Start Inc and its affiliates to access my consumer report to personalize my experience.
                 </span>
               </Label>
             </div>
