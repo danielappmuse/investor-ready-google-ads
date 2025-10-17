@@ -66,9 +66,6 @@ const EnhancedMultiStepForm = ({ onSuccess, formLocation, onBack }: EnhancedMult
     const isStepValid = await trigger(fieldsToValidate as any)
     
     if (isStepValid && currentStep === 1) {
-      // Submit initial lead data after step 1 validation
-      await submitLeadData(1)
-      
       // Fire Google Ads conversion
       fireGoogleAdsConversion()
     }
@@ -95,39 +92,7 @@ const EnhancedMultiStepForm = ({ onSuccess, formLocation, onBack }: EnhancedMult
     }
   }
 
-  const submitLeadData = async (step: number) => {
-    const leadData: ContactFormData = {
-      full_name: watchedFields.full_name || '',
-      email: watchedFields.email || '',
-      phone: watchedFields.phone || '',
-      consent: watchedFields.consent || false,
-      app_idea: watchedFields.project_description || '',
-      project_stage: watchedFields.project_type || '',
-      user_persona: '',
-      differentiation: '',
-      existing_materials: [],
-      business_model: watchedFields.budget_range || '',
-      revenue_goal: '',
-      build_strategy: '',
-      help_needed: [],
-      investment_readiness: '',
-      session_id: sessionId,
-      form_location: formLocation,
-      ...trackingData
-    }
-
-    try {
-      const { data, error } = await supabase.functions.invoke('submit-lead', {
-        body: { ...leadData, step }
-      })
-
-      if (error) throw error
-      
-      console.log('Lead data submitted for step:', step)
-    } catch (error) {
-      console.error('Error submitting lead data:', error)
-    }
-  }
+  // Removed submitLeadData - all data sent once at final submission via parent component
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsSubmitting(true)
@@ -153,9 +118,7 @@ const EnhancedMultiStepForm = ({ onSuccess, formLocation, onBack }: EnhancedMult
         ...trackingData
       }
 
-      // Submit final complete data
-      await submitLeadData(3)
-
+      // Data submission removed - handled by parent component via submit-assessment
       onSuccess(completeData)
     } catch (error) {
       console.error('Form submission error:', error)

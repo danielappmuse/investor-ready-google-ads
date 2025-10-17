@@ -1,7 +1,4 @@
 project_id = "cocuhrhazafkyskeplzj"
 
-[functions.submit-lead]
-verify_jwt = false
-
 [functions.submit-assessment]
 verify_jwt = false
