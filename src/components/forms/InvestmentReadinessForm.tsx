@@ -24,13 +24,19 @@ const formSchema = z.object({
   consent: z.boolean().refine(val => val === true, 'You must agree to the terms'),
   app_idea: z.string().min(20, 'Please provide at least 20 characters describing your app idea'),
   project_stage: z.string().min(1, 'Please select your project stage'),
+  project_stage_other: z.string().optional(),
   user_persona: z.string().min(1, 'Please select your user persona understanding'),
+  user_persona_other: z.string().optional(),
   differentiation: z.string().min(1, 'Please select what makes your idea stand out'),
+  differentiation_other: z.string().optional(),
   existing_materials: z.array(z.string()).min(0),
   business_model: z.string().min(1, 'Please select your business model'),
   revenue_goal: z.string().min(1, 'Please select your revenue goal'),
+  current_revenue: z.string().optional(),
   build_strategy: z.string().min(1, 'Please select your build strategy'),
+  build_strategy_other: z.string().optional(),
   help_needed: z.array(z.string()).min(1, 'Please select at least one area where you need help'),
+  help_needed_other: z.string().optional(),
   investment_readiness: z.string().min(1, 'Please select your investment readiness level'),
 })
 
@@ -433,13 +439,19 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         consent: data.consent,
         app_idea: data.app_idea,
         project_stage: data.project_stage,
+        project_stage_other: data.project_stage_other,
         user_persona: data.user_persona,
+        user_persona_other: data.user_persona_other,
         differentiation: data.differentiation,
+        differentiation_other: data.differentiation_other,
         existing_materials: data.existing_materials,
         business_model: data.business_model,
         revenue_goal: data.revenue_goal,
+        current_revenue: data.current_revenue,
         build_strategy: data.build_strategy,
+        build_strategy_other: data.build_strategy_other,
         help_needed: data.help_needed,
+        help_needed_other: data.help_needed_other,
         investment_readiness: data.investment_readiness,
         session_id: sessionId,
         form_location: formLocation,
@@ -533,6 +545,15 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             {errors.project_stage && (
               <p className="text-destructive text-lg mt-1 text-center">{errors.project_stage.message}</p>
             )}
+            {watchedFields.project_stage === 'other' && (
+              <div className="mt-3">
+                <Textarea
+                  {...register('project_stage_other')}
+                  className="form-input min-h-[80px] text-lg"
+                  placeholder="Please describe your project stage..."
+                />
+              </div>
+            )}
           </div>
         )
 
@@ -563,6 +584,15 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             {errors.user_persona && (
               <p className="text-destructive text-lg mt-1 text-center">{errors.user_persona.message}</p>
             )}
+            {watchedFields.user_persona === 'other' && (
+              <div className="mt-3">
+                <Textarea
+                  {...register('user_persona_other')}
+                  className="form-input min-h-[80px] text-lg"
+                  placeholder="Please describe your user persona understanding..."
+                />
+              </div>
+            )}
           </div>
         )
 
@@ -592,6 +622,15 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             </Select>
             {errors.differentiation && (
               <p className="text-destructive text-lg mt-1 text-center">{errors.differentiation.message}</p>
+            )}
+            {watchedFields.differentiation === 'other' && (
+              <div className="mt-3">
+                <Textarea
+                  {...register('differentiation_other')}
+                  className="form-input min-h-[80px] text-lg"
+                  placeholder="Please describe what makes your idea stand out..."
+                />
+              </div>
             )}
           </div>
         )
@@ -691,6 +730,18 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             {errors.revenue_goal && (
               <p className="text-destructive text-lg mt-1 text-center">{errors.revenue_goal.message}</p>
             )}
+            {watchedFields.revenue_goal === 'already_creating' && (
+              <div className="mt-3">
+                <Label className="text-white text-base mb-2 block text-center">
+                  What is the revenue that you are currently generating on average per month
+                </Label>
+                <Textarea
+                  {...register('current_revenue')}
+                  className="form-input min-h-[80px] text-lg"
+                  placeholder="Enter your current monthly revenue..."
+                />
+              </div>
+            )}
           </div>
         )
 
@@ -720,6 +771,15 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             </Select>
             {errors.build_strategy && (
               <p className="text-destructive text-lg mt-1 text-center">{errors.build_strategy.message}</p>
+            )}
+            {watchedFields.build_strategy === 'other' && (
+              <div className="mt-3">
+                <Textarea
+                  {...register('build_strategy_other')}
+                  className="form-input min-h-[80px] text-lg"
+                  placeholder="Please describe your build strategy..."
+                />
+              </div>
             )}
           </div>
         )
@@ -761,6 +821,15 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             </div>
             {errors.help_needed && (
               <p className="text-destructive text-lg mt-1 text-center">{errors.help_needed.message}</p>
+            )}
+            {(watchedFields.help_needed || []).includes('other') && (
+              <div className="mt-3">
+                <Textarea
+                  {...register('help_needed_other')}
+                  className="form-input min-h-[80px] text-lg"
+                  placeholder="Please describe what areas you need help with..."
+                />
+              </div>
             )}
           </div>
         )

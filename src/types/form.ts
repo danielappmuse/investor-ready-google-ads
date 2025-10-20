@@ -9,12 +9,15 @@ export interface ContactFormData {
   
   // Q2: Project Journey Stage
   project_stage: string
+  project_stage_other?: string
   
   // Q3: User Persona Understanding
   user_persona: string
+  user_persona_other?: string
   
   // Q4: Idea Differentiation
   differentiation: string
+  differentiation_other?: string
   
   // Q5: Existing Materials (multi-select)
   existing_materials: string[]
@@ -24,12 +27,15 @@ export interface ContactFormData {
   
   // Q7: Revenue Goal
   revenue_goal: string
+  current_revenue?: string
   
   // Q8: Build Strategy
   build_strategy: string
+  build_strategy_other?: string
   
   // Q9: Areas of Help Needed (multi-select)
   help_needed: string[]
+  help_needed_other?: string
   
   // Q10: Investment Readiness
   investment_readiness: string
@@ -65,7 +71,8 @@ export const projectStages = [
   { id: 'business_and_tech_planned', name: 'I figured the business side, and planned the tech, but have no development skills/knowledge.' },
   { id: 'mvp_development', name: 'MVP in Development' },
   { id: 'launching_soon', name: 'Launching soon (next 90 days)' },
-  { id: 'already_live', name: 'Already live in the app stores' }
+  { id: 'already_live', name: 'Already live in the app stores' },
+  { id: 'other', name: 'Other' }
 ]
 
 // Q3: User Persona Understanding Options
@@ -73,7 +80,8 @@ export const userPersonaOptions = [
   { id: 'assumptions', name: "I've written down assumptions but haven't validated yet" },
   { id: 'think_know', name: "I think I know, but haven't talked to users" },
   { id: 'i_am_user', name: 'I am the user — I built this to solve my own problem' },
-  { id: 'validated', name: "I've done surveys and know their pain deeply" }
+  { id: 'validated', name: "I've done surveys and know their pain deeply" },
+  { id: 'other', name: 'Other' }
 ]
 
 // Q4: Idea Differentiation Options
@@ -82,7 +90,8 @@ export const differentiationOptions = [
   { id: 'user_friendly', name: "It's more user-friendly and beautifully designed" },
   { id: 'different_problem', name: 'It solves a totally different problem than competitors' },
   { id: 'working_on_it', name: "I'm still working on figuring that out" },
-  { id: 'mashup', name: "It's a mash-up of existing products" }
+  { id: 'mashup', name: "It's a mash-up of existing products" },
+  { id: 'other', name: 'Other' }
 ]
 
 // Q5: Existing Materials Options
@@ -112,7 +121,8 @@ export const revenueGoals = [
   { id: '0-1k', name: '$0–$1K' },
   { id: '1k-5k', name: '$1K–$5K' },
   { id: '5k-25k', name: '$5K–$25K' },
-  { id: '25k+', name: '$25K+' }
+  { id: '25k+', name: '$25K+' },
+  { id: 'already_creating', name: 'I am already creating revenue' }
 ]
 
 // Q8: Build Strategy Options
@@ -121,7 +131,8 @@ export const buildStrategies = [
   { id: 'cofounder', name: "I'm working with a technical cofounder" },
   { id: 'no_code', name: 'I plan to use a no-code tool myself' },
   { id: 'need_find', name: 'I need to find someone to build it' },
-  { id: 'have_team', name: 'I already have a dev team or agency in mind' }
+  { id: 'have_team', name: 'I already have a dev team or agency in mind' },
+  { id: 'other', name: 'Other' }
 ]
 
 // Q9: Areas of Help Needed Options
@@ -131,7 +142,8 @@ export const helpNeededAreas = [
   { id: 'figma_dev', name: 'Developing my existing Figma Design' },
   { id: 'code_takeover', name: 'Need a new developer (Code Takeover)' },
   { id: 'marketing', name: 'Getting users and Marketing my existing app' },
-  { id: 'fundraising', name: 'Fundraising for my first round' }
+  { id: 'fundraising', name: 'Fundraising for my first round' },
+  { id: 'other', name: 'Other' }
 ]
 
 // Q10: Investment Readiness Options
