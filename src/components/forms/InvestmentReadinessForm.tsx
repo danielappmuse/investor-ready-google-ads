@@ -342,7 +342,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
         }).format(new Date()),
         nda_consent_timestamp_iso: new Date().toISOString(),
-        nda_link: `https://investment.start-wise.io/Start_Wise_NDA.pdf`,
+        nda_link: `${window.location.origin}/Start_Wise_NDA.pdf`,
         
         // Assessment Q&A with single human-readable answers
         assessment: {
@@ -1145,11 +1145,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                       <DialogTitle>Mutual Non-Disclosure Agreement</DialogTitle>
                     </DialogHeader>
                     <div className="overflow-auto max-h-[calc(90vh-8rem)]">
-                      <InlinePDFViewer fileUrl="https://investment.start-wise.io/Start_Wise_NDA.pdf" />
+                      <InlinePDFViewer fileUrl="/Start_Wise_NDA.pdf" />
                       <p className="text-center text-sm mt-3">
                         If the preview doesn't load,
                         <a 
-                          href="https://investment.start-wise.io/Start_Wise_NDA.pdf" 
+                          href="/Start_Wise_NDA.pdf" 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="text-primary hover:underline ml-1"
