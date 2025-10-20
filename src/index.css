@@ -74,7 +74,8 @@
   body {
     @apply bg-background text-foreground;
     background: var(--gradient-hero);
-    background-image: url('/src/assets/hero-bg.jpg');
+    /* background-image disabled temporarily for clean remix */
+    /* background-image: url('/src/assets/hero-bg.jpg'); */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
