@@ -44,6 +44,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showScore, setShowScore] = useState(false)
+  const [userCity, setUserCity] = useState<string>('')
   const [sessionId] = useState(() => getSessionId())
   const [trackingData] = useState(() => getTrackingParameters())
   const { toast } = useToast()
@@ -380,6 +381,10 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         } else {
           console.log('✅ Assessment sent to webhook successfully')
           console.log('✅ Response data:', responseData)
+          // Store city from response
+          if (responseData?.city) {
+            setUserCity(responseData.city)
+          }
           toast({
             title: "Success!",
             description: "Assessment submitted successfully",
@@ -932,6 +937,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             {segment.name === 'Design & Tech' && "Build the product investors fund"}
             {segment.name === 'Investors' && "You're ready to scale — let's get you funded"}
           </p>
+          {userCity && (
+            <p className="text-sm text-gray-400 mt-2">
+              📍 Submitting from: {userCity}
+            </p>
+          )}
         </div>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-left">

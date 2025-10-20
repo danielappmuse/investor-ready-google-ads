@@ -129,6 +129,13 @@ serve(async (req) => {
     if (webhookUrl) {
       console.log('📤 Sending to webhook:', webhookUrl)
       console.log('📦 Webhook payload:', JSON.stringify(webhookPayload, null, 2))
+      console.log('🔍 Tracking data in payload:', {
+        keyword: (webhookPayload as any).keyword,
+        match_type: (webhookPayload as any).match_type,
+        matchtype: (webhookPayload as any).matchtype,
+        gclid: (webhookPayload as any).gclid,
+        city: webhookPayload.city
+      })
       
       // Send to Make.com webhook
       const webhookResponse = await fetch(webhookUrl, {
@@ -157,7 +164,10 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({ 
         success: true,
-        message: 'Assessment submitted successfully'
+        message: 'Assessment submitted successfully',
+        city,
+        region,
+        country
       }),
       { 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
