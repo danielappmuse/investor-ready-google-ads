@@ -291,16 +291,36 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       
       const phoneClean = data.phone.replace(/\D/g, '')
       
-      // Helper functions to get human-readable labels
-      const getProjectStageLabel = (id: string) => projectStages.find(s => s.id === id)?.name || id
-      const getUserPersonaLabel = (id: string) => userPersonaOptions.find(o => o.id === id)?.name || id
-      const getDifferentiationLabel = (id: string) => differentiationOptions.find(o => o.id === id)?.name || id
+      // Helper functions to get human-readable labels with "Other" text appended
+      const getProjectStageLabel = (id: string) => {
+        const label = projectStages.find(s => s.id === id)?.name || id
+        return id === 'other' && data.project_stage_other ? `${label} - ${data.project_stage_other}` : label
+      }
+      const getUserPersonaLabel = (id: string) => {
+        const label = userPersonaOptions.find(o => o.id === id)?.name || id
+        return id === 'other' && data.user_persona_other ? `${label} - ${data.user_persona_other}` : label
+      }
+      const getDifferentiationLabel = (id: string) => {
+        const label = differentiationOptions.find(o => o.id === id)?.name || id
+        return id === 'other' && data.differentiation_other ? `${label} - ${data.differentiation_other}` : label
+      }
       const getBusinessModelLabel = (id: string) => businessModels.find(m => m.id === id)?.name || id
-      const getRevenueGoalLabel = (id: string) => revenueGoals.find(g => g.id === id)?.name || id
-      const getBuildStrategyLabel = (id: string) => buildStrategies.find(s => s.id === id)?.name || id
+      const getRevenueGoalLabel = (id: string) => {
+        const label = revenueGoals.find(g => g.id === id)?.name || id
+        return id === 'already_creating' && data.current_revenue ? `${label} - ${data.current_revenue}` : label
+      }
+      const getBuildStrategyLabel = (id: string) => {
+        const label = buildStrategies.find(s => s.id === id)?.name || id
+        return id === 'other' && data.build_strategy_other ? `${label} - ${data.build_strategy_other}` : label
+      }
       const getInvestmentLevelLabel = (id: string) => investmentLevels.find(l => l.id === id)?.name || id
       const getMaterialsLabels = (ids: string[]) => ids.map(id => existingMaterials.find(m => m.id === id)?.name || id)
-      const getHelpNeededLabels = (ids: string[]) => ids.map(id => helpNeededAreas.find(h => h.id === id)?.name || id)
+      const getHelpNeededLabels = (ids: string[]) => {
+        return ids.map(id => {
+          const label = helpNeededAreas.find(h => h.id === id)?.name || id
+          return id === 'other' && data.help_needed_other ? `${label} - ${data.help_needed_other}` : label
+        })
+      }
       
       // Prepare comprehensive assessment payload for webhook
       const assessmentPayload = {
