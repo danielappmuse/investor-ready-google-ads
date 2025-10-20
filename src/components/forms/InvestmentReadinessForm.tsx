@@ -13,7 +13,7 @@ import { ContactFormData, projectStages, userPersonaOptions, differentiationOpti
 import { validateEmail, validatePhoneNumber, formatPhoneNumber, getSessionId } from '@/utils/formValidation'
 import { getTrackingParameters, initializeTracking, fireGoogleAdsConversion } from '@/utils/trackingUtils'
 import { supabase } from '@/integrations/supabase/client'
-import InlinePDFViewer from '@/components/documents/InlinePDFViewer'
+
 import { useToast } from '@/hooks/use-toast'
 
 const formSchema = z.object({
@@ -342,7 +342,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
         }).format(new Date()),
         nda_consent_timestamp_iso: new Date().toISOString(),
-        nda_link: `${window.location.origin}/Start_Wise_NDA.pdf`,
+        nda_link: `NDA will be provided in follow-up communication`,
         
         // Assessment Q&A with single human-readable answers
         assessment: {
@@ -1140,24 +1140,16 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                       <ExternalLink className="w-3 h-3" />
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
-                    <DialogHeader>
-                      <DialogTitle>Mutual Non-Disclosure Agreement</DialogTitle>
-                    </DialogHeader>
-                    <div className="overflow-auto max-h-[calc(90vh-8rem)]">
-                      <InlinePDFViewer fileUrl="/Start_Wise_NDA.pdf" />
-                      <p className="text-center text-sm mt-3">
-                        If the preview doesn't load,
-                        <a 
-                          href="/Start_Wise_NDA.pdf" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline ml-1"
-                        >
-                          open the NDA in a new tab
-                        </a>.
-                      </p>
-                    </div>
+                     <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
+                     <DialogHeader>
+                       <DialogTitle>Mutual Non-Disclosure Agreement</DialogTitle>
+                     </DialogHeader>
+                     <div className="overflow-auto max-h-[calc(90vh-8rem)]">
+                       <div className="p-8 text-center">
+                         <p className="text-lg mb-4">NDA document temporarily unavailable during site optimization.</p>
+                         <p className="text-sm text-muted-foreground">Please proceed with the form and we'll provide the NDA in your follow-up communication.</p>
+                       </div>
+                     </div>
                   </DialogContent>
                 </Dialog>
                 <span onClick={() => setValue('consent', !watchedFields.consent)} className="cursor-pointer">
