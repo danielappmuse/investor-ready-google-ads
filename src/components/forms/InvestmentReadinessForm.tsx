@@ -170,11 +170,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
     // Q10: Investment Readiness (14.4 points max)
     const investmentScores: Record<string, number> = {
-      'under_2k': 2.0,
-      '3k-5k': 5.0,
-      '8k-15k': 8.0,
-      '20k-40k': 11.0,
-      '50k-90k': 13.0,
+      'under_5k': 2.0,
+      '5k-10k': 5.0,
+      '10k-30k': 8.0,
+      '30k-50k': 11.0,
+      '50k-100k': 13.0,
       '100k+': 14.4
     }
     totalScore += investmentScores[watchedFields.investment_readiness || ''] || 0
