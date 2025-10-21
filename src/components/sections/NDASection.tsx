@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shield, Lock, FileText, Users, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import logo from '@/assets/logo.png';
 
 interface NDASectionProps {
   onAssessmentClick?: () => void;
@@ -152,7 +153,7 @@ const NDASection = ({ onAssessmentClick }: NDASectionProps) => {
             className="btn-hero px-4 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold w-full sm:w-auto"
           >
             <img 
-              src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" 
+              src={logo} 
               alt="StartWise Logo" 
               className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 filter drop-shadow-sm"
               style={{ background: 'transparent' }}

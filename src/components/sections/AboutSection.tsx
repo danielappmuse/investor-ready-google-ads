@@ -4,12 +4,12 @@ const AboutSection = () => {
   const teamMembers = [{
     name: 'Alon Krupitsky',
     role: 'CTO & CMO',
-    image: '/lovable-uploads/37822371-b0e5-425f-b7e0-34af530ed61d.png',
+    image: '/placeholder.svg',
     bio: '10+ years of experince with marketing and launched over 100 projects'
   }, {
     name: 'Daniel Koren',
     role: 'CEO',
-    image: '/lovable-uploads/7b791841-8b4b-4242-acc3-1b478ffed2b8.png',
+    image: '/placeholder.svg',
     bio: 'Helped raise millions of dollars and made over $20M+ in sales'
   }];
   const achievements = [{
@@ -33,7 +33,7 @@ const AboutSection = () => {
     description: 'By our portfolio companies',
     highlight: false
   }];
-  return <section id="about" className="py-8 sm:py-12 lg:py-16">
+  return <section id="team" className="py-8 sm:py-12 lg:py-16">
       <div className="container mx-auto px-3 sm:px-4 lg:px-6">
         {/* Section Header */}
         <div className="text-center mb-12 lg:mb-16">
@@ -57,14 +57,14 @@ const AboutSection = () => {
           <div className="space-y-6 sm:space-y-8">
             {/* Team Photo */}
             <div className="relative">
-              <img src="/lovable-uploads/1050e5f3-ee51-4974-8552-2c1005e0691f.png" alt="StartWise team collaborating in the office" className="w-full rounded-2xl shadow-2xl" />
+              <img src="/placeholder.svg" alt="StartWise team collaborating in the office" className="w-full rounded-2xl shadow-2xl" />
               <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent rounded-2xl"></div>
             </div>
 
             {/* Forbes Badge - visible on mobile/tablet only */}
             <div className="flex justify-center xl:hidden">
               <div className="card-glass p-4 sm:p-6 inline-flex items-center space-x-4 rounded-xl">
-                <img src="/lovable-uploads/7104bb15-7ae8-41a9-a71b-b8b04037b57f.png" alt="Forbes Agency Council 2025 Official Member" className="h-24 sm:h-16 lg:h-32 w-auto" />
+                <img src="/media-logos/forbes.png" alt="Forbes Agency Council 2025 Official Member" className="h-24 sm:h-16 lg:h-32 w-auto" />
                 <div>
                   <div className="text-lg sm:text-base text-white font-semibold">Forbes Recognition</div>
                   <div className="text-lg sm:text-sm text-gray-400">Agency Council Member 2025</div>
@@ -94,7 +94,7 @@ const AboutSection = () => {
             {/* Forbes Badge - visible on desktop only, after team members */}
             <div className="hidden xl:flex justify-center">
               <div className="card-glass p-4 sm:p-6 inline-flex items-center space-x-4 rounded-xl">
-                <img src="/lovable-uploads/7104bb15-7ae8-41a9-a71b-b8b04037b57f.png" alt="Forbes Agency Council 2025 Official Member" className="h-24 sm:h-16 lg:h-32 w-auto" />
+                <img src="/media-logos/forbes.png" alt="Forbes Agency Council 2025 Official Member" className="h-24 sm:h-16 lg:h-32 w-auto" />
                 <div>
                   <div className="text-lg sm:text-base text-white font-semibold">Forbes Recognition</div>
                   <div className="text-lg sm:text-sm text-gray-400">Agency Council Member 2025</div>
@@ -117,11 +117,11 @@ const AboutSection = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             <div className="lg:col-span-2">
-              <img src="/lovable-uploads/d94d8748-2a47-41e1-84eb-9614ad4f90e3.png" alt="Miami skyline view from StartWise office" className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-2xl" />
+              <img src="/placeholder.svg" alt="Miami skyline view from StartWise office" className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-2xl" />
             </div>
             <div className="space-y-4 sm:space-y-6">
-              <img src="/lovable-uploads/b1fb67df-159c-45b8-862f-8655fa99dfae.png" alt="StartWise office building exterior" className="w-full h-30 sm:h-36 lg:h-44 object-cover rounded-2xl shadow-xl" />
-              <img src="/lovable-uploads/d6e0eeb6-0ae7-40a9-8a65-235ceb2eb0ee.png" alt="Modern Miami office building with palm trees" className="w-full h-30 sm:h-36 lg:h-44 object-cover rounded-2xl shadow-xl" />
+              <img src="/placeholder.svg" alt="StartWise office building exterior" className="w-full h-30 sm:h-36 lg:h-44 object-cover rounded-2xl shadow-xl" />
+              <img src="/placeholder.svg" alt="Modern Miami office building with palm trees" className="w-full h-30 sm:h-36 lg:h-44 object-cover rounded-2xl shadow-xl" />
             </div>
           </div>
         </div>
