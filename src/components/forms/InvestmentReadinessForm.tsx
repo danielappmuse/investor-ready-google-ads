@@ -495,24 +495,38 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       onSuccess(completeData)
       
       // Fire Google Ads conversion with callback before redirect
+      // Following official Google Ads documentation pattern with safety timeout
       console.log('🎯 Firing Google Ads conversion...')
       await new Promise<void>((resolve) => {
         if (typeof window !== 'undefined' && (window as any).gtag) {
-          // Using the exact conversion snippet format from Google Ads
-          (window as any).gtag('event', 'conversion', {
-            'send_to': 'AW-16893733356/txnICNTu5OQaEOzTx_c-',
-            'event_callback': () => {
+          let callbackFired = false
+          
+          // Official Google Ads event_callback pattern
+          const callback = () => {
+            if (!callbackFired) {
+              callbackFired = true
               console.log('✅ Google Ads conversion tracked via callback')
               resolve()
             }
+          }
+          
+          // Fire the conversion event
+          (window as any).gtag('event', 'conversion', {
+            'send_to': 'AW-16893733356/txnICNTu5OQaEOzTx_c-',
+            'event_callback': callback
           })
-          // Fallback timeout in case callback doesn't fire (1 second max wait)
+          
+          // Safety timeout: ensure we redirect even if callback doesn't fire
+          // Google recommends 2 seconds, but we use 1 second for faster UX
           setTimeout(() => {
-            console.log('⏱️ Google Ads timeout - proceeding')
-            resolve()
+            if (!callbackFired) {
+              callbackFired = true
+              console.log('⏱️ Google Ads timeout - proceeding with redirect')
+              resolve()
+            }
           }, 1000)
         } else {
-          console.warn('⚠️ Google Ads gtag not available')
+          console.warn('⚠️ Google Ads gtag not available - skipping conversion tracking')
           resolve()
         }
       })
