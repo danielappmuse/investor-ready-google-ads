@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ArrowRight, ArrowLeft, Check, ExternalLink } from 'lucide-react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { ContactFormData, projectStages, userPersonaOptions, differentiationOptions, existingMaterials, businessModels, revenueGoals, buildStrategies, helpNeededAreas, investmentLevels } from '@/types/form'
+import { ContactFormData, startupTypes, projectStages, userPersonaOptions, differentiationOptions, existingMaterials, businessModels, revenueGoals, buildStrategies, helpNeededAreas, investmentLevels } from '@/types/form'
 import { validateEmail, validatePhoneNumber, formatPhoneNumber, getSessionId } from '@/utils/formValidation'
 import { getTrackingParameters, initializeTracking, fireGoogleAdsConversion } from '@/utils/trackingUtils'
 import { supabase } from '@/integrations/supabase/client'
@@ -22,7 +22,8 @@ const formSchema = z.object({
   email: z.string().refine(validateEmail, 'Please enter a valid email address'),
   phone: z.string().min(1, 'Phone number is required').refine(validatePhoneNumber, 'Please enter a valid US phone number'),
   consent: z.boolean().refine(val => val === true, 'You must agree to the terms'),
-  app_idea: z.string().min(20, 'Please provide at least 20 characters describing your app idea'),
+  startup_type: z.string().min(1, 'Please select your startup type'),
+  app_idea: z.string().min(20, 'Please provide at least 20 characters describing your solution'),
   project_stage: z.string().min(1, 'Please select your project stage'),
   project_stage_other: z.string().optional(),
   user_persona: z.string().min(1, 'Please select your user persona understanding'),
@@ -217,11 +218,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
     }
     
     if (isStepValid) {
-      if (currentStep === 10) {
-        // Show score after Q10, before contact info
+      if (currentStep === 11) {
+        // Show score after Q11, before contact info
         setShowScore(true)
       } else {
-        setCurrentStep(prev => Math.min(prev + 1, 11))
+        setCurrentStep(prev => Math.min(prev + 1, 12))
       }
     }
   }
@@ -232,17 +233,18 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
   const getFieldsForStep = (step: number) => {
     switch (step) {
-      case 1: return ['app_idea']
-      case 2: return ['project_stage']
-      case 3: return ['user_persona']
-      case 4: return ['differentiation']
-      case 5: return ['existing_materials']
-      case 6: return ['business_model']
-      case 7: return ['revenue_goal']
-      case 8: return ['build_strategy']
-      case 9: return ['help_needed']
-      case 10: return ['investment_readiness']
-      case 11: return ['first_name', 'last_name', 'email', 'phone', 'consent']
+      case 1: return ['startup_type']
+      case 2: return ['app_idea']
+      case 3: return ['project_stage']
+      case 4: return ['user_persona']
+      case 5: return ['differentiation']
+      case 6: return ['existing_materials']
+      case 7: return ['business_model']
+      case 8: return ['revenue_goal']
+      case 9: return ['build_strategy']
+      case 10: return ['help_needed']
+      case 11: return ['investment_readiness']
+      case 12: return ['first_name', 'last_name', 'email', 'phone', 'consent']
       default: return []
     }
   }
@@ -269,6 +271,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       investment_readiness: watchedFields.investment_readiness || '',
       session_id: sessionId,
       form_location: formLocation,
+      startup_type: watchedFields.startup_type,
       ...currentTrackingData
     }
 
@@ -482,12 +485,13 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         investment_readiness: data.investment_readiness,
         session_id: sessionId,
         form_location: formLocation,
+        startup_type: data.startup_type,
         score: score,
         segment: segment.name,
         ...currentTrackingData
       }
 
-      await submitLeadData(11)
+      await submitLeadData(12)
       onSuccess(completeData)
       
       // Fire Google Ads conversion AFTER successful submission
@@ -523,24 +527,50 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   }
 
   const renderStep = () => {
+    const startupType = watchedFields.startup_type || ''
+    const isPhysical = startupType === 'physical'
+    const isService = startupType === 'service'
+    const isTechOrCombo = startupType === 'technology' || startupType === 'combination'
+    
+    const getSolutionLabel = () => {
+      if (isPhysical) return 'physical product solution'
+      if (isService) return 'service-based solution'
+      return 'tech-driven solution'
+    }
+
+    const getProductLabel = () => {
+      if (isPhysical) return 'product'
+      if (isService) return 'service'
+      return 'product'
+    }
+    
     switch (currentStep) {
       case 1:
         return (
           <div className="space-y-2">
-            <p className="text-sm text-primary font-semibold mb-2 text-center">Every idea protected. NDA, guaranteed.</p>
-            <Label htmlFor="app_idea" className="text-white text-lg mb-0.5 block text-center">
-              Briefly describe your tech-driven solution and the problem it solves.
+            <Label htmlFor="startup_type" className="text-white text-lg mb-0.5 block text-center">
+              What type of startup are you building?
             </Label>
             <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
-              We have <span className="relative inline-block">limited capacity<span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-red-600/40 to-red-600" style={{ clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)' }}></span></span> and prioritize Founders with tech-driven solutions that solve real human problems with potential to scale.
+              This helps us tailor our questions to your specific business model.
             </p>
-            <Textarea
-              {...register('app_idea')}
-              className="form-input min-h-[80px] text-lg"
-              placeholder="Describe your tech-driven solution and the problem it solves..."
-            />
-            {errors.app_idea && (
-              <p className="text-destructive text-base mt-0.5">{errors.app_idea.message}</p>
+            <Select
+              value={watchedFields.startup_type || ''}
+              onValueChange={(value) => setValue('startup_type', value)}
+            >
+              <SelectTrigger className="form-input">
+                <SelectValue placeholder="Select your startup type" />
+              </SelectTrigger>
+              <SelectContent>
+                {startupTypes.map((type) => (
+                  <SelectItem key={type.id} value={type.id}>
+                    {type.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.startup_type && (
+              <p className="text-destructive text-lg mt-1 text-center">{errors.startup_type.message}</p>
             )}
           </div>
         )
@@ -548,8 +578,29 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       case 2:
         return (
           <div className="space-y-2">
+            <p className="text-sm text-primary font-semibold mb-2 text-center">Every idea protected. NDA, guaranteed.</p>
+            <Label htmlFor="app_idea" className="text-white text-lg mb-0.5 block text-center">
+              Briefly describe your {getSolutionLabel()} and the problem it solves.
+            </Label>
+            <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
+              We have <span className="relative inline-block">limited capacity<span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-red-600/40 to-red-600" style={{ clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)' }}></span></span> and prioritize Founders with {getSolutionLabel()}s that solve real human problems with potential to scale.
+            </p>
+            <Textarea
+              {...register('app_idea')}
+              className="form-input min-h-[80px] text-lg"
+              placeholder={`Describe your ${getSolutionLabel()} and the problem it solves...`}
+            />
+            {errors.app_idea && (
+              <p className="text-destructive text-base mt-0.5">{errors.app_idea.message}</p>
+            )}
+          </div>
+        )
+      
+      case 3:
+        return (
+          <div className="space-y-2">
             <Label htmlFor="project_stage" className="text-white text-lg mb-0.5 block text-center">
-              Where are you in your project journey?
+              Where are you in your {getProductLabel()} journey?
             </Label>
             <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               Select the stage that best describes where you are right now.
@@ -584,7 +635,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 3:
+      case 4:
         return (
           <div className="space-y-2">
             <Label htmlFor="user_persona" className="text-white text-lg mb-0.5 block text-center">
@@ -623,7 +674,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 4:
+      case 5:
         return (
           <div className="space-y-2">
             <Label htmlFor="differentiation" className="text-white text-lg mb-0.5 block text-center">
@@ -662,7 +713,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 5:
+      case 6:
         return (
           <div className="space-y-2">
             <Label className="text-white text-lg mb-0.5 block text-center">
@@ -700,11 +751,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 6:
+      case 7:
         return (
           <div className="space-y-2">
             <Label htmlFor="business_model" className="text-white text-lg mb-0.5 block text-center">
-              What is the app business model?
+              What is your business model?
             </Label>
             <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               This gives us insight into your revenue strategy.
@@ -730,7 +781,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 7:
+      case 8:
         return (
           <div className="space-y-2">
             <Label htmlFor="revenue_goal" className="text-white text-lg mb-0.5 block text-center">
@@ -772,11 +823,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 8:
+      case 9:
         return (
           <div className="space-y-2">
             <Label htmlFor="build_strategy" className="text-white text-lg mb-0.5 block text-center">
-              How do you plan to build the product?
+              How do you plan to {isService ? 'deliver the service' : 'build the product'}?
             </Label>
             <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               This tells us what kind of team or structure you'll need.
@@ -811,7 +862,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 9:
+      case 10:
         return (
           <div className="space-y-2">
             <Label className="text-white text-lg mb-0.5 block text-center">
@@ -861,14 +912,18 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 10:
+      case 11:
         return (
           <div className="space-y-2">
             <Label htmlFor="investment_readiness" className="text-white text-lg mb-0.5 block text-center">
               How much are you prepared to personally invest until you'll find an investor?
             </Label>
             <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
-              Those days, in the AI age, investors has high expectation from entrepreneurs. They expect you to take the project to further point that you can by yourself, before looking for outside funding
+              {isService 
+                ? "Investors expect service-based founders to demonstrate market validation and initial traction before seeking funding."
+                : isPhysical
+                ? "Investors expect physical product founders to have prototypes and initial market validation before seeking funding."
+                : "Those days, in the AI age, investors has high expectation from entrepreneurs. They expect you to take the project to further point that you can by yourself, before looking for outside funding"}
             </p>
             <Select
               value={watchedFields.investment_readiness || ''}
@@ -896,7 +951,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 11:
+      case 12:
         return (
           <div className="space-y-2">
             <div className="grid grid-cols-2 gap-3">
@@ -1197,7 +1252,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         <div className="flex items-center justify-center mb-1.5">
           <div className="text-center">
             <div className="text-base font-bold text-white">
-              {currentStep} / 11
+              {currentStep} / 12
             </div>
             <p className="text-[13px] text-gray-400">Questions Complete</p>
           </div>
@@ -1205,7 +1260,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         <div className="w-full bg-muted rounded-full h-1">
           <div
             className="bg-gradient-to-r from-primary to-secondary h-1 rounded-full transition-all duration-300"
-            style={{ width: `${(currentStep / 11) * 100}%` }}
+            style={{ width: `${(currentStep / 12) * 100}%` }}
           />
         </div>
       </div>
@@ -1214,7 +1269,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         {renderStep()}
         
         <div className="flex flex-col gap-3 mt-2">
-          {currentStep < 10 ? (
+          {currentStep < 11 ? (
             <Button
               type="button"
               onClick={nextStep}
@@ -1225,7 +1280,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               </span>
               <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 ml-auto relative z-10" />
             </Button>
-          ) : currentStep === 10 ? (
+          ) : currentStep === 11 ? (
             <Button
               type="button"
               onClick={nextStep}

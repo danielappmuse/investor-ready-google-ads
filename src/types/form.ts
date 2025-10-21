@@ -4,6 +4,9 @@ export interface ContactFormData {
   phone: string
   consent: boolean
   
+  // Q0: Startup Type
+  startup_type?: string
+  
   // Q1: App Idea & Problem Statement
   app_idea: string
   
@@ -63,6 +66,14 @@ export interface FormStep {
   title: string
   fields: string[]
 }
+
+// Q0: Startup Type Options
+export const startupTypes = [
+  { id: 'technology', name: 'Technology-Based Startups' },
+  { id: 'physical', name: 'Physical Product Startups' },
+  { id: 'service', name: 'Service-Based Startups (Tech-enabled or not)' },
+  { id: 'combination', name: 'A Combination Between Technology to a Physical Product' }
+]
 
 // Q2: Project Journey Stage Options
 export const projectStages = [
