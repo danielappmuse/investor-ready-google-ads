@@ -12,7 +12,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { ContactFormData, startupTypes, getProjectStages, userPersonaOptions, getDifferentiationOptions, getExistingMaterials, getBusinessModels, revenueGoals, getBuildStrategies, getHelpNeededAreas, investmentLevels } from '@/types/form'
 import { validateEmail, validatePhoneNumber, formatPhoneNumber, getSessionId } from '@/utils/formValidation'
 import { getTrackingParameters, initializeTracking, fireGoogleAdsConversion } from '@/utils/trackingUtils'
-import { trackConversion } from '@/utils/googleAds'
 import { supabase } from '@/integrations/supabase/client'
 import InlinePDFViewer from '@/components/documents/InlinePDFViewer'
 import { useToast } from '@/hooks/use-toast'
@@ -499,11 +498,17 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       console.log('🎯 Firing Google Ads conversion...')
       await new Promise<void>((resolve) => {
         if (typeof window !== 'undefined' && (window as any).gtag) {
-          // Use the proper trackConversion function with correct conversion ID
-          trackConversion()
-          console.log('✅ Google Ads conversion fired')
-          // Wait briefly for tracking to complete before redirect
+          // Using the exact conversion snippet format from Google Ads
+          (window as any).gtag('event', 'conversion', {
+            'send_to': 'AW-16893733356/txnICNTu5OQaEOzTx_c-',
+            'event_callback': () => {
+              console.log('✅ Google Ads conversion tracked via callback')
+              resolve()
+            }
+          })
+          // Fallback timeout in case callback doesn't fire (1 second max wait)
           setTimeout(() => {
+            console.log('⏱️ Google Ads timeout - proceeding')
             resolve()
           }, 1000)
         } else {
