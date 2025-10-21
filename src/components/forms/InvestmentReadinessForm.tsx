@@ -52,7 +52,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   const [showScore, setShowScore] = useState(false)
   const [userCity, setUserCity] = useState<string>('')
   const [sessionId] = useState(() => getSessionId())
-  const [trackingData] = useState(() => getTrackingParameters())
   const { toast } = useToast()
 
   const {
@@ -249,6 +248,10 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   }
 
   const submitLeadData = async (step: number) => {
+    // Get fresh tracking data at submission time
+    const currentTrackingData = getTrackingParameters()
+    console.log('🎯 Fresh tracking data captured:', currentTrackingData)
+    
     const leadData: ContactFormData = {
       full_name: `${watchedFields.first_name || ''} ${watchedFields.last_name || ''}`.trim(),
       email: watchedFields.email || '',
@@ -266,7 +269,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       investment_readiness: watchedFields.investment_readiness || '',
       session_id: sessionId,
       form_location: formLocation,
-      ...trackingData
+      ...currentTrackingData
     }
 
     // Data is now only submitted once at the end via submit-assessment
@@ -288,6 +291,10 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       const score = calculateScore()
       const segment = getSegment(score)
       console.log('📊 Score calculated:', score, 'Segment:', segment.name)
+      
+      // Get fresh tracking data at submission time
+      const currentTrackingData = getTrackingParameters()
+      console.log('🎯 Fresh tracking data captured for final submission:', currentTrackingData)
       
       const phoneClean = data.phone.replace(/\D/g, '')
       
@@ -360,8 +367,8 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           segment: segment.name
         },
         
-        // Tracking data
-        ...trackingData,
+        // Tracking data - fresh capture at submission time
+        ...currentTrackingData,
         form_location: formLocation,
         page_url: window.location.href,
         referrer: document.referrer || null
@@ -477,7 +484,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         form_location: formLocation,
         score: score,
         segment: segment.name,
-        ...trackingData
+        ...currentTrackingData
       }
 
       await submitLeadData(11)
