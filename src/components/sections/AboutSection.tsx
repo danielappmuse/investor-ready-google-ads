@@ -116,10 +116,10 @@ const AboutSection = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             <div className="lg:col-span-2">
-              <img src={officeEntrance} alt="StartWise Miami office entrance with palm trees" className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-2xl" />
+              <img src={officeBuilding} alt="StartWise office building exterior" className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-2xl" />
             </div>
             <div className="space-y-4 sm:space-y-6">
-              <img src={officeBuilding} alt="StartWise office building exterior" className="w-full h-30 sm:h-36 lg:h-44 object-cover rounded-2xl shadow-xl" />
+              <img src={officeEntrance} alt="StartWise Miami office entrance with palm trees" className="w-full h-30 sm:h-36 lg:h-44 object-cover rounded-2xl shadow-xl" />
               <img src={officeSkyline} alt="Miami skyline view from StartWise office" className="w-full h-30 sm:h-36 lg:h-44 object-cover rounded-2xl shadow-xl" />
             </div>
           </div>
