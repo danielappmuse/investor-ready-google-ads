@@ -494,29 +494,15 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       await submitLeadData(12)
       onSuccess(completeData)
       
-      // Fire Google Ads conversion AFTER successful submission
-      console.log('🎯 Firing Google Ads conversion after successful submission...')
-      await new Promise<void>((resolve) => {
-        if (typeof window !== 'undefined' && (window as any).gtag) {
-          (window as any).gtag('event', 'conversion', {
-            'send_to': 'AW-16893733356/txnICNTu5OQaEOzTx_c-',
-            'event_callback': () => {
-              console.log('✅ Google Ads conversion tracked successfully')
-              resolve()
-            }
-          })
-          // Fallback timeout in case callback doesn't fire
-          setTimeout(() => {
-            console.log('⏱️ Google Ads conversion timeout reached')
-            resolve()
-          }, 2000)
-        } else {
-          console.warn('⚠️ Google Ads gtag not available')
-          resolve()
-        }
-      })
+      // Fire Google Ads conversion and redirect (don't wait for callback)
+      console.log('🎯 Firing Google Ads conversion...')
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'conversion', {
+          'send_to': 'AW-16893733356/txnICNTu5OQaEOzTx_c-'
+        })
+      }
       
-      // Redirect to HubSpot meeting booking ONLY after conversion is tracked
+      // Redirect immediately without waiting
       console.log('🚀 Redirecting to HubSpot meeting booking...')
       window.location.href = meetingUrl
     } catch (error) {
