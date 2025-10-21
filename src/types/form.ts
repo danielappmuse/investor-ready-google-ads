@@ -75,16 +75,43 @@ export const startupTypes = [
   { id: 'combination', name: 'A Combination Between Technology to a Physical Product' }
 ]
 
-// Q2: Project Journey Stage Options
-export const projectStages = [
-  { id: 'just_idea', name: 'Just an idea' },
-  { id: 'business_figured', name: 'I have figured the business oriented stuff, but not the tech yet.' },
-  { id: 'business_and_tech_planned', name: 'I figured the business side, and planned the tech, but have no development skills/knowledge.' },
-  { id: 'mvp_development', name: 'MVP in Development' },
-  { id: 'launching_soon', name: 'Launching soon (next 90 days)' },
-  { id: 'already_live', name: 'Already live in the app stores' },
-  { id: 'other', name: 'Other' }
-]
+// Q2: Project Journey Stage Options - Dynamic based on startup type
+export const getProjectStages = (startupType: string) => {
+  if (startupType === 'physical') {
+    return [
+      { id: 'just_idea', name: 'Just an idea' },
+      { id: 'business_figured', name: 'I have figured the business oriented stuff, but haven\'t started on the product yet.' },
+      { id: 'business_and_tech_planned', name: 'I figured the business side, and planned the product, but didn\'t get started with a prototype.' },
+      { id: 'mvp_development', name: 'Prototype in Development' },
+      { id: 'launching_soon', name: 'Launching soon (next 90 days)' },
+      { id: 'already_live', name: 'Already available for purchase' },
+      { id: 'other', name: 'Other' }
+    ]
+  } else if (startupType === 'service') {
+    return [
+      { id: 'just_idea', name: 'Just an idea' },
+      { id: 'business_figured', name: 'I have figured the business model, but haven\'t structured the service delivery yet.' },
+      { id: 'business_and_tech_planned', name: 'I figured the business side and service structure, but need to operationalize it.' },
+      { id: 'mvp_development', name: 'Service Pilot in Progress' },
+      { id: 'launching_soon', name: 'Launching soon (next 90 days)' },
+      { id: 'already_live', name: 'Already serving clients' },
+      { id: 'other', name: 'Other' }
+    ]
+  } else {
+    return [
+      { id: 'just_idea', name: 'Just an idea' },
+      { id: 'business_figured', name: 'I have figured the business oriented stuff, but not the tech yet.' },
+      { id: 'business_and_tech_planned', name: 'I figured the business side, and planned the tech, but have no development skills/knowledge.' },
+      { id: 'mvp_development', name: 'MVP in Development' },
+      { id: 'launching_soon', name: 'Launching soon (next 90 days)' },
+      { id: 'already_live', name: 'Already live in the app stores' },
+      { id: 'other', name: 'Other' }
+    ]
+  }
+}
+
+// Legacy export for backwards compatibility
+export const projectStages = getProjectStages('technology')
 
 // Q3: User Persona Understanding Options
 export const userPersonaOptions = [
@@ -95,37 +122,116 @@ export const userPersonaOptions = [
   { id: 'other', name: 'Other' }
 ]
 
-// Q4: Idea Differentiation Options
-export const differentiationOptions = [
-  { id: 'better', name: "It's way better than what's out there" },
-  { id: 'user_friendly', name: "It's more user-friendly and beautifully designed" },
-  { id: 'different_problem', name: 'It solves a totally different problem than competitors' },
-  { id: 'working_on_it', name: "I'm still working on figuring that out" },
-  { id: 'mashup', name: "It's a mash-up of existing products" },
-  { id: 'other', name: 'Other' }
-]
+// Q4: Idea Differentiation Options - Dynamic based on startup type
+export const getDifferentiationOptions = (startupType: string) => {
+  if (startupType === 'physical') {
+    return [
+      { id: 'better', name: "It's way better quality than what's out there" },
+      { id: 'user_friendly', name: "It's more user-friendly and beautifully designed" },
+      { id: 'different_problem', name: 'It solves a totally different problem than competitors' },
+      { id: 'working_on_it', name: "I'm still working on figuring that out" },
+      { id: 'mashup', name: "It combines features from existing products in a new way" },
+      { id: 'other', name: 'Other' }
+    ]
+  } else if (startupType === 'service') {
+    return [
+      { id: 'better', name: "We deliver better results than what's available" },
+      { id: 'user_friendly', name: "Our service experience is more streamlined and customer-focused" },
+      { id: 'different_problem', name: 'We address a totally different need than competitors' },
+      { id: 'working_on_it', name: "I'm still working on figuring that out" },
+      { id: 'mashup', name: "We combine multiple service offerings in a unique way" },
+      { id: 'other', name: 'Other' }
+    ]
+  } else {
+    return [
+      { id: 'better', name: "It's way better than what's out there" },
+      { id: 'user_friendly', name: "It's more user-friendly and beautifully designed" },
+      { id: 'different_problem', name: 'It solves a totally different problem than competitors' },
+      { id: 'working_on_it', name: "I'm still working on figuring that out" },
+      { id: 'mashup', name: "It's a mash-up of existing products" },
+      { id: 'other', name: 'Other' }
+    ]
+  }
+}
 
-// Q5: Existing Materials Options
-export const existingMaterials = [
-  { id: 'marketing_research', name: 'Marketing Research' },
-  { id: 'business_plan', name: 'Business Plan' },
-  { id: 'business_model', name: 'Business Model' },
-  { id: 'ui_ux', name: 'UI/UX' },
-  { id: 'prd', name: 'Product Requirements Document (PRD)' },
-  { id: 'mvp_prototype', name: 'MVP or Prototype' },
-  { id: 'pitch_deck', name: 'One Pager and Pitch Deck' },
-  { id: 'legal', name: 'Legal' }
-]
+// Legacy export
+export const differentiationOptions = getDifferentiationOptions('technology')
 
-// Q6: Business Model Options
-export const businessModels = [
-  { id: 'recurring', name: 'Recurring revenue (subscription)' },
-  { id: 'one_time', name: 'One time payment' },
-  { id: 'white_label', name: 'White label' },
-  { id: 'ad_based', name: 'Ad-based/Freemium' },
-  { id: 'mix', name: 'A mix between them' },
-  { id: 'other', name: 'Another strategy' }
-]
+// Q5: Existing Materials Options - Dynamic based on startup type
+export const getExistingMaterials = (startupType: string) => {
+  if (startupType === 'physical') {
+    return [
+      { id: 'marketing_research', name: 'Market Research' },
+      { id: 'business_plan', name: 'Business Plan' },
+      { id: 'business_model', name: 'Business Model' },
+      { id: 'ui_ux', name: 'Product Design / CAD files' },
+      { id: 'prd', name: 'Product Specifications Document' },
+      { id: 'mvp_prototype', name: 'Physical Prototype' },
+      { id: 'pitch_deck', name: 'One Pager and Pitch Deck' },
+      { id: 'legal', name: 'Legal (patents, trademarks, etc.)' }
+    ]
+  } else if (startupType === 'service') {
+    return [
+      { id: 'marketing_research', name: 'Market Research' },
+      { id: 'business_plan', name: 'Business Plan' },
+      { id: 'business_model', name: 'Business Model / Service Structure' },
+      { id: 'ui_ux', name: 'Service Blueprint / Customer Journey Map' },
+      { id: 'prd', name: 'Service Operations Manual' },
+      { id: 'mvp_prototype', name: 'Pilot Program Results' },
+      { id: 'pitch_deck', name: 'One Pager and Pitch Deck' },
+      { id: 'legal', name: 'Legal (contracts, terms of service)' }
+    ]
+  } else {
+    return [
+      { id: 'marketing_research', name: 'Marketing Research' },
+      { id: 'business_plan', name: 'Business Plan' },
+      { id: 'business_model', name: 'Business Model' },
+      { id: 'ui_ux', name: 'UI/UX' },
+      { id: 'prd', name: 'Product Requirements Document (PRD)' },
+      { id: 'mvp_prototype', name: 'MVP or Prototype' },
+      { id: 'pitch_deck', name: 'One Pager and Pitch Deck' },
+      { id: 'legal', name: 'Legal' }
+    ]
+  }
+}
+
+// Legacy export
+export const existingMaterials = getExistingMaterials('technology')
+
+// Q6: Business Model Options - Dynamic based on startup type
+export const getBusinessModels = (startupType: string) => {
+  if (startupType === 'physical') {
+    return [
+      { id: 'recurring', name: 'Subscription box / Recurring orders' },
+      { id: 'one_time', name: 'One-time purchase' },
+      { id: 'white_label', name: 'White label / B2B wholesale' },
+      { id: 'ad_based', name: 'Direct-to-consumer with retail partnerships' },
+      { id: 'mix', name: 'A mix of sales channels' },
+      { id: 'other', name: 'Another strategy' }
+    ]
+  } else if (startupType === 'service') {
+    return [
+      { id: 'recurring', name: 'Retainer / Recurring contracts' },
+      { id: 'one_time', name: 'Project-based pricing' },
+      { id: 'white_label', name: 'White label / Partner reseller' },
+      { id: 'ad_based', name: 'Commission-based / Performance fees' },
+      { id: 'mix', name: 'Hybrid pricing model' },
+      { id: 'other', name: 'Another strategy' }
+    ]
+  } else {
+    return [
+      { id: 'recurring', name: 'Recurring revenue (subscription)' },
+      { id: 'one_time', name: 'One time payment' },
+      { id: 'white_label', name: 'White label' },
+      { id: 'ad_based', name: 'Ad-based/Freemium' },
+      { id: 'mix', name: 'A mix between them' },
+      { id: 'other', name: 'Another strategy' }
+    ]
+  }
+}
+
+// Legacy export
+export const businessModels = getBusinessModels('technology')
 
 // Q7: Revenue Goal Options
 export const revenueGoals = [
@@ -136,26 +242,78 @@ export const revenueGoals = [
   { id: 'already_creating', name: 'I am already creating revenue' }
 ]
 
-// Q8: Build Strategy Options
-export const buildStrategies = [
-  { id: 'outsource', name: "I'll outsource it and manage the process" },
-  { id: 'cofounder', name: "I'm working with a technical cofounder" },
-  { id: 'no_code', name: 'I plan to use a no-code tool myself' },
-  { id: 'need_find', name: 'I need to find someone to build it' },
-  { id: 'have_team', name: 'I already have a dev team or agency in mind' },
-  { id: 'other', name: 'Other' }
-]
+// Q8: Build Strategy Options - Dynamic based on startup type
+export const getBuildStrategies = (startupType: string) => {
+  if (startupType === 'physical') {
+    return [
+      { id: 'outsource', name: "I'll work with manufacturers and manage production" },
+      { id: 'cofounder', name: "I'm working with a product development partner" },
+      { id: 'no_code', name: 'I plan to start with small-batch production myself' },
+      { id: 'need_find', name: 'I need to find a manufacturer or production partner' },
+      { id: 'have_team', name: 'I already have a manufacturer or supplier in mind' },
+      { id: 'other', name: 'Other' }
+    ]
+  } else if (startupType === 'service') {
+    return [
+      { id: 'outsource', name: "I'll hire contractors and manage service delivery" },
+      { id: 'cofounder', name: "I'm working with operational partners" },
+      { id: 'no_code', name: 'I plan to deliver the service myself initially' },
+      { id: 'need_find', name: 'I need to find service delivery partners or team members' },
+      { id: 'have_team', name: 'I already have a team or partners in mind' },
+      { id: 'other', name: 'Other' }
+    ]
+  } else {
+    return [
+      { id: 'outsource', name: "I'll outsource it and manage the process" },
+      { id: 'cofounder', name: "I'm working with a technical cofounder" },
+      { id: 'no_code', name: 'I plan to use a no-code tool myself' },
+      { id: 'need_find', name: 'I need to find someone to build it' },
+      { id: 'have_team', name: 'I already have a dev team or agency in mind' },
+      { id: 'other', name: 'Other' }
+    ]
+  }
+}
 
-// Q9: Areas of Help Needed Options
-export const helpNeededAreas = [
-  { id: 'business_materials', name: 'Solving/creating business related questions or materials' },
-  { id: 'design_build', name: 'Designing and building from scratch' },
-  { id: 'figma_dev', name: 'Developing my existing Figma Design' },
-  { id: 'code_takeover', name: 'Need a new developer (Code Takeover)' },
-  { id: 'marketing', name: 'Getting users and Marketing my existing app' },
-  { id: 'fundraising', name: 'Fundraising for my first round' },
-  { id: 'other', name: 'Other' }
-]
+// Legacy export
+export const buildStrategies = getBuildStrategies('technology')
+
+// Q9: Areas of Help Needed Options - Dynamic based on startup type
+export const getHelpNeededAreas = (startupType: string) => {
+  if (startupType === 'physical') {
+    return [
+      { id: 'business_materials', name: 'Business planning and go-to-market strategy' },
+      { id: 'design_build', name: 'Product design and prototype development' },
+      { id: 'figma_dev', name: 'Manufacturing and supply chain setup' },
+      { id: 'code_takeover', name: 'Quality control and production scaling' },
+      { id: 'marketing', name: 'Marketing and customer acquisition' },
+      { id: 'fundraising', name: 'Fundraising for my first round' },
+      { id: 'other', name: 'Other' }
+    ]
+  } else if (startupType === 'service') {
+    return [
+      { id: 'business_materials', name: 'Business model and service structure' },
+      { id: 'design_build', name: 'Service design and customer experience' },
+      { id: 'figma_dev', name: 'Operations and delivery process setup' },
+      { id: 'code_takeover', name: 'Team building and hiring' },
+      { id: 'marketing', name: 'Client acquisition and marketing' },
+      { id: 'fundraising', name: 'Fundraising for my first round' },
+      { id: 'other', name: 'Other' }
+    ]
+  } else {
+    return [
+      { id: 'business_materials', name: 'Solving/creating business related questions or materials' },
+      { id: 'design_build', name: 'Designing and building from scratch' },
+      { id: 'figma_dev', name: 'Developing my existing Figma Design' },
+      { id: 'code_takeover', name: 'Need a new developer (Code Takeover)' },
+      { id: 'marketing', name: 'Getting users and Marketing my existing app' },
+      { id: 'fundraising', name: 'Fundraising for my first round' },
+      { id: 'other', name: 'Other' }
+    ]
+  }
+}
+
+// Legacy export
+export const helpNeededAreas = getHelpNeededAreas('technology')
 
 // Q10: Investment Readiness Options
 export const investmentLevels = [

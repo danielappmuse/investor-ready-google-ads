@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ArrowRight, ArrowLeft, Check, ExternalLink } from 'lucide-react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { ContactFormData, startupTypes, projectStages, userPersonaOptions, differentiationOptions, existingMaterials, businessModels, revenueGoals, buildStrategies, helpNeededAreas, investmentLevels } from '@/types/form'
+import { ContactFormData, startupTypes, getProjectStages, userPersonaOptions, getDifferentiationOptions, getExistingMaterials, getBusinessModels, revenueGoals, getBuildStrategies, getHelpNeededAreas, investmentLevels } from '@/types/form'
 import { validateEmail, validatePhoneNumber, formatPhoneNumber, getSessionId } from '@/utils/formValidation'
 import { getTrackingParameters, initializeTracking, fireGoogleAdsConversion } from '@/utils/trackingUtils'
 import { supabase } from '@/integrations/supabase/client'
@@ -302,8 +302,16 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       const phoneClean = data.phone.replace(/\D/g, '')
       
       // Helper functions to get human-readable labels with "Other" text appended
+      // Use dynamic options based on startup type
+      const projectStagesForType = getProjectStages(data.startup_type || 'technology')
+      const differentiationOptionsForType = getDifferentiationOptions(data.startup_type || 'technology')
+      const existingMaterialsForType = getExistingMaterials(data.startup_type || 'technology')
+      const businessModelsForType = getBusinessModels(data.startup_type || 'technology')
+      const buildStrategiesForType = getBuildStrategies(data.startup_type || 'technology')
+      const helpNeededAreasForType = getHelpNeededAreas(data.startup_type || 'technology')
+      
       const getProjectStageLabel = (id: string) => {
-        const label = projectStages.find(s => s.id === id)?.name || id
+        const label = projectStagesForType.find(s => s.id === id)?.name || id
         return id === 'other' && data.project_stage_other ? `${label} - ${data.project_stage_other}` : label
       }
       const getUserPersonaLabel = (id: string) => {
@@ -311,23 +319,23 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         return id === 'other' && data.user_persona_other ? `${label} - ${data.user_persona_other}` : label
       }
       const getDifferentiationLabel = (id: string) => {
-        const label = differentiationOptions.find(o => o.id === id)?.name || id
+        const label = differentiationOptionsForType.find(o => o.id === id)?.name || id
         return id === 'other' && data.differentiation_other ? `${label} - ${data.differentiation_other}` : label
       }
-      const getBusinessModelLabel = (id: string) => businessModels.find(m => m.id === id)?.name || id
+      const getBusinessModelLabel = (id: string) => businessModelsForType.find(m => m.id === id)?.name || id
       const getRevenueGoalLabel = (id: string) => {
         const label = revenueGoals.find(g => g.id === id)?.name || id
         return id === 'already_creating' && data.current_revenue ? `${label} - ${data.current_revenue}` : label
       }
       const getBuildStrategyLabel = (id: string) => {
-        const label = buildStrategies.find(s => s.id === id)?.name || id
+        const label = buildStrategiesForType.find(s => s.id === id)?.name || id
         return id === 'other' && data.build_strategy_other ? `${label} - ${data.build_strategy_other}` : label
       }
       const getInvestmentLevelLabel = (id: string) => investmentLevels.find(l => l.id === id)?.name || id
-      const getMaterialsLabels = (ids: string[]) => ids.map(id => existingMaterials.find(m => m.id === id)?.name || id)
+      const getMaterialsLabels = (ids: string[]) => ids.map(id => existingMaterialsForType.find(m => m.id === id)?.name || id)
       const getHelpNeededLabels = (ids: string[]) => {
         return ids.map(id => {
-          const label = helpNeededAreas.find(h => h.id === id)?.name || id
+          const label = helpNeededAreasForType.find(h => h.id === id)?.name || id
           return id === 'other' && data.help_needed_other ? `${label} - ${data.help_needed_other}` : label
         })
       }
@@ -532,6 +540,14 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
     const isService = startupType === 'service'
     const isTechOrCombo = startupType === 'technology' || startupType === 'combination'
     
+    // Get dynamic options based on startup type
+    const projectStagesForType = getProjectStages(startupType || 'technology')
+    const differentiationOptionsForType = getDifferentiationOptions(startupType || 'technology')
+    const existingMaterialsForType = getExistingMaterials(startupType || 'technology')
+    const businessModelsForType = getBusinessModels(startupType || 'technology')
+    const buildStrategiesForType = getBuildStrategies(startupType || 'technology')
+    const helpNeededAreasForType = getHelpNeededAreas(startupType || 'technology')
+    
     const getSolutionLabel = () => {
       if (isPhysical) return 'physical product solution'
       if (isService) return 'service-based solution'
@@ -613,7 +629,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                 <SelectValue placeholder="Select your stage" />
               </SelectTrigger>
               <SelectContent>
-                {projectStages.map((stage) => (
+                {projectStagesForType.map((stage) => (
                   <SelectItem key={stage.id} value={stage.id}>
                     {stage.name}
                   </SelectItem>
@@ -691,7 +707,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                 <SelectValue placeholder="Select what makes you different" />
               </SelectTrigger>
               <SelectContent>
-                {differentiationOptions.map((option) => (
+                {differentiationOptionsForType.map((option) => (
                   <SelectItem key={option.id} value={option.id}>
                     {option.name}
                   </SelectItem>
@@ -723,7 +739,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               Select everything you've completed so far.
             </p>
             <div className="grid grid-cols-2 gap-1.5">
-              {existingMaterials.map((material) => (
+              {existingMaterialsForType.map((material) => (
                 <div 
                   key={material.id}
                   onClick={() => toggleArrayValue('existing_materials', material.id)}
@@ -768,7 +784,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                 <SelectValue placeholder="Select your business model" />
               </SelectTrigger>
               <SelectContent>
-                {businessModels.map((model) => (
+                {businessModelsForType.map((model) => (
                   <SelectItem key={model.id} value={model.id}>
                     {model.name}
                   </SelectItem>
@@ -840,7 +856,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                 <SelectValue placeholder="Select your build strategy" />
               </SelectTrigger>
               <SelectContent>
-                {buildStrategies.map((strategy) => (
+                {buildStrategiesForType.map((strategy) => (
                   <SelectItem key={strategy.id} value={strategy.id}>
                     {strategy.name}
                   </SelectItem>
@@ -872,7 +888,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               Select the areas where you need the most support to move forward.
             </p>
             <div className="grid grid-cols-2 gap-1.5">
-              {helpNeededAreas.map((area) => (
+              {helpNeededAreasForType.map((area) => (
                 <div 
                   key={area.id}
                   onClick={() => toggleArrayValue('help_needed', area.id)}
