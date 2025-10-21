@@ -364,6 +364,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         
         // Assessment Q&A with single human-readable answers
         assessment: {
+          q0_startup_type: startupTypes.find(t => t.id === data.startup_type)?.name || data.startup_type,
           q1_app_idea: data.app_idea,
           q2_project_stage: getProjectStageLabel(data.project_stage),
           q3_user_persona: getUserPersonaLabel(data.user_persona),
@@ -458,17 +459,8 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         })
       }
       
-      // Build Calendly URL with parameters
-      const calendlyUrl = 
-        'https://calendly.com/startnow-start-wise/30min?' +
-        'name=' + encodeURIComponent(data.first_name) +
-        '&last_name=' + encodeURIComponent(data.last_name) +
-        '&email=' + encodeURIComponent(data.email || '') +
-        '&a1=' + encodeURIComponent('1' + phoneClean) +
-        '&a2=' + encodeURIComponent(data.project_stage || '') +
-        '&a3=' + encodeURIComponent(data.investment_readiness || '') +
-        '&a4=' + encodeURIComponent(data.app_idea || '') +
-        '&hide_gdpr_banner=1'
+      // HubSpot meeting booking URL
+      const meetingUrl = 'https://meetings-eu1.hubspot.com/meetings/michael-damato'
       
       const completeData: ContactFormData = {
         full_name: `${data.first_name} ${data.last_name}`,
@@ -524,9 +516,9 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         }
       })
       
-      // Redirect to Calendly ONLY after conversion is tracked
-      console.log('🚀 Redirecting to Calendly...')
-      window.location.href = calendlyUrl
+      // Redirect to HubSpot meeting booking ONLY after conversion is tracked
+      console.log('🚀 Redirecting to HubSpot meeting booking...')
+      window.location.href = meetingUrl
     } catch (error) {
       console.error('Form submission error:', error)
     } finally {
