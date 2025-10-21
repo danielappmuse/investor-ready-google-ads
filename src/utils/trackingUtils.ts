@@ -4,7 +4,6 @@ export interface TrackingData {
   gclid?: string
   keyword?: string
   match_type?: string
-  matchtype?: string
   city?: string
   device_type?: string
   os?: string
@@ -32,17 +31,10 @@ export const getTrackingParameters = (): TrackingData => {
     allCookies: document.cookie
   })
   
-  const matchVal = params.get('matchtype')
-    || params.get('match_type')
-    || getCookie('matchtype')
-    || getCookie('match_type')
-    || undefined
-
   const trackingData = {
     gclid: gclidFromUrl || gclidFromCookie || undefined,
     keyword: params.get('keyword') || getCookie('keyword') || undefined,
-    match_type: matchVal,
-    matchtype: matchVal,
+    match_type: params.get('matchtype') || getCookie('matchtype') || undefined,
     utm_source: params.get('utm_source') || getCookie('utm_source') || undefined,
     utm_campaign: params.get('utm_campaign') || getCookie('utm_campaign') || undefined,
     utm_medium: params.get('utm_medium') || getCookie('utm_medium') || undefined,
@@ -92,7 +84,7 @@ export const setCookie = (name: string, value: string, days: number = 30): void 
 export const storeTrackingInCookies = (): void => {
   const params = new URLSearchParams(window.location.search)
   
-  const trackingParams = ['gclid', 'keyword', 'matchtype', 'match_type', 'utm_source', 'utm_campaign', 'utm_medium']
+  const trackingParams = ['gclid', 'keyword', 'matchtype', 'utm_source', 'utm_campaign', 'utm_medium']
   
   console.log('🍪 Storing tracking params in cookies...')
   trackingParams.forEach(param => {

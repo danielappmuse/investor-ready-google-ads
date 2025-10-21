@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Phone, Calendar, Star, CheckCircle, ArrowRight, Sparkles, Cpu, Zap, Database, Shield, Code2, Rocket, Users, Briefcase, Target, BadgeCheck, FileText, Code, PresentationIcon, Handshake } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import InvestmentReadinessForm from '@/components/forms/InvestmentReadinessForm';
+import CalendlyWidget from '@/components/CalendlyWidget';
 import { ContactFormData } from '@/types/form';
 import FuturisticBackground from '@/components/tech/FuturisticBackground';
 import { useIsSmallScreen } from '@/hooks/use-small-screen';
 interface HeroSectionProps {
   startWithPrototype?: boolean;
   onAnimationComplete?: (complete: boolean) => void;
-  currentView?: 'products' | 'prototype-form';
-  setCurrentView?: (view: 'products' | 'prototype-form') => void;
+  currentView?: 'products' | 'prototype-form' | 'calendly';
+  setCurrentView?: (view: 'products' | 'prototype-form' | 'calendly') => void;
 }
 const HeroSection = ({
   startWithPrototype = false,
@@ -17,7 +18,7 @@ const HeroSection = ({
   setCurrentView: externalSetCurrentView
 }: HeroSectionProps) => {
   const isSmallScreen = useIsSmallScreen();
-  const [internalCurrentView, setInternalCurrentView] = useState<'products' | 'prototype-form'>(startWithPrototype ? 'prototype-form' : 'products');
+  const [internalCurrentView, setInternalCurrentView] = useState<'products' | 'prototype-form' | 'calendly'>(startWithPrototype ? 'prototype-form' : 'products');
   
   const currentView = externalCurrentView !== undefined ? externalCurrentView : internalCurrentView;
   const setCurrentView = externalSetCurrentView || setInternalCurrentView;
@@ -41,7 +42,7 @@ const HeroSection = ({
   const [formData, setFormData] = useState<ContactFormData | null>(null);
   const handlePrototypeFormSuccess = (data: ContactFormData) => {
     setFormData(data);
-    // Form success - data has been submitted
+    setCurrentView('calendly');
   };
   const handleBackToProducts = () => {
     setCurrentView('products');
@@ -207,7 +208,7 @@ const HeroSection = ({
           </div>}
 
         {/* Why Choose Us */}
-        {currentView === 'products' && <div id="why-choose-us" className="mt-16 lg:mt-20">
+        {currentView === 'products' && <div className="mt-16 lg:mt-20">
             <div className="max-w-4xl mx-auto">
               <h4 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6 text-center">
                 Why Serious Founders Choose <span className="gradient-text">StartWise</span>
@@ -493,6 +494,23 @@ const HeroSection = ({
             </div>
             
             <InvestmentReadinessForm onSuccess={handlePrototypeFormSuccess} formLocation="top" onBack={handleBackToProducts} />
+          </div>}
+
+        {currentView === 'calendly' && <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full text-sm font-medium text-green-400 mb-4">
+                <CheckCircle className="w-4 h-4 mr-2" />
+                Form Submitted Successfully!
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+                Schedule Your Free Consultation
+              </h2>
+              <p className="text-sm sm:text-base lg:text-lg text-gray-300">
+                Thank you {formData?.full_name}! Now let's schedule a time to discuss your startup and get you started with the right product.
+              </p>
+            </div>
+            
+            <CalendlyWidget formData={formData!} />
           </div>}
       </div>
     </section>;

@@ -24,19 +24,13 @@ const formSchema = z.object({
   consent: z.boolean().refine(val => val === true, 'You must agree to the terms'),
   app_idea: z.string().min(20, 'Please provide at least 20 characters describing your app idea'),
   project_stage: z.string().min(1, 'Please select your project stage'),
-  project_stage_other: z.string().optional(),
   user_persona: z.string().min(1, 'Please select your user persona understanding'),
-  user_persona_other: z.string().optional(),
   differentiation: z.string().min(1, 'Please select what makes your idea stand out'),
-  differentiation_other: z.string().optional(),
   existing_materials: z.array(z.string()).min(0),
   business_model: z.string().min(1, 'Please select your business model'),
   revenue_goal: z.string().min(1, 'Please select your revenue goal'),
-  current_revenue: z.string().optional(),
   build_strategy: z.string().min(1, 'Please select your build strategy'),
-  build_strategy_other: z.string().optional(),
   help_needed: z.array(z.string()).min(1, 'Please select at least one area where you need help'),
-  help_needed_other: z.string().optional(),
   investment_readiness: z.string().min(1, 'Please select your investment readiness level'),
 })
 
@@ -50,8 +44,8 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showScore, setShowScore] = useState(false)
-  const [userCity, setUserCity] = useState<string>('')
   const [sessionId] = useState(() => getSessionId())
+  const [trackingData] = useState(() => getTrackingParameters())
   const { toast } = useToast()
 
   const {
@@ -84,19 +78,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   }, [])
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value
-    
-    // Ensure the value always starts with "+1 "
-    if (!value.startsWith('+1 ')) {
-      value = '+1 ' + value.replace(/^\+1\s*/, '')
-    }
-    
-    // If user tries to delete the prefix, reset to "+1 "
-    if (value.length < 3) {
-      value = '+1 '
-    }
-    
-    const formatted = formatPhoneNumber(value)
+    const formatted = formatPhoneNumber(e.target.value)
     setValue('phone', formatted)
   }
 
@@ -248,10 +230,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   }
 
   const submitLeadData = async (step: number) => {
-    // Get fresh tracking data at submission time
-    const currentTrackingData = getTrackingParameters()
-    console.log('🎯 Fresh tracking data captured:', currentTrackingData)
-    
     const leadData: ContactFormData = {
       full_name: `${watchedFields.first_name || ''} ${watchedFields.last_name || ''}`.trim(),
       email: watchedFields.email || '',
@@ -269,11 +247,20 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       investment_readiness: watchedFields.investment_readiness || '',
       session_id: sessionId,
       form_location: formLocation,
-      ...currentTrackingData
+      ...trackingData
     }
 
-    // Data is now only submitted once at the end via submit-assessment
-    console.log('Step completed:', step)
+    try {
+      const { data, error } = await supabase.functions.invoke('submit-lead', {
+        body: { ...leadData, step }
+      })
+
+      if (error) throw error
+      
+      console.log('Lead data submitted for step:', step)
+    } catch (error) {
+      console.error('Error submitting lead data:', error)
+    }
   }
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
@@ -292,42 +279,29 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       const segment = getSegment(score)
       console.log('📊 Score calculated:', score, 'Segment:', segment.name)
       
-      // Get fresh tracking data at submission time
-      const currentTrackingData = getTrackingParameters()
-      console.log('🎯 Fresh tracking data captured for final submission:', currentTrackingData)
-      
       const phoneClean = data.phone.replace(/\D/g, '')
       
-      // Helper functions to get human-readable labels with "Other" text appended
-      const getProjectStageLabel = (id: string) => {
-        const label = projectStages.find(s => s.id === id)?.name || id
-        return id === 'other' && data.project_stage_other ? `${label} - ${data.project_stage_other}` : label
-      }
-      const getUserPersonaLabel = (id: string) => {
-        const label = userPersonaOptions.find(o => o.id === id)?.name || id
-        return id === 'other' && data.user_persona_other ? `${label} - ${data.user_persona_other}` : label
-      }
-      const getDifferentiationLabel = (id: string) => {
-        const label = differentiationOptions.find(o => o.id === id)?.name || id
-        return id === 'other' && data.differentiation_other ? `${label} - ${data.differentiation_other}` : label
-      }
-      const getBusinessModelLabel = (id: string) => businessModels.find(m => m.id === id)?.name || id
-      const getRevenueGoalLabel = (id: string) => {
-        const label = revenueGoals.find(g => g.id === id)?.name || id
-        return id === 'already_creating' && data.current_revenue ? `${label} - ${data.current_revenue}` : label
-      }
-      const getBuildStrategyLabel = (id: string) => {
-        const label = buildStrategies.find(s => s.id === id)?.name || id
-        return id === 'other' && data.build_strategy_other ? `${label} - ${data.build_strategy_other}` : label
-      }
-      const getInvestmentLevelLabel = (id: string) => investmentLevels.find(l => l.id === id)?.name || id
-      const getMaterialsLabels = (ids: string[]) => ids.map(id => existingMaterials.find(m => m.id === id)?.name || id)
-      const getHelpNeededLabels = (ids: string[]) => {
-        return ids.map(id => {
-          const label = helpNeededAreas.find(h => h.id === id)?.name || id
-          return id === 'other' && data.help_needed_other ? `${label} - ${data.help_needed_other}` : label
-        })
-      }
+      // Fire Google Ads conversion and WAIT for it to complete
+      console.log('🎯 Firing Google Ads conversion...')
+      await new Promise<void>((resolve) => {
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'conversion', {
+            'send_to': 'AW-16893733356/33kJCOvWv6waEOzTx_c-',
+            'event_callback': () => {
+              console.log('✅ Google Ads conversion tracked successfully')
+              resolve()
+            }
+          })
+          // Fallback timeout in case callback doesn't fire
+          setTimeout(() => {
+            console.log('⏱️ Google Ads conversion timeout reached')
+            resolve()
+          }, 2000)
+        } else {
+          console.warn('⚠️ Google Ads gtag not available')
+          resolve()
+        }
+      })
       
       // Prepare comprehensive assessment payload for webhook
       const assessmentPayload = {
@@ -343,32 +317,27 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         email: data.email,
         phone: data.phone,
         consent: data.consent,
-        // Miami local time for NDA consent
-        nda_consent_timestamp: new Intl.DateTimeFormat('en-US', {
-          timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit',
-          hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
-        }).format(new Date()),
-        nda_consent_timestamp_iso: new Date().toISOString(),
-        nda_link: `${window.location.origin}/Start_Wise_NDA.pdf`,
+        nda_consent_timestamp: new Date().toISOString(),
+        nda_link: 'https://startwiseapp.com/Start_Wise_NDA.pdf',
         
-        // Assessment Q&A with single human-readable answers
+        // Assessment Q&A
         assessment: {
           q1_app_idea: data.app_idea,
-          q2_project_stage: getProjectStageLabel(data.project_stage),
-          q3_user_persona: getUserPersonaLabel(data.user_persona),
-          q4_differentiation: getDifferentiationLabel(data.differentiation),
-          q5_existing_materials: getMaterialsLabels(data.existing_materials),
-          q6_business_model: getBusinessModelLabel(data.business_model),
-          q7_revenue_goal: getRevenueGoalLabel(data.revenue_goal),
-          q8_build_strategy: getBuildStrategyLabel(data.build_strategy),
-          q9_help_needed: getHelpNeededLabels(data.help_needed),
-          q10_investment_level: getInvestmentLevelLabel(data.investment_readiness),
-          investment_readiness_score: score,
+          q2_project_stage: data.project_stage,
+          q3_user_persona: data.user_persona,
+          q4_differentiation: data.differentiation,
+          q5_existing_materials: data.existing_materials,
+          q6_business_model: data.business_model,
+          q7_revenue_goal: data.revenue_goal,
+          q8_build_strategy: data.build_strategy,
+          q9_help_needed: data.help_needed,
+          q10_investment_readiness: data.investment_readiness,
+          score: score,
           segment: segment.name
         },
         
-        // Tracking data - fresh capture at submission time
-        ...currentTrackingData,
+        // Tracking data
+        ...trackingData,
         form_location: formLocation,
         page_url: window.location.href,
         referrer: document.referrer || null
@@ -398,26 +367,17 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               }),
               new Promise((resolve) => setTimeout(resolve, 1500))
             ])
-            // Treat successful fallback as success
-            toast({
-              title: "Success!",
-              description: "Assessment submitted successfully",
-            })
           } catch (fallbackErr) {
             console.error('❌ Client-side webhook fallback failed:', fallbackErr)
-            toast({
-              title: "Submission Error",
-              description: `Failed to send data: ${webhookError.message}`,
-              variant: "destructive"
-            })
           }
+          toast({
+            title: "Webhook Error",
+            description: `Failed to send data: ${webhookError.message}`,
+            variant: "destructive"
+          })
         } else {
           console.log('✅ Assessment sent to webhook successfully')
           console.log('✅ Response data:', responseData)
-          // Store city from response
-          if (responseData?.city) {
-            setUserCity(responseData.city)
-          }
           toast({
             title: "Success!",
             description: "Assessment submitted successfully",
@@ -466,51 +426,23 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         consent: data.consent,
         app_idea: data.app_idea,
         project_stage: data.project_stage,
-        project_stage_other: data.project_stage_other,
         user_persona: data.user_persona,
-        user_persona_other: data.user_persona_other,
         differentiation: data.differentiation,
-        differentiation_other: data.differentiation_other,
         existing_materials: data.existing_materials,
         business_model: data.business_model,
         revenue_goal: data.revenue_goal,
-        current_revenue: data.current_revenue,
         build_strategy: data.build_strategy,
-        build_strategy_other: data.build_strategy_other,
         help_needed: data.help_needed,
-        help_needed_other: data.help_needed_other,
         investment_readiness: data.investment_readiness,
         session_id: sessionId,
         form_location: formLocation,
         score: score,
         segment: segment.name,
-        ...currentTrackingData
+        ...trackingData
       }
 
       await submitLeadData(11)
       onSuccess(completeData)
-      
-      // Fire Google Ads conversion AFTER successful submission
-      console.log('🎯 Firing Google Ads conversion after successful submission...')
-      await new Promise<void>((resolve) => {
-        if (typeof window !== 'undefined' && (window as any).gtag) {
-          (window as any).gtag('event', 'conversion', {
-            'send_to': 'AW-16893733356/txnICNTu5OQaEOzTx_c-',
-            'event_callback': () => {
-              console.log('✅ Google Ads conversion tracked successfully')
-              resolve()
-            }
-          })
-          // Fallback timeout in case callback doesn't fire
-          setTimeout(() => {
-            console.log('⏱️ Google Ads conversion timeout reached')
-            resolve()
-          }, 2000)
-        } else {
-          console.warn('⚠️ Google Ads gtag not available')
-          resolve()
-        }
-      })
       
       // Redirect to Calendly ONLY after conversion is tracked
       console.log('🚀 Redirecting to Calendly...')
@@ -572,15 +504,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             {errors.project_stage && (
               <p className="text-destructive text-lg mt-1 text-center">{errors.project_stage.message}</p>
             )}
-            {watchedFields.project_stage === 'other' && (
-              <div className="mt-3">
-                <Textarea
-                  {...register('project_stage_other')}
-                  className="form-input min-h-[80px] text-lg"
-                  placeholder="Please describe your project stage..."
-                />
-              </div>
-            )}
           </div>
         )
 
@@ -611,15 +534,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             {errors.user_persona && (
               <p className="text-destructive text-lg mt-1 text-center">{errors.user_persona.message}</p>
             )}
-            {watchedFields.user_persona === 'other' && (
-              <div className="mt-3">
-                <Textarea
-                  {...register('user_persona_other')}
-                  className="form-input min-h-[80px] text-lg"
-                  placeholder="Please describe your user persona understanding..."
-                />
-              </div>
-            )}
           </div>
         )
 
@@ -649,15 +563,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             </Select>
             {errors.differentiation && (
               <p className="text-destructive text-lg mt-1 text-center">{errors.differentiation.message}</p>
-            )}
-            {watchedFields.differentiation === 'other' && (
-              <div className="mt-3">
-                <Textarea
-                  {...register('differentiation_other')}
-                  className="form-input min-h-[80px] text-lg"
-                  placeholder="Please describe what makes your idea stand out..."
-                />
-              </div>
             )}
           </div>
         )
@@ -757,18 +662,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             {errors.revenue_goal && (
               <p className="text-destructive text-lg mt-1 text-center">{errors.revenue_goal.message}</p>
             )}
-            {watchedFields.revenue_goal === 'already_creating' && (
-              <div className="mt-3">
-                <Label className="text-white text-base mb-2 block text-center">
-                  What is the revenue that you are currently generating on average per month
-                </Label>
-                <Textarea
-                  {...register('current_revenue')}
-                  className="form-input min-h-[80px] text-lg"
-                  placeholder="Enter your current monthly revenue..."
-                />
-              </div>
-            )}
           </div>
         )
 
@@ -798,15 +691,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             </Select>
             {errors.build_strategy && (
               <p className="text-destructive text-lg mt-1 text-center">{errors.build_strategy.message}</p>
-            )}
-            {watchedFields.build_strategy === 'other' && (
-              <div className="mt-3">
-                <Textarea
-                  {...register('build_strategy_other')}
-                  className="form-input min-h-[80px] text-lg"
-                  placeholder="Please describe your build strategy..."
-                />
-              </div>
             )}
           </div>
         )
@@ -848,15 +732,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             </div>
             {errors.help_needed && (
               <p className="text-destructive text-lg mt-1 text-center">{errors.help_needed.message}</p>
-            )}
-            {(watchedFields.help_needed || []).includes('other') && (
-              <div className="mt-3">
-                <Textarea
-                  {...register('help_needed_other')}
-                  className="form-input min-h-[80px] text-lg"
-                  placeholder="Please describe what areas you need help with..."
-                />
-              </div>
             )}
           </div>
         )
@@ -1033,11 +908,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             {segment.name === 'Design & Tech' && "Build the product investors fund"}
             {segment.name === 'Investors' && "You're ready to scale — let's get you funded"}
           </p>
-          {userCity && (
-            <p className="text-sm text-gray-400 mt-2">
-              📍 Submitting from: {userCity}
-            </p>
-          )}
         </div>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-left">
@@ -1097,21 +967,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               id="phone"
               type="tel"
               {...register('phone')}
-              onChange={handlePhoneChange}
-              onClick={(e) => {
-                const input = e.currentTarget
-                // Ensure cursor stays after "+1 " prefix
-                if (input.selectionStart !== null && input.selectionStart < 3) {
-                  input.setSelectionRange(3, 3)
-                }
-              }}
-              onKeyDown={(e) => {
-                const input = e.currentTarget
-                // Prevent deleting the "+1 " prefix
-                if ((e.key === 'Backspace' || e.key === 'Delete') && input.selectionStart !== null && input.selectionStart <= 3) {
-                  e.preventDefault()
-                }
-              }}
               className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
               placeholder="+1 (555) 123-4567"
             />
@@ -1168,7 +1023,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
                   </DialogContent>
                 </Dialog>
                 <span onClick={() => setValue('consent', !watchedFields.consent)} className="cursor-pointer">
-                  {' '}& agree to receive communications. Also I am providing written authorization for Wise Start Inc and its affiliates to access my consumer report to personalize my experience.
+                  {' '}& agree to receive communications.
                 </span>
               </Label>
             </div>

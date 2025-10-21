@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Phone, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import logo from '@/assets/logo.png'
 
 interface HeaderProps {
   onPrototypeClick?: () => void
@@ -65,7 +64,7 @@ const Header = ({ onPrototypeClick }: HeaderProps = {}) => {
           >
             <div className="w-[38px] h-[38px] sm:w-10 sm:h-10 lg:w-12 lg:h-12 flex items-center justify-center">
               <img 
-                src={logo} 
+                src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" 
                 alt="StartWise Logo" 
                 className="w-full h-full object-contain filter drop-shadow-lg"
                 style={{ background: 'transparent' }}
@@ -116,7 +115,7 @@ const Header = ({ onPrototypeClick }: HeaderProps = {}) => {
               className="btn-hero text-xs sm:text-sm px-3 py-2 lg:px-4 lg:py-3"
             >
               <img 
-                src={logo} 
+                src="/lovable-uploads/8b2a4c58-718e-474a-b6f2-dbdb39fd77b5.png" 
                 alt="StartWise Logo" 
                 className="w-4 h-4 mr-2 filter drop-shadow-sm"
                 style={{ background: 'transparent' }}

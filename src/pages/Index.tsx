@@ -21,7 +21,7 @@ const Index = () => {
   const [isProcessingSuccess, setIsProcessingSuccess] = useState(false)
   const [startWithValidation, setStartWithValidation] = useState(false)
   const [startWithPrototype, setStartWithPrototype] = useState(false)
-  const [currentView, setCurrentView] = useState<'products' | 'prototype-form'>('products')
+  const [currentView, setCurrentView] = useState<'products' | 'prototype-form' | 'calendly'>('products')
 
   const handleValidationClick = () => {
     setStartWithValidation(true)
