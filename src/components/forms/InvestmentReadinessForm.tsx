@@ -529,15 +529,15 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           <div className="space-y-2">
             <p className="text-sm text-primary font-semibold mb-2 text-center">Every idea protected. NDA, guaranteed.</p>
             <Label htmlFor="app_idea" className="text-white text-lg mb-0.5 block text-center">
-              Briefly describe your app idea and the problem it solves
+              Briefly describe your tech-driven solution and the problem it solves.
             </Label>
             <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
-              We have <span className="relative inline-block">limited capacity<span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-red-600/40 to-red-600" style={{ clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)' }}></span></span> and prioritize Founders solving real human problems with potential to scale.
+              We have <span className="relative inline-block">limited capacity<span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-red-600/40 to-red-600" style={{ clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)' }}></span></span> and prioritize Founders with tech-driven solutions that solve real human problems with potential to scale.
             </p>
             <Textarea
               {...register('app_idea')}
               className="form-input min-h-[80px] text-lg"
-              placeholder="Describe the problem your app solves..."
+              placeholder="Describe your tech-driven solution and the problem it solves..."
             />
             {errors.app_idea && (
               <p className="text-destructive text-base mt-0.5">{errors.app_idea.message}</p>
