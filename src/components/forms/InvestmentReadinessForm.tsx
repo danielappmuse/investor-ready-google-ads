@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ArrowRight, ArrowLeft, Check, ExternalLink } from 'lucide-react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { ContactFormData, projectStages, userPersonaOptions, differentiationOptions, existingMaterials, businessModels, revenueGoals, buildStrategies, helpNeededAreas, investmentLevels } from '@/types/form'
+import { ContactFormData, startupTypes, projectStages, userPersonaOptions, differentiationOptions, existingMaterials, businessModels, revenueGoals, buildStrategies, helpNeededAreas, investmentLevels } from '@/types/form'
 import { validateEmail, validatePhoneNumber, formatPhoneNumber, getSessionId } from '@/utils/formValidation'
 import { getTrackingParameters, initializeTracking, fireGoogleAdsConversion } from '@/utils/trackingUtils'
 import { supabase } from '@/integrations/supabase/client'
@@ -22,7 +22,8 @@ const formSchema = z.object({
   email: z.string().refine(validateEmail, 'Please enter a valid email address'),
   phone: z.string().min(1, 'Phone number is required').refine(validatePhoneNumber, 'Please enter a valid US phone number'),
   consent: z.boolean().refine(val => val === true, 'You must agree to the terms'),
-  app_idea: z.string().min(20, 'Please provide at least 20 characters describing your app idea'),
+  startup_type: z.string().min(1, 'Please select your startup type'),
+  app_idea: z.string().min(20, 'Please provide at least 20 characters describing your solution'),
   project_stage: z.string().min(1, 'Please select your project stage'),
   project_stage_other: z.string().optional(),
   user_persona: z.string().min(1, 'Please select your user persona understanding'),
@@ -211,17 +212,17 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
     const fieldsToValidate = getFieldsForStep(currentStep)
     const isStepValid = await trigger(fieldsToValidate as any)
     
-    if (isStepValid && currentStep === 1) {
-      await submitLeadData(1)
+    if (isStepValid && currentStep === 2) {
+      await submitLeadData(2)
       // Conversion now fires only on final submit to ensure redirect ordering
     }
     
     if (isStepValid) {
-      if (currentStep === 10) {
-        // Show score after Q10, before contact info
+      if (currentStep === 11) {
+        // Show score after Q11, before contact info
         setShowScore(true)
       } else {
-        setCurrentStep(prev => Math.min(prev + 1, 11))
+        setCurrentStep(prev => Math.min(prev + 1, 12))
       }
     }
   }
@@ -232,17 +233,18 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
 
   const getFieldsForStep = (step: number) => {
     switch (step) {
-      case 1: return ['app_idea']
-      case 2: return ['project_stage']
-      case 3: return ['user_persona']
-      case 4: return ['differentiation']
-      case 5: return ['existing_materials']
-      case 6: return ['business_model']
-      case 7: return ['revenue_goal']
-      case 8: return ['build_strategy']
-      case 9: return ['help_needed']
-      case 10: return ['investment_readiness']
-      case 11: return ['first_name', 'last_name', 'email', 'phone', 'consent']
+      case 1: return ['startup_type']
+      case 2: return ['app_idea']
+      case 3: return ['project_stage']
+      case 4: return ['user_persona']
+      case 5: return ['differentiation']
+      case 6: return ['existing_materials']
+      case 7: return ['business_model']
+      case 8: return ['revenue_goal']
+      case 9: return ['build_strategy']
+      case 10: return ['help_needed']
+      case 11: return ['investment_readiness']
+      case 12: return ['first_name', 'last_name', 'email', 'phone', 'consent']
       default: return []
     }
   }
@@ -257,6 +259,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       email: watchedFields.email || '',
       phone: watchedFields.phone || '',
       consent: watchedFields.consent || false,
+      startup_type: watchedFields.startup_type || '',
       app_idea: watchedFields.app_idea || '',
       project_stage: watchedFields.project_stage || '',
       user_persona: watchedFields.user_persona || '',
@@ -353,16 +356,17 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         
         // Assessment Q&A with single human-readable answers
         assessment: {
-          q1_app_idea: data.app_idea,
-          q2_project_stage: getProjectStageLabel(data.project_stage),
-          q3_user_persona: getUserPersonaLabel(data.user_persona),
-          q4_differentiation: getDifferentiationLabel(data.differentiation),
-          q5_existing_materials: getMaterialsLabels(data.existing_materials),
-          q6_business_model: getBusinessModelLabel(data.business_model),
-          q7_revenue_goal: getRevenueGoalLabel(data.revenue_goal),
-          q8_build_strategy: getBuildStrategyLabel(data.build_strategy),
-          q9_help_needed: getHelpNeededLabels(data.help_needed),
-          q10_investment_level: getInvestmentLevelLabel(data.investment_readiness),
+          q1_startup_type: startupTypes.find(t => t.id === data.startup_type)?.name || data.startup_type,
+          q2_app_idea: data.app_idea,
+          q3_project_stage: getProjectStageLabel(data.project_stage),
+          q4_user_persona: getUserPersonaLabel(data.user_persona),
+          q5_differentiation: getDifferentiationLabel(data.differentiation),
+          q6_existing_materials: getMaterialsLabels(data.existing_materials),
+          q7_business_model: getBusinessModelLabel(data.business_model),
+          q8_revenue_goal: getRevenueGoalLabel(data.revenue_goal),
+          q9_build_strategy: getBuildStrategyLabel(data.build_strategy),
+          q10_help_needed: getHelpNeededLabels(data.help_needed),
+          q11_investment_level: getInvestmentLevelLabel(data.investment_readiness),
           investment_readiness_score: score,
           segment: segment.name
         },
@@ -523,24 +527,51 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   }
 
   const renderStep = () => {
+    const startupType = watchedFields.startup_type
+    const isPhysical = startupType === 'physical'
+    const isService = startupType === 'service'
+    const isTechOrCombo = startupType === 'technology' || startupType === 'combination'
+    
+    // Dynamic terminology
+    const getSolutionTerm = () => {
+      if (isPhysical) return 'physical product solution'
+      if (isService) return 'service-based solution'
+      return 'tech-driven solution'
+    }
+    
+    const getProductTerm = () => {
+      if (isPhysical) return 'product'
+      if (isService) return 'service'
+      return 'product'
+    }
+    
     switch (currentStep) {
       case 1:
         return (
           <div className="space-y-2">
-            <p className="text-sm text-primary font-semibold mb-2 text-center">Every idea protected. NDA, guaranteed.</p>
-            <Label htmlFor="app_idea" className="text-white text-lg mb-0.5 block text-center">
-              Briefly describe your tech-driven solution and the problem it solves.
+            <Label htmlFor="startup_type" className="text-white text-lg mb-0.5 block text-center">
+              What type of startup are you building?
             </Label>
             <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
-              We have <span className="relative inline-block">limited capacity<span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-red-600/40 to-red-600" style={{ clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)' }}></span></span> and prioritize Founders with tech-driven solutions that solve real human problems with potential to scale.
+              Select the category that best describes your startup.
             </p>
-            <Textarea
-              {...register('app_idea')}
-              className="form-input min-h-[80px] text-lg"
-              placeholder="Describe your tech-driven solution and the problem it solves..."
-            />
-            {errors.app_idea && (
-              <p className="text-destructive text-base mt-0.5">{errors.app_idea.message}</p>
+            <Select
+              value={watchedFields.startup_type || ''}
+              onValueChange={(value) => setValue('startup_type', value)}
+            >
+              <SelectTrigger className="form-input">
+                <SelectValue placeholder="Select your startup type" />
+              </SelectTrigger>
+              <SelectContent>
+                {startupTypes.map((type) => (
+                  <SelectItem key={type.id} value={type.id}>
+                    {type.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.startup_type && (
+              <p className="text-destructive text-lg mt-1 text-center">{errors.startup_type.message}</p>
             )}
           </div>
         )
@@ -548,8 +579,29 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       case 2:
         return (
           <div className="space-y-2">
+            <p className="text-sm text-primary font-semibold mb-2 text-center">Every idea protected. NDA, guaranteed.</p>
+            <Label htmlFor="app_idea" className="text-white text-lg mb-0.5 block text-center">
+              Briefly describe your {getSolutionTerm()} and the problem it solves.
+            </Label>
+            <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
+              We have <span className="relative inline-block">limited capacity<span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-red-600/40 to-red-600" style={{ clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)' }}></span></span> and prioritize Founders with {getSolutionTerm()}s that solve real human problems with potential to scale.
+            </p>
+            <Textarea
+              {...register('app_idea')}
+              className="form-input min-h-[80px] text-lg"
+              placeholder={`Describe your ${getSolutionTerm()} and the problem it solves...`}
+            />
+            {errors.app_idea && (
+              <p className="text-destructive text-base mt-0.5">{errors.app_idea.message}</p>
+            )}
+          </div>
+        )
+      
+      case 3:
+        return (
+          <div className="space-y-2">
             <Label htmlFor="project_stage" className="text-white text-lg mb-0.5 block text-center">
-              Where are you in your project journey?
+              Where are you in your {getProductTerm()} journey?
             </Label>
             <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               Select the stage that best describes where you are right now.
@@ -584,7 +636,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 3:
+      case 4:
         return (
           <div className="space-y-2">
             <Label htmlFor="user_persona" className="text-white text-lg mb-0.5 block text-center">
@@ -623,7 +675,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 4:
+      case 5:
         return (
           <div className="space-y-2">
             <Label htmlFor="differentiation" className="text-white text-lg mb-0.5 block text-center">
@@ -662,7 +714,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 5:
+      case 6:
         return (
           <div className="space-y-2">
             <Label className="text-white text-lg mb-0.5 block text-center">
@@ -700,11 +752,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 6:
+      case 7:
         return (
           <div className="space-y-2">
             <Label htmlFor="business_model" className="text-white text-lg mb-0.5 block text-center">
-              What is the app business model?
+              What is the {isPhysical ? 'product' : isService ? 'service' : 'app'} business model?
             </Label>
             <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               This gives us insight into your revenue strategy.
@@ -730,7 +782,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 7:
+      case 8:
         return (
           <div className="space-y-2">
             <Label htmlFor="revenue_goal" className="text-white text-lg mb-0.5 block text-center">
@@ -772,11 +824,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 8:
+      case 9:
         return (
           <div className="space-y-2">
             <Label htmlFor="build_strategy" className="text-white text-lg mb-0.5 block text-center">
-              How do you plan to build the product?
+              How do you plan to {isService ? 'deliver the service' : `build the ${getProductTerm()}`}?
             </Label>
             <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
               This tells us what kind of team or structure you'll need.
@@ -811,7 +863,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 9:
+      case 10:
         return (
           <div className="space-y-2">
             <Label className="text-white text-lg mb-0.5 block text-center">
@@ -861,14 +913,18 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 10:
+      case 11:
         return (
           <div className="space-y-2">
             <Label htmlFor="investment_readiness" className="text-white text-lg mb-0.5 block text-center">
               How much are you prepared to personally invest until you'll find an investor?
             </Label>
             <p className="text-[16.5px] sm:text-base text-gray-400 mb-1 text-center">
-              Those days, in the AI age, investors has high expectation from entrepreneurs. They expect you to take the project to further point that you can by yourself, before looking for outside funding
+              {isPhysical 
+                ? 'Investors expect you to have proven product-market fit and initial traction before seeking funding.'
+                : isService
+                ? 'Investors expect you to have validated your service model and demonstrated early success before seeking funding.'
+                : 'Those days, in the AI age, investors has high expectation from entrepreneurs. They expect you to take the project to further point that you can by yourself, before looking for outside funding'}
             </p>
             <Select
               value={watchedFields.investment_readiness || ''}
@@ -896,7 +952,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           </div>
         )
 
-      case 11:
+      case 12:
         return (
           <div className="space-y-2">
             <div className="grid grid-cols-2 gap-3">
