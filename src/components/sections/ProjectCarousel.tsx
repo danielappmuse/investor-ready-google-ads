@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ExternalLink, Star, TrendingUp, Target, Code, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import project1 from '@/assets/project1.png';
+import project2 from '@/assets/project2.png';
+import project3 from '@/assets/project3.png';
+import project4 from '@/assets/project4.png';
+import project5 from '@/assets/project5.png';
+import project6 from '@/assets/project6.png';
+import project7 from '@/assets/project7.png';
 const ProjectCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const successStories = [{
@@ -9,7 +16,7 @@ const ProjectCarousel = () => {
     category: 'Mobile App Development',
     type: 'prototype',
     description: 'Building an Electric Vehicle Companion App with real-time charging station finder, battery monitoring, and trip optimization.',
-    image: '/media-logos/forbes.png',
+    image: project1,
     outcome: 'Launched Successfully',
     timeline: '8 weeks',
     price: '$25,000',
@@ -22,7 +29,7 @@ const ProjectCarousel = () => {
     category: 'Marketplace Development',
     type: 'both',
     description: 'Developing an Application for Streamlined Job Searching with AI-powered matching and real-time notifications.',
-    image: '/media-logos/forbes.png',
+    image: project2,
     outcome: '500+ Active Users',
     timeline: '12 weeks',
     price: '$35,000',
@@ -35,7 +42,7 @@ const ProjectCarousel = () => {
     category: 'Enterprise Security',
     type: 'prototype',
     description: 'Building a Website for a Largest Cybersecurity Company in Israel with AI-powered threat detection and prevention.',
-    image: '/media-logos/forbes.png',
+    image: project3,
     outcome: 'Enterprise Ready',
     timeline: '16 weeks',
     price: '$45,000',
@@ -48,7 +55,7 @@ const ProjectCarousel = () => {
     category: 'Health & Fitness',
     type: 'both',
     description: 'Developing a Fitness and Nutrition App Powered by AI with personalized workout plans and meal recommendations.',
-    image: '/media-logos/forbes.png',
+    image: project4,
     outcome: '1000+ Downloads',
     timeline: '10 weeks',
     price: '$28,000',
@@ -61,7 +68,7 @@ const ProjectCarousel = () => {
     category: 'Marketing Automation',
     type: 'prototype',
     description: 'Developing an App to Manage Marketing Campaigns with automated workflows and performance analytics.',
-    image: '/media-logos/forbes.png',
+    image: project5,
     outcome: '300% ROI Increase',
     timeline: '14 weeks',
     price: '$40,000',
@@ -74,7 +81,7 @@ const ProjectCarousel = () => {
     category: 'Event Platform',
     type: 'both',
     description: 'Building an Event Management Platform with powerful filters, 5000+ events database, and stress-free booking.',
-    image: '/media-logos/forbes.png',
+    image: project6,
     outcome: '50+ Events Managed',
     timeline: '12 weeks',
     price: '$32,000',
@@ -87,7 +94,7 @@ const ProjectCarousel = () => {
     category: 'PropTech Solution',
     type: 'prototype',
     description: 'Building a Platform for Managing Remote Workspaces with space booking, availability tracking, and optimization.',
-    image: '/media-logos/forbes.png',
+    image: project7,
     outcome: '40% Space Efficiency',
     timeline: '18 weeks',
     price: '$50,000',
