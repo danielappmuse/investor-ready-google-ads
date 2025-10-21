@@ -3,6 +3,7 @@ import { CheckCircle, Users, Award, Target, Zap } from 'lucide-react';
 import alonProfile from '@/assets/alon-profile.png';
 import danielProfile from '@/assets/daniel-profile.png';
 import teamPhoto from '@/assets/team-photo.webp';
+import forbesBadge from '@/assets/forbes-badge.png';
 const AboutSection = () => {
   const teamMembers = [{
     name: 'Alon Krupitsky',
@@ -66,12 +67,8 @@ const AboutSection = () => {
 
             {/* Forbes Badge - visible on mobile/tablet only */}
             <div className="flex justify-center xl:hidden">
-              <div className="card-glass p-4 sm:p-6 inline-flex items-center space-x-4 rounded-xl">
-                <img src="/media-logos/forbes.png" alt="Forbes Agency Council 2025 Official Member" className="h-24 sm:h-16 lg:h-32 w-auto" />
-                <div>
-                  <div className="text-lg sm:text-base text-white font-semibold">Forbes Recognition</div>
-                  <div className="text-lg sm:text-sm text-gray-400">Agency Council Member 2025</div>
-                </div>
+              <div className="card-glass p-6 sm:p-8 rounded-xl">
+                <img src={forbesBadge} alt="Forbes Agency Council 2025 Official Member" className="w-full max-w-md mx-auto" />
               </div>
             </div>
 
@@ -96,12 +93,8 @@ const AboutSection = () => {
 
             {/* Forbes Badge - visible on desktop only, after team members */}
             <div className="hidden xl:flex justify-center">
-              <div className="card-glass p-4 sm:p-6 inline-flex items-center space-x-4 rounded-xl">
-                <img src="/media-logos/forbes.png" alt="Forbes Agency Council 2025 Official Member" className="h-24 sm:h-16 lg:h-32 w-auto" />
-                <div>
-                  <div className="text-lg sm:text-base text-white font-semibold">Forbes Recognition</div>
-                  <div className="text-lg sm:text-sm text-gray-400">Agency Council Member 2025</div>
-                </div>
+              <div className="card-glass p-6 sm:p-8 rounded-xl">
+                <img src={forbesBadge} alt="Forbes Agency Council 2025 Official Member" className="w-full max-w-md mx-auto" />
               </div>
             </div>
           </div>
