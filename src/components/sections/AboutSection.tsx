@@ -1,15 +1,17 @@
 import React from 'react';
 import { CheckCircle, Users, Award, Target, Zap } from 'lucide-react';
+import alonProfile from '@/assets/alon-profile.png';
+import danielProfile from '@/assets/daniel-profile.png';
 const AboutSection = () => {
   const teamMembers = [{
     name: 'Alon Krupitsky',
     role: 'CTO & CMO',
-    image: '/placeholder.svg',
+    image: alonProfile,
     bio: '10+ years of experince with marketing and launched over 100 projects'
   }, {
     name: 'Daniel Koren',
     role: 'CEO',
-    image: '/placeholder.svg',
+    image: danielProfile,
     bio: 'Helped raise millions of dollars and made over $20M+ in sales'
   }];
   const achievements = [{
