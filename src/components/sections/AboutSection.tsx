@@ -2,6 +2,7 @@ import React from 'react';
 import { CheckCircle, Users, Award, Target, Zap } from 'lucide-react';
 import alonProfile from '@/assets/alon-profile.png';
 import danielProfile from '@/assets/daniel-profile.png';
+import teamPhoto from '@/assets/team-photo.webp';
 const AboutSection = () => {
   const teamMembers = [{
     name: 'Alon Krupitsky',
@@ -59,7 +60,7 @@ const AboutSection = () => {
           <div className="space-y-6 sm:space-y-8">
             {/* Team Photo */}
             <div className="relative">
-              <img src="/placeholder.svg" alt="StartWise team collaborating in the office" className="w-full rounded-2xl shadow-2xl" />
+              <img src={teamPhoto} alt="StartWise team collaborating in the office" className="w-full rounded-2xl shadow-2xl" />
               <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent rounded-2xl"></div>
             </div>
 
