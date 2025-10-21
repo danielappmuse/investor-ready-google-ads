@@ -517,14 +517,14 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           })
           
           // Safety timeout: ensure we redirect even if callback doesn't fire
-          // Google recommends 2 seconds, but we use 1 second for faster UX
+          // Using Google's recommended 2 seconds for reliable conversion tracking
           setTimeout(() => {
             if (!callbackFired) {
               callbackFired = true
               console.log('⏱️ Google Ads timeout - proceeding with redirect')
               resolve()
             }
-          }, 1000)
+          }, 2000)
         } else {
           console.warn('⚠️ Google Ads gtag not available - skipping conversion tracking')
           resolve()
