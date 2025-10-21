@@ -494,18 +494,19 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       await submitLeadData(12)
       onSuccess(completeData)
       
-      // Fire Google Ads conversion with callback before redirect
-      // Following official Google Ads documentation pattern with safety timeout
-      console.log('🎯 Firing Google Ads conversion...')
+      // Fire Google Ads conversion with callback before redirect (official Google Ads pattern)
+      console.log('🎯 Firing Google Ads conversion with ID: AW-16893733356/txnICNTu5OQaEOzTx_c-')
+      
       await new Promise<void>((resolve) => {
         if (typeof window !== 'undefined' && (window as any).gtag) {
           let callbackFired = false
+          const startTime = Date.now()
           
           // Official Google Ads event_callback pattern
           const callback = () => {
             if (!callbackFired) {
               callbackFired = true
-              console.log('✅ Google Ads conversion tracked via callback')
+              console.log(`✅ Google Ads conversion tracked (${Date.now() - startTime}ms)`)
               resolve()
             }
           }
@@ -516,17 +517,16 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             'event_callback': callback
           })
           
-          // Safety timeout: ensure we redirect even if callback doesn't fire
-          // Using Google's recommended 2 seconds for reliable conversion tracking
+          // Safety timeout (Google's recommended 2 seconds)
           setTimeout(() => {
             if (!callbackFired) {
               callbackFired = true
-              console.log('⏱️ Google Ads timeout - proceeding with redirect')
+              console.log('⏱️ Google Ads timeout - proceeding')
               resolve()
             }
           }, 2000)
         } else {
-          console.warn('⚠️ Google Ads gtag not available - skipping conversion tracking')
+          console.error('❌ Google Ads gtag NOT available - conversion tracking skipped')
           resolve()
         }
       })
