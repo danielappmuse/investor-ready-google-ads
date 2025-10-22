@@ -51,7 +51,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showScore, setShowScore] = useState(false)
-  const [showSuccessDialog, setShowSuccessDialog] = useState(false)
   const [userCity, setUserCity] = useState<string>('')
   const [sessionId] = useState(() => getSessionId())
   const { toast } = useToast()
@@ -285,6 +284,12 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
     console.log('📋 Form data:', data)
     setIsSubmitting(true)
     
+    // Show toast immediately
+    toast({
+      title: "Processing...",
+      description: "Submitting your assessment",
+    })
+    
     try {
       const score = calculateScore()
       const segment = getSegment(score)
@@ -412,6 +417,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             })
           } catch (fallbackErr) {
             console.error('❌ Client-side webhook fallback failed:', fallbackErr)
+            toast({
+              title: "Submission Error",
+              description: `Failed to send data: ${webhookError.message}`,
+              variant: "destructive"
+            })
           }
         } else {
           console.log('✅ Assessment sent to webhook successfully')
@@ -420,6 +430,10 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           if (responseData?.city) {
             setUserCity(responseData.city)
           }
+          toast({
+            title: "Success!",
+            description: "Assessment submitted successfully",
+          })
         }
       } catch (webhookErr) {
         console.error('❌ Webhook submission exception:', webhookErr)
@@ -438,7 +452,15 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         } catch (fallbackErr) {
           console.error('❌ Client-side webhook fallback failed (exception path):', fallbackErr)
         }
+        toast({
+          title: "Submission Error",
+          description: "Failed to submit assessment",
+          variant: "destructive"
+        })
       }
+      
+      // HubSpot meeting booking URL
+      const meetingUrl = 'https://meetings-eu1.hubspot.com/meetings/michael-damato'
       
       const completeData: ContactFormData = {
         full_name: `${data.first_name} ${data.last_name}`,
@@ -472,7 +494,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       await submitLeadData(12)
       onSuccess(completeData)
       
-      // Fire Google Ads conversion
+      // Fire Google Ads conversion with callback before redirect (official Google Ads pattern)
       console.log('🎯 Firing Google Ads conversion with ID: AW-16893733356/txnICNTu5OQaEOzTx_c-')
       
       await new Promise<void>((resolve) => {
@@ -480,6 +502,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           let callbackFired = false
           const startTime = Date.now()
           
+          // Official Google Ads event_callback pattern
           const callback = () => {
             if (!callbackFired) {
               callbackFired = true
@@ -488,11 +511,13 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             }
           }
           
+          // Fire the conversion event
           (window as any).gtag('event', 'conversion', {
             'send_to': 'AW-16893733356/txnICNTu5OQaEOzTx_c-',
             'event_callback': callback
           })
           
+          // Safety timeout (Google's recommended 2 seconds)
           setTimeout(() => {
             if (!callbackFired) {
               callbackFired = true
@@ -506,8 +531,9 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         }
       })
       
-      // Show success dialog
-      setShowSuccessDialog(true)
+      // Redirect after conversion is tracked
+      console.log('🚀 Redirecting to HubSpot meeting booking...')
+      window.location.href = meetingUrl
     } catch (error) {
       console.error('Form submission error:', error)
     } finally {
@@ -1330,36 +1356,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           )}
         </div>
       </form>
-
-      {/* Success Overlay */}
-      {showSuccessDialog && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm animate-in fade-in duration-300">
-          <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border-2 border-primary/30 text-white max-w-2xl mx-4 p-8 sm:p-12 rounded-2xl shadow-2xl shadow-primary/20 animate-in zoom-in-95 duration-300">
-            <div className="space-y-6 text-center">
-              <div className="mx-auto w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mb-6">
-                <Check className="w-12 h-12 text-primary" />
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white">
-                Thank you for submitting your application!
-              </h2>
-              <div className="space-y-5 text-lg sm:text-xl text-gray-300 leading-relaxed pt-4">
-                <p>
-                  You will soon receive a message from our <span className="font-bold text-white">Venture Relations Director</span>.
-                </p>
-                <p>
-                  Kindly upload your relevant business materials for investment review and schedule your interview using the link provided in the message.
-                </p>
-                <p className="pt-2">
-                  We look forward to connecting with you soon.
-                </p>
-                <p className="font-bold text-primary text-2xl pt-4">
-                  Best of luck!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
