@@ -79,34 +79,58 @@
     <!-- Page Reveal Script -->
     <script>
     (function(){
+      console.log('[Page Reveal] Script starting');
+      
       function reveal(){
         var s=document.getElementById('page-hide');
         if(s&&s.parentNode){
+          console.log('[Page Reveal] Revealing page');
           s.parentNode.removeChild(s);
         }
       }
+      
       function hasHero(){
         var el=document.querySelector('[data-hero-container]');
-        return !!(el && el.textContent && el.textContent.trim().length>0);
+        var hasContent = !!(el && el.textContent && el.textContent.trim().length>0);
+        console.log('[Page Reveal] hasHero check:', hasContent, el ? 'Element found' : 'Element not found', el ? 'Text length: ' + el.textContent.trim().length : '');
+        return hasContent;
       }
+      
+      // Allow dynamic script to trigger reveal
       if (window.__HERO_READY__) {
         window.__HERO_READY__ = reveal;
       }
+      
+      // Check on DOMContentLoaded
       if (document.readyState==='loading') {
         document.addEventListener('DOMContentLoaded', function(){
-          if(hasHero()) reveal();
+          console.log('[Page Reveal] DOMContentLoaded fired');
+          setTimeout(function(){
+            if(hasHero()) reveal();
+          }, 100); // Small delay to let React render
         });
       } else {
-        if(hasHero()) reveal();
+        console.log('[Page Reveal] Document already loaded');
+        setTimeout(function(){
+          if(hasHero()) reveal();
+        }, 100);
       }
+      
+      // Watch for hero container to appear and get content
       var obs=new MutationObserver(function(){
         if(hasHero()){
+          console.log('[Page Reveal] MutationObserver detected hero content');
           reveal();
           obs.disconnect();
         }
       });
       obs.observe(document.documentElement,{childList:true,subtree:true,characterData:true});
-      setTimeout(reveal, 3500);
+      
+      // Fallback timeout
+      setTimeout(function(){
+        console.log('[Page Reveal] Timeout fallback triggered');
+        reveal();
+      }, 3500);
     })();
     </script>
   </body>
