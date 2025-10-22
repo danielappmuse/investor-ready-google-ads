@@ -35,11 +35,12 @@
       const keyword = urlParams.get('keyword');
       
       if (!keyword) {
-        console.log('No keyword parameter found');
+        console.log('[Dynamic Hero] No keyword parameter found, using default content');
+        // No keyword, let page reveal normally with default content
         return;
       }
 
-      console.log('Loading variant for keyword:', keyword);
+      console.log('[Dynamic Hero] Loading variant for keyword:', keyword);
 
       // Detect if mobile or desktop
       const isMobile = window.innerWidth < 768;
@@ -49,29 +50,41 @@
         .then(response => response.json())
         .then(data => {
           if (data.error) {
-            console.error('Variant fetch error:', data.error);
+            console.error('[Dynamic Hero] Variant fetch error:', data.error);
             return;
           }
 
-          // Find the hero container
-          const heroContainer = document.querySelector('[data-hero-container]');
-          
-          if (!heroContainer) {
-            console.error('Could not find element with data-hero-container attribute');
-            return;
-          }
+          console.log('[Dynamic Hero] Variant data received:', data);
 
-          // Get the appropriate text (desktop or mobile)
-          const heroText = isMobile ? (data.subheadline || data.headline) : data.headline;
+          // Wait for hero container to exist
+          function updateHero() {
+            const heroContainer = document.querySelector('[data-hero-container]');
+            
+            if (!heroContainer) {
+              console.log('[Dynamic Hero] Hero container not found yet, retrying...');
+              setTimeout(updateHero, 50);
+              return;
+            }
+
+            // Get the appropriate text (desktop or mobile)
+            const heroText = isMobile ? (data.subheadline || data.headline) : data.headline;
+            
+            // Replace entire content with the full hero text
+            heroContainer.innerHTML = '<div style="white-space: pre-wrap;">' + heroText + '</div>';
+            
+            console.log('[Dynamic Hero] Content updated, triggering reveal');
+            
+            // Trigger reveal after content is updated
+            if (window.__HERO_READY__) {
+              window.__HERO_READY__();
+            }
+          }
           
-          // Replace entire content with the full hero text
-          // Preserve line breaks and structure
-          heroContainer.innerHTML = '<div style="white-space: pre-wrap;">' + heroText + '</div>';
-          
-          console.log('Dynamic hero content loaded for keyword:', keyword);
+          updateHero();
         })
         .catch(error => {
-          console.error('Error loading dynamic content:', error);
+          console.error('[Dynamic Hero] Error loading dynamic content:', error);
+          // On error, let page reveal with default content
         });
     })();
     </script>
@@ -81,7 +94,12 @@
     (function(){
       console.log('[Page Reveal] Script starting');
       
+      var revealed = false;
+      
       function reveal(){
+        if (revealed) return;
+        revealed = true;
+        
         var s=document.getElementById('page-hide');
         if(s&&s.parentNode){
           console.log('[Page Reveal] Revealing page');
@@ -96,37 +114,45 @@
         return hasContent;
       }
       
-      // Allow dynamic script to trigger reveal
-      if (window.__HERO_READY__) {
-        window.__HERO_READY__ = reveal;
-      }
+      // Expose reveal function for dynamic script to call
+      window.__HERO_READY__ = reveal;
       
-      // Check on DOMContentLoaded
-      if (document.readyState==='loading') {
-        document.addEventListener('DOMContentLoaded', function(){
-          console.log('[Page Reveal] DOMContentLoaded fired');
+      // Check if we have a keyword parameter
+      var urlParams = new URLSearchParams(window.location.search);
+      var hasKeyword = urlParams.get('keyword');
+      
+      if (!hasKeyword) {
+        console.log('[Page Reveal] No keyword param, revealing when hero loads normally');
+        
+        // No dynamic content, reveal when React renders
+        if (document.readyState==='loading') {
+          document.addEventListener('DOMContentLoaded', function(){
+            console.log('[Page Reveal] DOMContentLoaded fired');
+            setTimeout(function(){
+              if(hasHero()) reveal();
+            }, 100);
+          });
+        } else {
           setTimeout(function(){
             if(hasHero()) reveal();
-          }, 100); // Small delay to let React render
+          }, 100);
+        }
+        
+        // Watch for hero container
+        var obs=new MutationObserver(function(){
+          if(hasHero()){
+            console.log('[Page Reveal] MutationObserver detected hero content');
+            reveal();
+            obs.disconnect();
+          }
         });
+        obs.observe(document.documentElement,{childList:true,subtree:true,characterData:true});
       } else {
-        console.log('[Page Reveal] Document already loaded');
-        setTimeout(function(){
-          if(hasHero()) reveal();
-        }, 100);
+        console.log('[Page Reveal] Keyword param detected, waiting for dynamic script');
+        // With keyword, dynamic script will call reveal after updating content
       }
       
-      // Watch for hero container to appear and get content
-      var obs=new MutationObserver(function(){
-        if(hasHero()){
-          console.log('[Page Reveal] MutationObserver detected hero content');
-          reveal();
-          obs.disconnect();
-        }
-      });
-      obs.observe(document.documentElement,{childList:true,subtree:true,characterData:true});
-      
-      // Fallback timeout
+      // Fallback timeout - always reveal eventually
       setTimeout(function(){
         console.log('[Page Reveal] Timeout fallback triggered');
         reveal();
