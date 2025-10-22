@@ -85,7 +85,7 @@ const HeroSection = ({
                 </div>
                 
                 <p className={`${isSmallScreen ? 'text-[14.5px]' : 'text-[17.5px]'} sm:text-base lg:text-[20px] text-white leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl mt-1.5`}>
-                  <div data-hero-container>
+                  <div>
                   You've pitched for months, maybe years, <strong>and still don't know what's missing.</strong>
                   <span className="block h-2" />
                   Even if the funding came tomorrow, would you know how to <strong>turn it into real traction?</strong>
