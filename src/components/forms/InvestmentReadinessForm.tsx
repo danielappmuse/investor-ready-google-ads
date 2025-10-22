@@ -285,12 +285,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
     console.log('📋 Form data:', data)
     setIsSubmitting(true)
     
-    // Show toast immediately
-    toast({
-      title: "Processing...",
-      description: "Submitting your assessment",
-    })
-    
     try {
       const score = calculateScore()
       const segment = getSegment(score)
@@ -411,18 +405,8 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
               }),
               new Promise((resolve) => setTimeout(resolve, 1500))
             ])
-            // Treat successful fallback as success
-            toast({
-              title: "Success!",
-              description: "Assessment submitted successfully",
-            })
           } catch (fallbackErr) {
             console.error('❌ Client-side webhook fallback failed:', fallbackErr)
-            toast({
-              title: "Submission Error",
-              description: `Failed to send data: ${webhookError.message}`,
-              variant: "destructive"
-            })
           }
         } else {
           console.log('✅ Assessment sent to webhook successfully')
@@ -431,10 +415,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           if (responseData?.city) {
             setUserCity(responseData.city)
           }
-          toast({
-            title: "Success!",
-            description: "Assessment submitted successfully",
-          })
         }
       } catch (webhookErr) {
         console.error('❌ Webhook submission exception:', webhookErr)
@@ -453,11 +433,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         } catch (fallbackErr) {
           console.error('❌ Client-side webhook fallback failed (exception path):', fallbackErr)
         }
-        toast({
-          title: "Submission Error",
-          description: "Failed to submit assessment",
-          variant: "destructive"
-        })
       }
       
       const completeData: ContactFormData = {
