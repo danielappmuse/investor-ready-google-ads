@@ -51,6 +51,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showScore, setShowScore] = useState(false)
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false)
   const [userCity, setUserCity] = useState<string>('')
   const [sessionId] = useState(() => getSessionId())
   const { toast } = useToast()
@@ -459,9 +460,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         })
       }
       
-      // HubSpot meeting booking URL
-      const meetingUrl = 'https://meetings-eu1.hubspot.com/meetings/michael-damato'
-      
       const completeData: ContactFormData = {
         full_name: `${data.first_name} ${data.last_name}`,
         email: data.email,
@@ -494,7 +492,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       await submitLeadData(12)
       onSuccess(completeData)
       
-      // Fire Google Ads conversion with callback before redirect (official Google Ads pattern)
+      // Fire Google Ads conversion
       console.log('🎯 Firing Google Ads conversion with ID: AW-16893733356/txnICNTu5OQaEOzTx_c-')
       
       await new Promise<void>((resolve) => {
@@ -502,7 +500,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           let callbackFired = false
           const startTime = Date.now()
           
-          // Official Google Ads event_callback pattern
           const callback = () => {
             if (!callbackFired) {
               callbackFired = true
@@ -511,13 +508,11 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             }
           }
           
-          // Fire the conversion event
           (window as any).gtag('event', 'conversion', {
             'send_to': 'AW-16893733356/txnICNTu5OQaEOzTx_c-',
             'event_callback': callback
           })
           
-          // Safety timeout (Google's recommended 2 seconds)
           setTimeout(() => {
             if (!callbackFired) {
               callbackFired = true
@@ -531,9 +526,8 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         }
       })
       
-      // Redirect after conversion is tracked
-      console.log('🚀 Redirecting to HubSpot meeting booking...')
-      window.location.href = meetingUrl
+      // Show success dialog
+      setShowSuccessDialog(true)
     } catch (error) {
       console.error('Form submission error:', error)
     } finally {
@@ -1356,6 +1350,34 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           )}
         </div>
       </form>
+
+      {/* Success Dialog */}
+      <Dialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
+        <DialogContent className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border-2 border-primary/30 text-white max-w-lg mx-auto p-8 rounded-2xl shadow-2xl shadow-primary/20">
+          <DialogHeader className="space-y-6 text-center">
+            <div className="mx-auto w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-4">
+              <Check className="w-10 h-10 text-primary" />
+            </div>
+            <DialogTitle className="text-2xl sm:text-3xl font-bold text-white">
+              Thank you for submitting your application!
+            </DialogTitle>
+            <div className="space-y-4 text-base sm:text-lg text-gray-300 leading-relaxed">
+              <p>
+                You will soon receive a message from our <span className="font-bold text-white">Venture Relations Director</span>.
+              </p>
+              <p>
+                Kindly upload your relevant business materials for investment review and schedule your interview using the link provided in the message.
+              </p>
+              <p className="pt-2">
+                We look forward to connecting with you soon.
+              </p>
+              <p className="font-bold text-primary text-xl pt-2">
+                Best of luck!
+              </p>
+            </div>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
