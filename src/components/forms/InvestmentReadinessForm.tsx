@@ -532,8 +532,8 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
       })
       
       // Redirect after conversion is tracked
-      console.log('🚀 Redirecting to HubSpot meeting booking...')
-      window.location.href = meetingUrl
+      console.log('🚀 Redirecting to thank you page...')
+      window.location.href = '/thank-you'
     } catch (error) {
       console.error('Form submission error:', error)
     } finally {

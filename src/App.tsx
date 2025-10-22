@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import CROIndex from "./pages/CROIndex";
 import Facebook from "./pages/Facebook";
+import ThankYou from "./pages/ThankYou";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -15,6 +16,7 @@ const App: React.FC = () => (
         <Route path="/" element={<Index />} />
         <Route path="/cro" element={<CROIndex />} />
         <Route path="/facebook" element={<Facebook />} />
+        <Route path="/thank-you" element={<ThankYou />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
