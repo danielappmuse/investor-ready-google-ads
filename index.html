@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style id="page-hide">body{visibility:hidden}</style>
     <meta charset="UTF-8" />
     <link rel="icon" href="/lovable-uploads/6ae2b882-22a7-4999-9254-825d31ea2b05.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -72,6 +73,40 @@
         .catch(error => {
           console.error('Error loading dynamic content:', error);
         });
+    })();
+    </script>
+    
+    <!-- Page Reveal Script -->
+    <script>
+    (function(){
+      function reveal(){
+        var s=document.getElementById('page-hide');
+        if(s&&s.parentNode){
+          s.parentNode.removeChild(s);
+        }
+      }
+      function hasHero(){
+        var el=document.querySelector('[data-hero-container]');
+        return !!(el && el.textContent && el.textContent.trim().length>0);
+      }
+      if (window.__HERO_READY__) {
+        window.__HERO_READY__ = reveal;
+      }
+      if (document.readyState==='loading') {
+        document.addEventListener('DOMContentLoaded', function(){
+          if(hasHero()) reveal();
+        });
+      } else {
+        if(hasHero()) reveal();
+      }
+      var obs=new MutationObserver(function(){
+        if(hasHero()){
+          reveal();
+          obs.disconnect();
+        }
+      });
+      obs.observe(document.documentElement,{childList:true,subtree:true,characterData:true});
+      setTimeout(reveal, 3500);
     })();
     </script>
   </body>
