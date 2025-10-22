@@ -53,27 +53,6 @@
         return;
       }
 
-      // Check if server already injected the content
-      const heroContainer = document.querySelector('[data-hero-container]');
-      if (heroContainer && heroContainer.classList.contains('ready')) {
-        console.log('[Dynamic Hero] Server-side content detected, skipping fetch');
-        return;
-      }
-
-      // Check if window.__HERO_TEXT__ was injected by server
-      if (window.__HERO_TEXT__) {
-        console.log('[Dynamic Hero] Using server-injected variant');
-        const isMobile = window.innerWidth < 768;
-        const heroText = isMobile ? (window.__HERO_TEXT__.subheadline || window.__HERO_TEXT__.headline) : window.__HERO_TEXT__.headline;
-        if (heroContainer) {
-          heroContainer.innerHTML = '<div style="white-space: pre-wrap;">' + heroText + '</div>';
-          heroContainer.classList.add('ready');
-        }
-        if (window.__HERO_READY__) window.__HERO_READY__();
-        return;
-      }
-
-      // Fallback to client-side fetch (only if server didn't inject)
       console.log('[Dynamic Hero] Loading variant for keyword:', keyword);
 
       // Detect if mobile or desktop
