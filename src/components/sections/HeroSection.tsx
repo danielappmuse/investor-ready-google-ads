@@ -10,11 +10,15 @@ interface HeroSectionProps {
   onAnimationComplete?: (complete: boolean) => void;
   currentView?: 'products' | 'prototype-form';
   setCurrentView?: (view: 'products' | 'prototype-form') => void;
+  headline?: string;
+  subheadline?: string;
 }
 const HeroSection = ({
   startWithPrototype = false,
   currentView: externalCurrentView,
-  setCurrentView: externalSetCurrentView
+  setCurrentView: externalSetCurrentView,
+  headline,
+  subheadline
 }: HeroSectionProps) => {
   const isSmallScreen = useIsSmallScreen();
   const [internalCurrentView, setInternalCurrentView] = useState<'products' | 'prototype-form'>(startWithPrototype ? 'prototype-form' : 'products');
@@ -85,21 +89,27 @@ const HeroSection = ({
                 </div>
                 
                 <p className={`${isSmallScreen ? 'text-[14.5px]' : 'text-[17.5px]'} sm:text-base lg:text-[20px] text-white leading-snug animate-fade-in stagger-2 max-w-2xl 2xl:max-w-3xl 3xl:max-w-4xl mt-1.5`}>
-                  You've pitched for months, maybe years, <strong>and still don't know what's missing.</strong>
-                  <span className="block h-2" />
-                  Even if the funding came tomorrow, would you know how to <strong>turn it into real traction?</strong>
-                  <span className="block h-2 lg:h-8" />
-                  We turn the chaos of <strong>fundraising into a clear path.</strong>
-                  <span className="hidden sm:inline"><br />
-                  From strategy to execution, all in <strong>one place.</strong></span>
-                  <span className="block h-2 lg:h-8" />
-                  <span className="hidden sm:inline"><strong>✅ YC-level Business Strategy</strong>
-                  <br />
-                  <strong>🚀 Musk-level Execution Intensity</strong></span>
-                  <span className="block h-2 lg:h-8" />
-                  → <strong>Ready to raise?</strong> We'll connect you.
-                  <br />
-                  → <strong>Still building?</strong> We'll get you ready.
+                  {headline ? (
+                    <span dangerouslySetInnerHTML={{ __html: headline }} />
+                  ) : (
+                    <>
+                      You've pitched for months, maybe years, <strong>and still don't know what's missing.</strong>
+                      <span className="block h-2" />
+                      Even if the funding came tomorrow, would you know how to <strong>turn it into real traction?</strong>
+                      <span className="block h-2 lg:h-8" />
+                      We turn the chaos of <strong>fundraising into a clear path.</strong>
+                      <span className="hidden sm:inline"><br />
+                      From strategy to execution, all in <strong>one place.</strong></span>
+                      <span className="block h-2 lg:h-8" />
+                      <span className="hidden sm:inline"><strong>✅ YC-level Business Strategy</strong>
+                      <br />
+                      <strong>🚀 Musk-level Execution Intensity</strong></span>
+                      <span className="block h-2 lg:h-8" />
+                      → <strong>Ready to raise?</strong> We'll connect you.
+                      <br />
+                      → <strong>Still building?</strong> We'll get you ready.
+                    </>
+                  )}
                 </p>
               </div>
             </div>
