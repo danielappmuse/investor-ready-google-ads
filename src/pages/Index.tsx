@@ -1,12 +1,3 @@
-declare global {
-  interface Window {
-    __HERO_TEXT__?: {
-      headline: string;
-      subheadline: string;
-    };
-  }
-}
-
 import React, { useEffect, useState } from 'react'
 import HeroSection from '@/components/sections/HeroSection'
 import ProjectCarousel from '@/components/sections/ProjectCarousel'
@@ -31,15 +22,6 @@ const Index = () => {
   const [startWithValidation, setStartWithValidation] = useState(false)
   const [startWithPrototype, setStartWithPrototype] = useState(false)
   const [currentView, setCurrentView] = useState<'products' | 'prototype-form'>('products')
-  const [headline, setHeadline] = useState<string | undefined>(undefined)
-  const [subheadline, setSubheadline] = useState<string | undefined>(undefined)
-
-  useEffect(() => {
-    if (window.__HERO_TEXT__) {
-      setHeadline(window.__HERO_TEXT__.headline)
-      setSubheadline(window.__HERO_TEXT__.subheadline)
-    }
-  }, [])
 
   const handleValidationClick = () => {
     setStartWithValidation(true)
@@ -181,8 +163,6 @@ const Index = () => {
         startWithPrototype={startWithPrototype}
         currentView={currentView}
         setCurrentView={setCurrentView}
-        headline={headline}
-        subheadline={subheadline}
       />
       {currentView === 'products' && (
         <>
