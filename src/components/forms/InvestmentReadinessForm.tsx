@@ -285,12 +285,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
     console.log('📋 Form data:', data)
     setIsSubmitting(true)
     
-    // Show toast immediately
-    toast({
-      title: "Processing...",
-      description: "Submitting your assessment",
-    })
-    
     try {
       const score = calculateScore()
       const segment = getSegment(score)
@@ -418,11 +412,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             })
           } catch (fallbackErr) {
             console.error('❌ Client-side webhook fallback failed:', fallbackErr)
-            toast({
-              title: "Submission Error",
-              description: `Failed to send data: ${webhookError.message}`,
-              variant: "destructive"
-            })
           }
         } else {
           console.log('✅ Assessment sent to webhook successfully')
@@ -431,10 +420,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           if (responseData?.city) {
             setUserCity(responseData.city)
           }
-          toast({
-            title: "Success!",
-            description: "Assessment submitted successfully",
-          })
         }
       } catch (webhookErr) {
         console.error('❌ Webhook submission exception:', webhookErr)
@@ -453,11 +438,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         } catch (fallbackErr) {
           console.error('❌ Client-side webhook fallback failed (exception path):', fallbackErr)
         }
-        toast({
-          title: "Submission Error",
-          description: "Failed to submit assessment",
-          variant: "destructive"
-        })
       }
       
       const completeData: ContactFormData = {
@@ -1351,33 +1331,35 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         </div>
       </form>
 
-      {/* Success Dialog */}
-      <Dialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
-        <DialogContent className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border-2 border-primary/30 text-white max-w-lg mx-auto p-8 rounded-2xl shadow-2xl shadow-primary/20">
-          <DialogHeader className="space-y-6 text-center">
-            <div className="mx-auto w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-4">
-              <Check className="w-10 h-10 text-primary" />
+      {/* Success Overlay */}
+      {showSuccessDialog && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border-2 border-primary/30 text-white max-w-2xl mx-4 p-8 sm:p-12 rounded-2xl shadow-2xl shadow-primary/20 animate-in zoom-in-95 duration-300">
+            <div className="space-y-6 text-center">
+              <div className="mx-auto w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mb-6">
+                <Check className="w-12 h-12 text-primary" />
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white">
+                Thank you for submitting your application!
+              </h2>
+              <div className="space-y-5 text-lg sm:text-xl text-gray-300 leading-relaxed pt-4">
+                <p>
+                  You will soon receive a message from our <span className="font-bold text-white">Venture Relations Director</span>.
+                </p>
+                <p>
+                  Kindly upload your relevant business materials for investment review and schedule your interview using the link provided in the message.
+                </p>
+                <p className="pt-2">
+                  We look forward to connecting with you soon.
+                </p>
+                <p className="font-bold text-primary text-2xl pt-4">
+                  Best of luck!
+                </p>
+              </div>
             </div>
-            <DialogTitle className="text-2xl sm:text-3xl font-bold text-white">
-              Thank you for submitting your application!
-            </DialogTitle>
-            <div className="space-y-4 text-base sm:text-lg text-gray-300 leading-relaxed">
-              <p>
-                You will soon receive a message from our <span className="font-bold text-white">Venture Relations Director</span>.
-              </p>
-              <p>
-                Kindly upload your relevant business materials for investment review and schedule your interview using the link provided in the message.
-              </p>
-              <p className="pt-2">
-                We look forward to connecting with you soon.
-              </p>
-              <p className="font-bold text-primary text-xl pt-2">
-                Best of luck!
-              </p>
-            </div>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
