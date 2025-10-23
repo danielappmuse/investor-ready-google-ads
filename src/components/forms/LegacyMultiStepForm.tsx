@@ -11,6 +11,7 @@ import { ArrowRight, ArrowLeft, CheckCircle, User, Mail, Phone, Briefcase, Shiel
 import { ContactFormData, projectTypes, budgetRanges } from '@/types/form'
 import { trackFormSubmission, trackConversion } from '@/utils/posthog'
 import { trackFormConversion } from '@/utils/googleAds'
+import { supabase } from '@/integrations/supabase/client'
 
 const formSchema = z.object({
   full_name: z.string().min(2, 'Full name must be at least 2 characters'),
@@ -121,13 +122,9 @@ const LegacyMultiStepForm = ({ onSuccess }: LegacyMultiStepFormProps) => {
         keyword: params.get('keyword') || ''
       }
 
-      // Submit to Make.com webhook
-      await fetch('https://hook.eu1.make.com/nthlsd5ijwk2g9pu835fpptkj36kswqr', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formDataWithUTM)
+      // Submit via edge function
+      const { error: submissionError } = await supabase.functions.invoke('submit-assessment', {
+        body: formDataWithUTM
       })
 
       // Track conversions

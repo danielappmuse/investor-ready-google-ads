@@ -1,61 +1,87 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts"
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
-interface AssessmentPayload {
-  event: string
-  session_id: string
-  timestamp: string
-  full_name: string
-  email: string
-  phone: string
-  consent: boolean
-  assessment: {
-    q1_project_stage: string
-    q2_user_persona: string
-    q3_differentiation: string
-    q4_existing_materials: string[]
-    q5_business_model: string
-    q6_revenue_goal: string
-    q7_build_strategy: string
-    q8_help_needed: string[]
-    q9_investment_readiness: string
-    q10_investment_level: string
-    investment_readiness_score: number
-  }
-  [key: string]: any // For tracking data
+// Validation schema
+const assessmentSchema = z.object({
+  event: z.string().max(100),
+  session_id: z.string().uuid(),
+  timestamp: z.string(),
+  full_name: z.string().trim().min(2).max(100),
+  email: z.string().email().max(255),
+  phone: z.string().regex(/^\+1\s\(\d{3}\)\s\d{3}-\d{4}$/),
+  consent: z.boolean(),
+  assessment: z.object({
+    q1_project_stage: z.string().max(500),
+    q2_user_persona: z.string().max(1000),
+    q3_differentiation: z.string().max(1000),
+    q4_existing_materials: z.array(z.string()).max(20),
+    q5_business_model: z.string().max(500),
+    q6_revenue_goal: z.string().max(500),
+    q7_build_strategy: z.string().max(500),
+    q8_help_needed: z.array(z.string()).max(20),
+    q9_investment_readiness: z.string().max(500),
+    q10_investment_level: z.string().max(500),
+    investment_readiness_score: z.number().min(0).max(100)
+  })
+}).passthrough() // Allow additional tracking fields
+
+interface AssessmentPayload extends z.infer<typeof assessmentSchema> {
+  [key: string]: any
 }
+
+// Rate limiting map (in-memory, simple IP-based)
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
+const RATE_LIMIT_WINDOW = 60000 // 1 minute
+const MAX_REQUESTS = 5 // Max 5 submissions per minute per IP
 
 serve(async (req) => {
   console.log('🟢 submit-assessment function invoked')
-  console.log('📥 Request method:', req.method)
   
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
-    console.log('✅ CORS preflight - returning headers')
     return new Response(null, { headers: corsHeaders })
   }
 
   try {
-    console.log('📖 Parsing request body...')
-    const payload: AssessmentPayload = await req.json()
-    console.log('✅ Payload parsed successfully')
-    console.log('📋 Session ID:', payload.session_id)
-    console.log('📋 Email:', payload.email)
-    console.log('📋 Event:', payload.event)
-    
-    // Get client IP from headers (check multiple providers)
+    // Get client IP for rate limiting
     const ip =
       req.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
       req.headers.get('x-real-ip') ||
       req.headers.get('cf-connecting-ip') ||
-      req.headers.get('x-client-ip') ||
-      req.headers.get('fastly-client-ip') ||
       'unknown'
-    console.log('🌐 Client IP:', ip)
+    
+    // Rate limiting check
+    const now = Date.now()
+    const limitData = rateLimitMap.get(ip)
+    
+    if (limitData) {
+      if (now < limitData.resetAt) {
+        if (limitData.count >= MAX_REQUESTS) {
+          console.warn('⚠️ Rate limit exceeded for IP')
+          return new Response(
+            JSON.stringify({ success: false, error: 'Rate limit exceeded. Please try again later.' }),
+            { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+          )
+        }
+        limitData.count++
+      } else {
+        rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW })
+      }
+    } else {
+      rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW })
+    }
+
+    const rawPayload = await req.json()
+    
+    // Validate input
+    const payload = assessmentSchema.parse(rawPayload)
+    
+    console.log('✅ Payload validated - Session:', payload.session_id)
 
     // Capture user agent
     const userAgent = req.headers.get('user-agent') || 'unknown'
@@ -67,20 +93,16 @@ serve(async (req) => {
     
     if (ip && ip !== 'unknown') {
       try {
-        console.log('🌍 Fetching geolocation (ipapi) for IP:', ip)
         const geoResponse = await fetch(`https://ipapi.co/${ip}/json/`)
         if (geoResponse.ok) {
           const geoData = await geoResponse.json()
           city = geoData.city || 'Unknown'
           region = geoData.region || geoData.region_code || 'Unknown'
           country = geoData.country_name || geoData.country || 'Unknown'
-          console.log('✅ Geolocation detected (ipapi):', { city, region, country })
         } else {
-          console.warn('⚠️ ipapi non-ok status:', geoResponse.status)
           throw new Error(`ipapi status ${geoResponse.status}`)
         }
       } catch (geoError) {
-        console.warn('🟡 ipapi failed, trying ip-api.com:', geoError)
         try {
           const alt = await fetch(`http://ip-api.com/json/${ip}?fields=status,message,city,regionName,country`)
           if (alt.ok) {
@@ -89,13 +111,10 @@ serve(async (req) => {
               city = altData.city || city
               region = altData.regionName || region
               country = altData.country || country
-              console.log('✅ Geolocation detected (ip-api):', { city, region, country })
-            } else {
-              console.warn('⚠️ ip-api error:', altData.message)
             }
           }
         } catch (e2) {
-          console.error('❌ Failed all geolocation attempts:', e2)
+          console.error('❌ Geolocation failed')
         }
       }
     }
@@ -127,15 +146,7 @@ serve(async (req) => {
     
     // Send webhook in background (non-blocking)
     if (webhookUrl) {
-      console.log('📤 Starting background webhook submission...')
-      console.log('📦 Webhook payload:', JSON.stringify(webhookPayload, null, 2))
-      console.log('🔍 Tracking data in payload:', {
-        keyword: (webhookPayload as any).keyword,
-        match_type: (webhookPayload as any).match_type,
-        matchtype: (webhookPayload as any).matchtype,
-        gclid: (webhookPayload as any).gclid,
-        city: webhookPayload.city
-      })
+      console.log('📤 Submitting to webhook')
       
       // Run webhook in background without blocking response
       const backgroundWebhook = async () => {
@@ -148,25 +159,20 @@ serve(async (req) => {
             body: JSON.stringify(webhookPayload)
           })
           
-          console.log('📨 Webhook response status:', webhookResponse.status)
-          console.log('📨 Webhook response ok:', webhookResponse.ok)
-          
           if (!webhookResponse.ok) {
-            const responseText = await webhookResponse.text()
-            console.error('❌ Webhook failed with response:', responseText)
+            console.error('❌ Webhook failed')
           } else {
-            console.log('✅ Successfully sent to webhook')
+            console.log('✅ Webhook sent')
           }
         } catch (error) {
-          console.error('❌ Background webhook error:', error)
+          console.error('❌ Webhook error')
         }
       }
       
       // Start background task without waiting
       backgroundWebhook()
     } else {
-      console.warn('⚠️ MAKE_WEBHOOK_ASSESSMENT_URL not configured - skipping webhook call')
-      console.log('📦 Assessment data (not sent):', JSON.stringify(webhookPayload, null, 2))
+      console.warn('⚠️ Webhook not configured')
     }
     
     return new Response(
@@ -183,13 +189,27 @@ serve(async (req) => {
       }
     )
   } catch (error) {
-    console.error('❌ Error in submit-assessment function:', error)
-    console.error('❌ Error type:', typeof error)
-    console.error('❌ Error details:', JSON.stringify(error, null, 2))
+    console.error('❌ Submission error')
+    
+    // Check if it's a validation error
+    if (error instanceof z.ZodError) {
+      return new Response(
+        JSON.stringify({ 
+          success: false,
+          error: 'Invalid input data',
+          details: error.errors
+        }),
+        { 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          status: 400 
+        }
+      )
+    }
+    
     return new Response(
       JSON.stringify({ 
         success: false,
-        error: error instanceof Error ? error.message : 'Unknown error occurred'
+        error: 'Submission failed'
       }),
       { 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },

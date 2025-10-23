@@ -386,9 +386,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         referrer: document.referrer || null
       }
       
-      console.log('📦 Assessment payload prepared:', JSON.stringify(assessmentPayload, null, 2))
-      
-      // Send to webhook via edge function
       console.log('📡 Invoking submit-assessment edge function...')
       
       try {
@@ -397,35 +394,14 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         })
         
         if (webhookError) {
-          console.error('❌ Webhook error:', webhookError)
-          console.error('❌ Full error details:', JSON.stringify(webhookError, null, 2))
-          // Fallback: send directly to Make webhook from client (non-blocking with short timeout)
-          try {
-            console.log('🟡 Falling back to client-side webhook call...')
-            await Promise.race([
-              fetch('https://hook.eu1.make.com/wupz8z02hj9jqjxkngm1foxed2aud1ya', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...assessmentPayload, fallback: true })
-              }),
-              new Promise((resolve) => setTimeout(resolve, 1500))
-            ])
-            // Treat successful fallback as success
-            toast({
-              title: "Success!",
-              description: "Assessment submitted successfully",
-            })
-          } catch (fallbackErr) {
-            console.error('❌ Client-side webhook fallback failed:', fallbackErr)
-            toast({
-              title: "Submission Error",
-              description: `Failed to send data: ${webhookError.message}`,
-              variant: "destructive"
-            })
-          }
+          console.error('❌ Submission error')
+          toast({
+            title: "Submission Error",
+            description: "Unable to submit assessment. Please try again.",
+            variant: "destructive"
+          })
         } else {
-          console.log('✅ Assessment sent to webhook successfully')
-          console.log('✅ Response data:', responseData)
+          console.log('✅ Assessment submitted successfully')
           // Store city from response
           if (responseData?.city) {
             setUserCity(responseData.city)
@@ -436,25 +412,10 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
           })
         }
       } catch (webhookErr) {
-        console.error('❌ Webhook submission exception:', webhookErr)
-        console.error('❌ Exception details:', JSON.stringify(webhookErr, null, 2))
-        // Fallback: send directly to Make webhook from client (non-blocking with short timeout)
-        try {
-          console.log('🟡 Falling back to client-side webhook call (exception path)...')
-          await Promise.race([
-            fetch('https://hook.eu1.make.com/wupz8z02hj9jqjxkngm1foxed2aud1ya', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ ...assessmentPayload, fallback: true })
-            }),
-            new Promise((resolve) => setTimeout(resolve, 1500))
-          ])
-        } catch (fallbackErr) {
-          console.error('❌ Client-side webhook fallback failed (exception path):', fallbackErr)
-        }
+        console.error('❌ Submission exception')
         toast({
           title: "Submission Error",
-          description: "Failed to submit assessment",
+          description: "Unable to submit assessment. Please try again.",
           variant: "destructive"
         })
       }
