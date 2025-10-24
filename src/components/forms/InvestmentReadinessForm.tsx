@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -15,7 +15,6 @@ import { getTrackingParameters, initializeTracking, fireGoogleAdsConversion } fr
 import { supabase } from '@/integrations/supabase/client'
 import InlinePDFViewer from '@/components/documents/InlinePDFViewer'
 import { useToast } from '@/hooks/use-toast'
-import ReCAPTCHA from 'react-google-recaptcha'
 
 const formSchema = z.object({
   first_name: z.string().min(2, 'First name must be at least 2 characters'),
@@ -54,12 +53,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   const [showScore, setShowScore] = useState(false)
   const [userCity, setUserCity] = useState<string>('')
   const [sessionId] = useState(() => getSessionId())
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
-  const recaptchaRef = useRef<ReCAPTCHA>(null)
   const { toast } = useToast()
-  
-  // reCAPTCHA site key
-  const RECAPTCHA_SITE_KEY = '6LdCsfUrAAAAAJaNrCkDQpV518T7keQIpCWnEeUG'
 
   const {
     register,
@@ -286,16 +280,6 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   }
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    // Validate CAPTCHA
-    if (!captchaToken) {
-      toast({
-        title: "CAPTCHA Required",
-        description: "Please complete the CAPTCHA verification",
-        variant: "destructive"
-      })
-      return
-    }
-    
     console.log('🚀 FORM SUBMISSION STARTED')
     console.log('📋 Form data:', data)
     setIsSubmitting(true)
@@ -399,10 +383,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
         ...currentTrackingData,
         form_location: formLocation,
         page_url: window.location.href,
-        referrer: document.referrer || null,
-        
-        // CAPTCHA token for verification
-        captcha_token: captchaToken
+        referrer: document.referrer || null
       }
       
       console.log('📡 Invoking submit-assessment edge function...')
@@ -1235,19 +1216,9 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
             )}
           </div>
 
-          <div className="flex justify-center my-6">
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              sitekey={RECAPTCHA_SITE_KEY}
-              onChange={(token) => setCaptchaToken(token)}
-              onExpired={() => setCaptchaToken(null)}
-              theme="dark"
-            />
-          </div>
-
           <Button
             type="submit"
-            disabled={isSubmitting || !captchaToken}
+            disabled={isSubmitting}
             className="btn-hero w-full text-lg py-4"
           >
             {isSubmitting ? 'Submitting...' : 'Book Your Interview'}
