@@ -189,7 +189,7 @@ serve(async (req) => {
       }
     )
   } catch (error) {
-    console.error('❌ Submission error')
+    console.error('❌ Submission error:', error)
     
     // Check if it's a validation error
     if (error instanceof z.ZodError) {
