@@ -58,8 +58,8 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   const recaptchaRef = useRef<ReCAPTCHA>(null)
   const { toast } = useToast()
   
-  // reCAPTCHA site key - you'll need to replace this with your actual site key
-  const RECAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI' // This is a test key, replace with your actual key
+  // reCAPTCHA site key
+  const RECAPTCHA_SITE_KEY = '6Lcur_UrAAAAACd-cOrNd37ZfecLGjPawlT85QU8'
 
   const {
     register,
