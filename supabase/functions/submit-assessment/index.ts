@@ -16,17 +16,19 @@ const assessmentSchema = z.object({
   phone: z.string().regex(/^\+1\s\(\d{3}\)\s\d{3}-\d{4}$/),
   consent: z.boolean(),
   assessment: z.object({
-    q1_project_stage: z.string().max(500),
-    q2_user_persona: z.string().max(1000),
-    q3_differentiation: z.string().max(1000),
-    q4_existing_materials: z.array(z.string()).max(20),
-    q5_business_model: z.string().max(500),
-    q6_revenue_goal: z.string().max(500),
-    q7_build_strategy: z.string().max(500),
-    q8_help_needed: z.array(z.string()).max(20),
-    q9_investment_readiness: z.string().max(500),
+    q0_startup_type: z.string().max(500),
+    q1_app_idea: z.string().max(1000),
+    q2_project_stage: z.string().max(500),
+    q3_user_persona: z.string().max(1000),
+    q4_differentiation: z.string().max(1000),
+    q5_existing_materials: z.array(z.string()).max(20),
+    q6_business_model: z.string().max(500),
+    q7_revenue_goal: z.string().max(500),
+    q8_build_strategy: z.string().max(500),
+    q9_help_needed: z.array(z.string()).max(20),
     q10_investment_level: z.string().max(500),
-    investment_readiness_score: z.number().min(0).max(100)
+    investment_readiness_score: z.number().min(0).max(100),
+    segment: z.string().max(100)
   })
 }).passthrough() // Allow additional tracking fields
 
