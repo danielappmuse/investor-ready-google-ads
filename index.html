@@ -26,13 +26,14 @@
     var target = 'https://www.clickcease.com/monitor/stat.js';
     script.src = target;var elem = document.head;elem.appendChild(script);
     </script>
-    <noscript>
-    <a href='https://www.clickcease.com' rel='nofollow'><img src='https://monitor.clickcease.com' alt='ClickCease'/></a>
-    </noscript>
-    <!--  ClickCease.com tracking-->
   </head>
 
   <body>
+    <!--  ClickCease.com tracking noscript-->
+    <noscript>
+    <a href='https://www.clickcease.com' rel='nofollow'><img src='https://monitor.clickcease.com' alt='ClickCease'/></a>
+    </noscript>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
