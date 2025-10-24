@@ -9,18 +9,29 @@ const ThankYou: React.FC = () => {
           <img src={logo} alt="Start Wise" className="h-16 md:h-20" />
         </div>
         
-        <div className="space-y-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">
+        <div className="space-y-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground">
             Thank you for submitting your application!
           </h1>
           
-          <div className="space-y-3 text-lg md:text-xl text-white">
+          <div className="space-y-3 text-lg md:text-xl text-foreground/90">
             <p>
               You will soon receive a message from our <span className="font-bold">Venture Relations Director</span>.
             </p>
             <p>
-              Kindly upload your relevant business materials for investment review and schedule your interview using the link provided in the message.
+              Schedule your interview now using the calendar below:
             </p>
+          </div>
+
+          <div className="w-full bg-card rounded-lg overflow-hidden shadow-lg">
+            <iframe
+              src="https://meetings-eu1.hubspot.com/meetings/michael-damato"
+              className="w-full h-[600px] md:h-[700px] border-0"
+              title="Schedule a Meeting"
+            />
+          </div>
+
+          <div className="space-y-3 text-lg text-foreground/90">
             <p>
               We look forward to connecting with you soon.
             </p>
