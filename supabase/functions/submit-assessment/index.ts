@@ -15,6 +15,7 @@ const assessmentSchema = z.object({
   email: z.string().email().max(255),
   phone: z.string().regex(/^\+1\s\(\d{3}\)\s\d{3}-\d{4}$/),
   consent: z.boolean(),
+  captcha_token: z.string().min(1, 'CAPTCHA token is required'),
   assessment: z.object({
     q1_project_stage: z.string().max(500),
     q2_user_persona: z.string().max(1000),
@@ -80,6 +81,44 @@ serve(async (req) => {
     
     // Validate input
     const payload = assessmentSchema.parse(rawPayload)
+    
+    // Verify CAPTCHA token
+    const recaptchaSecret = Deno.env.get('RECAPTCHA_SECRET_KEY')
+    if (!recaptchaSecret) {
+      console.error('❌ RECAPTCHA_SECRET_KEY not configured')
+      return new Response(
+        JSON.stringify({ success: false, error: 'Server configuration error' }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
+    
+    try {
+      const verifyResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `secret=${recaptchaSecret}&response=${payload.captcha_token}&remoteip=${ip}`
+      })
+      
+      const verifyData = await verifyResponse.json()
+      
+      if (!verifyData.success) {
+        console.warn('⚠️ CAPTCHA verification failed')
+        return new Response(
+          JSON.stringify({ success: false, error: 'CAPTCHA verification failed' }),
+          { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        )
+      }
+      
+      console.log('✅ CAPTCHA verified')
+    } catch (captchaError) {
+      console.error('❌ CAPTCHA verification error')
+      return new Response(
+        JSON.stringify({ success: false, error: 'CAPTCHA verification failed' }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
     
     console.log('✅ Payload validated - Session:', payload.session_id)
 
