@@ -59,7 +59,7 @@ const InvestmentReadinessForm = ({ onSuccess, formLocation, onBack }: Investment
   const { toast } = useToast()
   
   // reCAPTCHA site key
-  const RECAPTCHA_SITE_KEY = '6Lcur_UrAAAAACd-cOrNd37ZfecLGjPawlT85QU8'
+  const RECAPTCHA_SITE_KEY = '6LeqsPUrAAAAAFZrRJn2e9qQjVgVYKCfVf8zB5xr'
 
   const {
     register,
